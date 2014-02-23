@@ -76,6 +76,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see ModalHeader
  * @see ModalBody
  * @see ModalFooter

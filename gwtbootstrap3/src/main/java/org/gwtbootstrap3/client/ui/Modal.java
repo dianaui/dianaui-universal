@@ -23,6 +23,8 @@ package org.gwtbootstrap3.client.ui;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.Timer;
@@ -80,21 +82,21 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @see ModalHeader
  * @see ModalBody
  * @see ModalFooter
- * @see org.gwtbootstrap3.client.shared.event.ModalShowEvent
- * @see org.gwtbootstrap3.client.shared.event.ModalShownEvent
- * @see org.gwtbootstrap3.client.shared.event.ModalHideEvent
- * @see org.gwtbootstrap3.client.shared.event.ModalHiddenEvent
+ * @see org.gwtbootstrap3.client.shared.event.ShowEvent
+ * @see org.gwtbootstrap3.client.shared.event.ShownEvent
+ * @see org.gwtbootstrap3.client.shared.event.HideEvent
+ * @see org.gwtbootstrap3.client.shared.event.HiddenEvent
  */
 public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
 
-    private static int transitionDuration = 150;
+    private static int DEFAULT_TRANSITION_MS = 150;
 
     private final ModalContent content = new ModalContent();
     private ModalHeader header = new ModalHeader();
-
     private boolean viewing = false;
-
+    private int transitionMs = DEFAULT_TRANSITION_MS;
     private DivElement backdrop;
+    private ModalBackdrop backdropParams = ModalBackdrop.TRUE;
 
     public Modal() {
         setStyleName(Styles.MODAL);
@@ -131,6 +133,15 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
     @Override
     public void setClosable(final boolean closable) {
         header.setClosable(closable);
+
+        if (closable) {
+            header.getCloseButton().addClickHandler(new ClickHandler() {
+                @Override
+                public void onClick(ClickEvent clickEvent) {
+                    hide();
+                }
+            });
+        }
     }
 
     @Override
@@ -156,8 +167,12 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
     public void setFade(final boolean fade) {
         if (fade) {
             addStyleName(Styles.FADE);
+            backdrop.addClassName(Styles.FADE);
+            transitionMs = DEFAULT_TRANSITION_MS;
         } else {
             removeStyleName(Styles.FADE);
+            backdrop.removeClassName(Styles.FADE);
+            transitionMs = 0;
         }
     }
 
@@ -168,11 +183,7 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
      * @see org.gwtbootstrap3.client.ui.constants.ModalBackdrop
      */
     public void setBackdrop(final ModalBackdrop backdrop) {
-        if (backdrop != null) {
-            getElement().setAttribute(Attributes.DATA_BACKDROP, backdrop.getBackdrop());
-        } else {
-            getElement().removeAttribute(Attributes.DATA_BACKDROP);
-        }
+        this.backdropParams = backdrop;
     }
 
     public void setKeyboard(final boolean keyboard) {
@@ -200,26 +211,31 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
                 Event.setEventListener(getElement(), new EventListener() {
                     @Override
                     public void onBrowserEvent(Event event) {
-                        if (Event.ONCLICK == event.getTypeInt() && event.getEventTarget().equals(getElement())) {
+                        if (Event.ONCLICK == event.getTypeInt() && event.getEventTarget().equals(getElement()) &&
+                                backdropParams.equals(ModalBackdrop.TRUE)) {
                             hide();
                         }
                     }
                 });
             }
 
-            RootPanel.getBodyElement().appendChild(backdrop);
+            if (!backdropParams.equals(ModalBackdrop.FALSE)) {
+                RootPanel.getBodyElement().appendChild(backdrop);
 
-            // force reflow
-            backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
+                // force reflow
+                backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
 
-            backdrop.addClassName(Styles.IN);
+                backdrop.addClassName(Styles.IN);
+            }
 
             Timer timer = new Timer() {
                 @Override
                 public void run() {
                     getElement().getStyle().setDisplay(Style.Display.BLOCK);
 
-                    backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
+                    if (!backdropParams.equals(ModalBackdrop.FALSE)) {
+                        backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
+                    }
 
                     addStyleName(Styles.IN);
 
@@ -228,7 +244,7 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
                 }
             };
 
-            timer.schedule(transitionDuration);
+            timer.schedule(transitionMs);
         }
     }
 
@@ -238,39 +254,46 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
 
             removeStyleName(Styles.IN);
 
-            backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
+            // force reflow
+            if (backdrop.getParentNode() != null) {
+                backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
+            }
 
             Timer timer = new Timer() {
                 @Override
                 public void run() {
                     getElement().getStyle().clearDisplay();
 
-                    backdrop.removeClassName(Styles.IN);
+                    if (backdrop.getParentNode() != null) {
+                        backdrop.removeClassName(Styles.IN);
+                    }
 
                     Timer timer = new Timer() {
                         @Override
                         public void run() {
                             removeFromParent();
-                            backdrop.removeFromParent();
+
+                            if (backdrop.getParentNode() != null) {
+                                backdrop.removeFromParent();
+                            }
 
                             viewing = false;
                         }
                     };
 
-                    timer.schedule(transitionDuration);
+                    timer.schedule(transitionMs);
 
                     Modal.this.fireEvent(new HiddenEvent());
                 }
             };
 
-            timer.schedule(transitionDuration);
+            timer.schedule(transitionMs);
         }
     }
 
     private void initBackdrop() {
         backdrop = Document.get().createDivElement();
         backdrop.setClassName(Styles.MODAL_BACKDROP);
-        backdrop.addClassName(Styles.FADE);
     }
 
 }

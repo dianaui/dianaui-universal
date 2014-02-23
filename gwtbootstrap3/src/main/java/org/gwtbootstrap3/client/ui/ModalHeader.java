@@ -23,7 +23,6 @@ package org.gwtbootstrap3.client.ui;
 import com.google.gwt.user.client.ui.FlowPanel;
 import org.gwtbootstrap3.client.ui.base.button.CloseButton;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.constants.ButtonDismiss;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -34,15 +33,12 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 public class ModalHeader extends FlowPanel implements ModalComponent, IsClosable, HasResponsiveness {
 
     private final Heading heading = new Heading(4);
-    private final CloseButton closeButton = new CloseButton();
+    private CloseButton closeButton = null;
 
     public ModalHeader() {
         setStyleName(Styles.MODAL_HEADER);
 
         heading.setStyleName(Styles.MODAL_TITLE);
-        closeButton.setDismiss(ButtonDismiss.MODAL);
-
-        add(closeButton);
     }
 
     public void setTitle(final String title) {
@@ -53,18 +49,24 @@ public class ModalHeader extends FlowPanel implements ModalComponent, IsClosable
         }
     }
 
+    public CloseButton getCloseButton() {
+        return closeButton;
+    }
+
     @Override
     public void setClosable(final boolean closable) {
         if (closable) {
+            closeButton = new CloseButton();
             insert(closeButton, getElement(), 0, true);
         } else {
             closeButton.removeFromParent();
+            closeButton = null;
         }
     }
 
     @Override
     public boolean isClosable() {
-        return closeButton.getParent() != null;
+        return closeButton != null && closeButton.getParent() != null;
     }
 
     @Override

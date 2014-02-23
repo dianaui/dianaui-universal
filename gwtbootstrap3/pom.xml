@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.gwtbootstrap3</groupId>
-        <artifactId>gwtbootstrap3-parent</artifactId>
-        <version>0.6-SNAPSHOT</version>
+        <groupId>com.gwt-widgets</groupId>
+        <artifactId>gwt-widgets</artifactId>
+        <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gwtbootstrap3</artifactId>
-    <name>GwtBootstrap3</name>
+    <artifactId>gwt-widgets-core</artifactId>
+    <name>GWT Widgets</name>
 
     <dependencies>
         <dependency>

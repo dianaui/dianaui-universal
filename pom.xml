@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.gwtbootstrap3</groupId>
-    <artifactId>gwtbootstrap3-parent</artifactId>
+    <groupId>com.gwt-widgets</groupId>
+    <artifactId>gwt-widgets</artifactId>
     <packaging>pom</packaging>
-    <version>0.6-SNAPSHOT</version>
-    <name>GwtBootstrap3 Parent</name>
+    <version>0.1-SNAPSHOT</version>
+    <name>GWT Widgets Parent</name>
 
     <parent>
         <groupId>com.svenjacobs</groupId>
@@ -15,9 +15,9 @@
     </parent>
 
     <scm>
-        <connection>scm:git:git@github.com:gwtbootstrap3/gwtbootstrap3.git</connection>
-        <developerConnection>scm:git:git@github.com:gwtbootstrap3/gwtbootstrap3.git</developerConnection>
-        <url>git@github.com:gwtbootstrap3/gwtbootstrap3.git</url>
+        <connection>scm:git:git@github.com:donbeave/gwt-widgets.git</connection>
+        <developerConnection>scm:git:git@github.com:donbeave/gwt-widgets.git</developerConnection>
+        <url>git@github.com:donbeave/gwt-widgets.git</url>
     </scm>
 
     <licenses>
@@ -49,6 +49,16 @@
                 <role>developer</role>
             </roles>
             <timezone>UTC+6</timezone>
+        </developer>
+        <developer>
+            <id>donbeave</id>
+            <name>Alexey Zhokhov</name>
+            <email>donbeave@gmail.com</email>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>UTC+8</timezone>
         </developer>
     </developers>
 

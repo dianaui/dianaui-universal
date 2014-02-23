@@ -128,6 +128,7 @@ public final class Styles {
     public static final String LIST_GROUP_ITEM_TEXT = "list-group-item-text";
 
     public static final String MODAL = "modal";
+    public static final String MODAL_BACKDROP = "modal-backdrop";
     public static final String MODAL_BODY = "modal-body";
     public static final String MODAL_CONTENT = "modal-content";
     public static final String MODAL_DIALOG = "modal-dialog";

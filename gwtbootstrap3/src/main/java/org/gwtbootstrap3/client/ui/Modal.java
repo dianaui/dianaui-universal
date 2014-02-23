@@ -86,6 +86,8 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
 
+    private static int transitionDuration = 150;
+
     private final ModalContent content = new ModalContent();
     private ModalHeader header = new ModalHeader();
 
@@ -225,7 +227,7 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
                 }
             };
 
-            timer.schedule(150);
+            timer.schedule(transitionDuration);
         }
     }
 
@@ -254,19 +256,19 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
                         }
                     };
 
-                    timer.schedule(150);
+                    timer.schedule(transitionDuration);
 
                     Modal.this.fireEvent(new HiddenEvent());
                 }
             };
 
-            timer.schedule(150);
+            timer.schedule(transitionDuration);
         }
     }
 
     private void initBackdrop() {
         backdrop = Document.get().createDivElement();
-        backdrop.setClassName("modal-backdrop");
+        backdrop.setClassName(Styles.MODAL_BACKDROP);
         backdrop.addClassName(Styles.FADE);
     }
 

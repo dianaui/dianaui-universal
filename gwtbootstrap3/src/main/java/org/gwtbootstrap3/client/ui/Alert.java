@@ -27,7 +27,6 @@ import org.gwtbootstrap3.client.shared.event.AlertClosedEvent;
 import org.gwtbootstrap3.client.ui.base.button.CloseButton;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.AlertType;
-import org.gwtbootstrap3.client.ui.constants.ButtonDismiss;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -51,8 +50,6 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
 
         setStyleName(Styles.ALERT);
         setType(AlertType.WARNING);
-
-        closeButton.setDismiss(ButtonDismiss.ALERT);
     }
 
     public Alert(final String html, final AlertType type) {

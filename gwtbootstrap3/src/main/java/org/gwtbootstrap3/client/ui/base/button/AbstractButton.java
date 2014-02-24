@@ -40,36 +40,11 @@ import org.gwtbootstrap3.client.ui.constants.*;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public abstract class AbstractButton extends ComplexWidget implements HasEnabled, HasActive, HasType<ButtonType>,
         HasSize<ButtonSize>, HasTarget, HasClickHandlers, HasTargetHistoryToken, HasHref {
 
-    public class ButtonStateHandler {
-        private ButtonStateHandler() {
-        }
-
-        public void loading() {
-            // TODO
-            // button(getElement(), "loading");
-        }
-
-        public void reset() {
-            // TODO
-            // button(getElement(), "reset");
-        }
-
-        /**
-         * Resets button to specified text state.
-         *
-         * @param state Text state
-         */
-        public void reset(final String state) {
-            // TODO
-            // button(getElement(), state);
-        }
-    }
-
-    private final ButtonStateHandler buttonStateHandler = new ButtonStateHandler();
     private final TargetMixin<AbstractButton> targetMixin = new TargetMixin<AbstractButton>(this);
     private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<AbstractButton>(this);
     private String targetHistoryToken;
@@ -187,42 +162,12 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         }
     }
 
-    /**
-     * Sets dismiss type of button.
-     * <p/>
-     * If button is inside a
-     * {@link org.gwtbootstrap3.client.ui.Modal} and dismiss type is
-     * {@code MODAL} the button will act as the dismiss (close) button for this
-     * Modal. Same goes for {@link org.gwtbootstrap3.client.ui.Alert}
-     * and dismiss type {@code ALERT}.
-     *
-     * @param dismiss Dismiss type of button
-     * @see org.gwtbootstrap3.client.ui.Modal
-     * @see org.gwtbootstrap3.client.ui.Alert
-     */
-    public void setDismiss(final ButtonDismiss dismiss) {
-        if (dismiss != null) {
-            getElement().setAttribute(Attributes.DATA_DISMISS, dismiss.getDismiss());
-        } else {
-            getElement().removeAttribute(Attributes.DATA_DISMISS);
-        }
-    }
-
-    public void setLoadingText(final String loadingText) {
-        if (loadingText != null) {
-            getElement().setAttribute(Attributes.DATA_LOADING_TEXT, loadingText);
-        } else {
-            getElement().removeAttribute(Attributes.DATA_LOADING_TEXT);
-        }
-    }
-
     public void toggle() {
-        // TODO
-        // button(getElement(), "toggle");
-    }
-
-    public ButtonStateHandler state() {
-        return buttonStateHandler;
+        if (isActive()) {
+            setActive(false);
+        } else {
+            setActive(true);
+        }
     }
 
     protected abstract Element createElement();

@@ -21,10 +21,12 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.user.client.Timer;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class TabPane extends Div {
 
@@ -35,11 +37,11 @@ public class TabPane extends Div {
     }
 
     public boolean isActive() {
-        return getStyleName().contains(Styles.ACTIVE);
+        return StyleHelper.containsStyle(getStyleName(), Styles.ACTIVE);
     }
 
     public boolean isFade() {
-        return getStyleName().contains(Styles.FADE);
+        return StyleHelper.containsStyle(getStyleName(), Styles.FADE);
     }
 
     public void setFade(boolean fade) {

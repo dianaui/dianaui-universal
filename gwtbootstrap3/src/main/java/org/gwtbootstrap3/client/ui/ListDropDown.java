@@ -23,6 +23,7 @@ package org.gwtbootstrap3.client.ui;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.base.AbstractListItem;
 import org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -50,6 +51,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * </pre>
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see NavTabs
  * @see NavPills
  * @see Navbar
@@ -74,7 +76,7 @@ public class ListDropDown extends AbstractListItem {
     }
 
     public void toggle() {
-        if (getStyleName().contains(Styles.OPEN)) {
+        if (isOpen()) {
             hide();
         } else {
             show();
@@ -87,6 +89,10 @@ public class ListDropDown extends AbstractListItem {
 
     public void hide() {
         removeStyleName(Styles.OPEN);
+    }
+
+    public boolean isOpen() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.OPEN);
     }
 
 }

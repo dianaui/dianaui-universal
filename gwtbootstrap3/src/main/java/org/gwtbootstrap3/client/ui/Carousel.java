@@ -31,6 +31,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Carousel extends Div {
     public static final String HOVER = "hover";

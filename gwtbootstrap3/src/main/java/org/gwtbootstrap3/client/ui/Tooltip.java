@@ -36,6 +36,7 @@ import java.util.NoSuchElementException;
 /**
  * @author Joshua Godi
  * @author Pontus Enmark
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHover {
     private static final String TOGGLE = "toggle";

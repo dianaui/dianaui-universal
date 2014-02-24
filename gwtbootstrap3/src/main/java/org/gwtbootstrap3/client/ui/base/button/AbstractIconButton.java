@@ -2,16 +2,16 @@ package org.gwtbootstrap3.client.ui.base.button;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,17 +30,50 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * Base class for buttons that can contain an icon.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see org.gwtbootstrap3.client.ui.Icon
  */
 public abstract class AbstractIconButton extends AbstractButton implements HasText, HasIcon, HasIconPosition {
 
     IconTextMixin<AbstractIconButton> iconTextMixin = new IconTextMixin<AbstractIconButton>(this);
 
+    private final ButtonStateHandler buttonStateHandler = new ButtonStateHandler();
+    private String loadingText;
+
+    public class ButtonStateHandler {
+
+        private String text;
+
+        private ButtonStateHandler() {
+        }
+
+        public void loading() {
+            this.text = getText();
+
+            setEnabled(false);
+            setText(loadingText);
+        }
+
+        public void reset() {
+            setEnabled(true);
+            setText(text);
+        }
+
+    }
+
     protected AbstractIconButton() {
     }
 
     protected AbstractIconButton(final ButtonType type) {
         super(type);
+    }
+
+    public void setLoadingText(final String loadingText) {
+        this.loadingText = loadingText;
+    }
+
+    public ButtonStateHandler state() {
+        return buttonStateHandler;
     }
 
     @Override
@@ -143,4 +176,5 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     public boolean isIconSpin() {
         return iconTextMixin.isIconSpin();
     }
+
 }

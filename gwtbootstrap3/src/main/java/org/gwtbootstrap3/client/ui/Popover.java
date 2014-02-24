@@ -35,6 +35,7 @@ import java.util.NoSuchElementException;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Popover implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHover {
     private static final String TOGGLE = "toggle";

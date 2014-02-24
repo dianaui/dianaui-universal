@@ -27,6 +27,7 @@ import com.google.gwt.resources.client.TextResource;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public interface GwtBootstrap3ClientBundle extends ClientBundle {
 

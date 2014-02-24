@@ -84,9 +84,11 @@ public final class Styles {
     public static final String FONT_AWESOME_BASE = "fa";
 
     public static final String FORM_CONTROL = "form-control";
+    public static final String FORM_CONTROL_FEEDBACK = "form-control-feedback";
     public static final String FORM_CONTROL_STATIC = "form-control-static";
     public static final String FORM_GROUP = "form-group";
 
+    public static final String HAS_FEEDBACK = "has-feedback";
     public static final String HELP_BLOCK = "help-block";
 
     public static final String ITEM = "item";

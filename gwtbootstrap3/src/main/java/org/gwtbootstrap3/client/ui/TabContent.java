@@ -29,10 +29,11 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class TabContent extends Div implements HasValueChangeHandlers<Integer> {
 
-    private Integer selected = 0;
+    private int selected = 0;
 
     public TabContent() {
         setStyleName(Styles.TAB_CONTENT);
@@ -63,6 +64,12 @@ public class TabContent extends Div implements HasValueChangeHandlers<Integer> {
         ((TabPane) getWidget(index)).setActive(true);
 
         ValueChangeEvent.fireIfNotEqual(this, selected, index);
+
+        this.selected = index;
+    }
+
+    public int getSelectedTab() {
+        return selected;
     }
 
 }

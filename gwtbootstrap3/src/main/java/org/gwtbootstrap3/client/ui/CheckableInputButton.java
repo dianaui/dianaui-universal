@@ -32,6 +32,7 @@ import org.gwtbootstrap3.client.ui.constants.TypeAttrType;
  * Usually makes only sense for input types "checkbox" and "radio".
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class CheckableInputButton extends InputButton implements HasValue<Boolean> {
 

@@ -27,6 +27,7 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class TabListItem extends ListItem implements HasHTML, HasTarget {
 

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,46 +20,32 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.dom.client.Document;
+import org.gwtbootstrap3.client.ui.base.ComplexWidget;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
+import org.gwtbootstrap3.client.ui.constants.GlyphiconStyles;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
- * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
- * @see ListItem
  */
-public class NavTabs extends Nav {
+public class FormControlFeedback extends ComplexWidget {
 
-    private TabContent tabContent;
-
-    public NavTabs(TabContent tabContent) {
-        this.tabContent = tabContent;
-
-        addStyleName(Styles.NAV_TABS);
+    public FormControlFeedback() {
+        setElement(Document.get().createSpanElement());
+        setStyleName(Styles.FORM_CONTROL_FEEDBACK);
     }
 
-    @Override
-    public void add(Widget child) {
-        super.add(child);
+    public void setGlyphicon(String style) {
+        cleanGlyphicon();
 
-        updateTabItem(child);
+        addStyleName(GlyphiconStyles.GLYPHICON);
+        addStyleName(style);
     }
 
-    @Override
-    public void insert(Widget child, int beforeIndex) {
-        super.insert(child, beforeIndex);
-
-        updateTabItem(child);
-    }
-
-    public TabContent getContent() {
-        return tabContent;
-    }
-
-    private void updateTabItem(Widget tab) {
-        if (tab instanceof TabListItem) {
-            ((TabListItem) tab).setToogleIndex(getWidgetIndex(tab));
-        }
+    public void cleanGlyphicon() {
+        StyleHelper.removeStyleNameStartsWith(this, GlyphiconStyles.GLYPHICON);
     }
 
 }
+

@@ -33,6 +33,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * <strong>Must</strong> be encapsulated in a {@link ButtonGroup} to build button dropdowns.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see ButtonGroup
  */
 public class DropDownMenu extends UnorderedList implements HasPull {

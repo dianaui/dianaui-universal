@@ -35,6 +35,7 @@ import com.google.gwt.user.client.ui.UIObject;
  * href="http://getbootstrap.com/javascript/#affix">documentation</a>.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Affix {
 

@@ -2,16 +2,16 @@ package org.gwtbootstrap3.client.ui.base.helper;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,6 +30,7 @@ import org.gwtbootstrap3.client.ui.constants.Responsiveness;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public final class StyleHelper {
 
@@ -91,6 +92,27 @@ public final class StyleHelper {
         if (style != null && style.getCssName() != null && !style.getCssName().isEmpty()) {
             uiObject.removeStyleName(style.getCssName());
         }
+    }
+
+    public static boolean removeStyleNameStartsWith(final UIObject uiObject,
+                                                    final String prefix) {
+        if (uiObject.getStyleName() == null || prefix == null) {
+            return false;
+        }
+
+        final String[] styles = uiObject.getStyleName().split("\\s");
+
+        boolean result = false;
+
+        for (final String s : styles) {
+            if (s.startsWith(prefix)) {
+                uiObject.removeStyleName(s);
+
+                result = true;
+            }
+        }
+
+        return result;
     }
 
     /**

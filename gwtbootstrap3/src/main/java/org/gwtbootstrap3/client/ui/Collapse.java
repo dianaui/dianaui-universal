@@ -26,6 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Grant Slender
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Collapse extends Div {
     private static final String TOGGLE = "toggle";

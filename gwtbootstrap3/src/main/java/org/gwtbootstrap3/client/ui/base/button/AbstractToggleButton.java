@@ -34,6 +34,7 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * Base class for buttons that can be toggle buttons
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see AbstractButton
  * @see org.gwtbootstrap3.client.ui.constants.Toggle
  */

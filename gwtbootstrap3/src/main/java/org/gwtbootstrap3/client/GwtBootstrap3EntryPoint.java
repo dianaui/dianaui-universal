@@ -24,6 +24,7 @@ import com.google.gwt.core.client.EntryPoint;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class GwtBootstrap3EntryPoint implements EntryPoint {
 

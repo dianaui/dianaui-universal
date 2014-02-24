@@ -40,6 +40,7 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @author Sven Jacobs
  * @author Joshua Godi
  * @author Grant Slender
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Anchor extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref, HasToggle,
         HasParent, HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, HasTabIndex, Focusable, HasTarget {

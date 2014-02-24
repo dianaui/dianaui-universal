@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,25 +28,28 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.HasHTML;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
-import org.gwtbootstrap3.client.ui.base.mixin.*;
+import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.IconTextMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.ParentMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * Anchor {@code <a>} element with text and optional icon.
- * 
+ *
  * @author Sven Jacobs
  * @author Joshua Godi
  * @author Grant Slender
  */
-public class Anchor extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref, HasToggle, HasParent,
-        HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, HasTabIndex, Focusable, HasTarget {
+public class Anchor extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref, HasToggle,
+        HasParent, HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, HasTabIndex, Focusable, HasTarget {
 
-    private final ToggleMixin<Anchor> toggleMixin = new ToggleMixin<Anchor>(this);
     private final ParentMixin<Anchor> parentMixin = new ParentMixin<Anchor>(this);
     private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<Anchor>(this);
     private final TargetMixin<Anchor> targetMixin = new TargetMixin<Anchor>(this);
     private final FocusableMixin focusableMixin;
     private String targetHistoryToken;
+    private Toggle toggle;
 
     public Anchor(final String href) {
         setElement(Document.get().createAnchorElement());
@@ -208,12 +211,12 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     @Override
     public void setToggle(final Toggle toggle) {
-        toggleMixin.setToggle(toggle);
+        this.toggle = toggle;
     }
 
     @Override
     public Toggle getToggle() {
-        return toggleMixin.getToggle();
+        return toggle;
     }
 
     @Override
@@ -236,15 +239,15 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
         focusableMixin.setFocus(focused);
     }
 
-	@Override
-	public String getHTML() {
-		return getElement().getInnerHTML();
-	}
+    @Override
+    public String getHTML() {
+        return getElement().getInnerHTML();
+    }
 
-	@Override
-	public void setHTML(String html) {
-		getElement().setInnerHTML(html);		
-	}
+    @Override
+    public void setHTML(String html) {
+        getElement().setInnerHTML(html);
+    }
 
     @Override
     public void setTarget(String target) {
@@ -255,4 +258,5 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     public String getTarget() {
         return targetMixin.getTarget();
     }
+
 }

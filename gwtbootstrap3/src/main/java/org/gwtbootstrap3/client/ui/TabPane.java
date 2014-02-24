@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 - 2014 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.Timer;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -27,8 +28,18 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class TabPane extends Div {
 
+    private static int DEFAULT_TRANSITION_MS = 150;
+
     public TabPane() {
         setStyleName(Styles.TAB_PANE);
+    }
+
+    public boolean isActive() {
+        return getStyleName().contains(Styles.ACTIVE);
+    }
+
+    public boolean isFade() {
+        return getStyleName().contains(Styles.FADE);
     }
 
     public void setFade(boolean fade) {
@@ -39,19 +50,30 @@ public class TabPane extends Div {
         }
     }
 
-    public void setIn(boolean in) {
-        if (in) {
-            addStyleName(Styles.IN);
-        } else {
-            removeStyleName(Styles.IN);
-        }
+    public void setIn(final boolean in) {
+        Timer timer = new Timer() {
+            @Override
+            public void run() {
+                if (in) {
+                    addStyleName(Styles.IN);
+                } else {
+                    removeStyleName(Styles.IN);
+                }
+            }
+        };
+
+        timer.schedule(isFade() ? DEFAULT_TRANSITION_MS : 0);
     }
 
-    public void setActive(boolean active) {
+    public void setActive(final boolean active) {
         if (active) {
             addStyleName(Styles.ACTIVE);
         } else {
             removeStyleName(Styles.ACTIVE);
+        }
+
+        if (isFade()) {
+            setIn(active);
         }
     }
 }

@@ -109,6 +109,7 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
         add(dialog);
 
         initBackdrop();
+        setFade(false);
     }
 
     @Override

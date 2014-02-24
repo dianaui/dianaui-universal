@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.Event;
 import org.gwtbootstrap3.client.shared.event.AlertCloseEvent;
@@ -68,12 +67,6 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
         this(safeHtml.asString(), type);
     }
 
-    @Override
-    protected void onLoad() {
-        super.onLoad();
-        bindJavaScriptEvents(getElement());
-    }
-
     /**
      * Sets alert type.
      *
@@ -113,7 +106,8 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
      * Closes alert.
      */
     public void close() {
-        alert(getElement(), CLOSE);
+        // TODO
+        // alert(getElement(), CLOSE);
     }
 
     protected void onClose(final Event evt) {
@@ -134,22 +128,4 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
         StyleHelper.setHiddenOn(this, deviceSizeString);
     }
 
-    // @formatter:off
-
-    private native void alert(final Element e, final String arg) /*-{
-        $wnd.jQuery(e).alert(arg);
-    }-*/;
-
-    private native void bindJavaScriptEvents(final Element e) /*-{
-        var target = this;
-        var $alert = $wnd.jQuery(e);
-
-        $alert.on('close.bs.alert', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Alert::onClose(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-
-        $alert.on('closed.bs.alert', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Alert::onClosed(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-    }-*/;
 }

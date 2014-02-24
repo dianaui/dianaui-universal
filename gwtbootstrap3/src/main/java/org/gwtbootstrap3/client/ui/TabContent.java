@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 - 2014 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +20,19 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
  */
-public class TabContent extends Div {
+public class TabContent extends Div implements HasValueChangeHandlers<Integer> {
+
+    private Integer selected = 0;
 
     public TabContent() {
         setStyleName(Styles.TAB_CONTENT);
@@ -39,4 +45,24 @@ public class TabContent extends Div {
         }
         super.add(child);
     }
+
+    @Override
+    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Integer> handler) {
+        return addHandler(handler, ValueChangeEvent.getType());
+    }
+
+    public void selectTab(int index) {
+        for (int i = 0; i < getWidgetCount(); i++) {
+            final TabPane tab = (TabPane) getWidget(i);
+
+            if (tab.isActive()) {
+                tab.setActive(false);
+            }
+        }
+
+        ((TabPane) getWidget(index)).setActive(true);
+
+        ValueChangeEvent.fireIfNotEqual(this, selected, index);
+    }
+
 }

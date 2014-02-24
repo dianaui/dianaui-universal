@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,8 @@ public class Affix {
      * @param element Element to "affixnize"
      */
     public static void affix(final Element element) {
-        internalAffix(element, 10);
+        // TODO
+        // internalAffix(element, 10);
     }
 
     /**
@@ -54,7 +55,8 @@ public class Affix {
      * @param offset  Offset of affix
      */
     public static void affix(final Element element, final int offset) {
-        internalAffix(element, offset);
+        // TODO
+        // internalAffix(element, offset);
     }
 
     /**
@@ -76,11 +78,4 @@ public class Affix {
         affix(object.getElement(), offset);
     }
 
-    // @formatter:off
-
-    private static native void internalAffix(final Element e, final int offset) /*-{
-        $wnd.jQuery(e).affix({
-            offset: offset
-        });
-    }-*/;
 }

@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -88,17 +86,6 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
         if (widget == null) {
             return;
         }
-
-        // Bind jquery events
-        bindJavaScriptEvents(widget.getElement());
-
-        // When we attach it, configure the tooltip
-        widget.addAttachHandler(new AttachEvent.Handler() {
-            @Override
-            public void onAttachOrDetach(final AttachEvent event) {
-                reconfigure();
-            }
-        });
     }
 
     @Override
@@ -214,40 +201,19 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
         this.title = title;
     }
 
-    public void reconfigure() {
-        // First destroy the old tooltip
-        destroy();
-
-        // Setup the new tooltip
-        if (container != null && selector != null) {
-            tooltip(widget.getElement(), isAnimated, isHTML, placement.getCssName(), selector, title,
-                    trigger.getCssName(), showDelayMs, hideDelayMs, container);
-        } else if (container != null) {
-            tooltip(widget.getElement(), isAnimated, isHTML, placement.getCssName(), title,
-                    trigger.getCssName(), showDelayMs, hideDelayMs, container);
-        } else if (selector != null) {
-            tooltip(widget.getElement(), isAnimated, isHTML, placement.getCssName(), selector, title,
-                    trigger.getCssName(), showDelayMs, hideDelayMs);
-        } else {
-            tooltip(widget.getElement(), isAnimated, isHTML, placement.getCssName(), title,
-                    trigger.getCssName(), showDelayMs, hideDelayMs);
-        }
-    }
-
     public void toggle() {
-        call(widget.getElement(), TOGGLE);
+        // TODO
+        // call(widget.getElement(), TOGGLE);
     }
 
     public void show() {
-        call(widget.getElement(), SHOW);
+        // TODO
+        // call(widget.getElement(), SHOW);
     }
 
     public void hide() {
-        call(widget.getElement(), HIDE);
-    }
-
-    public void destroy() {
-        call(widget.getElement(), DESTROY);
+        // TODO
+        // call(widget.getElement(), HIDE);
     }
 
     /**
@@ -367,93 +333,4 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
         return asWidget().toString();
     }
 
-    // @formatter:off
-    private native void bindJavaScriptEvents(final Element e) /*-{
-        var target = this;
-        var $tooltip = $wnd.jQuery(e);
-
-        $tooltip.on('show.bs.tooltip', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Tooltip::onShow(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-
-        $tooltip.on('shown.bs.tooltip', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Tooltip::onShown(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-
-        $tooltip.on('hide.bs.tooltip', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Tooltip::onHide(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-
-        $tooltip.on('hidden.bs.tooltip', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Tooltip::onHidden(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-    }-*/;
-
-    private native void call(final Element e, final String arg) /*-{
-        $wnd.jQuery(e).tooltip(arg);
-    }-*/;
-
-    private native void tooltip(Element e, boolean animation, boolean html, String placement, String selector,
-                                String title, String trigger, int showDelay, int hideDelay, String container) /*-{
-        $wnd.jQuery(e).tooltip({
-            animation: animation,
-            html: html,
-            placement: placement,
-            selector: selector,
-            title: title,
-            trigger: trigger,
-            delay: {
-                show: showDelay,
-                hide: hideDelay
-            },
-            container: container
-        });
-    }-*/;
-
-    private native void tooltip(Element e, boolean animation, boolean html, String placement,
-                                String title, String trigger, int showDelay, int hideDelay, String container) /*-{
-        $wnd.jQuery(e).tooltip({
-            animation: animation,
-            html: html,
-            placement: placement,
-            title: title,
-            trigger: trigger,
-            delay: {
-                show: showDelay,
-                hide: hideDelay
-            },
-            container: container
-        });
-    }-*/;
-
-    private native void tooltip(Element e, boolean animation, boolean html, String placement, String selector,
-                                String title, String trigger, int showDelay, int hideDelay) /*-{
-        $wnd.jQuery(e).tooltip({
-            animation: animation,
-            html: html,
-            placement: placement,
-            selector: selector,
-            title: title,
-            trigger: trigger,
-            delay: {
-                show: showDelay,
-                hide: hideDelay
-            }
-        });
-    }-*/;
-
-    private native void tooltip(Element e, boolean animation, boolean html, String placement,
-                                String title, String trigger, int showDelay, int hideDelay) /*-{
-        $wnd.jQuery(e).tooltip({
-            animation: animation,
-            html: html,
-            placement: placement,
-            title: title,
-            trigger: trigger,
-            delay: {
-                show: showDelay,
-                hide: hideDelay
-            }
-        });
-    }-*/;
 }

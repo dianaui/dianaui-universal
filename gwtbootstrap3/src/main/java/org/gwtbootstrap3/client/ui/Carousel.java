@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,17 +54,6 @@ public class Carousel extends Div {
         getElement().setAttribute(Attributes.DATA_RIDE, CAROUSEL);
     }
 
-    @Override
-    protected void onLoad() {
-        super.onLoad();
-
-        // Bind jquery events
-        bindJavaScriptEvents(getElement());
-
-        // Configure the carousel
-        carousel(getElement(), interval, pause, wrap);
-    }
-
     public void setInterval(final int interval) {
         this.interval = interval;
     }
@@ -81,35 +70,40 @@ public class Carousel extends Div {
      * Causes the carousel to cycle
      */
     public void cycleCarousel() {
-        fireMethod(getElement(), CYCLE);
+        // TODO
+        // fireMethod(getElement(), CYCLE);
     }
 
     /**
      * Causes the carousel to pause movement
      */
     public void pauseCarousel() {
-        fireMethod(getElement(), PAUSE);
+        // TODO
+        // fireMethod(getElement(), PAUSE);
     }
 
     /**
      * Causes the carousel to jump to that slide
      */
     public void jumpToSlide(final int slideNumber) {
-        fireMethod(getElement(), slideNumber);
+        // TODO
+        // fireMethod(getElement(), slideNumber);
     }
 
     /**
      * Causes the carousel to go back
      */
     public void goToPrev() {
-        fireMethod(getElement(), PREV);
+        // TODO
+        // fireMethod(getElement(), PREV);
     }
 
     /**
      * Causes the carousel to go to the next slide
      */
     public void goToNext() {
-        fireMethod(getElement(), NEXT);
+        // TODO
+        // fireMethod(getElement(), NEXT);
     }
 
     public HandlerRegistration addSlideHandler(final CarouselSlideHandler carouselSlideHandler) {
@@ -134,33 +128,4 @@ public class Carousel extends Div {
         fireEvent(new CarouselSlidEvent(this, evt));
     }
 
-    private native void bindJavaScriptEvents(final com.google.gwt.dom.client.Element e) /*-{
-        var target = this;
-        var $carousel = $wnd.jQuery(e);
-
-        $carousel.on('slide.bs.carousel', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Carousel::onSlide(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-
-        $carousel.on('slid.bs.carousel', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Carousel::onSlid(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-    }-*/;
-
-    private native void carousel(final com.google.gwt.dom.client.Element e, final int interval, final String pause,
-                                 final boolean wrap) /*-{
-        $wnd.jQuery(e).carousel({
-            interval: interval,
-            pause: pause,
-            wrap: wrap
-        });
-    }-*/;
-
-    private native void fireMethod(final com.google.gwt.dom.client.Element e, String method) /*-{
-        $wnd.jQuery(e).carousel(method);
-    }-*/;
-
-    private native void fireMethod(final com.google.gwt.dom.client.Element e, int slideNumber) /*-{
-        $wnd.jQuery(e).carousel(slideNumber);
-    }-*/;
 }

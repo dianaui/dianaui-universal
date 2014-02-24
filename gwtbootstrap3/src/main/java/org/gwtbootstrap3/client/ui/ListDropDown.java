@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,4 +72,21 @@ public class ListDropDown extends AbstractListItem {
 
         add(child, getElement());
     }
+
+    public void toggle() {
+        if (getStyleName().contains(Styles.OPEN)) {
+            hide();
+        } else {
+            show();
+        }
+    }
+
+    public void show() {
+        addStyleName(Styles.OPEN);
+    }
+
+    public void hide() {
+        removeStyleName(Styles.OPEN);
+    }
+
 }

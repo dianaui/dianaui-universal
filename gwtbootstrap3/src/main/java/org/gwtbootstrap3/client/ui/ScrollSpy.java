@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -103,8 +103,6 @@ public class ScrollSpy {
 
         this.spyOn = spyOn;
         this.target = selector;
-
-        init(this.spyOn, this.target);
     }
 
     private ScrollSpy(final Element spyOn, final HasId target) {
@@ -117,8 +115,6 @@ public class ScrollSpy {
 
         this.spyOn = spyOn;
         this.target = "#" + id;
-
-        init(this.spyOn, this.target);
     }
 
     /**
@@ -126,18 +122,8 @@ public class ScrollSpy {
      * DOM.
      */
     public void refresh() {
-        refresh(spyOn);
+        // TODO
+        // refresh(spyOn);
     }
 
-    private native void init(final Element e, final String target) /*-{
-        var $e = $wnd.jQuery(e);
-
-        $e.scrollspy({
-            target: target
-        });
-    }-*/;
-
-    private native void refresh(final Element e) /*-{
-        $wnd.jQuery(e).scrollspy('refresh');
-    }-*/;
 }

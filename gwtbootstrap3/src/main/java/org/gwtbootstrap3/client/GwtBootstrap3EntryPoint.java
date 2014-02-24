@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ package org.gwtbootstrap3.client;
  */
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.ScriptInjector;
 
 /**
  * @author Sven Jacobs
@@ -30,12 +29,7 @@ public class GwtBootstrap3EntryPoint implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        ScriptInjector.fromString(GwtBootstrap3ClientBundle.INSTANCE.jQuery().getText())
-                .setWindow(ScriptInjector.TOP_WINDOW)
-                .inject();
-
-        ScriptInjector.fromString(GwtBootstrap3ClientBundle.INSTANCE.bootstrap().getText())
-                .setWindow(ScriptInjector.TOP_WINDOW)
-                .inject();
+        // TODO ???
     }
+
 }

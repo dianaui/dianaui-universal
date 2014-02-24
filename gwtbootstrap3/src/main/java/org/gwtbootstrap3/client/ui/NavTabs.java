@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -28,7 +29,36 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class NavTabs extends Nav {
 
-    public NavTabs() {
+    private TabContent tabContent;
+
+    public NavTabs(TabContent tabContent) {
+        this.tabContent = tabContent;
+
         addStyleName(Styles.NAV_TABS);
     }
+
+    @Override
+    public void add(Widget child) {
+        super.add(child);
+
+        updateTabItem(child);
+    }
+
+    @Override
+    public void insert(Widget child, int beforeIndex) {
+        super.insert(child, beforeIndex);
+
+        updateTabItem(child);
+    }
+
+    public TabContent getContent() {
+        return tabContent;
+    }
+
+    private void updateTabItem(Widget tab) {
+        if (tab instanceof TabListItem) {
+            ((TabListItem) tab).setToogleIndex(getWidgetIndex(tab));
+        }
+    }
+
 }

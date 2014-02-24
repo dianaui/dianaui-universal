@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui.base.button;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HasEnabled;
 import org.gwtbootstrap3.client.ui.*;
@@ -48,11 +49,13 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         }
 
         public void loading() {
-            button(getElement(), "loading");
+            // TODO
+            // button(getElement(), "loading");
         }
 
         public void reset() {
-            button(getElement(), "reset");
+            // TODO
+            // button(getElement(), "reset");
         }
 
         /**
@@ -61,7 +64,8 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
          * @param state Text state
          */
         public void reset(final String state) {
-            button(getElement(), state);
+            // TODO
+            // button(getElement(), state);
         }
     }
 
@@ -213,7 +217,8 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     public void toggle() {
-        button(getElement(), "toggle");
+        // TODO
+        // button(getElement(), "toggle");
     }
 
     public ButtonStateHandler state() {
@@ -222,9 +227,10 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
 
     protected abstract Element createElement();
 
-    // @formatter:off
+    protected void onAttach() {
+        super.onAttach();
 
-    private native void button(final Element e, final String arg) /*-{
-        $wnd.jQuery(e).button(arg);
-    }-*/;
+        sinkEvents(Event.ONCLICK);
+    }
+
 }

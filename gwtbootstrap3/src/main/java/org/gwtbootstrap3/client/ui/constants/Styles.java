@@ -154,6 +154,7 @@ public final class Styles {
     public static final String NAVBAR_LEFT = "navbar-left";
     public static final String NAVBAR_RIGHT = "navbar-right";
 
+    public static final String OPEN = "open";
     public static final String NEXT = "next";
 
     public static final String PANEL = "panel";

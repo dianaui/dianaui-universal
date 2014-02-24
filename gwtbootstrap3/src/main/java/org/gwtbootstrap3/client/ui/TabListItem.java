@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 - 2014 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,20 +20,17 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.HasHTML;
-import org.gwtbootstrap3.client.shared.event.TabShowEvent;
-import org.gwtbootstrap3.client.shared.event.TabShowHandler;
-import org.gwtbootstrap3.client.shared.event.TabShownEvent;
-import org.gwtbootstrap3.client.shared.event.TabShownHandler;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**
  * @author Joshua Godi
  */
 public class TabListItem extends ListItem implements HasHTML, HasTarget {
+
+    private int toggleIndex = -1;
 
     public TabListItem() {
         this("");
@@ -42,26 +39,6 @@ public class TabListItem extends ListItem implements HasHTML, HasTarget {
     public TabListItem(final String text) {
         super(text);
         setToggle(Toggle.TAB);
-    }
-
-    public void showTab() {
-        showTab(true);
-    }
-
-    public void showTab(final boolean fireEvents) {
-        showTab(anchor.getElement());
-
-        if (fireEvents) {
-            fireEvent(new TabShowEvent(this, null));
-        }
-    }
-
-    public HandlerRegistration addShowHandler(final TabShowHandler showHandler) {
-        return addHandler(showHandler, TabShowEvent.getType());
-    }
-
-    public HandlerRegistration addShownHandler(final TabShownHandler shownHandler) {
-        return addHandler(shownHandler, TabShownEvent.getType());
     }
 
     /**
@@ -89,14 +66,6 @@ public class TabListItem extends ListItem implements HasHTML, HasTarget {
     }
 
     @Override
-    protected void onLoad() {
-        super.onLoad();
-
-        // Bind JS Events
-        bindJavaScriptEvents(anchor.getElement());
-    }
-
-    @Override
     public String getHTML() {
         return anchor.getHTML();
     }
@@ -106,43 +75,52 @@ public class TabListItem extends ListItem implements HasHTML, HasTarget {
         anchor.setHTML(html);
     }
 
-    /**
-     * Can be override by subclasses to handle Tabs's "show" event however
-     * it's recommended to add an event handler to the tab.
-     *
-     * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.ShowEvent
-     */
-    protected void onShow(final Event evt) {
-        fireEvent(new TabShowEvent(this, evt));
+    public int getToggleIndex() {
+        return toggleIndex;
     }
 
-    /**
-     * Can be override by subclasses to handle Tabs's "shown" event however
-     * it's recommended to add an event handler to the tab.
-     *
-     * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.ShownEvent
-     */
-    protected void onShown(final Event evt) {
-        fireEvent(new TabShownEvent(this, evt));
+    public void setToogleIndex(int toggleIndex) {
+        this.toggleIndex = toggleIndex;
     }
 
-    private native void showTab(Element e) /*-{
-        $wnd.jQuery(e).tab('show');
-    }-*/;
+    public void onBrowserEvent(Event event) {
+        super.onBrowserEvent(event);
 
-    // @formatter:off
-    private native void bindJavaScriptEvents(final Element e) /*-{
-        var target = this;
-        var $tab = $wnd.jQuery(e);
+        switch (DOM.eventGetType(event)) {
+            case Event.ONCLICK:
+                if (getParent() instanceof NavTabs) {
+                    NavTabs tabs = (NavTabs) getParent();
 
-        $tab.on('show.bs.tab', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.TabListItem::onShow(Lcom/google/gwt/user/client/Event;)(evt);
-        });
+                    uncheckTabs(tabs);
 
-        $tab.on('shown.bs.tab', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.TabListItem::onShown(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-    }-*/;
+                    setActive(true);
+
+                    tabs.getContent().selectTab(getToggleIndex());
+                } else if (getParent() instanceof DropDownMenu &&
+                        getParent().getParent() instanceof ListDropDown &&
+                        getParent().getParent().getParent() instanceof NavTabs) {
+                    NavTabs tabs = (NavTabs) getParent().getParent().getParent();
+
+                    uncheckTabs(tabs);
+
+                    ((ListDropDown) getParent().getParent()).setActive(true);
+
+                    tabs.getContent().selectTab(getToggleIndex());
+                }
+                break;
+        }
+    }
+
+    protected void onAttach() {
+        super.onAttach();
+
+        sinkEvents(Event.ONCLICK);
+    }
+
+    private void uncheckTabs(NavTabs tabs) {
+        for (int i = 0; i < tabs.getWidgetCount(); i++) {
+            ((HasActive) tabs.getWidget(i)).setActive(false);
+        }
+    }
+
 }

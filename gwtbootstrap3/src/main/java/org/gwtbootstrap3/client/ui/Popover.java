@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.event.logical.shared.AttachEvent;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -89,16 +87,6 @@ public class Popover implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
             return;
         }
 
-        // Bind jquery events
-        bindJavaScriptEvents(widget.getElement());
-
-        // When we attach it, configure the tooltip
-        widget.addAttachHandler(new AttachEvent.Handler() {
-            @Override
-            public void onAttachOrDetach(final AttachEvent event) {
-                reconfigure();
-            }
-        });
     }
 
     @Override
@@ -214,40 +202,25 @@ public class Popover implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
         this.title = title;
     }
 
-    public void reconfigure() {
-        // First destroy the old tooltip
-        destroy();
-
-        // Setup the new tooltip
-        if (container != null && selector != null) {
-            popover(widget.getElement(), isAnimated, isHTML, placement.getCssName(), selector, title, content,
-                    trigger.getCssName(), showDelayMs, hideDelayMs, container);
-        } else if (container != null) {
-            popover(widget.getElement(), isAnimated, isHTML, placement.getCssName(), title, content,
-                    trigger.getCssName(), showDelayMs, hideDelayMs, container);
-        } else if (selector != null) {
-            popover(widget.getElement(), isAnimated, isHTML, placement.getCssName(), selector, title, content,
-                    trigger.getCssName(), showDelayMs, hideDelayMs);
-        } else {
-            popover(widget.getElement(), isAnimated, isHTML, placement.getCssName(), title, content,
-                    trigger.getCssName(), showDelayMs, hideDelayMs);
-        }
-    }
 
     public void toggle() {
-        call(widget.getElement(), TOGGLE);
+        // TODO
+        // call(widget.getElement(), TOGGLE);
     }
 
     public void show() {
-        call(widget.getElement(), SHOW);
+        // TODO
+        // call(widget.getElement(), SHOW);
     }
 
     public void hide() {
-        call(widget.getElement(), HIDE);
+        // TODO
+        // call(widget.getElement(), HIDE);
     }
 
     public void destroy() {
-        call(widget.getElement(), DESTROY);
+        // TODO
+        // call(widget.getElement(), DESTROY);
     }
 
     /**
@@ -359,97 +332,4 @@ public class Popover implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
         return widget;
     }
 
-    // @formatter:off
-    private native void bindJavaScriptEvents(final Element e) /*-{
-        var target = this;
-        var $popover = $wnd.jQuery(e);
-
-        $popover.on('show.bs.popover', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Popover::onShow(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-
-        $popover.on('shown.bs.popover', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Popover::onShown(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-
-        $popover.on('hide.bs.popover', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Popover::onHide(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-
-        $popover.on('hidden.bs.popover', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.Popover::onHidden(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-    }-*/;
-
-    private native void call(final Element e, final String arg) /*-{
-        $wnd.jQuery(e).popover(arg);
-    }-*/;
-
-    private native void popover(Element e, boolean animation, boolean html, String placement, String selector,
-                                String title, String content, String trigger, int showDelay, int hideDelay, String container) /*-{
-        $wnd.jQuery(e).popover({
-            animation: animation,
-            html: html,
-            placement: placement,
-            selector: selector,
-            title: title,
-            content: content,
-            trigger: trigger,
-            delay: {
-                show: showDelay,
-                hide: hideDelay
-            },
-            container: container
-        });
-    }-*/;
-
-    private native void popover(Element e, boolean animation, boolean html, String placement,
-                                String title, String content, String trigger, int showDelay, int hideDelay, String container) /*-{
-        $wnd.jQuery(e).popover({
-            animation: animation,
-            html: html,
-            placement: placement,
-            title: title,
-            content: content,
-            trigger: trigger,
-            delay: {
-                show: showDelay,
-                hide: hideDelay
-            },
-            container: container
-        });
-    }-*/;
-
-    private native void popover(Element e, boolean animation, boolean html, String placement, String selector,
-                                String title, String content, String trigger, int showDelay, int hideDelay) /*-{
-        $wnd.jQuery(e).popover({
-            animation: animation,
-            html: html,
-            placement: placement,
-            selector: selector,
-            title: title,
-            content: content,
-            trigger: trigger,
-            delay: {
-                show: showDelay,
-                hide: hideDelay
-            }
-        });
-    }-*/;
-
-    private native void popover(Element e, boolean animation, boolean html, String placement,
-                                String title, String content, String trigger, int showDelay, int hideDelay) /*-{
-        $wnd.jQuery(e).popover({
-            animation: animation,
-            html: html,
-            placement: placement,
-            title: title,
-            content: content,
-            trigger: trigger,
-            delay: {
-                show: showDelay,
-                hide: hideDelay
-            }
-        });
-    }-*/;
 }

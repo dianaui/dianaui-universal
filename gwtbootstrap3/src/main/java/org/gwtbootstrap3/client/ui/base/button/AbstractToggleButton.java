@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui.base.button;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,10 @@ package org.gwtbootstrap3.client.ui.base.button;
  * #L%
  */
 
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Event;
 import org.gwtbootstrap3.client.ui.HasToggle;
+import org.gwtbootstrap3.client.ui.ListDropDown;
 import org.gwtbootstrap3.client.ui.Text;
 import org.gwtbootstrap3.client.ui.base.mixin.ToggleMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
@@ -40,6 +43,8 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
     private final Text separator = new Text(" ");
     private final Caret caret = new Caret();
 
+    private Toggle toggle;
+
     protected AbstractToggleButton() {
         this(ButtonType.DEFAULT);
     }
@@ -58,7 +63,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
      */
     @Override
     public void setToggle(final Toggle toggle) {
-        toggleMixin.setToggle(toggle);
+        this.toggle = toggle;
 
         separator.removeFromParent();
         caret.removeFromParent();
@@ -73,6 +78,19 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
 
     @Override
     public Toggle getToggle() {
-        return toggleMixin.getToggle();
+        return toggle;
     }
+
+    public void onBrowserEvent(Event event) {
+        super.onBrowserEvent(event);
+
+        switch (DOM.eventGetType(event)) {
+            case Event.ONCLICK:
+                if (toggle == Toggle.DROPDOWN && getParent() instanceof ListDropDown) {
+                    ((ListDropDown) getParent()).toggle();
+                }
+                break;
+        }
+    }
+
 }

@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 - 2014 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,12 +31,6 @@ import com.google.gwt.resources.client.TextResource;
 public interface GwtBootstrap3ClientBundle extends ClientBundle {
 
     static final GwtBootstrap3ClientBundle INSTANCE = GWT.create(GwtBootstrap3ClientBundle.class);
-
-    @Source("resource/js/jquery-1.11.0.min.js")
-    TextResource jQuery();
-
-    @Source("resource/js/bootstrap.min.js")
-    TextResource bootstrap();
 
     @Source("resource/css/bootstrap-tabs.min.css")
     TextResource bootstrapTabsCss();

@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Event;
 import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
 import org.gwtbootstrap3.client.ui.constants.Attributes;
 import org.gwtbootstrap3.client.ui.constants.Pull;
@@ -52,4 +54,23 @@ public class DropDownMenu extends UnorderedList implements HasPull {
     public Pull getPull() {
         return pullMixin.getPull();
     }
+
+    public void onBrowserEvent(Event event) {
+        super.onBrowserEvent(event);
+
+        switch (DOM.eventGetType(event)) {
+            case Event.ONCLICK:
+                if (getParent() instanceof ListDropDown) {
+                    ((ListDropDown) getParent()).hide();
+                }
+                break;
+        }
+    }
+
+    protected void onAttach() {
+        super.onAttach();
+
+        sinkEvents(Event.ONCLICK);
+    }
+
 }

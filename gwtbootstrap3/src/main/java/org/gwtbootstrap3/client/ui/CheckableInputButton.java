@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,10 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.HasValue;
 import org.gwtbootstrap3.client.ui.constants.TypeAttrType;
 
@@ -39,12 +37,6 @@ public class CheckableInputButton extends InputButton implements HasValue<Boolea
 
     public CheckableInputButton(final TypeAttrType type) {
         super(type);
-    }
-
-    @Override
-    protected void onLoad() {
-        super.onLoad();
-        bindJavaScriptEvents(getElement());
     }
 
     @Override
@@ -70,16 +62,4 @@ public class CheckableInputButton extends InputButton implements HasValue<Boolea
         return addHandler(handler, ValueChangeEvent.getType());
     }
 
-    private void onChange(final Event evt) {
-        ValueChangeEvent.fire(this, getValue());
-    }
-
-    private native void bindJavaScriptEvents(final Element e) /*-{
-        var target = this;
-        var $e = $wnd.jQuery(e);
-
-        $e.on('change', function (evt) {
-            target.@org.gwtbootstrap3.client.ui.CheckableInputButton::onChange(Lcom/google/gwt/user/client/Event;)(evt);
-        });
-    }-*/;
 }

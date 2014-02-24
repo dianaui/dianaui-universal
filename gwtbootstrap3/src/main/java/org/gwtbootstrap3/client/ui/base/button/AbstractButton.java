@@ -33,7 +33,9 @@ import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.ButtonSize;
+import org.gwtbootstrap3.client.ui.constants.ButtonType;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Abstract base class for different kinds of buttons.

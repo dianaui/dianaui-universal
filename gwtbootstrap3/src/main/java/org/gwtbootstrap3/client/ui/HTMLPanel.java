@@ -20,13 +20,12 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.safehtml.shared.SafeHtml;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.Spy;
-
-import com.google.gwt.safehtml.shared.SafeHtml;
 
 /**
  * @author Sven Jacobs

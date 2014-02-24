@@ -26,13 +26,13 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * Badge for highlighting new or unread items.
  * <p/>
  * <h3>UiBinder example</h3>
- * 
+ * <p/>
  * <pre>
  * {@code
  *     <b:Badge>42</b:Badge>
  * }
  * </pre>
- * 
+ *
  * @author Sven Jacobs
  */
 public class Badge extends Span {

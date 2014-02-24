@@ -27,6 +27,7 @@ import org.gwtbootstrap3.client.ui.constants.IconType;
 
 /**
  * Interface for all the properties of Icons
+ *
  * @author Sven Jacobs
  * @author Joshua Godi
  */

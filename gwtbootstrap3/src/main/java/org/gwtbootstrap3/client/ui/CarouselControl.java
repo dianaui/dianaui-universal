@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,40 +25,59 @@ import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.Attributes;
+import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class CarouselControl extends ComplexWidget implements HasTarget {
     private final TargetMixin<CarouselControl> targetMixin = new TargetMixin<CarouselControl>(this);
 
-    private final Icon icon = new Icon();
+    private final Glyphicon glyphicon = new Glyphicon();
+    private final FontAwesomeIcon fontAwesomeIcon = new FontAwesomeIcon();
 
     public CarouselControl() {
         setElement(DOM.createAnchor());
         setStyleName(Styles.CAROUSEL_CONTROL);
 
-        add(icon);
+        add(fontAwesomeIcon);
     }
 
-    public void setIconType(final IconType iconType) {
-        icon.setType(iconType);
+    public void setGlyphicon(final GlyphiconType iconType) {
+        if (fontAwesomeIcon.isAttached()) {
+            fontAwesomeIcon.removeFromParent();
+        }
+
+        glyphicon.setType(iconType);
+
+        add(glyphicon);
+    }
+
+    public void setFontAwesomeIcon(final IconType iconType) {
+        if (glyphicon.isAttached()) {
+            glyphicon.removeFromParent();
+        }
+
+        fontAwesomeIcon.setType(iconType);
+
+        add(fontAwesomeIcon);
     }
 
     public void setPrev(final boolean prev) {
         getElement().removeAttribute(Attributes.DATA_SLIDE);
         getElement().setAttribute(Attributes.DATA_SLIDE, Carousel.PREV);
         StyleHelper.toggleStyleName(this, prev, Styles.LEFT);
-        icon.addStyleName(Styles.ICON_PREV);
+        fontAwesomeIcon.addStyleName(Styles.ICON_PREV);
     }
 
     public void setNext(final boolean next) {
         getElement().removeAttribute(Attributes.DATA_SLIDE);
         getElement().setAttribute(Attributes.DATA_SLIDE, Carousel.NEXT);
         StyleHelper.toggleStyleName(this, next, Styles.RIGHT);
-        icon.addStyleName(Styles.ICON_NEXT);
+        fontAwesomeIcon.addStyleName(Styles.ICON_NEXT);
     }
 
     @Override
@@ -70,4 +89,5 @@ public class CarouselControl extends ComplexWidget implements HasTarget {
     public String getTarget() {
         return targetMixin.getTarget();
     }
+
 }

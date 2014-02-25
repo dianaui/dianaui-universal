@@ -62,7 +62,7 @@ public class Pager extends UnorderedList implements HasResponsiveness {
     }
 
     public void setPreviousIcon(IconType icon) {
-        previous.setIcon(icon);
+        previous.setFontAwesomeIcon(icon);
     }
 
     public void setPreviousIconSize(IconSize iconSize) {
@@ -74,7 +74,7 @@ public class Pager extends UnorderedList implements HasResponsiveness {
     }
 
     public void setNextIcon(IconType icon) {
-        next.setIcon(icon);
+        next.setFontAwesomeIcon(icon);
         next.setIconPosition(IconPosition.RIGHT);
     }
 

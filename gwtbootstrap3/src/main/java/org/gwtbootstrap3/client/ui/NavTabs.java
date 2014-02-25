@@ -58,7 +58,9 @@ public class NavTabs extends Nav {
 
     private void updateTabItem(Widget tab) {
         if (tab instanceof TabListItem) {
-            ((TabListItem) tab).setToogleIndex(getWidgetIndex(tab));
+            if (((TabListItem) tab).getToggleIndex() == -1) {
+                ((TabListItem) tab).setToogleIndex(getWidgetIndex(tab));
+            }
         }
     }
 

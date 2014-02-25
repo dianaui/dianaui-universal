@@ -39,17 +39,17 @@ public class IconStack extends ComplexPanel implements HasResponsiveness {
     /**
      * Adds an icon onto the icon stack
      *
-     * @param icon Icon
+     * @param fontAwesomeIcon Icon
      * @param base Bottom icon or not
      */
-    public void add(final Icon icon, final boolean base) {
-        icon.setStackBase(base);
-        add(icon);
+    public void add(final FontAwesomeIcon fontAwesomeIcon, final boolean base) {
+        fontAwesomeIcon.setStackBase(base);
+        add(fontAwesomeIcon);
     }
 
     @Override
     public void add(final Widget child) {
-        if (!(child instanceof Icon)) {
+        if (!(child instanceof FontAwesomeIcon)) {
             throw new IllegalArgumentException("An IconStack can only have children that are of type Icon.");
         }
 

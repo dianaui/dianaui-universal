@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * Basically this is a non-styled {@link CheckBoxButton} encapsulated in a {@link Div}.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class CheckBox extends Div implements HasName, HasEnabled, HasActive, HasText, HasIcon, HasIconPosition,
         HasClickHandlers, HasFormValue, HasValue<Boolean> {
@@ -90,13 +91,23 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setIcon(final IconType iconType) {
-        button.setIcon(iconType);
+    public void setGlyphicon(GlyphiconType iconType) {
+        button.setGlyphicon(iconType);
     }
 
     @Override
-    public IconType getIcon() {
-        return button.getIcon();
+    public GlyphiconType getGlyphicon() {
+        return button.getGlyphicon();
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        button.setFontAwesomeIcon(iconType);
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return button.getFontAwesomeIcon();
     }
 
     @Override
@@ -213,4 +224,5 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     public void setValue(final Boolean value, final boolean fireEvents) {
         button.setValue(value, fireEvents);
     }
+
 }

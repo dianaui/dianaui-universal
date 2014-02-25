@@ -66,13 +66,23 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIcon(final IconType iconType) {
-        iconTextMixin.setIcon(iconType);
+    public void setGlyphicon(GlyphiconType iconType) {
+        iconTextMixin.setGlyphicon(iconType);
     }
 
     @Override
-    public IconType getIcon() {
-        return iconTextMixin.getIcon();
+    public GlyphiconType getGlyphicon() {
+        return iconTextMixin.getGlyphicon();
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        iconTextMixin.setFontAwesomeIcon(iconType);
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return iconTextMixin.getFontAwesomeIcon();
     }
 
     @Override
@@ -154,4 +164,5 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     public boolean isIconSpin() {
         return iconTextMixin.isIconSpin();
     }
+
 }

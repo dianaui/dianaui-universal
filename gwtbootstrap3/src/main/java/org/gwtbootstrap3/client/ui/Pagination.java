@@ -53,14 +53,14 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
 
     public ListItem addPreviousLink() {
         final ListItem listItem = new ListItem();
-        listItem.setIcon(IconType.ANGLE_DOUBLE_LEFT);
+        listItem.setFontAwesomeIcon(IconType.ANGLE_DOUBLE_LEFT);
         insert(listItem, 0);
         return listItem;
     }
 
     public ListItem addNextLink() {
         final ListItem listItem = new ListItem();
-        listItem.setIcon(IconType.ANGLE_DOUBLE_RIGHT);
+        listItem.setFontAwesomeIcon(IconType.ANGLE_DOUBLE_RIGHT);
         add(listItem);
         return listItem;
     }

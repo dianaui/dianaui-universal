@@ -21,10 +21,7 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  */
 
 import com.google.gwt.user.client.ui.HasText;
-import org.gwtbootstrap3.client.ui.HasIcon;
-import org.gwtbootstrap3.client.ui.HasIconPosition;
-import org.gwtbootstrap3.client.ui.Icon;
-import org.gwtbootstrap3.client.ui.Text;
+import org.gwtbootstrap3.client.ui.*;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.constants.*;
 
@@ -32,14 +29,16 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * Mixin for Widgets that have text and an optional icon.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIconPosition> implements
-        HasText, HasIcon, HasIconPosition {
+public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIconPosition> implements HasText, HasIcon,
+        HasGlyphicon, HasIconPosition {
 
     private final T widget;
     private final Text text = new Text();
     private final Text separator = new Text(" ");
-    private Icon icon;
+    private Glyphicon glyphicon;
+    private FontAwesomeIcon fontAwesomeIcon;
     private IconPosition iconPosition = IconPosition.LEFT;
     private IconSize iconSize = IconSize.NONE;
     private IconFlip iconFlip = IconFlip.NONE;
@@ -68,19 +67,29 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     }
 
     @Override
-    public void setIcon(final IconType iconType) {
-        render(new Icon(iconType));
+    public void setGlyphicon(GlyphiconType iconType) {
+        render(new Glyphicon(iconType));
     }
 
     @Override
-    public IconType getIcon() {
-        return icon == null ? null : icon.getType();
+    public GlyphiconType getGlyphicon() {
+        return glyphicon == null ? null : glyphicon.getType();
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        render(new FontAwesomeIcon(iconType));
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return fontAwesomeIcon == null ? null : fontAwesomeIcon.getType();
     }
 
     @Override
     public void setIconPosition(final IconPosition iconPosition) {
         this.iconPosition = iconPosition;
-        render(icon);
+        render(fontAwesomeIcon);
     }
 
     @Override
@@ -91,7 +100,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconSize(final IconSize iconSize) {
         this.iconSize = iconSize;
-        render(icon);
+        render(fontAwesomeIcon);
     }
 
     @Override
@@ -102,7 +111,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconFlip(IconFlip iconFlip) {
         this.iconFlip = iconFlip;
-        render(icon);
+        render(fontAwesomeIcon);
     }
 
     @Override
@@ -113,7 +122,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconRotate(IconRotate iconRotate) {
         this.iconRotate = iconRotate;
-        render(icon);
+        render(fontAwesomeIcon);
     }
 
     @Override
@@ -124,7 +133,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconBordered(boolean iconBordered) {
         this.iconBordered = iconBordered;
-        render(icon);
+        render(fontAwesomeIcon);
     }
 
     @Override
@@ -135,7 +144,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconMuted(boolean iconMuted) {
         this.iconMuted = iconMuted;
-        render(icon);
+        render(fontAwesomeIcon);
     }
 
     @Override
@@ -146,7 +155,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconLight(boolean iconLight) {
         this.iconLight = iconLight;
-        render(icon);
+        render(fontAwesomeIcon);
     }
 
     @Override
@@ -157,7 +166,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconSpin(boolean iconSpin) {
         this.iconSpin = iconSpin;
-        render(icon);
+        render(fontAwesomeIcon);
     }
 
     @Override
@@ -165,7 +174,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
         return iconSpin;
     }
 
-    private void render(final Icon newIcon) {
+    private void render(final FontAwesomeIcon newIcon) {
         if (text.isAttached()) {
             text.removeFromParent();
         }
@@ -173,21 +182,21 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
             separator.removeFromParent();
         }
 
-        if (icon != null) {
-            icon.removeFromParent();
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.removeFromParent();
         }
 
-        icon = newIcon;
-        icon.setSize(iconSize);
-        icon.setFlip(iconFlip);
-        icon.setRotate(iconRotate);
-        icon.setMuted(iconMuted);
-        icon.setSpin(iconSpin);
-        icon.setBorder(iconBordered);
-        icon.setLight(iconLight);
+        fontAwesomeIcon = newIcon;
+        fontAwesomeIcon.setSize(iconSize);
+        fontAwesomeIcon.setFlip(iconFlip);
+        fontAwesomeIcon.setRotate(iconRotate);
+        fontAwesomeIcon.setMuted(iconMuted);
+        fontAwesomeIcon.setSpin(iconSpin);
+        fontAwesomeIcon.setBorder(iconBordered);
+        fontAwesomeIcon.setLight(iconLight);
 
         if (iconPosition == IconPosition.LEFT) {
-            widget.add(icon);
+            widget.add(fontAwesomeIcon);
             widget.add(separator);
         }
 
@@ -197,7 +206,37 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
 
         if (iconPosition == IconPosition.RIGHT) {
             widget.add(separator);
-            widget.add(icon);
+            widget.add(fontAwesomeIcon);
         }
     }
+
+    private void render(final Glyphicon newIcon) {
+        if (text.isAttached()) {
+            text.removeFromParent();
+        }
+        if (separator.isAttached()) {
+            separator.removeFromParent();
+        }
+
+        if (glyphicon != null) {
+            glyphicon.removeFromParent();
+        }
+
+        glyphicon = newIcon;
+
+        if (iconPosition == IconPosition.LEFT) {
+            widget.add(glyphicon);
+            widget.add(separator);
+        }
+
+        if (text.getText() != null && text.getText().length() > 0) {
+            widget.add(text);
+        }
+
+        if (iconPosition == IconPosition.RIGHT) {
+            widget.add(separator);
+            widget.add(glyphicon);
+        }
+    }
+
 }

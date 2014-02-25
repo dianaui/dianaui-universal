@@ -23,28 +23,160 @@ package org.gwtbootstrap3.client.ui;
 import com.google.gwt.dom.client.Document;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.constants.GlyphiconStyles;
-import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class FormControlFeedback extends ComplexWidget {
+public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGlyphicon {
+
+    private Glyphicon glyphicon = null;
+    private FontAwesomeIcon fontAwesomeIcon = null;
+    private IconSize iconSize = IconSize.NONE;
+    private IconFlip iconFlip = IconFlip.NONE;
+    private IconRotate iconRotate = IconRotate.NONE;
+    private boolean iconMuted = false;
+    private boolean iconSpin = false;
+    private boolean iconBordered = false;
+    private boolean iconLight = false;
 
     public FormControlFeedback() {
         setElement(Document.get().createSpanElement());
         setStyleName(Styles.FORM_CONTROL_FEEDBACK);
     }
 
-    public void setGlyphicon(String style) {
-        cleanGlyphicon();
-
-        addStyleName(GlyphiconStyles.GLYPHICON);
-        addStyleName(style);
+    public void cleanGlyphicon() {
+        StyleHelper.removeStyleNameStartsWith(this, Styles.GLYPHICON_BASE);
     }
 
-    public void cleanGlyphicon() {
-        StyleHelper.removeStyleNameStartsWith(this, GlyphiconStyles.GLYPHICON);
+    public void cleanFontAwesomeIcon() {
+        StyleHelper.removeStyleNameStartsWith(this, Styles.FONT_AWESOME_BASE);
+    }
+
+    @Override
+    public void setGlyphicon(GlyphiconType iconType) {
+        if (glyphicon == null) {
+            glyphicon = new Glyphicon(getElement());
+        }
+
+        glyphicon.setType(iconType);
+    }
+
+    @Override
+    public GlyphiconType getGlyphicon() {
+        return glyphicon != null ? glyphicon.getType() : null;
+    }
+
+    @Override
+    public void setFontAwesomeIcon(IconType iconType) {
+        if (fontAwesomeIcon == null) {
+            fontAwesomeIcon = new FontAwesomeIcon(getElement());
+        }
+
+        fontAwesomeIcon.setType(iconType);
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return fontAwesomeIcon != null ? fontAwesomeIcon.getType() : null;
+    }
+
+    @Override
+    public void setIconSize(IconSize iconSize) {
+        this.iconSize = iconSize;
+
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setSize(iconSize);
+        }
+    }
+
+    @Override
+    public IconSize getIconSize() {
+        return iconSize;
+    }
+
+    @Override
+    public void setIconFlip(IconFlip iconFlip) {
+        this.iconFlip = iconFlip;
+
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setFlip(iconFlip);
+        }
+    }
+
+    @Override
+    public IconFlip getIconFlip() {
+        return iconFlip;
+    }
+
+    @Override
+    public void setIconRotate(IconRotate iconRotate) {
+        this.iconRotate = iconRotate;
+
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setRotate(iconRotate);
+        }
+    }
+
+    @Override
+    public IconRotate getIconRotate() {
+        return iconRotate;
+    }
+
+    @Override
+    public void setIconBordered(boolean iconBordered) {
+        this.iconBordered = iconBordered;
+
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setBorder(iconBordered);
+        }
+    }
+
+    @Override
+    public boolean isIconBordered() {
+        return iconBordered;
+    }
+
+    @Override
+    public void setIconMuted(boolean iconMuted) {
+        this.iconMuted = iconMuted;
+
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setMuted(iconMuted);
+        }
+    }
+
+    @Override
+    public boolean isIconMuted() {
+        return iconMuted;
+    }
+
+    @Override
+    public void setIconLight(boolean iconLight) {
+        this.iconLight = iconLight;
+
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setLight(iconLight);
+        }
+    }
+
+    @Override
+    public boolean isIconLight() {
+        return iconLight;
+    }
+
+    @Override
+    public void setIconSpin(boolean iconSpin) {
+        this.iconSpin = iconSpin;
+
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setSpin(iconSpin);
+        }
+    }
+
+    @Override
+    public boolean isIconSpin() {
+        return iconSpin;
     }
 
 }

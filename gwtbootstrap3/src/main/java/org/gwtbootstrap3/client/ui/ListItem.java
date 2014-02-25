@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,13 +60,23 @@ public class ListItem extends AbstractAnchorListItem implements HasText, HasIcon
     }
 
     @Override
-    public void setIcon(final IconType iconType) {
-        anchor.setIcon(iconType);
+    public void setGlyphicon(final GlyphiconType iconType) {
+        anchor.setGlyphicon(iconType);
     }
 
     @Override
-    public IconType getIcon() {
-        return anchor.getIcon();
+    public GlyphiconType getGlyphicon() {
+        return anchor.getGlyphicon();
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        anchor.setFontAwesomeIcon(iconType);
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return anchor.getFontAwesomeIcon();
     }
 
     @Override
@@ -148,4 +158,5 @@ public class ListItem extends AbstractAnchorListItem implements HasText, HasIcon
     public boolean isIconSpin() {
         return anchor.isIconSpin();
     }
+
 }

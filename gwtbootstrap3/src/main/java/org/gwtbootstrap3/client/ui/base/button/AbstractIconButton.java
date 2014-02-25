@@ -31,7 +31,7 @@ import org.gwtbootstrap3.client.ui.constants.*;
  *
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
- * @see org.gwtbootstrap3.client.ui.Icon
+ * @see org.gwtbootstrap3.client.ui.FontAwesomeIcon
  */
 public abstract class AbstractIconButton extends AbstractButton implements HasText, HasIcon, HasIconPosition {
 
@@ -88,13 +88,23 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIcon(final IconType iconType) {
-        iconTextMixin.setIcon(iconType);
+    public void setGlyphicon(GlyphiconType iconType) {
+        iconTextMixin.setGlyphicon(iconType);
     }
 
     @Override
-    public IconType getIcon() {
-        return iconTextMixin.getIcon();
+    public GlyphiconType getGlyphicon() {
+        return iconTextMixin.getGlyphicon();
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        iconTextMixin.setFontAwesomeIcon(iconType);
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return iconTextMixin.getFontAwesomeIcon();
     }
 
     @Override

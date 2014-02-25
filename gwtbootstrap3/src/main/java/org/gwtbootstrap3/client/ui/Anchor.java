@@ -89,13 +89,23 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setIcon(final IconType iconType) {
-        iconTextMixin.setIcon(iconType);
+    public void setGlyphicon(final GlyphiconType iconType) {
+        iconTextMixin.setGlyphicon(iconType);
     }
 
     @Override
-    public IconType getIcon() {
-        return iconTextMixin.getIcon();
+    public GlyphiconType getGlyphicon() {
+        return iconTextMixin.getGlyphicon();
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        iconTextMixin.setFontAwesomeIcon(iconType);
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return iconTextMixin.getFontAwesomeIcon();
     }
 
     @Override

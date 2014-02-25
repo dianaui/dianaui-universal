@@ -88,6 +88,8 @@ public final class Styles {
     public static final String FORM_CONTROL_STATIC = "form-control-static";
     public static final String FORM_GROUP = "form-group";
 
+    public static final String GLYPHICON_BASE = "glyphicon";
+
     public static final String HAS_FEEDBACK = "has-feedback";
     public static final String HELP_BLOCK = "help-block";
 

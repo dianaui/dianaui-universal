@@ -30,11 +30,13 @@ import org.gwtbootstrap3.client.ui.constants.IconType;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public interface HasIcon {
-    void setIcon(IconType iconType);
+public interface HasIcon extends HasGlyphicon {
 
-    IconType getIcon();
+    void setFontAwesomeIcon(IconType iconType);
+
+    IconType getFontAwesomeIcon();
 
     void setIconSize(IconSize iconSize);
 
@@ -63,4 +65,5 @@ public interface HasIcon {
     void setIconSpin(boolean iconSpin);
 
     boolean isIconSpin();
+
 }

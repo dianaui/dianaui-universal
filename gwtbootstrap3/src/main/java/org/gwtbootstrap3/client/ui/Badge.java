@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.editor.client.IsEditor;
+import com.google.gwt.editor.client.LeafValueEditor;
+import com.google.gwt.editor.ui.client.adapters.HasTextEditor;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -34,8 +37,11 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * </pre>
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class Badge extends Span {
+public class Badge extends Span implements com.google.gwt.user.client.ui.HasText, IsEditor<LeafValueEditor<String>> {
+
+    private LeafValueEditor<String> editor;
 
     public Badge() {
         setStyleName(Styles.BADGE);
@@ -45,4 +51,12 @@ public class Badge extends Span {
         super(html);
         setStyleName(Styles.BADGE);
     }
+
+    public LeafValueEditor<String> asEditor() {
+        if (editor == null) {
+            editor = HasTextEditor.of(this);
+        }
+        return editor;
+    }
+
 }

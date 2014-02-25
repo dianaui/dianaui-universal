@@ -20,7 +20,6 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.base.AbstractAnchorListItem;
 import org.gwtbootstrap3.client.ui.constants.*;
 
@@ -35,6 +34,7 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * </ul>
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see DropDownMenu
  * @see NavTabs
  * @see NavPills

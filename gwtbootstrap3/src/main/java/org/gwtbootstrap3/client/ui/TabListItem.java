@@ -22,14 +22,13 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.ui.HasHTML;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class TabListItem extends ListItem implements HasHTML, HasTarget {
+public class TabListItem extends ListItem implements HasTarget {
 
     private int toggleIndex = -1;
 
@@ -64,16 +63,6 @@ public class TabListItem extends ListItem implements HasHTML, HasTarget {
     @Override
     public String getTarget() {
         return anchor.getTarget();
-    }
-
-    @Override
-    public String getHTML() {
-        return anchor.getHTML();
-    }
-
-    @Override
-    public void setHTML(final String html) {
-        anchor.setHTML(html);
     }
 
     public int getToggleIndex() {

@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Focusable;
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.Anchor;
 import org.gwtbootstrap3.client.ui.HasHref;
 import org.gwtbootstrap3.client.ui.HasTargetHistoryToken;
@@ -34,15 +35,21 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * Base class for list items that contain an {@link org.gwtbootstrap3.client.ui.Anchor} link.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public abstract class AbstractAnchorListItem extends AbstractListItem
-        implements HasHref, HasTargetHistoryToken, HasClickHandlers, Focusable, HasToggle {
+public abstract class AbstractAnchorListItem extends AbstractListItem implements HasHref, HasTargetHistoryToken,
+        HasClickHandlers, Focusable, HasToggle {
 
     protected final Anchor anchor;
 
     protected AbstractAnchorListItem() {
         anchor = new Anchor();
         add(anchor, getElement());
+    }
+
+    @Override
+    public void add(final Widget child) {
+        add(child, getElement());
     }
 
     @Override

@@ -24,6 +24,7 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.HasEnabled;
 import org.gwtbootstrap3.client.ui.HasActive;
+import org.gwtbootstrap3.client.ui.HasId;
 import org.gwtbootstrap3.client.ui.HasPull;
 import org.gwtbootstrap3.client.ui.HasResponsiveness;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
@@ -40,7 +41,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @see org.gwtbootstrap3.client.ui.ListItem
  * @see org.gwtbootstrap3.client.ui.ListDropDown
  */
-public abstract class AbstractListItem extends ComplexPanel implements HasEnabled, HasPull, HasActive,
+public abstract class AbstractListItem extends ComplexPanel implements HasId, HasEnabled, HasPull, HasActive,
         HasResponsiveness {
 
     private final ActiveMixin<AbstractListItem> activeMixin = new ActiveMixin<AbstractListItem>(this);
@@ -48,6 +49,16 @@ public abstract class AbstractListItem extends ComplexPanel implements HasEnable
 
     protected AbstractListItem() {
         setElement(Document.get().createLIElement());
+    }
+
+    @Override
+    public void setId(String id) {
+        getElement().setId(id);
+    }
+
+    @Override
+    public String getId() {
+        return getElement().getId();
     }
 
     @Override

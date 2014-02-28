@@ -49,7 +49,7 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
 
     @Override
     public void add(final Widget child) {
-        add(child, getElement());
+        anchor.add(child);
     }
 
     @Override

@@ -25,11 +25,11 @@ import org.gwtbootstrap3.client.ui.constants.NavbarPull;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
- * Container for {@link ListItem} or {@link ListDropDown} within {@link Navbar}.
+ * Container for {@link AnchorListItem} or {@link ListDropDown} within {@link Navbar}.
  *
  * @author Sven Jacobs
  * @see Navbar
- * @see ListItem
+ * @see AnchorListItem
  * @see ListDropDown
  */
 public class NavbarNav extends UnorderedList implements HasNavbarPull {

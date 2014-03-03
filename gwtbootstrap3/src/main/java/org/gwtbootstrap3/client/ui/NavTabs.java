@@ -26,7 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 /**
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
- * @see ListItem
+ * @see AnchorListItem
  */
 public class NavTabs extends Nav {
 

@@ -41,9 +41,9 @@ public class OrderedList extends ComplexWidget {
      *
      * @param widgets widgets to be added
      */
-    public OrderedList(final ListItem... widgets) {
+    public OrderedList(final AnchorListItem... widgets) {
         this();
-        for (final ListItem li : widgets) {
+        for (final AnchorListItem li : widgets) {
             add(li);
         }
     }

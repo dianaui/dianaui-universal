@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,25 +20,20 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import org.gwtbootstrap3.client.ui.HasText;
-import org.gwtbootstrap3.client.ui.base.AbstractListItem;
+import com.google.gwt.user.client.DOM;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class ListItem extends AbstractListItem implements HasText {
+public class CustomWidget extends ComplexWidget {
 
-    public ListItem(String text) {
-        setText(text);
+    /**
+     * Creates a new widget that is based on the provided html tag.
+     *
+     * @param tag the html tag used for this widget
+     */
+    public CustomWidget(String tag) {
+        setElement(DOM.createElement(tag));
     }
 
-    @Override
-    public void setText(String text) {
-        getElement().setInnerText(text);
-    }
-
-    @Override
-    public String getText() {
-        return getElement().getInnerText();
-    }
 }

@@ -43,21 +43,7 @@ public class Breadcrumbs extends OrderedList {
     }
 
     @Override
-    protected void onAttach() {
-        if (!isOrWasAttached() && children.size() > 0) {
-            final Widget lastWidget = children.get(children.size() - 1);
-            lastWidget.addStyleName(Styles.ACTIVE);
-        }
-
-        super.onAttach();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void add(final Widget w) {
-        w.addStyleName(Styles.ACTIVE);
         super.add(w);
         children.add(w);
     }

@@ -41,9 +41,9 @@ public class UnorderedList extends ComplexWidget {
      *
      * @param widgets widgets to be added
      */
-    public UnorderedList(final ListItem... widgets) {
+    public UnorderedList(final AnchorListItem... widgets) {
         this();
-        for (final ListItem li : widgets) {
+        for (final AnchorListItem li : widgets) {
             add(li);
         }
     }

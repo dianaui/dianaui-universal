@@ -26,11 +26,11 @@ import org.gwtbootstrap3.client.ui.base.AbstractAnchorListItem;
 /**
  * A {@code <li>} list item that contains further widgets.
  * <p/>
- * Use it instead of a {@link ListItem} if you for example want to embed a
+ * Use it instead of a {@link AnchorListItem} if you for example want to embed a
  * {@link Nav} within a {@code <li>}.
  *
  * @author Sven Jacobs
- * @see ListItem
+ * @see AnchorListItem
  */
 public class ListItemPanel extends AbstractAnchorListItem {
 

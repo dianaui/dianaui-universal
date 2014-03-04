@@ -38,6 +38,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @see org.gwtbootstrap3.client.ui.ListItem
  * @see org.gwtbootstrap3.client.ui.AnchorListItem
  * @see org.gwtbootstrap3.client.ui.ListDropDown
  */

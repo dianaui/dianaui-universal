@@ -22,6 +22,7 @@ package org.gwtbootstrap3.client.ui.base.button;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
+import org.gwtbootstrap3.client.ui.DropDownButton;
 import org.gwtbootstrap3.client.ui.HasToggle;
 import org.gwtbootstrap3.client.ui.ListDropDown;
 import org.gwtbootstrap3.client.ui.Text;
@@ -89,6 +90,8 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
             case Event.ONCLICK:
                 if (toggle == Toggle.DROPDOWN && getParent() instanceof ListDropDown) {
                     ((ListDropDown) getParent()).toggle();
+                } else if (toggle == Toggle.DROPDOWN && getParent() instanceof DropDownButton) {
+                    ((DropDownButton) getParent()).toggle();
                 }
                 break;
         }

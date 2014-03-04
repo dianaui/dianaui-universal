@@ -191,6 +191,9 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
         getElement().setAttribute(Attributes.DATA_KEYBOARD, Boolean.toString(keyboard));
     }
 
+    public boolean isViewing() {
+        return viewing;
+    }
 
     public void toggle() {
         if (viewing) {

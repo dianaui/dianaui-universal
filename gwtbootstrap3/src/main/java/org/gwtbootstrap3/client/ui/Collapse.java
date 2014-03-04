@@ -20,24 +20,41 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.shared.event.*;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Grant Slender
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ * @see org.gwtbootstrap3.client.shared.event.ShowEvent
+ * @see org.gwtbootstrap3.client.shared.event.ShownEvent
+ * @see org.gwtbootstrap3.client.shared.event.HideEvent
+ * @see org.gwtbootstrap3.client.shared.event.HiddenEvent
  */
 public class Collapse extends Div {
-    private static final String TOGGLE = "toggle";
-    private static final String SHOW = "show";
-    private static final String HIDE = "hdie";
 
+    private static int DEFAULT_TRANSITION_MS = 350;
+
+    private int transitionMs = DEFAULT_TRANSITION_MS;
     private boolean toggle = true;
+    private boolean transitioning = false;
 
     public Collapse() {
         // Set the default styles
         setStyleName(Styles.COLLAPSE);
+    }
+
+    @Override
+    public void add(final Widget child) {
+        if (getWidgetCount() > 0) {
+            throw new IllegalStateException("Collapse can only contain one child widget");
+        }
+        super.add(child);
     }
 
     /**
@@ -51,24 +68,89 @@ public class Collapse extends Div {
      * Causes the collapse to show or hide
      */
     public void toggle() {
-        // TODO
-        // fireMethod(getElement(), TOGGLE);
+        if (isViewing()) {
+            hide();
+        } else {
+            show();
+        }
     }
 
     /**
      * Causes the collapse to show
      */
     public void show() {
-        // TODO
-        // fireMethod(getElement(), SHOW);
+        if (transitioning || isViewing()) {
+            return;
+        }
+
+        transitioning = true;
+
+        fireEvent(new ShowEvent());
+
+        removeStyleName(Styles.COLLAPSE);
+        addStyleName(Styles.COLLAPSING);
+
+        if (getElement().getChildCount() > 0) {
+            getElement().getStyle().setHeight(getElement().getFirstChildElement().getOffsetHeight(), Style.Unit.PX);
+        }
+
+        Timer timer = new Timer() {
+            @Override
+            public void run() {
+                removeStyleName(Styles.COLLAPSING);
+                addStyleName(Styles.COLLAPSE);
+                addStyleName(Styles.IN);
+                //getElement().getStyle().setProperty("height", "auto");
+
+                transitioning = false;
+
+                fireEvent(new ShownEvent());
+            }
+        };
+
+        timer.schedule(transitionMs);
     }
 
     /**
      * Causes the collapse to hide
      */
     public void hide() {
-        // TODO
-        // fireMethod(getElement(), HIDE);
+        if (transitioning || !isViewing()) {
+            return;
+        }
+
+        transitioning = true;
+
+        fireEvent(new HideEvent());
+
+        addStyleName(Styles.COLLAPSING);
+        removeStyleName(Styles.COLLAPSE);
+        removeStyleName(Styles.IN);
+
+        getElement().getStyle().setHeight(0, Style.Unit.PX);
+
+        // force reflow
+        if (getElement().getChildCount() > 0) {
+            getElement().getFirstChildElement().getOffsetHeight();
+        }
+
+        Timer timer = new Timer() {
+            @Override
+            public void run() {
+                removeStyleName(Styles.COLLAPSING);
+                addStyleName(Styles.COLLAPSE);
+
+                transitioning = false;
+
+                fireEvent(new HiddenEvent());
+            }
+        };
+
+        timer.schedule(transitionMs);
+    }
+
+    public boolean isViewing() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.IN);
     }
 
     public HandlerRegistration addShowHandler(final ShowHandler showHandler) {
@@ -85,6 +167,14 @@ public class Collapse extends Div {
 
     public HandlerRegistration addHiddenHandler(final HiddenHandler hiddenHandler) {
         return addHandler(hiddenHandler, HiddenEvent.getType());
+    }
+
+    protected void onAttach() {
+        super.onAttach();
+
+        if (toggle) {
+            show();
+        }
     }
 
 }

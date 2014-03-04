@@ -79,74 +79,78 @@ public class Collapse extends Div {
      * Causes the collapse to show
      */
     public void show() {
-        if (transitioning || isViewing()) {
-            return;
-        }
-
-        transitioning = true;
-
-        fireEvent(new ShowEvent());
-
-        removeStyleName(Styles.COLLAPSE);
-        addStyleName(Styles.COLLAPSING);
-
-        if (getElement().getChildCount() > 0) {
-            getElement().getStyle().setHeight(getElement().getFirstChildElement().getOffsetHeight(), Style.Unit.PX);
-        }
-
-        Timer timer = new Timer() {
-            @Override
-            public void run() {
-                removeStyleName(Styles.COLLAPSING);
-                addStyleName(Styles.COLLAPSE);
-                addStyleName(Styles.IN);
-                //getElement().getStyle().setProperty("height", "auto");
-
-                transitioning = false;
-
-                fireEvent(new ShownEvent());
+        if (isAttached()) {
+            if (transitioning || isViewing()) {
+                return;
             }
-        };
 
-        timer.schedule(transitionMs);
+            transitioning = true;
+
+            fireEvent(new ShowEvent());
+
+            removeStyleName(Styles.COLLAPSE);
+            addStyleName(Styles.COLLAPSING);
+
+            if (getElement().getChildCount() > 0) {
+                getElement().getStyle().setHeight(getElement().getFirstChildElement().getOffsetHeight(), Style.Unit.PX);
+            }
+
+            Timer timer = new Timer() {
+                @Override
+                public void run() {
+                    onShow();
+
+                    transitioning = false;
+
+                    fireEvent(new ShownEvent());
+                }
+            };
+
+            timer.schedule(transitionMs);
+        } else {
+            onShow();
+        }
     }
 
     /**
      * Causes the collapse to hide
      */
     public void hide() {
-        if (transitioning || !isViewing()) {
-            return;
-        }
-
-        transitioning = true;
-
-        fireEvent(new HideEvent());
-
-        addStyleName(Styles.COLLAPSING);
-        removeStyleName(Styles.COLLAPSE);
-        removeStyleName(Styles.IN);
-
-        getElement().getStyle().setHeight(0, Style.Unit.PX);
-
-        // force reflow
-        if (getElement().getChildCount() > 0) {
-            getElement().getFirstChildElement().getOffsetHeight();
-        }
-
-        Timer timer = new Timer() {
-            @Override
-            public void run() {
-                removeStyleName(Styles.COLLAPSING);
-                addStyleName(Styles.COLLAPSE);
-
-                transitioning = false;
-
-                fireEvent(new HiddenEvent());
+        if (isAttached()) {
+            if (transitioning || !isViewing()) {
+                return;
             }
-        };
 
-        timer.schedule(transitionMs);
+            transitioning = true;
+
+            fireEvent(new HideEvent());
+
+            addStyleName(Styles.COLLAPSING);
+            removeStyleName(Styles.COLLAPSE);
+            removeStyleName(Styles.IN);
+
+            getElement().getStyle().setHeight(0, Style.Unit.PX);
+
+            // force reflow
+            if (getElement().getChildCount() > 0) {
+                getElement().getFirstChildElement().getOffsetHeight();
+            }
+
+            Timer timer = new Timer() {
+                @Override
+                public void run() {
+                    onHide();
+
+                    transitioning = false;
+
+                    fireEvent(new HiddenEvent());
+                }
+            };
+
+            timer.schedule(transitionMs);
+        } else {
+            onHide();
+        }
     }
 
     public boolean isViewing() {
@@ -169,12 +173,29 @@ public class Collapse extends Div {
         return addHandler(hiddenHandler, HiddenEvent.getType());
     }
 
+    @Override
     protected void onAttach() {
         super.onAttach();
 
         if (toggle) {
             show();
         }
+    }
+
+    private void onShow() {
+        removeStyleName(Styles.COLLAPSING);
+        addStyleName(Styles.COLLAPSE);
+        addStyleName(Styles.IN);
+        getElement().getStyle().setProperty("height", "auto");
+    }
+
+    private void onHide() {
+        removeStyleName(Styles.COLLAPSING);
+        addStyleName(Styles.COLLAPSE);
+
+        // for not attached widgets
+        removeStyleName(Styles.IN);
+        getElement().getStyle().setHeight(0, Style.Unit.PX);
     }
 
 }

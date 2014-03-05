@@ -25,15 +25,13 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
-import org.gwtbootstrap3.client.shared.event.HiddenEvent;
-import org.gwtbootstrap3.client.shared.event.HideEvent;
-import org.gwtbootstrap3.client.shared.event.ShowEvent;
-import org.gwtbootstrap3.client.shared.event.ShownEvent;
+import org.gwtbootstrap3.client.shared.event.*;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.modal.ModalContent;
 import org.gwtbootstrap3.client.ui.base.modal.ModalDialog;
@@ -96,7 +94,7 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
     private boolean viewing = false;
     private int transitionMs = DEFAULT_TRANSITION_MS;
     private DivElement backdrop;
-    private ModalBackdrop backdropParams = ModalBackdrop.TRUE;
+    private ModalBackdrop backdropType = ModalBackdrop.TRUE;
 
     public Modal() {
         setStyleName(Styles.MODAL);
@@ -110,54 +108,6 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
 
         initBackdrop();
         setFade(false);
-    }
-
-    @Override
-    public void add(final Widget w) {
-        // User can supply own ModalHeader
-        if (w instanceof ModalHeader) {
-            header.removeFromParent();
-            header = (ModalHeader) w;
-        }
-
-        if (w instanceof ModalComponent) {
-            content.add(w);
-        } else {
-            super.add(w);
-        }
-    }
-
-    public void setTitle(final String title) {
-        header.setTitle(title);
-    }
-
-    @Override
-    public void setClosable(final boolean closable) {
-        header.setClosable(closable);
-
-        if (closable) {
-            header.getCloseButton().addClickHandler(new ClickHandler() {
-                @Override
-                public void onClick(ClickEvent clickEvent) {
-                    hide();
-                }
-            });
-        }
-    }
-
-    @Override
-    public boolean isClosable() {
-        return header.isClosable();
-    }
-
-    @Override
-    public void setVisibleOn(final String deviceSizeString) {
-        StyleHelper.setVisibleOn(this, deviceSizeString);
-    }
-
-    @Override
-    public void setHiddenOn(final String deviceSizeString) {
-        StyleHelper.setHiddenOn(this, deviceSizeString);
     }
 
     /**
@@ -184,9 +134,10 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
      * @see org.gwtbootstrap3.client.ui.constants.ModalBackdrop
      */
     public void setBackdrop(final ModalBackdrop backdrop) {
-        this.backdropParams = backdrop;
+        this.backdropType = backdrop;
     }
 
+    // TODO
     public void setKeyboard(final boolean keyboard) {
         getElement().setAttribute(Attributes.DATA_KEYBOARD, Boolean.toString(keyboard));
     }
@@ -216,14 +167,14 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
                     @Override
                     public void onBrowserEvent(Event event) {
                         if (Event.ONCLICK == event.getTypeInt() && event.getEventTarget().equals(getElement()) &&
-                                backdropParams.equals(ModalBackdrop.TRUE)) {
+                                backdropType.equals(ModalBackdrop.TRUE)) {
                             hide();
                         }
                     }
                 });
             }
 
-            if (!backdropParams.equals(ModalBackdrop.FALSE)) {
+            if (!backdropType.equals(ModalBackdrop.FALSE)) {
                 RootPanel.getBodyElement().appendChild(backdrop);
 
                 // force reflow
@@ -237,7 +188,7 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
                 public void run() {
                     getElement().getStyle().setDisplay(Style.Display.BLOCK);
 
-                    if (!backdropParams.equals(ModalBackdrop.FALSE)) {
+                    if (!backdropType.equals(ModalBackdrop.FALSE)) {
                         backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
                     }
 
@@ -293,6 +244,71 @@ public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
 
             timer.schedule(transitionMs);
         }
+    }
+
+    public HandlerRegistration addHideHandler(final HideHandler handler) {
+        return addHandler(handler, HideEvent.getType());
+    }
+
+    public HandlerRegistration addHiddenHandler(final HiddenHandler handler) {
+        return addHandler(handler, HiddenEvent.getType());
+    }
+
+    public HandlerRegistration addShowHandler(final ShowHandler handler) {
+        return addHandler(handler, ShowEvent.getType());
+    }
+
+    public HandlerRegistration addShownHandler(final ShownHandler handler) {
+        return addHandler(handler, ShownEvent.getType());
+    }
+
+    @Override
+    public void setClosable(final boolean closable) {
+        header.setClosable(closable);
+
+        if (closable) {
+            header.getCloseButton().addClickHandler(new ClickHandler() {
+                @Override
+                public void onClick(ClickEvent clickEvent) {
+                    hide();
+                }
+            });
+        }
+    }
+
+    @Override
+    public boolean isClosable() {
+        return header.isClosable();
+    }
+
+    @Override
+    public void setVisibleOn(final String deviceSizeString) {
+        StyleHelper.setVisibleOn(this, deviceSizeString);
+    }
+
+    @Override
+    public void setHiddenOn(final String deviceSizeString) {
+        StyleHelper.setHiddenOn(this, deviceSizeString);
+    }
+
+    @Override
+    public void add(final Widget w) {
+        // User can supply own ModalHeader
+        if (w instanceof ModalHeader) {
+            header.removeFromParent();
+            header = (ModalHeader) w;
+        }
+
+        if (w instanceof ModalComponent) {
+            content.add(w);
+        } else {
+            super.add(w);
+        }
+    }
+
+    @Override
+    public void setTitle(final String title) {
+        header.setTitle(title);
     }
 
     private void initBackdrop() {

@@ -108,6 +108,11 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
+    public void clearIcon() {
+        iconTextMixin.setFontAwesomeIcon(null);
+    }
+
+    @Override
     public void setIconPosition(final IconPosition iconPosition) {
         iconTextMixin.setIconPosition(iconPosition);
     }

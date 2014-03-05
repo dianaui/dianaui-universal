@@ -87,6 +87,11 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     }
 
     @Override
+    public void clearIcon() {
+        fontAwesomeIcon = null;
+    }
+
+    @Override
     public void setIconPosition(final IconPosition iconPosition) {
         this.iconPosition = iconPosition;
         render(fontAwesomeIcon);

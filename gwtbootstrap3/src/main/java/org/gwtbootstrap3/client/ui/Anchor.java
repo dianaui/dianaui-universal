@@ -109,6 +109,11 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
+    public void clearIcon() {
+        iconTextMixin.setFontAwesomeIcon(null);
+    }
+
+    @Override
     public void setIconPosition(final IconPosition iconPosition) {
         iconTextMixin.setIconPosition(iconPosition);
     }

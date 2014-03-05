@@ -80,6 +80,11 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasText, H
     }
 
     @Override
+    public void clearIcon() {
+        anchor.setFontAwesomeIcon(null);
+    }
+
+    @Override
     public void setIconPosition(final IconPosition iconPosition) {
         anchor.setIconPosition(iconPosition);
     }

@@ -86,6 +86,11 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
+    public void clearIcon() {
+        iconTextMixin.clearIcon();
+    }
+
+    @Override
     public void setIconPosition(final IconPosition iconPosition) {
         iconTextMixin.setIconPosition(iconPosition);
     }

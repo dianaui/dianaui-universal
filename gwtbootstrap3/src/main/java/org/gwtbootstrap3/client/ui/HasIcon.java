@@ -38,6 +38,8 @@ public interface HasIcon extends HasGlyphicon {
 
     IconType getFontAwesomeIcon();
 
+    void clearIcon();
+
     void setIconSize(IconSize iconSize);
 
     IconSize getIconSize();

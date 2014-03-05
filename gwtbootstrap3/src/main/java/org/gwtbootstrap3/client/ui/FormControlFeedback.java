@@ -49,7 +49,7 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
         StyleHelper.removeStyleNameStartsWith(this, Styles.GLYPHICON_BASE);
     }
 
-    public void cleanFontAwesomeIcon() {
+    public void clearIcon() {
         StyleHelper.removeStyleNameStartsWith(this, Styles.FONT_AWESOME_BASE);
     }
 

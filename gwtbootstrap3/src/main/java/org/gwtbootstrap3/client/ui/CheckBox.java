@@ -111,6 +111,11 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
+    public void clearIcon() {
+        button.clearIcon();
+    }
+
+    @Override
     public void setIconPosition(final IconPosition iconPosition) {
         button.setIconPosition(iconPosition);
     }

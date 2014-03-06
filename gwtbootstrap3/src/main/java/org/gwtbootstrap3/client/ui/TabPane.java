@@ -22,22 +22,21 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.user.client.Timer;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
+import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class TabPane extends Div {
+public class TabPane extends Div implements HasActive {
 
     private static int DEFAULT_TRANSITION_MS = 150;
 
+    private final ActiveMixin<TabPane> activeMixin = new ActiveMixin<TabPane>(this);
+
     public TabPane() {
         setStyleName(Styles.TAB_PANE);
-    }
-
-    public boolean isActive() {
-        return StyleHelper.containsStyle(getStyleName(), Styles.ACTIVE);
     }
 
     public boolean isFade() {
@@ -67,15 +66,18 @@ public class TabPane extends Div {
         timer.schedule(isFade() ? DEFAULT_TRANSITION_MS : 0);
     }
 
+    @Override
     public void setActive(final boolean active) {
-        if (active) {
-            addStyleName(Styles.ACTIVE);
-        } else {
-            removeStyleName(Styles.ACTIVE);
-        }
+        activeMixin.setActive(active);
 
         if (isFade()) {
             setIn(active);
         }
     }
+
+    @Override
+    public boolean isActive() {
+        return activeMixin.isActive();
+    }
+
 }

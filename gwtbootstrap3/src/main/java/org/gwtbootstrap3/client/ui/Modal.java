@@ -85,7 +85,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @see org.gwtbootstrap3.client.shared.event.HideEvent
  * @see org.gwtbootstrap3.client.shared.event.HiddenEvent
  */
-public class Modal extends FlowPanel implements IsClosable, HasResponsiveness {
+public class Modal extends Div implements IsClosable, HasResponsiveness {
 
     private static int DEFAULT_TRANSITION_MS = 150;
 

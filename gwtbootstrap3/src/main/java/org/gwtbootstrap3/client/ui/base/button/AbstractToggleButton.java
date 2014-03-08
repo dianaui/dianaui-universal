@@ -26,7 +26,6 @@ import org.gwtbootstrap3.client.ui.DropDownButton;
 import org.gwtbootstrap3.client.ui.HasToggle;
 import org.gwtbootstrap3.client.ui.ListDropDown;
 import org.gwtbootstrap3.client.ui.Text;
-import org.gwtbootstrap3.client.ui.base.mixin.ToggleMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
@@ -41,7 +40,6 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  */
 public abstract class AbstractToggleButton extends AbstractIconButton implements HasToggle {
 
-    private final ToggleMixin<AbstractToggleButton> toggleMixin = new ToggleMixin<AbstractToggleButton>(this);
     private final Text separator = new Text(" ");
     private final Caret caret = new Caret();
 
@@ -96,6 +94,12 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
                 }
                 break;
         }
+    }
+
+    @Override
+    protected void onChanged() {
+        // fix caret position
+        setToggle(toggle);
     }
 
 }

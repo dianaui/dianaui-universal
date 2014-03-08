@@ -79,6 +79,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setText(final String text) {
         iconTextMixin.setText(text);
+
+        onChanged();
     }
 
     @Override
@@ -89,6 +91,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setGlyphicon(GlyphiconType iconType) {
         iconTextMixin.setGlyphicon(iconType);
+
+        onChanged();
     }
 
     @Override
@@ -99,6 +103,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setFontAwesomeIcon(final IconType iconType) {
         iconTextMixin.setFontAwesomeIcon(iconType);
+
+        onChanged();
     }
 
     @Override
@@ -106,14 +112,19 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
         return iconTextMixin.getFontAwesomeIcon();
     }
 
+    // TODO
     @Override
     public void clearIcon() {
         iconTextMixin.setFontAwesomeIcon(null);
+
+        onChanged();
     }
 
     @Override
     public void setIconPosition(final IconPosition iconPosition) {
         iconTextMixin.setIconPosition(iconPosition);
+
+        onChanged();
     }
 
     @Override
@@ -124,6 +135,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setIconSize(final IconSize iconSize) {
         iconTextMixin.setIconSize(iconSize);
+
+        onChanged();
     }
 
     @Override
@@ -134,6 +147,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setIconFlip(final IconFlip iconFlip) {
         iconTextMixin.setIconFlip(iconFlip);
+
+        onChanged();
     }
 
     @Override
@@ -144,6 +159,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setIconRotate(final IconRotate iconRotate) {
         iconTextMixin.setIconRotate(iconRotate);
+
+        onChanged();
     }
 
     @Override
@@ -154,6 +171,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setIconBordered(final boolean iconBordered) {
         iconTextMixin.setIconBordered(iconBordered);
+
+        onChanged();
     }
 
     @Override
@@ -164,6 +183,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setIconMuted(final boolean iconMuted) {
         iconTextMixin.setIconMuted(iconMuted);
+
+        onChanged();
     }
 
     @Override
@@ -174,6 +195,8 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setIconLight(final boolean iconLight) {
         iconTextMixin.setIconLight(iconLight);
+
+        onChanged();
     }
 
     @Override
@@ -184,11 +207,16 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setIconSpin(final boolean iconSpin) {
         iconTextMixin.setIconSpin(iconSpin);
+
+        onChanged();
     }
 
     @Override
     public boolean isIconSpin() {
         return iconTextMixin.isIconSpin();
+    }
+
+    protected void onChanged() {
     }
 
 }

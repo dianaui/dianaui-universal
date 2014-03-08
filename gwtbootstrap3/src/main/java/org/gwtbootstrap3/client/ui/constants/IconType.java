@@ -30,6 +30,8 @@ import org.gwtbootstrap3.client.ui.base.helper.EnumHelper;
  * @author Joshua Godi
  */
 public enum IconType implements Type, Style.HasCssName {
+
+    NONE(""),
     ADJUST("fa-adjust"),
     ADN("fa-adn"),
     ALIGN_CENTER("fa-align-center"),

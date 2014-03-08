@@ -28,6 +28,7 @@ import org.gwtbootstrap3.client.ui.base.helper.EnumHelper;
  */
 public enum GlyphiconType implements Type, Style.HasCssName {
 
+    NONE(""),
     ASTERISK("glyphicon-asterisk"),
     PLUS("glyphicon-plus"),
     EURO("glyphicon-euro"),

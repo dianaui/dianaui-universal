@@ -39,14 +39,19 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
 
     private final FocusableMixin focusableMixin;
 
+    public AnchorButton() {
+        this(ButtonType.DEFAULT);
+    }
+
+    public AnchorButton(final String text) {
+        this();
+        setText(text);
+    }
+
     public AnchorButton(final ButtonType type) {
         super(type);
         setHref(EMPTY_HREF);
         focusableMixin = new FocusableMixin(getAnchorElement());
-    }
-
-    public AnchorButton() {
-        this(ButtonType.DEFAULT);
     }
 
     @Override

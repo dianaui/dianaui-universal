@@ -28,7 +28,7 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class DropDownButton extends ButtonGroup implements HasText {
+public class DropDownButton extends ButtonGroup implements HasText, HasEnabled {
 
     private final Button button = new Button("...");
     private final DropDownMenu menu = new DropDownMenu();
@@ -46,14 +46,8 @@ public class DropDownButton extends ButtonGroup implements HasText {
         setText(text);
     }
 
-    @Override
-    public void setText(String text) {
-        button.setText(text);
-    }
-
-    @Override
-    public String getText() {
-        return button.getText();
+    public Button getToogleButton() {
+        return button;
     }
 
     public DropDownMenu getMenu() {
@@ -78,6 +72,26 @@ public class DropDownButton extends ButtonGroup implements HasText {
 
     public boolean isOpen() {
         return StyleHelper.containsStyle(getStyleName(), Styles.OPEN);
+    }
+
+    @Override
+    public void setText(String text) {
+        button.setText(text);
+    }
+
+    @Override
+    public String getText() {
+        return button.getText();
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        button.setEnabled(enabled);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return button.isEnabled();
     }
 
 }

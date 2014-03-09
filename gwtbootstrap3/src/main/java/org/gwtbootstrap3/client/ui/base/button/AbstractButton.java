@@ -27,7 +27,6 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.HasEnabled;
 import org.gwtbootstrap3.client.ui.*;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
@@ -43,6 +42,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @author Sven Jacobs
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
 public abstract class AbstractButton extends ComplexWidget implements HasEnabled, HasActive, HasType<ButtonType>,
         HasSize<ButtonSize>, HasTarget, HasClickHandlers, HasTargetHistoryToken, HasHref {
@@ -76,12 +76,12 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
 
     @Override
     public void setEnabled(final boolean enabled) {
-        getElement().setPropertyBoolean("disabled", !enabled);
+        getElement().setPropertyBoolean(DISABLED_PROPERTY, !enabled);
     }
 
     @Override
     public boolean isEnabled() {
-        return !getElement().getPropertyBoolean("disabled");
+        return !getElement().getPropertyBoolean(DISABLED_PROPERTY);
     }
 
     @Override

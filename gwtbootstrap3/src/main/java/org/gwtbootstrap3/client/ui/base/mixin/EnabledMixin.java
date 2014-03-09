@@ -26,6 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
+ * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
 public class EnabledMixin<T extends UIObject & HasEnabled> extends AbstractMixin implements HasEnabled {
 
@@ -37,15 +38,15 @@ public class EnabledMixin<T extends UIObject & HasEnabled> extends AbstractMixin
     public void setEnabled(boolean enabled) {
         if (enabled) {
             uiObject.removeStyleName(Styles.DISABLED);
-            uiObject.getElement().removeAttribute(DISABLED);
+            uiObject.getElement().removeAttribute(DISABLED_PROPERTY);
         } else {
             uiObject.addStyleName(Styles.DISABLED);
-            uiObject.getElement().setAttribute(DISABLED, "");
+            uiObject.getElement().setAttribute(DISABLED_PROPERTY, "");
         }
     }
 
     @Override
     public boolean isEnabled() {
-        return !uiObject.getElement().hasAttribute(DISABLED);
+        return !uiObject.getElement().hasAttribute(DISABLED_PROPERTY);
     }
 }

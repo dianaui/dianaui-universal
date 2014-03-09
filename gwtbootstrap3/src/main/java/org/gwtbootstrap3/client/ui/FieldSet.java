@@ -21,16 +21,15 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.ui.HasEnabled;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 
 /**
  * @author Sven Jacobs
  * @author Joshua Godi
  * @see Form
+ * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
 public class FieldSet extends ComplexWidget implements HasEnabled {
-    private static final String DISABLED = "disabled";
 
     public FieldSet() {
         setElement(Document.get().createFieldSetElement());
@@ -38,11 +37,12 @@ public class FieldSet extends ComplexWidget implements HasEnabled {
 
     @Override
     public void setEnabled(final boolean enabled) {
-        getElement().setPropertyBoolean(DISABLED, !enabled);
+        getElement().setPropertyBoolean(DISABLED_PROPERTY, !enabled);
     }
 
     @Override
     public boolean isEnabled() {
-        return !getElement().getPropertyBoolean(DISABLED);
+        return !getElement().getPropertyBoolean(DISABLED_PROPERTY);
     }
+
 }

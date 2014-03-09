@@ -1,6 +1,7 @@
 package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.user.client.ui.HasHTML;
 import org.gwtbootstrap3.client.ui.base.mixin.HTMLMixin;
 
 /*

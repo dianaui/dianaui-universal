@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.base.AbstractListItem;
 
 /**
@@ -40,4 +41,5 @@ public class ListItem extends AbstractListItem implements HasText {
     public String getText() {
         return getElement().getInnerText();
     }
+
 }

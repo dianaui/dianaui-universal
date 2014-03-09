@@ -60,4 +60,5 @@ public class Navbar extends ComplexWidget implements HasType<NavbarType> {
     public NavbarPosition getPosition() {
         return NavbarPosition.fromStyleName(getStyleName());
     }
+
 }

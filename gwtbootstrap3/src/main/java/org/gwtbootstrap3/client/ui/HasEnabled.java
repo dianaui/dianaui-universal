@@ -22,11 +22,11 @@ package org.gwtbootstrap3.client.ui;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
-public interface HasEnabled {
-    public static final String DISABLED = "disabled";
+public interface HasEnabled extends com.google.gwt.user.client.ui.HasEnabled {
 
-    void setEnabled(boolean enabled);
+    public static final String DISABLED_PROPERTY = "disabled";
 
-    boolean isEnabled();
 }

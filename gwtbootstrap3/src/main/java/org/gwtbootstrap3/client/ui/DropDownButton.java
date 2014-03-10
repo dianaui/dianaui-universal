@@ -46,7 +46,7 @@ public class DropDownButton extends ButtonGroup implements HasText, HasEnabled {
         setText(text);
     }
 
-    public Button getToogleButton() {
+    public Button getToggleButton() {
         return button;
     }
 

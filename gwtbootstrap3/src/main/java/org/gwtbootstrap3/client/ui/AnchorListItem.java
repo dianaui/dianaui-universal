@@ -20,7 +20,6 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.base.AbstractAnchorListItem;
 import org.gwtbootstrap3.client.ui.constants.*;
 
@@ -41,7 +40,7 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @see NavPills
  * @see Navbar
  */
-public class AnchorListItem extends AbstractAnchorListItem implements HasText, HasIcon, HasIconPosition {
+public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, HasIconPosition {
 
     public AnchorListItem() {
     }
@@ -50,12 +49,10 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasText, H
         setText(text);
     }
 
-    @Override
     public void setText(final String text) {
         anchor.setText(text);
     }
 
-    @Override
     public String getText() {
         return anchor.getText();
     }

@@ -23,6 +23,10 @@ package org.gwtbootstrap3.client.ui;
 import com.google.gwt.editor.client.IsEditor;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.editor.ui.client.adapters.HasTextEditor;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.event.shared.HandlerRegistration;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -39,7 +43,8 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class Badge extends Span implements com.google.gwt.user.client.ui.HasText, IsEditor<LeafValueEditor<String>> {
+public class Badge extends Span implements com.google.gwt.user.client.ui.HasText, IsEditor<LeafValueEditor<String>>,
+        HasClickHandlers {
 
     private LeafValueEditor<String> editor;
 
@@ -57,6 +62,11 @@ public class Badge extends Span implements com.google.gwt.user.client.ui.HasText
             editor = HasTextEditor.of(this);
         }
         return editor;
+    }
+
+    @Override
+    public HandlerRegistration addClickHandler(ClickHandler clickHandler) {
+        return addDomHandler(clickHandler, ClickEvent.getType());
     }
 
 }

@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,10 @@ package org.gwtbootstrap3.client.ui.base;
  * #L%
  */
 
+import com.google.gwt.event.logical.shared.HasOpenHandlers;
+import com.google.gwt.event.logical.shared.OpenEvent;
+import com.google.gwt.event.logical.shared.OpenHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasName;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.*;
@@ -38,7 +42,8 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * @see org.gwtbootstrap3.client.ui.ButtonGroup
  * @see org.gwtbootstrap3.client.ui.VerticalButtonGroup
  */
-public abstract class AbstractButtonGroup extends FlowPanel implements HasName, HasToggle, HasJustified, HasPull, HasResponsiveness {
+public abstract class AbstractButtonGroup extends FlowPanel implements HasName, HasToggle, HasJustified, HasPull,
+        HasResponsiveness, HasOpenHandlers<Boolean> {
 
     private final PullMixin<AbstractButtonGroup> pullMixin = new PullMixin<AbstractButtonGroup>(this);
     private final ToggleMixin<AbstractButtonGroup> toggleMixin = new ToggleMixin<AbstractButtonGroup>(this);
@@ -46,6 +51,46 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
 
     protected AbstractButtonGroup(final String styleName) {
         setStyleName(styleName);
+    }
+
+    /**
+     * Makes this a "drop up" container for dropdown menus where the menu opens upwards.
+     *
+     * @param dropUp
+     */
+    public void setDropUp(final boolean dropUp) {
+        if (dropUp) {
+            addStyleName(Styles.DROP_UP);
+        } else {
+            removeStyleName(Styles.DROP_UP);
+        }
+    }
+
+    /**
+     * Causes the group to open or close dropdown menu
+     */
+    public void toggle() {
+        if (isOpen()) {
+            hide();
+        } else {
+            show();
+        }
+    }
+
+    public void show() {
+        addStyleName(Styles.OPEN);
+
+        OpenEvent.fire(this, true);
+    }
+
+    public void hide() {
+        removeStyleName(Styles.OPEN);
+
+        OpenEvent.fire(this, false);
+    }
+
+    public boolean isOpen() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.OPEN);
     }
 
     /**
@@ -125,19 +170,6 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
         StyleHelper.setHiddenOn(this, deviceSizeString);
     }
 
-    /**
-     * Makes this a "drop up" container for dropdown menus where the menu opens upwards.
-     *
-     * @param dropUp
-     */
-    public void setDropUp(final boolean dropUp) {
-        if (dropUp) {
-            addStyleName(Styles.DROP_UP);
-        } else {
-            removeStyleName(Styles.DROP_UP);
-        }
-    }
-
     @Override
     public void add(final Widget w) {
         super.add(w);
@@ -151,4 +183,10 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
             ((HasName) w).setName(name);
         }
     }
+
+    @Override
+    public HandlerRegistration addOpenHandler(OpenHandler<Boolean> openHandler) {
+        return addHandler(openHandler, OpenEvent.getType());
+    }
+
 }

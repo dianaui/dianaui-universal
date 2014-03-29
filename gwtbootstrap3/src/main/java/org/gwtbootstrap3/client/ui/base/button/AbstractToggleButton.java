@@ -22,10 +22,7 @@ package org.gwtbootstrap3.client.ui.base.button;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
-import org.gwtbootstrap3.client.ui.DropDownButton;
-import org.gwtbootstrap3.client.ui.HasToggle;
-import org.gwtbootstrap3.client.ui.ListDropDown;
-import org.gwtbootstrap3.client.ui.Text;
+import org.gwtbootstrap3.client.ui.*;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
@@ -91,6 +88,8 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
                     ((ListDropDown) getParent()).toggle();
                 } else if (toggle == Toggle.DROPDOWN && getParent() instanceof DropDownButton) {
                     ((DropDownButton) getParent()).toggle();
+                } else if (toggle == Toggle.DROPDOWN && getParent() instanceof ButtonGroup) {
+                    ((ButtonGroup) getParent()).toggle();
                 }
                 break;
         }

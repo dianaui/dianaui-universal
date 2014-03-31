@@ -47,6 +47,10 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
         add(anchor, getElement());
     }
 
+    public Anchor getAnchor() {
+        return anchor;
+    }
+
     @Override
     public void add(final Widget child) {
         anchor.add(child);

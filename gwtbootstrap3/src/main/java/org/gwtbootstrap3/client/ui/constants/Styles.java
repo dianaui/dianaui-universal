@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui.constants;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ package org.gwtbootstrap3.client.ui.constants;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public final class Styles {
 
@@ -32,6 +33,8 @@ public final class Styles {
     public static final String ALERT_LINK = "alert-link";
 
     public static final String BADGE = "badge";
+
+    public static final String BOTTOM = "bottom";
 
     public static final String BREADCRUMB = "breadcrumb";
 
@@ -66,6 +69,12 @@ public final class Styles {
     public static final String CONTAINER_FLUID = "container-fluid";
 
     public static final String CONTROL_LABEL = "control-label";
+
+    public static final String DATETIMEPICKER = "bootstrap-datetimepicker-widget";
+    public static final String DATETIMEPICKER_SWITCH = "picker-switch";
+    public static final String DATEPICKER = "datepicker";
+    public static final String DATEPICKER_DAYS = "datepicker-days";
+    public static final String DATEPICKER_MONTHS = "datepicker-months";
 
     public static final String DIVIDER = "divider";
 
@@ -131,6 +140,7 @@ public final class Styles {
     public static final String LIST_GROUP_ITEM = "list-group-item";
     public static final String LIST_GROUP_ITEM_HEADING = "list-group-item-heading";
     public static final String LIST_GROUP_ITEM_TEXT = "list-group-item-text";
+    public static final String LIST_UNSTYLED = "list-unstyled";
 
     public static final String MODAL = "modal";
     public static final String MODAL_BACKDROP = "modal-backdrop";
@@ -178,6 +188,7 @@ public final class Styles {
 
     public static final String PRE_SCROLLABLE = "pre-scrollable";
 
+    public static final String PREV = "prev";
     public static final String PREVIOUS = "previous";
 
     public static final String PROGRESS = "progress";
@@ -197,15 +208,27 @@ public final class Styles {
 
     public static final String SR_ONLY = "sr-only";
 
+    public static final String SWITCH = "switch";
+
     public static final String TABBABLE = "tabbable";
     public static final String TAB_CONTENT = "tab-content";
     public static final String TAB_PANE = "tab-pane";
 
     public static final String TABLE = "table";
+    public static final String TABLE_CONDENSED = "table-condensed";
 
     public static final String THUMBNAIL = "thumbnail";
 
+    public static final String TIMEPICKER = "timepicker";
+    public static final String TIMEPICKER_PICKER = "timepicker-picker";
+    public static final String TIMEPICKER_HOURS = "timepicker-hours";
+    public static final String TIMEPICKER_MINUTES = "timepicker-minutes";
+    public static final String TIMEPICKER_HOUR = "timepicker-hour";
+    public static final String TIMEPICKER_MINUTE = "timepicker-minute";
+
     public static final String TOOLTIP = "tooltip";
+
+    public static final String TOP = "top";
 
     public static final String WELL = "well";
 

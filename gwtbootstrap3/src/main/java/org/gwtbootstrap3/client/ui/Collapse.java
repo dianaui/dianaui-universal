@@ -20,11 +20,13 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.shared.event.*;
+import org.gwtbootstrap3.client.ui.base.CustomWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
@@ -36,7 +38,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @see org.gwtbootstrap3.client.shared.event.HideEvent
  * @see org.gwtbootstrap3.client.shared.event.HiddenEvent
  */
-public class Collapse extends Div {
+public class Collapse extends CustomWidget {
 
     private static int DEFAULT_TRANSITION_MS = 350;
 
@@ -45,6 +47,12 @@ public class Collapse extends Div {
     private boolean transitioning = false;
 
     public Collapse() {
+        this(DivElement.TAG);
+    }
+
+    public Collapse(String tag) {
+        super(tag);
+
         // Set the default styles
         setStyleName(Styles.COLLAPSE);
     }
@@ -179,6 +187,8 @@ public class Collapse extends Div {
 
         if (toggle) {
             show();
+        } else {
+            onHide();
         }
     }
 

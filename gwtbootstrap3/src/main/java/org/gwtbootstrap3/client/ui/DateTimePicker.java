@@ -29,13 +29,12 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.datepicker.client.CalendarUtil;
 import org.gwtbootstrap3.client.ui.base.helper.CalendarModel;
-import org.gwtbootstrap3.client.ui.constants.DayOfWeekFormat;
-import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
-import org.gwtbootstrap3.client.ui.constants.HourFormat;
-import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.base.modal.ModalWithBackdrop;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -43,7 +42,7 @@ import java.util.Date;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasValue<Date> {
+public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor<Date>, HasValue<Date> {
 
     private static String TABLE_START = "<table class=\"table-condensed\">";
     private static String TABLE_END = "</table>";
@@ -211,7 +210,7 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
 
                         CalendarUtil.addDaysToDate(startDate, plus);
 
-                        setValue(startDate);
+                        setValue(startDate, true);
 
                         // refresh view
                         setDate(startDate);
@@ -543,7 +542,7 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
 
         private void updateValue() {
             setDate(date);
-            value = date;
+            setValue(date, true);
         }
 
         private String separator(String text) {
@@ -619,7 +618,7 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
 
                         date.setHours(hours);
 
-                        setValue(date);
+                        setValue(date, true);
 
                         time.setDate(date);
                         time.setVisible(true);
@@ -695,7 +694,7 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
 
                         date.setMinutes(minutes);
 
-                        setValue(date);
+                        setValue(date, true);
 
                         time.setDate(date);
                         time.setVisible(true);
@@ -715,6 +714,7 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
     private boolean dateEnabled = true;
     private boolean timeEnabled = true;
 
+    private final Div container;
     private Collapse dateCollapse;
     private Div dateContainer;
     private Collapse timeCollapse;
@@ -728,10 +728,14 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
     private Minutes minutes;
 
     public DateTimePicker() {
-        addStyleName(Styles.DATETIMEPICKER);
-        addStyleName(Styles.DROPDOWN_MENU);
+        setFade(false);
+        setBackdrop(ModalBackdrop.FALSE);
 
-        setVisible(false);
+        container = new Div();
+        container.addStyleName(Styles.DATETIMEPICKER);
+        container.addStyleName(Styles.DROPDOWN_MENU);
+
+        add(container);
     }
 
     public CalendarModel getCalendarModel() {
@@ -788,39 +792,28 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
         checkForRedraw();
     }
 
-    public void toggle() {
-        if (isVisible()) {
-            hide();
-        } else {
-            show();
-        }
-    }
-
-    public void hide() {
-        setVisible(false);
-    }
-
-    public void show() {
-        clear();
+    @Override
+    protected void onShow() {
+        container.clear();
 
         if (dateEnabled && timeEnabled) {
-            UnorderedList container = new UnorderedList();
-            container.setStyleName(Styles.LIST_UNSTYLED);
+            UnorderedList list = new UnorderedList();
+            list.setStyleName(Styles.LIST_UNSTYLED);
 
             if (dateCollapse == null) {
                 dateCollapse = new Collapse(LIElement.TAG);
-            }
 
-            initDateContainer();
-            dateCollapse.add(dateContainer);
+                initDateContainer();
+                dateCollapse.add(dateContainer);
+            }
 
             if (timeCollapse == null) {
                 timeCollapse = new Collapse(LIElement.TAG);
                 timeCollapse.setToggle(false);
-            }
 
-            initTimeContainer();
-            timeCollapse.add(timeContainer);
+                initTimeContainer();
+                timeCollapse.add(timeContainer);
+            }
 
             AnchorListItem switchItem = new AnchorListItem();
             switchItem.setStyleName(Styles.DATETIMEPICKER_SWITCH);
@@ -836,28 +829,39 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
                 }
             });
 
-            container.add(dateCollapse);
-            container.add(switchItem);
-            container.add(timeCollapse);
+            list.add(dateCollapse);
+            list.add(switchItem);
+            list.add(timeCollapse);
 
-            add(container);
+            container.add(list);
 
             days.setDate(CalendarUtil.copyDate(value));
         } else if (dateEnabled) {
             initDateContainer();
 
-            add(dateContainer);
+            container.add(dateContainer);
 
             days.setDate(CalendarUtil.copyDate(value));
         } else {
             initTimeContainer();
 
-            add(timeContainer);
+            container.add(timeContainer);
 
             time.setDate(CalendarUtil.copyDate(value));
         }
 
+        Event.setEventListener(getElement(), new EventListener() {
+            @Override
+            public void onBrowserEvent(Event event) {
+                if (Event.ONCLICK == event.getTypeInt() && event.getEventTarget().equals(getElement())) {
+                    hide();
+                }
+            }
+        });
+
         setVisible(true);
+
+        super.onShow();
     }
 
     private void initTimeContainer() {
@@ -890,13 +894,13 @@ public class DateTimePicker extends Div implements LeafValueEditor<Date>, HasVal
     }
 
     public void setPosition(int left, int top) {
-        getElement().getStyle().setLeft(left, Style.Unit.PX);
-        getElement().getStyle().setTop(top, Style.Unit.PX);
+        container.getElement().getStyle().setLeft(left, Style.Unit.PX);
+        container.getElement().getStyle().setTop(top, Style.Unit.PX);
     }
 
     @Override
     public void setVisible(boolean visible) {
-        Style style = getElement().getStyle();
+        Style style = container.getElement().getStyle();
 
         if (visible) {
             style.setDisplay(Style.Display.BLOCK);

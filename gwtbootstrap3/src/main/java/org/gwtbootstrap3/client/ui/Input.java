@@ -21,12 +21,10 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.InputElement;
-import com.google.gwt.event.dom.client.*;
-import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.text.shared.testing.PassthroughParser;
+import com.google.gwt.text.shared.testing.PassthroughRenderer;
 import com.google.gwt.uibinder.client.UiConstructor;
-import com.google.gwt.user.client.ui.HasName;
-import org.gwtbootstrap3.client.ui.base.ComplexWidget;
+import org.gwtbootstrap3.client.ui.base.ValueBoxBase;
 import org.gwtbootstrap3.client.ui.constants.ElementTags;
 import org.gwtbootstrap3.client.ui.constants.InputType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
@@ -35,14 +33,14 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @author Joshua Godi
  * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
-public class Input extends ComplexWidget implements HasEnabled, HasInputType, HasPlaceholder, HasFormValue, HasName,
-        HasAllKeyHandlers {
+public class Input extends ValueBoxBase<String> implements HasInputType {
 
     private static final String MIN = "min";
     private static final String MAX = "max";
 
     public Input() {
-        setElement(Document.get().createElement(ElementTags.INPUT));
+        super(Document.get().createElement(ElementTags.INPUT), PassthroughRenderer.instance(),
+                PassthroughParser.instance());
         addStyleName(Styles.FORM_CONTROL);
     }
 
@@ -60,17 +58,6 @@ public class Input extends ComplexWidget implements HasEnabled, HasInputType, Ha
         getElement().setAttribute(MAX, max);
     }
 
-    @Override
-    public void setEnabled(final boolean enabled) {
-        getElement().setPropertyBoolean(DISABLED_PROPERTY, !enabled);
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return !getElement().getPropertyBoolean(DISABLED_PROPERTY);
-    }
-
-    @Override
     public void setType(final InputType inputType) {
         getElement().setAttribute(TYPE, inputType.getType());
     }
@@ -93,38 +80,4 @@ public class Input extends ComplexWidget implements HasEnabled, HasInputType, Ha
         return getElement().getAttribute(PLACEHOLDER);
     }
 
-    @Override
-    public String getFormValue() {
-        return InputElement.as(getElement()).getValue();
-    }
-
-    @Override
-    public void setFormValue(final String value) {
-        InputElement.as(getElement()).setValue(value);
-    }
-
-    @Override
-    public String getName() {
-        return InputElement.as(getElement()).getName();
-    }
-
-    @Override
-    public void setName(final String name) {
-        InputElement.as(getElement()).setName(name);
-    }
-
-    @Override
-    public HandlerRegistration addKeyDownHandler(KeyDownHandler handler) {
-        return addDomHandler(handler, KeyDownEvent.getType());
-    }
-
-    @Override
-    public HandlerRegistration addKeyPressHandler(KeyPressHandler handler) {
-        return addDomHandler(handler, KeyPressEvent.getType());
-    }
-
-    @Override
-    public HandlerRegistration addKeyUpHandler(KeyUpHandler handler) {
-        return addDomHandler(handler, KeyUpEvent.getType());
-    }
 }

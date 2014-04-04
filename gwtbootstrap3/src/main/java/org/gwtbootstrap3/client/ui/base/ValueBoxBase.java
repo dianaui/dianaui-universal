@@ -23,20 +23,22 @@ package org.gwtbootstrap3.client.ui.base;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.text.shared.Parser;
 import com.google.gwt.text.shared.Renderer;
-import org.gwtbootstrap3.client.ui.*;
+import org.gwtbootstrap3.client.ui.HasAutocomplete;
+import org.gwtbootstrap3.client.ui.HasId;
+import org.gwtbootstrap3.client.ui.HasPlaceholder;
+import org.gwtbootstrap3.client.ui.HasResponsiveness;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 
 /**
  * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
 public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<T> implements HasId, HasResponsiveness,
-        HasEnabled, HasPlaceholder, HasAutocomplete {
+        HasPlaceholder, HasAutocomplete {
+
     private static final String MAX_LENGTH = "maxlength";
 
     private final IdMixin<ValueBoxBase<T>> idMixin = new IdMixin<ValueBoxBase<T>>(this);
-    private final EnabledMixin<ValueBoxBase<T>> enabledMixin = new EnabledMixin<ValueBoxBase<T>>(this);
 
     /**
      * Creates a value box that wraps the given browser element handle. This is
@@ -50,16 +52,6 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
 
     public void setMaxLength(int maxLength) {
         getElement().setAttribute(MAX_LENGTH, Integer.toString(maxLength));
-    }
-
-    @Override
-    public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabledMixin.isEnabled();
     }
 
     @Override
@@ -101,4 +93,5 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     public void setHiddenOn(final String deviceSizeString) {
         StyleHelper.setHiddenOn(this, deviceSizeString);
     }
+
 }

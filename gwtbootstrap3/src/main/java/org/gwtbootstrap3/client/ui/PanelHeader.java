@@ -20,43 +20,55 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.Widget;
-import org.gwtbootstrap3.client.ui.base.mixin.TextMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.HTMLMixin;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
  */
-public class PanelHeader extends Div implements HasId {
-    private final TextMixin<PanelHeader> textMixin = new TextMixin<PanelHeader>(this);
+public class PanelHeader extends HTMLPanel implements HasHTML {
+    
+    private final HTMLMixin<PanelHeader> textMixin = new HTMLMixin<PanelHeader>(this);
 
     public PanelHeader() {
+        super(DivElement.TAG, "");
         setStyleName(Styles.PANEL_HEADING);
     }
 
-    @Override
-    public void add(final Widget child) {
-        if ((child instanceof Heading) || (child instanceof HeadingPanel)) {
-            child.setStyleName(Styles.PANEL_TITLE);
-        }
-
-        // If we are adding a child, then we don't need the inner text of the
-        // div
-        setText("");
-
-        super.add(child);
+    public PanelHeader(final String html) {
+        this();
+        setHTML(html);
     }
 
+    @Override
+    public void addAndReplaceElement(Widget widget, com.google.gwt.user.client.Element toReplace) {
+        if ((widget instanceof Heading) || (widget instanceof HeadingPanel)) {
+            widget.setStyleName(Styles.PANEL_TITLE);
+        }
+        super.addAndReplaceElement(widget, toReplace);
+    }
+
+    @Override
+    public void setText(final String text) {
+        textMixin.setText(text);
+    }
+
+    @Override
     public String getText() {
         return textMixin.getText();
     }
 
-    public void setText(final String text) {
-        // Only want text to be available if the widget count is 0!
-        // This is a safety net for if people use setText and add a Heading!
-        if (getWidgetCount() == 0) {
-            textMixin.setText(text);
-        }
+    @Override
+    public String getHTML() {
+        return textMixin.getHTML();
+    }
+
+    @Override
+    public void setHTML(final String html) {
+        textMixin.setHTML(html);
     }
 
 }

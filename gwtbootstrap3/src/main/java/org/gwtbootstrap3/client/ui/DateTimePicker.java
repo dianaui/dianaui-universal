@@ -214,6 +214,10 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
 
                         // refresh view
                         setDate(startDate);
+
+                        if (autoClose) {
+                            hide();
+                        }
                     }
                 }
             }
@@ -713,6 +717,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
     private Date value = new Date();
     private boolean dateEnabled = true;
     private boolean timeEnabled = true;
+    private boolean autoClose = true;
 
     private final Div container;
     private Collapse dateCollapse;
@@ -790,6 +795,14 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         this.timeEnabled = enabled;
 
         checkForRedraw();
+    }
+
+    public boolean isAutoClose() {
+        return autoClose;
+    }
+
+    public void setAutoClose(boolean enabled) {
+        this.autoClose = enabled;
     }
 
     @Override
@@ -942,6 +955,16 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
     @Override
     public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Date> handler) {
         return addHandler(handler, ValueChangeEvent.getType());
+    }
+
+    @Override
+    public int getOffsetHeight() {
+        return container.getOffsetHeight();
+    }
+
+    @Override
+    public int getOffsetWidth() {
+        return container.getOffsetWidth();
     }
 
     private void checkForRedraw() {

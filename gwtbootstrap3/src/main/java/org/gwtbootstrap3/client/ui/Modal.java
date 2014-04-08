@@ -78,11 +78,10 @@ import org.gwtbootstrap3.client.ui.constants.Attributes;
 public class Modal extends ModalWithBackdrop implements IsClosable, HasResponsiveness {
 
     private final ModalContent content = new ModalContent();
+    private final ModalDialog dialog = new ModalDialog();
     private ModalHeader header = new ModalHeader();
 
     public Modal() {
-        final ModalDialog dialog = new ModalDialog();
-
         content.add(header);
         dialog.add(content);
 
@@ -92,6 +91,11 @@ public class Modal extends ModalWithBackdrop implements IsClosable, HasResponsiv
     // TODO
     public void setKeyboard(final boolean keyboard) {
         getElement().setAttribute(Attributes.DATA_KEYBOARD, Boolean.toString(keyboard));
+    }
+
+    @Override
+    public void setWidth(String width) {
+        dialog.setWidth(width);
     }
 
     @Override

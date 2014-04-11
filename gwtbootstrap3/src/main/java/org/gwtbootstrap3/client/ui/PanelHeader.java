@@ -30,7 +30,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @author Joshua Godi
  */
 public class PanelHeader extends HTMLPanel implements HasHTML {
-    
+
     private final HTMLMixin<PanelHeader> textMixin = new HTMLMixin<PanelHeader>(this);
 
     public PanelHeader() {

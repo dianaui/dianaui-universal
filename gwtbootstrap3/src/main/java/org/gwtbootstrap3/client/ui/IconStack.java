@@ -40,7 +40,7 @@ public class IconStack extends ComplexPanel implements HasResponsiveness {
      * Adds an icon onto the icon stack
      *
      * @param fontAwesomeIcon Icon
-     * @param base Bottom icon or not
+     * @param base            Bottom icon or not
      */
     public void add(final FontAwesomeIcon fontAwesomeIcon, final boolean base) {
         fontAwesomeIcon.setStackBase(base);

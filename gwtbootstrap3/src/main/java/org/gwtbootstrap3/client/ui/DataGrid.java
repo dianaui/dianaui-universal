@@ -197,7 +197,7 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
     private static class StyleAdapter implements DataGrid.Style {
         private static final String B = "gwtb3-";
         private static final String DUMMY = B + "d";
-        
+
         @Override
         public boolean ensureInjected() {
             return true;

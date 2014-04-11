@@ -36,6 +36,7 @@ public class Well extends HTMLPanel implements HasSize<WellSize>, HasResponsiven
     public Well() {
         this("");
     }
+
     public Well(final String html) {
         super(html);
         setStyleName(Styles.WELL);

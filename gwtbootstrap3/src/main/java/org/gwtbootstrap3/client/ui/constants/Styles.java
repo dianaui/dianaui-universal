@@ -32,6 +32,8 @@ public final class Styles {
     public static final String ALERT_DISMISSABLE = "alert-dismissable";
     public static final String ALERT_LINK = "alert-link";
 
+    public static final String ARROW = "arrow";
+
     public static final String BADGE = "badge";
 
     public static final String BOTTOM = "bottom";
@@ -187,6 +189,10 @@ public final class Styles {
     public static final String PAGER = "pager";
 
     public static final String PAGINATION = "pagination";
+
+    public static final String POPOVER = "popover";
+    public static final String POPOVER_TITLE = "popover-title";
+    public static final String POPOVER_CONTENT = "popover-content";
 
     public static final String PRE_SCROLLABLE = "pre-scrollable";
 

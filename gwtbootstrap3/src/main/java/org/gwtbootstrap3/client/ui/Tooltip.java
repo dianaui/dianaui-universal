@@ -67,6 +67,28 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
         setPlacement(Placement.TOP);
     }
 
+    public Tooltip(String text) {
+        this(text, false, null);
+    }
+
+    public Tooltip(String text, Placement placement) {
+        this(text, false, placement);
+    }
+
+    public Tooltip(String text, boolean isHtml, Placement placement) {
+        this();
+
+        if (isHtml) {
+            setHTML(text);
+        } else {
+            setText(text);
+        }
+
+        if (placement != null) {
+            setPlacement(placement);
+        }
+    }
+
     public Tooltip(final Widget w) {
         this();
         setWidget(w);

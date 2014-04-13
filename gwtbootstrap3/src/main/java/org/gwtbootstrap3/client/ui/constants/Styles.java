@@ -170,6 +170,8 @@ public final class Styles {
     public static final String NAVBAR_RIGHT = "navbar-right";
 
     public static final String OPEN = "open";
+    public static final String OUT = "out";
+
     public static final String NEXT = "next";
 
     public static final String PANEL = "panel";
@@ -227,6 +229,8 @@ public final class Styles {
     public static final String TIMEPICKER_MINUTE = "timepicker-minute";
 
     public static final String TOOLTIP = "tooltip";
+    public static final String TOOLTIP_INNER = "tooltip-inner";
+    public static final String TOOLTIP_ARROW = "tooltip-arrow";
 
     public static final String TOP = "top";
 

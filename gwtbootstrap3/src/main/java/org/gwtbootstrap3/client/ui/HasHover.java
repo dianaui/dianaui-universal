@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,15 +25,9 @@ import org.gwtbootstrap3.client.ui.constants.Trigger;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public interface HasHover {
-    void setIsAnimated(boolean isAnimated);
-
-    boolean isAnimated();
-
-    void setIsHtml(boolean isHtml);
-
-    boolean isHtml();
 
     void setPlacement(Placement placement);
 
@@ -51,7 +45,4 @@ public interface HasHover {
 
     int getHideDelayMs();
 
-    void setContainer(String container);
-
-    String getContainer();
 }

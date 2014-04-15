@@ -332,6 +332,13 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
     }
 
     /**
+     * Resets the form, clearing all fields.
+     */
+    public void reset() {
+        impl.reset(getElement());
+    }
+
+    /**
      * Adds a {@link SubmitCompleteEvent} handler.
      *
      * @param handler the handler

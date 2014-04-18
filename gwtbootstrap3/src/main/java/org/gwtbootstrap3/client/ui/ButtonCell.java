@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 - 2014 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ import org.gwtbootstrap3.client.ui.constants.*;
 public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements HasIcon, HasIconPosition,
         HasSize<ButtonSize> {
 
+    private static final String separator = " ";
     private ButtonType type = null;
     private ButtonSize size = null;
     private IconType fontAwesomeIcon = null;
@@ -45,7 +46,7 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     private boolean iconMuted = false;
     private boolean iconLight = false;
     private boolean iconSpin = false;
-    private IconPosition iconPosition = null;
+    private IconPosition iconPosition = IconPosition.LEFT;
 
     public ButtonCell() {
     }
@@ -92,12 +93,41 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
         sb.appendHtmlConstant("<button type=\"button\" class=\"btn "
                 + (type != null ? type.getCssName() : "") + (size != null ? " " + size.getCssName() : "") + "\" tabindex=\"-1\">");
         if (data != null) {
-            if (fontAwesomeIcon != null || glyphicon != null) {
-                String iconClasses = fontAwesomeIcon != null ? fontAwesomeIcon.getCssName() : glyphicon.getCssName();
+            String iconHtml = "";
 
-                sb.appendHtmlConstant("<i class=\"" + iconClasses + "\"></i> ");
+            if (fontAwesomeIcon != null || glyphicon != null) {
+                String iconClasses = fontAwesomeIcon != null ? Styles.FONT_AWESOME_BASE + " " +
+                        fontAwesomeIcon.getCssName() : Styles.GLYPHICON_BASE + " " + glyphicon.getCssName();
+
+                if (iconSize != null)
+                    iconClasses += iconSize.getCssName() + " ";
+                if (iconFlip != null)
+                    iconClasses += iconFlip.getCssName() + " ";
+                if (iconRotate != null)
+                    iconClasses += iconRotate.getCssName() + " ";
+                if (iconBordered)
+                    iconClasses += Styles.ICON_BORDER + " ";
+                if (iconMuted)
+                    iconClasses += Styles.ICON_MUTED + " ";
+                if (iconLight)
+                    iconClasses += Styles.ICON_LIGHT + " ";
+                if (iconSpin)
+                    iconClasses += Styles.ICON_SPIN + " ";
+
+                iconHtml = "<i class=\"" + iconClasses + "\"></i> ";
             }
+
+            if (iconPosition == IconPosition.LEFT) {
+                sb.appendHtmlConstant(iconHtml);
+                sb.appendEscapedLines(separator);
+            }
+
             sb.append(data);
+
+            if (iconPosition == IconPosition.RIGHT) {
+                sb.appendEscapedLines(separator);
+                sb.appendHtmlConstant(iconHtml);
+            }
         }
         sb.appendHtmlConstant("</button>");
     }
@@ -119,7 +149,6 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     public void setSize(ButtonSize size) {
         this.size = size;
     }
-
 
     @Override
     public void setFontAwesomeIcon(IconType iconType) {

@@ -23,15 +23,13 @@ package org.gwtbootstrap3.client.ui;
 import com.google.gwt.dom.client.Document;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.Attributes;
 
 /**
  * @author Joshua Godi
  */
-public class CarouselIndicator extends ComplexWidget implements HasTarget, HasActive {
+public class CarouselIndicator extends ComplexWidget implements HasActive {
 
-    private final TargetMixin<CarouselIndicator> targetMixin = new TargetMixin<CarouselIndicator>(this);
     private final ActiveMixin<CarouselIndicator> activeMixin = new ActiveMixin<CarouselIndicator>(this);
 
     public CarouselIndicator() {
@@ -52,13 +50,4 @@ public class CarouselIndicator extends ComplexWidget implements HasTarget, HasAc
         return activeMixin.isActive();
     }
 
-    @Override
-    public void setTarget(String target) {
-        targetMixin.setTarget(target);
-    }
-
-    @Override
-    public String getTarget() {
-        return targetMixin.getTarget();
-    }
 }

@@ -23,7 +23,6 @@ package org.gwtbootstrap3.client.ui;
 import com.google.gwt.user.client.DOM;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.Attributes;
 import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
 import org.gwtbootstrap3.client.ui.constants.IconType;
@@ -33,8 +32,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class CarouselControl extends ComplexWidget implements HasTarget {
-    private final TargetMixin<CarouselControl> targetMixin = new TargetMixin<CarouselControl>(this);
+public class CarouselControl extends ComplexWidget {
 
     private final Glyphicon glyphicon = new Glyphicon();
     private final FontAwesomeIcon fontAwesomeIcon = new FontAwesomeIcon();
@@ -78,16 +76,6 @@ public class CarouselControl extends ComplexWidget implements HasTarget {
         getElement().setAttribute(Attributes.DATA_SLIDE, Carousel.NEXT);
         StyleHelper.toggleStyleName(this, next, Styles.RIGHT);
         fontAwesomeIcon.addStyleName(Styles.ICON_NEXT);
-    }
-
-    @Override
-    public void setTarget(String target) {
-        targetMixin.setTarget(target);
-    }
-
-    @Override
-    public String getTarget() {
-        return targetMixin.getTarget();
     }
 
 }

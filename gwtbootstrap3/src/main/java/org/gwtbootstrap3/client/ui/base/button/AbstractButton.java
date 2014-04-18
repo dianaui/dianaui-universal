@@ -31,7 +31,6 @@ import org.gwtbootstrap3.client.ui.*;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonSize;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
@@ -45,9 +44,8 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
 public abstract class AbstractButton extends ComplexWidget implements HasEnabled, HasActive, HasType<ButtonType>,
-        HasSize<ButtonSize>, HasTarget, HasClickHandlers, HasTargetHistoryToken, HasHref {
+        HasSize<ButtonSize>, HasClickHandlers, HasTargetHistoryToken, HasHref {
 
-    private final TargetMixin<AbstractButton> targetMixin = new TargetMixin<AbstractButton>(this);
     private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<AbstractButton>(this);
     private String targetHistoryToken;
 
@@ -117,16 +115,6 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     @Override
     public ButtonSize getSize() {
         return ButtonSize.fromStyleName(getStyleName());
-    }
-
-    @Override
-    public void setTarget(final String target) {
-        targetMixin.setTarget(target);
-    }
-
-    @Override
-    public String getTarget() {
-        return targetMixin.getTarget();
     }
 
     @Override

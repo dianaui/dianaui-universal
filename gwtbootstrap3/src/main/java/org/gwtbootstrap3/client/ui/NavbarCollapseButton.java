@@ -34,7 +34,7 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * @author Joshua Godi
  * @see NavbarCollapse
  */
-public class NavbarCollapseButton extends Composite implements HasTarget, HasResponsiveness, HasPull {
+public class NavbarCollapseButton extends Composite implements HasResponsiveness, HasPull {
 
     private final PullMixin<NavbarCollapseButton> pullMixin = new PullMixin<NavbarCollapseButton>(this);
     private final Button button;
@@ -49,16 +49,6 @@ public class NavbarCollapseButton extends Composite implements HasTarget, HasRes
         button.add(newBarIcon());
 
         initWidget(button);
-    }
-
-    @Override
-    public void setTarget(final String target) {
-        button.setTarget(target);
-    }
-
-    @Override
-    public String getTarget() {
-        return button.getTarget();
     }
 
     @Override
@@ -86,4 +76,5 @@ public class NavbarCollapseButton extends Composite implements HasTarget, HasRes
         span.setStyleName(Styles.ICON_BAR);
         return span;
     }
+
 }

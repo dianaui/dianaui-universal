@@ -66,6 +66,11 @@ public class Button extends AbstractToggleButton {
         super.addClickHandler(handler);
     }
 
+    public Button(final String text, final IconType iconType) {
+        this(text);
+        setFontAwesomeIcon(iconType);
+    }
+
     public Button(final String text, final IconType iconType, final ClickHandler clickHandler) {
         this(text, clickHandler);
         setFontAwesomeIcon(iconType);
@@ -80,4 +85,5 @@ public class Button extends AbstractToggleButton {
     protected Element createElement() {
         return Document.get().createPushButtonElement().cast();
     }
+
 }

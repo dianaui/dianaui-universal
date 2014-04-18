@@ -22,17 +22,15 @@ package org.gwtbootstrap3.client.ui;
 
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.Spy;
 
 /**
  * @author Sven Jacobs
  */
-public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implements HasSpy, HasId, HasTarget {
+public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implements HasSpy, HasId {
 
     private final SpyMixin<FlowPanel> spyMixin = new SpyMixin<FlowPanel>(this);
     private final IdMixin<FlowPanel> idMixin = new IdMixin<FlowPanel>(this);
-    private final TargetMixin<FlowPanel> targetMixin = new TargetMixin<FlowPanel>(this);
 
     @Override
     public void setSpy(final Spy spy) {
@@ -42,16 +40,6 @@ public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implement
     @Override
     public Spy getSpy() {
         return spyMixin.getSpy();
-    }
-
-    @Override
-    public void setTarget(final String target) {
-        targetMixin.setTarget(target);
-    }
-
-    @Override
-    public String getTarget() {
-        return targetMixin.getTarget();
     }
 
     @Override

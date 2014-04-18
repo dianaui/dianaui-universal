@@ -35,11 +35,11 @@ import java.util.List;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public abstract class ValueDropDownButtonBase<T> extends DropDownButton implements LeafValueEditor<T>,
-        HasValue<T> {
+public abstract class ValueDropDownButtonBase<T> extends DropDownButton implements LeafValueEditor<T>, HasValue<T> {
 
     private T value;
     private List<T> list;
+    private String defaultText = "";
 
     public ValueDropDownButtonBase() {
 
@@ -73,6 +73,18 @@ public abstract class ValueDropDownButtonBase<T> extends DropDownButton implemen
         }
     }
 
+    public String getDefaultText() {
+        return defaultText;
+    }
+
+    public void setDefaultText(String defaultText) {
+        this.defaultText = defaultText;
+
+        if (value == null) {
+            getToggleButton().setText(defaultText);
+        }
+    }
+
     public List<T> getList() {
         return list;
     }
@@ -82,7 +94,7 @@ public abstract class ValueDropDownButtonBase<T> extends DropDownButton implemen
     }
 
     public void setVisibleValue(T value) {
-        setText(value.toString());
+        setText(value != null ? value.toString() : defaultText);
     }
 
     @Override

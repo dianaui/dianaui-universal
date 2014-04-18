@@ -31,7 +31,6 @@ import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.IconTextMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.ParentMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
@@ -47,7 +46,6 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     private final ParentMixin<Anchor> parentMixin = new ParentMixin<Anchor>(this);
     private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<Anchor>(this);
-    private final TargetMixin<Anchor> targetMixin = new TargetMixin<Anchor>(this);
     private final FocusableMixin focusableMixin;
     private String targetHistoryToken;
     private Toggle toggle;
@@ -267,12 +265,12 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     @Override
     public void setTarget(String target) {
-        targetMixin.setTarget(target);
+        AnchorElement.as(getElement()).setTarget(target);
     }
 
     @Override
     public String getTarget() {
-        return targetMixin.getTarget();
+        return AnchorElement.as(getElement()).getTarget();
     }
 
 }

@@ -21,10 +21,7 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.event.dom.client.BlurEvent;
-import com.google.gwt.event.dom.client.BlurHandler;
-import com.google.gwt.event.dom.client.FocusEvent;
-import com.google.gwt.event.dom.client.FocusHandler;
+import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.shared.DateTimeFormat;
@@ -99,10 +96,12 @@ public class DateBox extends ValueBoxBase<Date> {
             }
         });
 
-        addBlurHandler(new BlurHandler() {
+        addKeyDownHandler(new KeyDownHandler() {
             @Override
-            public void onBlur(BlurEvent event) {
-                picker.hide();
+            public void onKeyDown(KeyDownEvent event) {
+                if (event.getNativeKeyCode() == KeyCodes.KEY_TAB) {
+                    picker.hide();
+                }
             }
         });
     }

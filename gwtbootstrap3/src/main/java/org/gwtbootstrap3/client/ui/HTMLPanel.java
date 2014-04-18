@@ -25,18 +25,16 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.TargetMixin;
 import org.gwtbootstrap3.client.ui.constants.Spy;
 
 /**
  * @author Sven Jacobs
  * @author Grant Slender
  */
-public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implements HasId, HasSpy, HasTarget,
-        HasResponsiveness, HasInlineStyle {
+public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implements HasId, HasSpy, HasResponsiveness,
+        HasInlineStyle {
 
     private final SpyMixin<HTMLPanel> spyMixin = new SpyMixin<HTMLPanel>(this);
-    private final TargetMixin<HTMLPanel> targetMixin = new TargetMixin<HTMLPanel>(this);
     private final IdMixin<HTMLPanel> idMixin = new IdMixin<HTMLPanel>(this);
 
     public HTMLPanel(final String html) {
@@ -69,16 +67,6 @@ public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implement
     @Override
     public Spy getSpy() {
         return spyMixin.getSpy();
-    }
-
-    @Override
-    public void setTarget(final String target) {
-        targetMixin.setTarget(target);
-    }
-
-    @Override
-    public String getTarget() {
-        return targetMixin.getTarget();
     }
 
     @Override

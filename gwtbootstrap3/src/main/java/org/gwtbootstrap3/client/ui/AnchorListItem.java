@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.event.dom.client.ClickHandler;
 import org.gwtbootstrap3.client.ui.base.AbstractAnchorListItem;
 import org.gwtbootstrap3.client.ui.constants.*;
 
@@ -47,6 +48,11 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
 
     public AnchorListItem(final String text) {
         setText(text);
+    }
+
+    public AnchorListItem(final String text, ClickHandler clickHandler) {
+        this(text);
+        addClickHandler(clickHandler);
     }
 
     public void setText(final String text) {

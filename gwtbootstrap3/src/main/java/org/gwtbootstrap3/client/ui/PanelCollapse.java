@@ -33,15 +33,15 @@ public class PanelCollapse extends Div {
         addStyleName(Styles.COLLAPSE);
     }
 
+    public boolean isIn() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.IN);
+    }
+
     public void setIn(final boolean in) {
         if (in) {
             addStyleName(Styles.IN);
         } else {
             removeStyleName(Styles.IN);
         }
-    }
-
-    public boolean isIn() {
-        return StyleHelper.containsStyle(getStyleName(), Styles.IN);
     }
 }

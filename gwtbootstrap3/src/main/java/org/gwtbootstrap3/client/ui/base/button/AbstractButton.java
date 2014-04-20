@@ -174,6 +174,11 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
+    public void setTabIndex(final int index) {
+        getFocusableMixin().setTabIndex(index);
+    }
+
+    @Override
     public void setAccessKey(final char key) {
         getFocusableMixin().setAccessKey(key);
     }
@@ -181,11 +186,6 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     @Override
     public void setFocus(final boolean focused) {
         getFocusableMixin().setFocus(focused);
-    }
-
-    @Override
-    public void setTabIndex(final int index) {
-        getFocusableMixin().setTabIndex(index);
     }
 
     @Override

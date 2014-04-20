@@ -43,6 +43,12 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
 
     protected final SuggestionDisplay display;
     protected final ValueBoxBase<String> box;
+    private final SuggestBox.SuggestionCallback suggestionCallback = new SuggestBox.SuggestionCallback() {
+        public void onSuggestionSelected(SuggestOracle.Suggestion suggestion) {
+            box.setFocus(true);
+            setNewSelection(suggestion);
+        }
+    };
     private final SuggestOracle.Callback callback = new SuggestOracle.Callback() {
         public void onSuggestionsReady(SuggestOracle.Request request, SuggestOracle.Response response) {
             // If disabled while request was in-flight, drop it
@@ -56,16 +62,11 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
                     suggestionCallback);
         }
     };
-    private final SuggestBox.SuggestionCallback suggestionCallback = new SuggestBox.SuggestionCallback() {
-        public void onSuggestionSelected(SuggestOracle.Suggestion suggestion) {
-            box.setFocus(true);
-            setNewSelection(suggestion);
-        }
-    };
     private int limit = 20;
     private boolean selectsFirstItem = true;
     private SuggestOracle oracle;
     private String currentText;
+
     /**
      * Constructor for {@link SuggestBox}. Creates a {@link org.gwtbootstrap3.client.ui.TextBox} to use with
      * this {@link SuggestBox}.
@@ -75,6 +76,7 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
     public AbstractSuggestBox(SuggestOracle oracle) {
         this(oracle, new org.gwtbootstrap3.client.ui.TextBox());
     }
+
     /**
      * Constructor for {@link SuggestBox}. The text box will be removed from it's
      * current location and wrapped by the {@link SuggestBox}.
@@ -86,6 +88,7 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
     public AbstractSuggestBox(SuggestOracle oracle, ValueBoxBase<String> box) {
         this(oracle, box, new DefaultSuggestionDisplay());
     }
+
     /**
      * Constructor for {@link SuggestBox}. The text box will be removed from it's
      * current location and wrapped by the {@link SuggestBox}.

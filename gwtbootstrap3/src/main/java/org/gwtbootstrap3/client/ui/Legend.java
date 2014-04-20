@@ -21,7 +21,6 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.DOM;
 import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
 
 /**

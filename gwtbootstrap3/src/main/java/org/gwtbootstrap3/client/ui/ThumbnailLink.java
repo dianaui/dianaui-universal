@@ -66,13 +66,18 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
     }
 
     @Override
+    public String getHref() {
+        return AnchorElement.as(getElement()).getHref();
+    }
+
+    @Override
     public void setHref(final String href) {
         AnchorElement.as(getElement()).setHref(href);
     }
 
     @Override
-    public String getHref() {
-        return AnchorElement.as(getElement()).getHref();
+    public String getTargetHistoryToken() {
+        return targetHistoryToken;
     }
 
     @Override
@@ -83,18 +88,13 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
     }
 
     @Override
-    public String getTargetHistoryToken() {
-        return targetHistoryToken;
+    public Toggle getToggle() {
+        return toggleMixin.getToggle();
     }
 
     @Override
     public void setToggle(final Toggle toggle) {
         toggleMixin.setToggle(toggle);
-    }
-
-    @Override
-    public Toggle getToggle() {
-        return toggleMixin.getToggle();
     }
 
     @Override

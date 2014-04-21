@@ -28,11 +28,11 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * <h3>UiBinder example</h3>
  * <pre>
  * {@code
- *     <b:VerticalButtonGroup>
- *         <b:Button>Button 1</b:Button>
- *         <b:Button>Button 2</b:Button>
- *         <b:Button>Button 3</b:Button>
- *     </b:VerticalButtonGroup>
+ * <b:VerticalButtonGroup>
+ *    <b:Button>Button 1</b:Button>
+ *    <b:Button>Button 2</b:Button>
+ *    <b:Button>Button 3</b:Button>
+ * </b:VerticalButtonGroup>
  * }
  * </pre>
  *
@@ -42,6 +42,9 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class VerticalButtonGroup extends AbstractButtonGroup {
 
+    /**
+     * Creates the VerticalButtonGroup with the base Bootstrap styles
+     */
     public VerticalButtonGroup() {
         super(Styles.BTN_GROUP_VERTICAL);
     }

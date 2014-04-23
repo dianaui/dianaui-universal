@@ -41,7 +41,8 @@ import org.gwtbootstrap3.client.ui.constants.TypeAttrType;
  *
  * @author Sven Jacobs
  */
-public abstract class AbstractLabelButton extends AbstractIconButton implements HasActive, HasName, HasFormValue, HasValue<Boolean> {
+public abstract class AbstractLabelButton extends AbstractIconButton implements HasActive, HasName, HasFormValue,
+        HasValue<Boolean> {
 
     private final ActiveMixin<AbstractLabelButton> activeMixin = new ActiveMixin<AbstractLabelButton>(this);
     protected final CheckableInputButton input;
@@ -56,9 +57,7 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
         iconTextMixin.addTextWidgetToParent();
     }
 
-    protected AbstractLabelButton(final TypeAttrType typeAttr,
-                                  final String label) {
-
+    protected AbstractLabelButton(final TypeAttrType typeAttr, final String label) {
         this(typeAttr);
         setText(label);
     }
@@ -116,8 +115,7 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
 
     @Override
     public void setValue(final Boolean value, final boolean fireEvents) {
-        activeMixin.setActive(value);
-        input.setValue(value, fireEvents);
+        changeValue(value, fireEvents);
     }
 
     @Override
@@ -130,8 +128,14 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
         return input.addValueChangeHandler(handler);
     }
 
+    protected void changeValue(final Boolean value, final boolean fireEvents) {
+        activeMixin.setActive(value);
+        input.setValue(value, fireEvents);
+    }
+
     @Override
     protected Element createElement() {
         return DOM.createLabel();
     }
+
 }

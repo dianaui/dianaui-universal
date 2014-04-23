@@ -25,15 +25,19 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.*;
+import org.gwtbootstrap3.client.ui.base.AbstractButtonGroup;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonSize;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**
  * Abstract base class for different kinds of buttons.
@@ -60,6 +64,27 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         setElement(createElement());
         setStyleName(Styles.BTN);
         setType(type);
+    }
+
+    /**
+     * Makes button a block level element that spawns full width of parent.
+     *
+     * @param block True for block level element
+     */
+    public void setBlock(final boolean block) {
+        if (block) {
+            addStyleName(Styles.BTN_BLOCK);
+        } else {
+            removeStyleName(Styles.BTN_BLOCK);
+        }
+    }
+
+    public void toggle() {
+        if (isActive()) {
+            setActive(false);
+        } else {
+            setActive(true);
+        }
     }
 
     @Override
@@ -139,29 +164,36 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         return getElement().getAttribute(HREF);
     }
 
-    /**
-     * Makes button a block level element that spawns full width of parent.
-     *
-     * @param block True for block level element
-     */
-    public void setBlock(final boolean block) {
-        if (block) {
-            addStyleName(Styles.BTN_BLOCK);
-        } else {
-            removeStyleName(Styles.BTN_BLOCK);
-        }
-    }
+    @Override
+    public void onBrowserEvent(Event event) {
+        switch (DOM.eventGetType(event)) {
+            case Event.ONCLICK:
+                if (getParent() instanceof AbstractButtonGroup) {
+                    Toggle toggle = ((AbstractButtonGroup) getParent()).getToggle();
 
-    public void toggle() {
-        if (isActive()) {
-            setActive(false);
-        } else {
-            setActive(true);
+                    if (toggle != null && toggle == Toggle.BUTTONS) {
+                        for (int i = 0; i < ((AbstractButtonGroup) getParent()).getWidgetCount(); i++) {
+                            Widget widget = ((AbstractButtonGroup) getParent()).getWidget(i);
+
+                            if (widget instanceof RadioButton) {
+                                ((RadioButton) widget).setValue(false);
+                            }
+                        }
+
+                        if (this instanceof RadioButton) {
+                            ((RadioButton) this).setValue(true);
+                        }
+                    }
+                }
+            default:
+                super.onBrowserEvent(event);
+                break;
         }
     }
 
     protected abstract Element createElement();
 
+    @Override
     protected void onAttach() {
         super.onAttach();
 

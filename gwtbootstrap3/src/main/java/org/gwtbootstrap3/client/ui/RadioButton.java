@@ -20,7 +20,10 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.Widget;
+import org.gwtbootstrap3.client.ui.base.AbstractButtonGroup;
 import org.gwtbootstrap3.client.ui.base.button.AbstractLabelButton;
+import org.gwtbootstrap3.client.ui.constants.Toggle;
 import org.gwtbootstrap3.client.ui.constants.TypeAttrType;
 
 /**
@@ -40,4 +43,24 @@ public class RadioButton extends AbstractLabelButton {
     public RadioButton(final String label) {
         super(TypeAttrType.RADIO, label);
     }
+
+    @Override
+    public void setValue(final Boolean value, final boolean fireEvents) {
+        if (getParent() instanceof AbstractButtonGroup) {
+            Toggle toggle = ((AbstractButtonGroup) getParent()).getToggle();
+
+            if (toggle != null && toggle == Toggle.BUTTONS) {
+                for (int i = 0; i < ((AbstractButtonGroup) getParent()).getWidgetCount(); i++) {
+                    Widget widget = ((AbstractButtonGroup) getParent()).getWidget(i);
+
+                    if (widget instanceof RadioButton) {
+                        ((RadioButton) widget).changeValue(false, fireEvents);
+                    }
+                }
+            }
+        }
+
+        super.setValue(value, fireEvents);
+    }
+
 }

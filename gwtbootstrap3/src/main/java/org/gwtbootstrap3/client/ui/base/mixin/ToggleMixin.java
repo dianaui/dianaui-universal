@@ -46,6 +46,6 @@ public class ToggleMixin<T extends UIObject & HasToggle> extends AbstractMixin i
     @Override
     public Toggle getToggle() {
         final String toggle = uiObject.getElement().getAttribute(Attributes.DATA_TOGGLE);
-        return toggle != null ? Toggle.valueOf(toggle) : null;
+        return toggle != null && !toggle.equals("") ? Toggle.valueOf(toggle.toUpperCase()) : null;
     }
 }

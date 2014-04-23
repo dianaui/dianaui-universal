@@ -23,6 +23,7 @@ package org.gwtbootstrap3.client.ui.base.button;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import org.gwtbootstrap3.client.ui.*;
+import org.gwtbootstrap3.client.ui.base.mixin.ToggleMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
@@ -37,10 +38,9 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  */
 public abstract class AbstractToggleButton extends AbstractIconButton implements HasToggle {
 
+    private final ToggleMixin<AbstractToggleButton> toggleMixin = new ToggleMixin<AbstractToggleButton>(this);
     private final Text separator = new Text(" ");
     private final Caret caret = new Caret();
-
-    private Toggle toggle;
 
     protected AbstractToggleButton() {
         this(ButtonType.DEFAULT);
@@ -61,7 +61,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
      */
     @Override
     public void setToggle(final Toggle toggle) {
-        this.toggle = toggle;
+        toggleMixin.setToggle(toggle);
 
         separator.removeFromParent();
         caret.removeFromParent();
@@ -76,7 +76,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
 
     @Override
     public Toggle getToggle() {
-        return toggle;
+        return toggleMixin.getToggle();
     }
 
     public void onBrowserEvent(Event event) {
@@ -84,11 +84,11 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
 
         switch (DOM.eventGetType(event)) {
             case Event.ONCLICK:
-                if (toggle == Toggle.DROPDOWN && getParent() instanceof ListDropDown) {
+                if (getToggle() == Toggle.DROPDOWN && getParent() instanceof ListDropDown) {
                     ((ListDropDown) getParent()).toggle();
-                } else if (toggle == Toggle.DROPDOWN && getParent() instanceof DropDownButton) {
+                } else if (getToggle() == Toggle.DROPDOWN && getParent() instanceof DropDownButton) {
                     ((DropDownButton) getParent()).toggle();
-                } else if (toggle == Toggle.DROPDOWN && getParent() instanceof ButtonGroup) {
+                } else if (getToggle() == Toggle.DROPDOWN && getParent() instanceof ButtonGroup) {
                     ((ButtonGroup) getParent()).toggle();
                 }
                 break;
@@ -98,7 +98,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
     @Override
     protected void onChanged() {
         // fix caret position
-        setToggle(toggle);
+        setToggle(getToggle());
     }
 
 }

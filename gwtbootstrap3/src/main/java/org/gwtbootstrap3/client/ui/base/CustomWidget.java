@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui.base;
  * #L%
  */
 
+import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.user.client.DOM;
 
 /**
@@ -32,6 +33,7 @@ public class CustomWidget extends ComplexWidget {
      *
      * @param tag the html tag used for this widget
      */
+    @UiConstructor
     public CustomWidget(String tag) {
         setElement(DOM.createElement(tag));
     }

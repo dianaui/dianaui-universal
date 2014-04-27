@@ -67,15 +67,25 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
         setPlacement(Placement.TOP);
     }
 
-    public Tooltip(String text) {
+    public Tooltip(final String text) {
         this(text, false, null);
     }
 
-    public Tooltip(String text, Placement placement) {
+    public Tooltip(final String text, final Widget widget) {
+        this(text);
+        add(widget);
+    }
+
+    public Tooltip(final String text, final Placement placement) {
         this(text, false, placement);
     }
 
-    public Tooltip(String text, boolean isHtml, Placement placement) {
+    public Tooltip(final String text, final Placement placement, final Widget widget) {
+        this(text, placement);
+        add(widget);
+    }
+
+    public Tooltip(final String text, final boolean isHtml, final Placement placement) {
         this();
 
         if (isHtml) {
@@ -87,6 +97,11 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
         if (placement != null) {
             setPlacement(placement);
         }
+    }
+
+    public Tooltip(final String text, final boolean isHtml, final Placement placement, Widget widget) {
+        this(text, isHtml, placement);
+        add(widget);
     }
 
     public Tooltip(final Widget w) {

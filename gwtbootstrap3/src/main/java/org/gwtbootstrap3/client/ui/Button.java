@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,6 +71,11 @@ public class Button extends AbstractToggleButton {
         setFontAwesomeIcon(iconType);
     }
 
+    public Button(final String text, final GlyphiconType iconType) {
+        this(text);
+        setGlyphicon(iconType);
+    }
+
     public Button(final String text, final IconType iconType, final ClickHandler clickHandler) {
         this(text, clickHandler);
         setFontAwesomeIcon(iconType);
@@ -79,6 +84,24 @@ public class Button extends AbstractToggleButton {
     public Button(final String text, final GlyphiconType iconType, final ClickHandler clickHandler) {
         this(text, clickHandler);
         setGlyphicon(iconType);
+    }
+
+    public Button(final IconType iconType) {
+        setFontAwesomeIcon(iconType);
+    }
+
+    public Button(final GlyphiconType iconType) {
+        setGlyphicon(iconType);
+    }
+
+    public Button(final IconType iconType, final ClickHandler clickHandler) {
+        this(iconType);
+        addClickHandler(clickHandler);
+    }
+
+    public Button(final GlyphiconType iconType, final ClickHandler clickHandler) {
+        this(iconType);
+        addClickHandler(clickHandler);
     }
 
     @Override

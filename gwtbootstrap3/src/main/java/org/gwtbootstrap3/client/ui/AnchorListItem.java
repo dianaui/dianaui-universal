@@ -50,9 +50,47 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
         setText(text);
     }
 
-    public AnchorListItem(final String text, ClickHandler clickHandler) {
+    public AnchorListItem(final String text, final String href) {
         this(text);
+        setHref(href);
+    }
+
+    public AnchorListItem(final String text, final ClickHandler clickHandler) {
+        this(text);
+        setHref(null);
         addClickHandler(clickHandler);
+    }
+
+    public AnchorListItem(final String text, final IconType iconType) {
+        this(text);
+        setFontAwesomeIcon(iconType);
+    }
+
+    public AnchorListItem(final String text, final GlyphiconType iconType) {
+        this(text);
+        setGlyphicon(iconType);
+    }
+
+    public AnchorListItem(final String text, final IconType iconType, final ClickHandler clickHandler) {
+        this(text, iconType);
+        setHref(null);
+        addClickHandler(clickHandler);
+    }
+
+    public AnchorListItem(final String text, final GlyphiconType iconType, final ClickHandler clickHandler) {
+        this(text, iconType);
+        setHref(null);
+        addClickHandler(clickHandler);
+    }
+
+    public AnchorListItem(final String text, final IconType iconType, final String href) {
+        this(text, iconType);
+        setHref(href);
+    }
+
+    public AnchorListItem(final String text, final GlyphiconType iconType, final String href) {
+        this(text, iconType);
+        setHref(href);
     }
 
     public void setText(final String text) {

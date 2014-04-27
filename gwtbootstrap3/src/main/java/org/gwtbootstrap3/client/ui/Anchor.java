@@ -46,14 +46,17 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     private final ParentMixin<Anchor> parentMixin = new ParentMixin<Anchor>(this);
     private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<Anchor>(this);
-    private final FocusableMixin focusableMixin;
+    private FocusableMixin focusableMixin;
     private String targetHistoryToken;
     private Toggle toggle;
+
+    public Anchor() {
+        this(EMPTY_HREF);
+    }
 
     public Anchor(final String href) {
         setElement(Document.get().createAnchorElement());
         setHref(href);
-        focusableMixin = new FocusableMixin(AnchorElement.as(getElement()));
         iconTextMixin.addTextWidgetToParent();
     }
 
@@ -62,18 +65,43 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
         setText(text);
     }
 
-    public Anchor() {
-        this(EMPTY_HREF);
+    public Anchor(final String text, final ClickHandler clickHandler) {
+        this();
+        setText(text);
+        setHref(null);
+        addClickHandler(clickHandler);
     }
 
-    @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
-        return addDomHandler(handler, ClickEvent.getType());
+    public Anchor(final String text, final IconType iconType) {
+        this();
+        setText(text);
+        setFontAwesomeIcon(iconType);
     }
 
-    @Override
-    public HandlerRegistration addDoubleClickHandler(final DoubleClickHandler handler) {
-        return addDomHandler(handler, DoubleClickEvent.getType());
+    public Anchor(final String text, final GlyphiconType iconType) {
+        this();
+        setText(text);
+        setGlyphicon(iconType);
+    }
+
+    public Anchor(final String text, final IconType iconType, final ClickHandler clickHandler) {
+        this(text, clickHandler);
+        setFontAwesomeIcon(iconType);
+    }
+
+    public Anchor(final String text, final GlyphiconType iconType, final ClickHandler clickHandler) {
+        this(text, clickHandler);
+        setGlyphicon(iconType);
+    }
+
+    public Anchor(final String text, final IconType iconType, final String href) {
+        this(text, iconType);
+        setHref(href);
+    }
+
+    public Anchor(final String text, final GlyphiconType iconType, final String href) {
+        this(text, iconType);
+        setHref(href);
     }
 
     @Override
@@ -193,7 +221,11 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     @Override
     public void setHref(final String href) {
-        AnchorElement.as(getElement()).setHref(href);
+        if (href == null) {
+            getElement().removeAttribute(HREF);
+        } else {
+            getAnchorElement().setHref(href);
+        }
     }
 
     @Override
@@ -235,22 +267,22 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     @Override
     public int getTabIndex() {
-        return focusableMixin.getTabIndex();
+        return getFocusableMixin().getTabIndex();
     }
 
     @Override
     public void setTabIndex(final int index) {
-        focusableMixin.setTabIndex(index);
+        getFocusableMixin().setTabIndex(index);
     }
 
     @Override
     public void setAccessKey(final char key) {
-        focusableMixin.setAccessKey(key);
+        getFocusableMixin().setAccessKey(key);
     }
 
     @Override
     public void setFocus(final boolean focused) {
-        focusableMixin.setFocus(focused);
+        getFocusableMixin().setFocus(focused);
     }
 
     @Override
@@ -265,12 +297,33 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     @Override
     public void setTarget(String target) {
-        AnchorElement.as(getElement()).setTarget(target);
+        getAnchorElement().setTarget(target);
     }
 
     @Override
     public String getTarget() {
-        return AnchorElement.as(getElement()).getTarget();
+        return getAnchorElement().getTarget();
+    }
+
+    @Override
+    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+        return addDomHandler(handler, ClickEvent.getType());
+    }
+
+    @Override
+    public HandlerRegistration addDoubleClickHandler(final DoubleClickHandler handler) {
+        return addDomHandler(handler, DoubleClickEvent.getType());
+    }
+
+    private FocusableMixin getFocusableMixin() {
+        if (focusableMixin == null) {
+            focusableMixin = new FocusableMixin(getAnchorElement());
+        }
+        return focusableMixin;
+    }
+
+    private AnchorElement getAnchorElement() {
+        return AnchorElement.as(getElement());
     }
 
 }

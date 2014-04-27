@@ -2,9 +2,9 @@ package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,14 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Focusable;
 import org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton;
 import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
+import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
+import org.gwtbootstrap3.client.ui.constants.IconType;
 
 /**
  * Button based on {@code <a>} element.
@@ -37,7 +40,7 @@ import org.gwtbootstrap3.client.ui.constants.ButtonType;
  */
 public class AnchorButton extends AbstractToggleButton implements HasHref, Focusable {
 
-    private final FocusableMixin focusableMixin;
+    private FocusableMixin focusableMixin;
 
     public AnchorButton() {
         this(ButtonType.DEFAULT);
@@ -48,15 +51,93 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
         setText(text);
     }
 
+    public AnchorButton(final String text, final String href) {
+        this(text);
+        setHref(href);
+    }
+
+    public AnchorButton(final String text, final ClickHandler clickHandler) {
+        this(text);
+        setHref(null);
+        addClickHandler(clickHandler);
+    }
+
+    public AnchorButton(final String text, final IconType iconType) {
+        this(text);
+        setFontAwesomeIcon(iconType);
+    }
+
+    public AnchorButton(final String text, final GlyphiconType iconType) {
+        this(text);
+        setGlyphicon(iconType);
+    }
+
+    public AnchorButton(final String text, final IconType iconType, final ClickHandler clickHandler) {
+        this(text, iconType);
+        setHref(null);
+        addClickHandler(clickHandler);
+    }
+
+    public AnchorButton(final String text, final GlyphiconType iconType, final ClickHandler clickHandler) {
+        this(text, iconType);
+        setHref(null);
+        addClickHandler(clickHandler);
+    }
+
+    public AnchorButton(final String text, final IconType iconType, final String href) {
+        this(text, iconType);
+        setHref(href);
+    }
+
+    public AnchorButton(final String text, final GlyphiconType iconType, final String href) {
+        this(text, iconType);
+        setHref(href);
+    }
+
+    public AnchorButton(final IconType iconType) {
+        this();
+        setFontAwesomeIcon(iconType);
+    }
+
+    public AnchorButton(final GlyphiconType iconType) {
+        this();
+        setGlyphicon(iconType);
+    }
+
+    public AnchorButton(final IconType iconType, final ClickHandler clickHandler) {
+        this(iconType);
+        setHref(null);
+        addClickHandler(clickHandler);
+    }
+
+    public AnchorButton(final GlyphiconType iconType, final ClickHandler clickHandler) {
+        this(iconType);
+        setHref(null);
+        addClickHandler(clickHandler);
+    }
+
+    public AnchorButton(final IconType iconType, final String href) {
+        this(iconType);
+        setHref(href);
+    }
+
+    public AnchorButton(final GlyphiconType iconType, final String href) {
+        this(iconType);
+        setHref(href);
+    }
+
     public AnchorButton(final ButtonType type) {
         super(type);
         setHref(EMPTY_HREF);
-        focusableMixin = new FocusableMixin(getAnchorElement());
     }
 
     @Override
     public void setHref(final String href) {
-        getAnchorElement().setHref(href);
+        if (href == null) {
+            getAnchorElement().removeAttribute(HREF);
+        } else {
+            getAnchorElement().setHref(href);
+        }
     }
 
     @Override
@@ -65,31 +146,39 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
     }
 
     @Override
-    protected Element createElement() {
-        return DOM.createAnchor();
-    }
-
-    @Override
     public int getTabIndex() {
-        return focusableMixin.getTabIndex();
+        return getFocusableMixin().getTabIndex();
     }
 
     @Override
     public void setAccessKey(final char key) {
-        focusableMixin.setAccessKey(key);
+        getFocusableMixin().setAccessKey(key);
     }
 
     @Override
     public void setFocus(final boolean focused) {
-        focusableMixin.setFocus(focused);
+        getFocusableMixin().setFocus(focused);
     }
 
     @Override
     public void setTabIndex(final int index) {
-        focusableMixin.setTabIndex(index);
+        getFocusableMixin().setTabIndex(index);
+    }
+
+    @Override
+    protected Element createElement() {
+        return DOM.createAnchor();
+    }
+
+    private FocusableMixin getFocusableMixin() {
+        if (focusableMixin == null) {
+            focusableMixin = new FocusableMixin(getAnchorElement());
+        }
+        return focusableMixin;
     }
 
     private AnchorElement getAnchorElement() {
         return AnchorElement.as(getElement());
     }
+
 }

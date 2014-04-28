@@ -37,10 +37,23 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * <pre>
  * {@code
  * <b:Heading size="1">
- *     <b:Text>Heading Text</b:Text>
- *     <b:Small>Subheading text</b:Small>
+ *     <b:Text text="Heading"/>
+ *     <b:Small text=" subtext"/>
  * </b:Heading>
+ *
  * <b:Heading size="1" text="Heading Text" subtext="Subtext Text"/>
+ * <b:Heading size="1" subtext="Subtext Text" text="Heading Text"/>
+ *
+ * <b:Heading size="1">
+ *     <b:Icon type="..."/>
+ *     <b:Text text="Heading with icon"/>
+ * </b:Heading>
+ *
+ * <b:Heading size="1">
+ *     <b:Icon type="..."/>
+ *     <b:Text text="Heading with icon"/>
+ *     <b:Small text=" subtext"/>
+ * </b:Heading>
  * }
  * </pre>
  * <h3>Usage in Java</h3>
@@ -106,6 +119,7 @@ public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasA
      * @param subtext the subtext of the heading
      */
     public void setSubtext(final String subtext) {
+        // Force a space between the heading and the subtext
         this.subtext.setText(" " + subtext);
         add(this.subtext);
     }

@@ -47,49 +47,89 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     public AnchorListItem(final String text) {
-        setText(text);
+        this(text, false);
+    }
+
+    public AnchorListItem(final String text, boolean html) {
+        if (html) {
+            setHTML(text);
+        } else {
+            setText(text);
+        }
     }
 
     public AnchorListItem(final String text, final String href) {
-        this(text);
+        this(text, false, href);
+    }
+
+    public AnchorListItem(final String text, boolean html, final String href) {
+        this(text, html);
         setHref(href);
     }
 
     public AnchorListItem(final String text, final ClickHandler clickHandler) {
-        this(text);
+        this(text, false, clickHandler);
+    }
+
+    public AnchorListItem(final String text, boolean html, final ClickHandler clickHandler) {
+        this(text, html);
         setHref(null);
         addClickHandler(clickHandler);
     }
 
     public AnchorListItem(final String text, final IconType iconType) {
-        this(text);
+        this(text, false, iconType);
+    }
+
+    public AnchorListItem(final String text, boolean html, final IconType iconType) {
+        this(text, html);
         setFontAwesomeIcon(iconType);
     }
 
     public AnchorListItem(final String text, final GlyphiconType iconType) {
-        this(text);
+        this(text, false, iconType);
+    }
+
+    public AnchorListItem(final String text, boolean html, final GlyphiconType iconType) {
+        this(text, html);
         setGlyphicon(iconType);
     }
 
     public AnchorListItem(final String text, final IconType iconType, final ClickHandler clickHandler) {
-        this(text, iconType);
+        this(text, false, iconType, clickHandler);
+    }
+
+    public AnchorListItem(final String text, boolean html, final IconType iconType, final ClickHandler clickHandler) {
+        this(text, html, iconType);
         setHref(null);
         addClickHandler(clickHandler);
     }
 
     public AnchorListItem(final String text, final GlyphiconType iconType, final ClickHandler clickHandler) {
-        this(text, iconType);
+        this(text, false, iconType, clickHandler);
+    }
+
+    public AnchorListItem(final String text, boolean html, final GlyphiconType iconType, final ClickHandler clickHandler) {
+        this(text, html, iconType);
         setHref(null);
         addClickHandler(clickHandler);
     }
 
     public AnchorListItem(final String text, final IconType iconType, final String href) {
-        this(text, iconType);
+        this(text, false, iconType, href);
+    }
+
+    public AnchorListItem(final String text, boolean html, final IconType iconType, final String href) {
+        this(text, html, iconType);
         setHref(href);
     }
 
     public AnchorListItem(final String text, final GlyphiconType iconType, final String href) {
-        this(text, iconType);
+        this(text, false, iconType, href);
+    }
+
+    public AnchorListItem(final String text, boolean html, final GlyphiconType iconType, final String href) {
+        this(text, html, iconType);
         setHref(href);
     }
 
@@ -99,6 +139,14 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
 
     public String getText() {
         return anchor.getText();
+    }
+
+    public String getHTML() {
+        return anchor.getHTML();
+    }
+
+    public void setHTML(String html) {
+        anchor.setHTML(html);
     }
 
     @Override

@@ -1,10 +1,10 @@
-package org.gwtbootstrap3.client.ui;
+package org.gwtbootstrap3.client.ui.html;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,22 +21,22 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.dom.client.Document;
-import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
-import org.gwtbootstrap3.client.ui.constants.ElementTags;
+import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 
 /**
- * Simple {@code <small>} tag to de-emphasize words
+ * Simple {@code <div>} tag
  *
  * @author Joshua Godi
  */
-public class Small extends AbstractTextWidget {
+public class Div extends ComplexWidget {
 
-    public Small() {
-        super(Document.get().createElement(ElementTags.SMALL));
+    public Div() {
+        setElement(Document.get().createDivElement());
     }
 
-    public Small(final String text) {
+    public Div(String styleName) {
         this();
-        setHTML(text);
+        setStyleName(styleName);
     }
+
 }

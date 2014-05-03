@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui;
+package org.gwtbootstrap3.client.ui.html;
 
 /*
  * #%L
@@ -21,14 +21,22 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.dom.client.Document;
-import org.gwtbootstrap3.client.ui.base.ComplexWidget;
+import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
+import org.gwtbootstrap3.client.ui.constants.ElementTags;
 
 /**
+ * Simple {@code <strong>} tag to emphasize words
+ *
  * @author Joshua Godi
  */
-public class Hr extends ComplexWidget {
+public class Bold extends AbstractTextWidget {
 
-    public Hr() {
-        setElement(Document.get().createHRElement());
+    public Bold() {
+        super(Document.get().createElement(ElementTags.STRONG));
+    }
+
+    public Bold(final String text) {
+        this();
+        setHTML(text);
     }
 }

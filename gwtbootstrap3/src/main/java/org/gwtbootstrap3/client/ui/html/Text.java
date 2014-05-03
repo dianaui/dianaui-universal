@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui;
+package org.gwtbootstrap3.client.ui.html;
 
 /*
  * #%L
@@ -28,6 +28,14 @@ import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Simple text node.
+ * <h3>UiBinder example</h3>
+ * <pre>
+ * {@code
+ * <b:Text>
+ *    ...
+ * </b:Text>
+ * }
+ * </pre>
  *
  * @author Sven Jacobs
  */
@@ -36,20 +44,34 @@ public class Text extends Widget implements HasText {
     private final com.google.gwt.dom.client.Text text;
     private boolean isAttached;
 
+    /**
+     * Creates the default text node with empty text
+     */
     public Text() {
         this("");
     }
 
+    /**
+     * Creates a text node with the desired text
+     *
+     * @param txt String text to display
+     */
     public Text(final String txt) {
         text = Document.get().createTextNode(txt);
         setElement(text.<Element>cast());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getText() {
         return text.getData();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setText(final String txt) {
         text.setData(txt);

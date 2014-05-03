@@ -1,34 +1,14 @@
-package org.gwtbootstrap3.client.ui;
+package org.gwtbootstrap3.client.ui.base;
 
-/*
- * #%L
- * GWT Widgets
- * %%
- * Copyright (C) 2014 GWT Widgets
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
-
-import com.google.gwt.editor.client.IsEditor;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.logical.shared.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.*;
-import com.google.gwt.user.client.ui.SuggestBox.SuggestionCallback;
-import org.gwtbootstrap3.client.ui.base.AbstractListItem;
-import org.gwtbootstrap3.client.ui.base.ValueBoxBase;
+import org.gwtbootstrap3.client.ui.AnchorListItem;
+import org.gwtbootstrap3.client.ui.DropDownMenu;
+import org.gwtbootstrap3.client.ui.HasEnabled;
+import org.gwtbootstrap3.client.ui.HasPlaceholder;
 
 import java.util.Collection;
 
@@ -37,14 +17,14 @@ import java.util.Collection;
  *
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<String>>, HasValue<String>,
+public abstract class AbstractSuggestBox<T> extends Composite implements LeafValueEditor<T>, HasValue<T>,
         HasSelectionHandlers<SuggestOracle.Suggestion>, HasText, HasEnabled, Focusable, HasAllFocusHandlers,
         HasPlaceholder {
 
     /**
      * Used to display suggestions to the user.
      */
-    public abstract static class SuggestionDisplay {
+    public abstract static class SuggestionDisplay implements IsWidget {
 
         /**
          * Get the currently selected {@link com.google.gwt.user.client.ui.SuggestOracle.Suggestion} in the display.
@@ -96,10 +76,10 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
          *                            automatically
          * @param callback            the callback used when the user makes a suggestion
          */
-        protected abstract void showSuggestions(SuggestBox suggestBox,
+        protected abstract void showSuggestions(AbstractSuggestBox suggestBox,
                                                 Collection<? extends SuggestOracle.Suggestion> suggestions,
                                                 boolean isDisplayStringHTML, boolean isAutoSelectEnabled,
-                                                SuggestionCallback callback);
+                                                SuggestBox.SuggestionCallback callback);
 
     }
 
@@ -181,10 +161,10 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
         }
 
         @Override
-        public void showSuggestions(final SuggestBox suggestBox,
+        public void showSuggestions(final AbstractSuggestBox suggestBox,
                                     Collection<? extends SuggestOracle.Suggestion> suggestions,
                                     boolean isDisplayStringHTML, boolean isAutoSelectEnabled,
-                                    SuggestionCallback callback) {
+                                    SuggestBox.SuggestionCallback callback) {
             // Hide the popup if there are no suggestions to display.
             boolean anySuggestions = (suggestions != null && suggestions.size() > 0);
             if (!anySuggestions && hideWhenEmpty) {
@@ -202,7 +182,7 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
                     public void onClick(ClickEvent event) {
                         menu.hide();
 
-                        suggestBox.setValue(suggestion.getReplacementString());
+                        suggestBox.setValue(suggestion);
                     }
                 });
 
@@ -210,6 +190,11 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
             }
 
             menu.show(suggestBox);
+        }
+
+        @Override
+        public Widget asWidget() {
+            return menu;
         }
 
         @Override
@@ -253,8 +238,8 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
     private boolean selectsFirstItem = true;
     private SuggestOracle oracle;
     private String currentText;
-    private final SuggestionDisplay display;
-    private final ValueBoxBase<String> box;
+    protected final SuggestionDisplay display;
+    protected final ValueBoxBase<String> box;
     private final SuggestOracle.Callback callback = new SuggestOracle.Callback() {
         public void onSuggestionsReady(SuggestOracle.Request request, SuggestOracle.Response response) {
             // If disabled while request was in-flight, drop it
@@ -263,12 +248,12 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
             }
 
             display.setMoreSuggestions(response.hasMoreSuggestions(), response.getMoreSuggestionsCount());
-            display.showSuggestions(SuggestBox.this, response.getSuggestions(),
+            display.showSuggestions(AbstractSuggestBox.this, response.getSuggestions(),
                     oracle.isDisplayStringHTML(), isAutoSelectEnabled(),
                     suggestionCallback);
         }
     };
-    private final SuggestionCallback suggestionCallback = new SuggestionCallback() {
+    private final SuggestBox.SuggestionCallback suggestionCallback = new SuggestBox.SuggestionCallback() {
         public void onSuggestionSelected(SuggestOracle.Suggestion suggestion) {
             box.setFocus(true);
             setNewSelection(suggestion);
@@ -276,22 +261,13 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
     };
 
     /**
-     * Constructor for {@link SuggestBox}. Creates a
-     * {@link com.google.gwt.user.client.ui.MultiWordSuggestOracle} and {@link TextBox} to use with this
-     * {@link SuggestBox}.
-     */
-    public SuggestBox() {
-        this(new MultiWordSuggestOracle());
-    }
-
-    /**
-     * Constructor for {@link SuggestBox}. Creates a {@link TextBox} to use with
+     * Constructor for {@link SuggestBox}. Creates a {@link org.gwtbootstrap3.client.ui.TextBox} to use with
      * this {@link SuggestBox}.
      *
      * @param oracle the oracle for this <code>SuggestBox</code>
      */
-    public SuggestBox(SuggestOracle oracle) {
-        this(oracle, new TextBox());
+    public AbstractSuggestBox(SuggestOracle oracle) {
+        this(oracle, new org.gwtbootstrap3.client.ui.TextBox());
     }
 
     /**
@@ -302,7 +278,7 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
      *               text widget
      * @param box    the text widget
      */
-    public SuggestBox(SuggestOracle oracle, ValueBoxBase<String> box) {
+    public AbstractSuggestBox(SuggestOracle oracle, ValueBoxBase<String> box) {
         this(oracle, box, new DefaultSuggestionDisplay());
     }
 
@@ -315,7 +291,7 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
      * @param box            the text widget
      * @param suggestDisplay the class used to display suggestions
      */
-    public SuggestBox(SuggestOracle oracle, ValueBoxBase<String> box, SuggestionDisplay suggestDisplay) {
+    public AbstractSuggestBox(SuggestOracle oracle, ValueBoxBase<String> box, SuggestionDisplay suggestDisplay) {
         this.box = box;
         this.display = suggestDisplay;
         initWidget(box);
@@ -409,25 +385,7 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
         }
     }
 
-    @Override
-    public String getValue() {
-        return box.getValue();
-    }
-
-    @Override
-    public void setValue(String newValue) {
-        box.setValue(newValue);
-    }
-
-    @Override
-    public void setValue(String value, boolean fireEvents) {
-        box.setValue(value, fireEvents);
-    }
-
-    @Override
-    public LeafValueEditor<String> asEditor() {
-        return box.asEditor();
-    }
+    protected abstract void setValue(SuggestOracle.Suggestion newValue);
 
     @Override
     public String getText() {
@@ -483,17 +441,26 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
         return addHandler(handler, SelectionEvent.getType());
     }
 
-    @Override
-    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<String> handler) {
-        return box.addHandler(handler, ValueChangeEvent.getType());
-    }
-
     void showSuggestions(String query) {
         if (query.length() == 0) {
             oracle.requestDefaultSuggestions(new SuggestOracle.Request(null, limit), callback);
         } else {
             oracle.requestSuggestions(new SuggestOracle.Request(query, limit), callback);
         }
+    }
+
+    /**
+     * Set the new suggestion in the text box.
+     *
+     * @param curSuggestion the new suggestion
+     */
+    protected void setNewSelection(SuggestOracle.Suggestion curSuggestion) {
+        assert curSuggestion != null : "suggestion cannot be null";
+        currentText = curSuggestion.getReplacementString();
+        setText(currentText);
+        setValue(curSuggestion);
+        display.hideSuggestions();
+        fireSuggestionEvent(curSuggestion);
     }
 
     @Override
@@ -543,7 +510,7 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
             }
 
             public void onValueChange(ValueChangeEvent<String> event) {
-                delegateEvent(SuggestBox.this, event);
+                delegateEvent(AbstractSuggestBox.this, event);
             }
         }
 
@@ -555,19 +522,6 @@ public class SuggestBox extends Composite implements IsEditor<LeafValueEditor<St
 
     private void fireSuggestionEvent(SuggestOracle.Suggestion selectedSuggestion) {
         SelectionEvent.fire(this, selectedSuggestion);
-    }
-
-    /**
-     * Set the new suggestion in the text box.
-     *
-     * @param curSuggestion the new suggestion
-     */
-    private void setNewSelection(SuggestOracle.Suggestion curSuggestion) {
-        assert curSuggestion != null : "suggestion cannot be null";
-        currentText = curSuggestion.getReplacementString();
-        setText(currentText);
-        display.hideSuggestions();
-        fireSuggestionEvent(curSuggestion);
     }
 
     /**

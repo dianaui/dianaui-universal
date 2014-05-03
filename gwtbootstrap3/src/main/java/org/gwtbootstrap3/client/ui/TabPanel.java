@@ -27,19 +27,45 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.TabPosition;
 
 /**
+ * Container widget for tabs
+ * <p/>
+ * <a href="http://getbootstrap.com/javascript/#tabs">Bootstrap Documentation</a>
+ * <p/>
+ * <h3>UiBinder example</h3>
+ * <p/>
+ * <pre>
+ * {@code
+ * <b:TabPanel>
+ *    <b:NavTabs/>
+ *    <b:TabContent/>
+ * </b:TabPanel>
+ * }
+ * </pre>
+ *
  * @author Joshua Godi
+ * @see org.gwtbootstrap3.client.ui.TabContent
+ * @see org.gwtbootstrap3.client.ui.NavTabs
  */
 public class TabPanel extends Div implements HasTabPosition {
 
+    /**
+     * Creates the widget with the default styles
+     */
     public TabPanel() {
         setStyleName(Styles.TABBABLE);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TabPosition getTabPosition() {
         return TabPosition.fromStyleName(getStyleName());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTabPosition(final TabPosition tabPosition) {
         // If the tab position if not the default TOP, we need to add the custom CSS for LEFT/RIGHT/BOTTOM tabs

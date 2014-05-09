@@ -102,4 +102,5 @@ public abstract class AbstractListItem extends ComplexPanel implements HasId, Ha
     public void setHiddenOn(final String deviceSizeString) {
         StyleHelper.setHiddenOn(this, deviceSizeString);
     }
+
 }

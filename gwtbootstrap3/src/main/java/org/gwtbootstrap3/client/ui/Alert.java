@@ -29,6 +29,8 @@ import org.gwtbootstrap3.client.ui.base.button.CloseButton;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.AlertType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.html.Div;
+import org.gwtbootstrap3.client.ui.html.Text;
 
 /**
  * Alert block.
@@ -40,20 +42,39 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @see org.gwtbootstrap3.client.shared.event.AlertCloseEvent
  * @see org.gwtbootstrap3.client.shared.event.AlertClosedEvent
  */
-public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiveness {
+public class Alert extends Div implements HasType<AlertType>, HasResponsiveness {
+
     private static final String CLOSE = "close";
 
+    private final Text text = new Text();
     private final CloseButton closeButton = new CloseButton();
 
-    public Alert(final String html) {
-        super(html);
-
+    /**
+     * Builds a default alert
+     */
+    public Alert() {
         setStyleName(Styles.ALERT);
         setType(AlertType.WARNING);
     }
 
-    public Alert(final String html, final AlertType type) {
-        this(html);
+    /**
+     * Builds a default alert with the desired text
+     *
+     * @param text text for the alert
+     */
+    public Alert(final String text) {
+        this();
+        setText(text);
+    }
+
+    /**
+     * Builds an alert with the desired text and type
+     *
+     * @param text text for the alert
+     * @param type type for the alert
+     */
+    public Alert(final String text, final AlertType type) {
+        this(text);
         setType(type);
     }
 
@@ -79,6 +100,25 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
     @Override
     public void setType(final AlertType type) {
         StyleHelper.addUniqueEnumStyleName(this, AlertType.class, type);
+    }
+
+    /**
+     * Returns the text of the alert.
+     *
+     * @return text of the alert
+     */
+    public String getText() {
+        return text.getText();
+    }
+
+    /**
+     * Sets the text for the alert
+     *
+     * @param text the text of the alert
+     */
+    public void setText(final String text) {
+        this.text.setText(text);
+        insert(this.text, 0);
     }
 
     public boolean isDismissable() {

@@ -22,7 +22,6 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.uibinder.client.UiConstructor;
-import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.Alignment;
@@ -67,7 +66,7 @@ import org.gwtbootstrap3.client.ui.html.Text;
  * @author Sven Jacobs
  * @author Joshua Godi
  */
-public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasAlignment {
+public class Heading extends ComplexWidget implements HasEmphasis, HasAlignment {
 
     private Small subtext = new Small();
     private Text text = new Text();
@@ -177,6 +176,10 @@ public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasA
         StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onAttach() {
         super.onAttach();
@@ -184,7 +187,9 @@ public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasA
         // Adding styles to the heading depending on the parent
         if (getParent() != null) {
             if (getParent() instanceof LinkedGroupItem) {
-                setStyleName(Styles.LIST_GROUP_ITEM_HEADING);
+                addStyleName(Styles.LIST_GROUP_ITEM_HEADING);
+            } else if (getParent() instanceof PanelHeader) {
+                addStyleName(Styles.PANEL_TITLE);
             }
         }
     }

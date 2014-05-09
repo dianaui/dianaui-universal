@@ -20,26 +20,11 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.base.AbstractListItem;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class ListItem extends AbstractListItem implements HasText {
-
-    public ListItem(final String text) {
-        setText(text);
-    }
-
-    @Override
-    public String getText() {
-        return getElement().getInnerText();
-    }
-
-    @Override
-    public void setText(final String text) {
-        getElement().setInnerText(text);
-    }
+public class ListItem extends AbstractListItem {
 
 }

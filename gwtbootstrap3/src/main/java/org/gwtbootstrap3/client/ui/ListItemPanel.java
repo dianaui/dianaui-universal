@@ -41,4 +41,5 @@ public class ListItemPanel extends AbstractAnchorListItem {
     public void setText(final String text) {
         anchor.setText(text);
     }
+
 }

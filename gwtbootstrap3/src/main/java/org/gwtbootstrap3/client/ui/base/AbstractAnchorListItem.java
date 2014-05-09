@@ -22,11 +22,12 @@ package org.gwtbootstrap3.client.ui.base;
 
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.*;
-import org.gwtbootstrap3.client.ui.constants.Toggle;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * Base class for list items that contain an {@link org.gwtbootstrap3.client.ui.Anchor} link.
@@ -35,7 +36,7 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public abstract class AbstractAnchorListItem extends AbstractListItem implements HasLink, HasTargetHistoryToken,
-        Focusable, HasToggle, HasTarget {
+        HasHref, HasClickHandlers, Focusable, HasToggle, HasTarget, HasIcon, HasIconPosition {
 
     protected final Anchor anchor;
 
@@ -116,6 +117,109 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     @Override
     public void setTarget(final String target) {
         anchor.setTarget(target);
+    }
+
+    public GlyphiconType getGlyphicon() {
+        return anchor.getGlyphicon();
+    }
+
+    public void setGlyphicon(final GlyphiconType iconType) {
+        anchor.setGlyphicon(iconType);
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        anchor.setFontAwesomeIcon(iconType);
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return anchor.getFontAwesomeIcon();
+    }
+
+    @Override
+    public void setIconPosition(final IconPosition iconPosition) {
+        anchor.setIconPosition(iconPosition);
+    }
+
+    @Override
+    public IconPosition getIconPosition() {
+        return anchor.getIconPosition();
+    }
+
+    @Override
+    public void setIconSize(final IconSize iconSize) {
+        anchor.setIconSize(iconSize);
+    }
+
+    @Override
+    public IconSize getIconSize() {
+        return anchor.getIconSize();
+    }
+
+    @Override
+    public void setIconFlip(final IconFlip iconFlip) {
+        anchor.setIconFlip(iconFlip);
+    }
+
+    @Override
+    public IconFlip getIconFlip() {
+        return anchor.getIconFlip();
+    }
+
+    @Override
+    public void setIconRotate(final IconRotate iconRotate) {
+        anchor.setIconRotate(iconRotate);
+    }
+
+    @Override
+    public IconRotate getIconRotate() {
+        return anchor.getIconRotate();
+    }
+
+    @Override
+    public void setIconBordered(final boolean iconBordered) {
+        anchor.setIconBordered(iconBordered);
+    }
+
+    @Override
+    public boolean isIconBordered() {
+        return anchor.isIconBordered();
+    }
+
+    @Override
+    public void setIconMuted(final boolean iconMuted) {
+        anchor.setIconMuted(iconMuted);
+    }
+
+    @Override
+    public boolean isIconMuted() {
+        return anchor.isIconMuted();
+    }
+
+    @Override
+    public void setIconLight(final boolean iconLight) {
+        anchor.setIconLight(iconLight);
+    }
+
+    @Override
+    public boolean isIconLight() {
+        return anchor.isIconLight();
+    }
+
+    @Override
+    public void setIconSpin(final boolean iconSpin) {
+        anchor.setIconSpin(iconSpin);
+    }
+
+    @Override
+    public boolean isIconSpin() {
+        return anchor.isIconSpin();
+    }
+
+    @Override
+    public void clearIcon() {
+        anchor.clearIcon();
     }
 
 }

@@ -23,7 +23,7 @@ package org.gwtbootstrap3.client.ui.base;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.text.shared.Parser;
 import com.google.gwt.text.shared.Renderer;
-import org.gwtbootstrap3.client.ui.HasAutocomplete;
+import org.gwtbootstrap3.client.ui.HasAutoComplete;
 import org.gwtbootstrap3.client.ui.HasId;
 import org.gwtbootstrap3.client.ui.HasPlaceholder;
 import org.gwtbootstrap3.client.ui.HasResponsiveness;
@@ -34,7 +34,7 @@ import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
  * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
 public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<T> implements HasId, HasResponsiveness,
-        HasPlaceholder, HasAutocomplete {
+        HasPlaceholder, HasAutoComplete {
 
     private static final String MAX_LENGTH = "maxlength";
 
@@ -67,12 +67,12 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     }
 
     @Override
-    public String getAutocomplete() {
+    public String getAutoComplete() {
         return getElement().getAttribute(AUTOCOMPLETE);
     }
 
     @Override
-    public void setAutocomplete(final boolean autoComplete) {
+    public void setAutoComplete(final boolean autoComplete) {
         getElement().setAttribute(AUTOCOMPLETE, autoComplete ? ON : OFF);
     }
 

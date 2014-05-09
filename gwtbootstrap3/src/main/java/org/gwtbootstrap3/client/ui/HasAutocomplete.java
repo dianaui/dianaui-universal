@@ -20,13 +20,14 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-public interface HasAutocomplete {
+public interface HasAutoComplete {
 
     String AUTOCOMPLETE = "autocomplete";
     String ON = "on";
     String OFF = "off";
 
-    String getAutocomplete();
+    String getAutoComplete();
 
-    void setAutocomplete(boolean autocomplete);
+    void setAutoComplete(boolean autocomplete);
+
 }

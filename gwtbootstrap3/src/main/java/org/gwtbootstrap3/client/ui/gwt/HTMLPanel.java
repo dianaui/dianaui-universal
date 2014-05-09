@@ -25,10 +25,7 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;
-import org.gwtbootstrap3.client.ui.constants.HasId;
-import org.gwtbootstrap3.client.ui.constants.HasInlineStyle;
-import org.gwtbootstrap3.client.ui.constants.HasResponsiveness;
-import org.gwtbootstrap3.client.ui.constants.Spy;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * @author Sven Jacobs

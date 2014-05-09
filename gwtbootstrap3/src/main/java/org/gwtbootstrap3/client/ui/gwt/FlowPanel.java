@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui;
+package org.gwtbootstrap3.client.ui.gwt;
 
 /*
  * #%L
@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.HasId;
+import org.gwtbootstrap3.client.ui.HasSpy;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;
 import org.gwtbootstrap3.client.ui.constants.Spy;
@@ -51,4 +53,5 @@ public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implement
     public void setId(final String id) {
         idMixin.setId(id);
     }
+
 }

@@ -49,7 +49,6 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
 
     public InputGroupAddon() {
         super(Styles.INPUT_GROUP_ADDON);
-
         iconTextMixin.addTextWidgetToParent();
     }
 

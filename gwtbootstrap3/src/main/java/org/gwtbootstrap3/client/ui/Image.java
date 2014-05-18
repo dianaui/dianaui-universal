@@ -75,13 +75,13 @@ public class Image extends com.google.gwt.user.client.ui.Image implements HasTyp
     }
 
     @Override
-    public void setVisibleOn(final String deviceSizeString) {
-        StyleHelper.setVisibleOn(this, deviceSizeString);
+    public void setVisibleOn(DeviceSize deviceSize) {
+        StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final String deviceSizeString) {
-        StyleHelper.setHiddenOn(this, deviceSizeString);
+    public void setHiddenOn(DeviceSize deviceSize) {
+        StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     public void setResponsive(final boolean responsive) {
@@ -97,4 +97,5 @@ public class Image extends com.google.gwt.user.client.ui.Image implements HasTyp
     public void setPull(final Pull pull) {
         pullMixin.setPull(pull);
     }
+
 }

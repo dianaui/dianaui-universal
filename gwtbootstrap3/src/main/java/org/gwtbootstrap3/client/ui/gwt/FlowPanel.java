@@ -20,16 +20,15 @@ package org.gwtbootstrap3.client.ui.gwt;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;
-import org.gwtbootstrap3.client.ui.constants.HasId;
-import org.gwtbootstrap3.client.ui.constants.HasSpy;
-import org.gwtbootstrap3.client.ui.constants.Spy;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * @author Sven Jacobs
  */
-public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implements HasSpy, HasId {
+public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implements HasSpy, HasId, HasResponsiveness {
 
     private final SpyMixin<FlowPanel> spyMixin = new SpyMixin<FlowPanel>(this);
     private final IdMixin<FlowPanel> idMixin = new IdMixin<FlowPanel>(this);
@@ -52,6 +51,16 @@ public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implement
     @Override
     public void setId(final String id) {
         idMixin.setId(id);
+    }
+
+    @Override
+    public void setVisibleOn(DeviceSize deviceSize) {
+        StyleHelper.setVisibleOn(this, deviceSize);
+    }
+
+    @Override
+    public void setHiddenOn(DeviceSize deviceSize) {
+        StyleHelper.setHiddenOn(this, deviceSize);
     }
 
 }

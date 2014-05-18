@@ -20,8 +20,8 @@ package org.gwtbootstrap3.client.ui.base;
  * #L%
  */
 
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.uibinder.client.UiConstructor;
-import com.google.gwt.user.client.DOM;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
@@ -35,7 +35,7 @@ public class CustomWidget extends ComplexWidget {
      */
     @UiConstructor
     public CustomWidget(String tag) {
-        setElement(DOM.createElement(tag));
+        setElement(Document.get().createElement(tag));
     }
 
 }

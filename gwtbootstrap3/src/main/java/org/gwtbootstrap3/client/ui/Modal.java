@@ -68,7 +68,7 @@ import org.gwtbootstrap3.client.ui.constants.HasResponsiveness;
  * @see ModalBody
  * @see ModalFooter
  */
-public class Modal extends ModalWithBackdrop implements IsClosable, HasResponsiveness {
+public class Modal extends ModalWithBackdrop implements IsClosable {
 
     private final ModalContent content = new ModalContent();
     private final ModalDialog dialog = new ModalDialog();
@@ -108,16 +108,6 @@ public class Modal extends ModalWithBackdrop implements IsClosable, HasResponsiv
                 }
             });
         }
-    }
-
-    @Override
-    public void setVisibleOn(final String deviceSizeString) {
-        StyleHelper.setVisibleOn(this, deviceSizeString);
-    }
-
-    @Override
-    public void setHiddenOn(final String deviceSizeString) {
-        StyleHelper.setHiddenOn(this, deviceSizeString);
     }
 
     @Override

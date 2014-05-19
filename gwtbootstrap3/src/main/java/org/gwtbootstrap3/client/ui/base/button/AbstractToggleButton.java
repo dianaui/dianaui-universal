@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui.base.button;
  * #L%
  */
 
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import org.gwtbootstrap3.client.ui.ButtonGroup;
@@ -71,15 +73,21 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
     public void setToggle(final Toggle toggle) {
         toggleMixin.setToggle(toggle);
 
-        separator.removeFromParent();
-        caret.removeFromParent();
+        // We defer to make sure the elements are available to manipulate their position
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                separator.removeFromParent();
+                caret.removeFromParent();
 
-        if (toggle == Toggle.DROPDOWN) {
-            addStyleName(Styles.DROPDOWN_TOGGLE);
+                if (toggle == Toggle.DROPDOWN) {
+                    addStyleName(Styles.DROPDOWN_TOGGLE);
 
-            add(separator, getElement());
-            add(caret, getElement());
-        }
+                    add(separator, (Element) getElement());
+                    add(caret, (Element) getElement());
+                }
+            }
+        });
     }
 
     public void onBrowserEvent(Event event) {

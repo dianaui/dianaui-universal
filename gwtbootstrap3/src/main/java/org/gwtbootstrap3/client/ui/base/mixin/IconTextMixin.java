@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  * #L%
  */
 
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.FontAwesomeIcon;
 import org.gwtbootstrap3.client.ui.Glyphicon;
@@ -182,56 +183,76 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     }
 
     private void render(final FontAwesomeIcon newIcon) {
-        text.removeFromParent();
-        separator.removeFromParent();
+        // We defer to make sure the elements are available to manipulate their positions
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                text.removeFromParent();
+                separator.removeFromParent();
 
-        if (fontAwesomeIcon != null) {
-            fontAwesomeIcon.removeFromParent();
-        }
+                if (fontAwesomeIcon != null) {
+                    fontAwesomeIcon.removeFromParent();
+                }
 
-        fontAwesomeIcon = newIcon;
-        fontAwesomeIcon.setSize(iconSize);
-        fontAwesomeIcon.setFlip(iconFlip);
-        fontAwesomeIcon.setRotate(iconRotate);
-        fontAwesomeIcon.setMuted(iconMuted);
-        fontAwesomeIcon.setSpin(iconSpin);
-        fontAwesomeIcon.setBorder(iconBordered);
-        fontAwesomeIcon.setLight(iconLight);
+                fontAwesomeIcon = newIcon;
+                fontAwesomeIcon.setSize(iconSize);
+                fontAwesomeIcon.setFlip(iconFlip);
+                fontAwesomeIcon.setRotate(iconRotate);
+                fontAwesomeIcon.setMuted(iconMuted);
+                fontAwesomeIcon.setSpin(iconSpin);
+                fontAwesomeIcon.setBorder(iconBordered);
+                fontAwesomeIcon.setLight(iconLight);
 
-        if (iconPosition == IconPosition.LEFT) {
-            widget.add(fontAwesomeIcon);
-            widget.add(separator);
-        }
+                // Since we are dealing with Icon/Text, we can insert them at the right position
+                // Helps on widgets like ButtonDropDown, where it has a caret added
+                int position = 0;
 
-        widget.add(text);
+                if (iconPosition == IconPosition.LEFT) {
+                    widget.insert(fontAwesomeIcon, position++);
+                    widget.insert(separator, position++);
+                }
 
-        if (iconPosition == IconPosition.RIGHT) {
-            widget.add(separator);
-            widget.add(fontAwesomeIcon);
-        }
+                widget.insert(text, position++);
+
+                if (iconPosition == IconPosition.RIGHT) {
+                    widget.insert(separator, position++);
+                    widget.insert(fontAwesomeIcon, position);
+                }
+            }
+        });
     }
 
     private void render(final Glyphicon newIcon) {
-        text.removeFromParent();
-        separator.removeFromParent();
+        // We defer to make sure the elements are available to manipulate their positions
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                text.removeFromParent();
+                separator.removeFromParent();
 
-        if (glyphicon != null) {
-            glyphicon.removeFromParent();
-        }
+                if (glyphicon != null) {
+                    glyphicon.removeFromParent();
+                }
 
-        glyphicon = newIcon;
+                glyphicon = newIcon;
 
-        if (iconPosition == IconPosition.LEFT) {
-            widget.add(glyphicon);
-            widget.add(separator);
-        }
+                // Since we are dealing with Icon/Text, we can insert them at the right position
+                // Helps on widgets like ButtonDropDown, where it has a caret added
+                int position = 0;
 
-        widget.add(text);
+                if (iconPosition == IconPosition.LEFT) {
+                    widget.insert(glyphicon, position++);
+                    widget.insert(separator, position++);
+                }
 
-        if (iconPosition == IconPosition.RIGHT) {
-            widget.add(separator);
-            widget.add(glyphicon);
-        }
+                widget.insert(text, position++);
+
+                if (iconPosition == IconPosition.RIGHT) {
+                    widget.insert(separator, position++);
+                    widget.insert(glyphicon, position);
+                }
+            }
+        });
     }
 
 }

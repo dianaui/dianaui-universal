@@ -22,6 +22,7 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.dom.client.Element;
 import org.gwtbootstrap3.client.ui.base.AbstractListItem;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.Text;
 
 /**
@@ -78,6 +79,21 @@ public class ListItem extends AbstractListItem {
      */
     public String getText() {
         return text.getText();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onAttach() {
+        super.onAttach();
+
+        // Adding styles to the list item depending on the parent
+        if (getParent() != null) {
+            if (getParent() instanceof MediaList) {
+                addStyleName(Styles.MEDIA);
+            }
+        }
     }
 
 }

@@ -31,6 +31,7 @@ import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.IconTextMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.ParentMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
 import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
@@ -42,8 +43,9 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Anchor extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref, HasToggle,
-        HasParent, HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasTarget {
+        HasParent, HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasTarget, HasPull {
 
+    private final PullMixin<Anchor> pullMixin = new PullMixin<Anchor>(this);
     private final ParentMixin<Anchor> parentMixin = new ParentMixin<Anchor>(this);
     private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<Anchor>(this);
     private FocusableMixin<Anchor> focusableMixin;
@@ -434,6 +436,22 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     @Override
     public void setTarget(String target) {
         getAnchorElement().setTarget(target);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     /**

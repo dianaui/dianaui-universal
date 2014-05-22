@@ -88,6 +88,10 @@ public class Image extends com.google.gwt.user.client.ui.Image implements HasTyp
         StyleHelper.toggleStyleName(this, responsive, Styles.IMG_RESPONSIVE);
     }
 
+    public void setAsMediaObject(final boolean asMediaObject) {
+        StyleHelper.toggleStyleName(this, asMediaObject, Styles.MEDIA_OBJECT);
+    }
+
     @Override
     public Pull getPull() {
         return pullMixin.getPull();

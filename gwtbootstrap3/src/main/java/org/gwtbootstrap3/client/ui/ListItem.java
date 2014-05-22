@@ -20,14 +20,64 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Element;
 import org.gwtbootstrap3.client.ui.base.AbstractListItem;
+import org.gwtbootstrap3.client.ui.html.Text;
 
 /**
+ * Represents a list item with text contents which is used in multiple widgets.
+ * <h3>Widgets using ListItem</h3>
+ * <ul>
+ * <li>{@link DropDownMenu}</li>
+ * <li>{@link NavTabs}</li>
+ * <li>{@link NavPills}</li>
+ * <li>{@link Navbar}</li>
+ * </ul>
+ *
+ * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ * @see DropDownMenu
+ * @see NavTabs
+ * @see NavPills
+ * @see Navbar
  */
 public class ListItem extends AbstractListItem {
 
+    private Text text;
+
+    /**
+     * Creates a default list item element
+     */
     public ListItem() {
+    }
+
+    /**
+     * Creates a default list item element with the desired text
+     *
+     * @param text desired text for list item
+     */
+    public ListItem(final String text) {
+        this();
+        setText(text);
+    }
+
+    /**
+     * Set the text for the list item
+     *
+     * @param text String text
+     */
+    public void setText(final String text) {
+        this.text = new Text(text);
+        add(this.text, (Element) getElement());
+    }
+
+    /**
+     * Get the text of the list item
+     *
+     * @return text of the list item
+     */
+    public String getText() {
+        return text.getText();
     }
 
 }

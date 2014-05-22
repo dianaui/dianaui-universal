@@ -21,7 +21,6 @@ package org.gwtbootstrap3.client.ui.base;
  */
 
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.ui.ComplexPanel;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
@@ -37,7 +36,7 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @see org.gwtbootstrap3.client.ui.ListDropDown
  * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
-public abstract class AbstractListItem extends ComplexPanel implements HasId, HasEnabled, HasPull, HasActive,
+public abstract class AbstractListItem extends ComplexWidget implements HasId, HasEnabled, HasPull, HasActive,
         HasResponsiveness {
 
     private final ActiveMixin<AbstractListItem> activeMixin = new ActiveMixin<AbstractListItem>(this);
@@ -45,16 +44,6 @@ public abstract class AbstractListItem extends ComplexPanel implements HasId, Ha
 
     protected AbstractListItem() {
         setElement(Document.get().createLIElement());
-    }
-
-    @Override
-    public String getId() {
-        return getElement().getId();
-    }
-
-    @Override
-    public void setId(final String id) {
-        getElement().setId(id);
     }
 
     @Override
@@ -89,16 +78,6 @@ public abstract class AbstractListItem extends ComplexPanel implements HasId, Ha
     @Override
     public void setActive(final boolean active) {
         activeMixin.setActive(active);
-    }
-
-    @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
-        StyleHelper.setVisibleOn(this, deviceSize);
-    }
-
-    @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
-        StyleHelper.setHiddenOn(this, deviceSize);
     }
 
 }

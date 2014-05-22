@@ -29,17 +29,14 @@ import com.google.gwt.user.client.ui.Focusable;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.ToggleMixin;
-import org.gwtbootstrap3.client.ui.constants.HasHref;
-import org.gwtbootstrap3.client.ui.constants.HasTargetHistoryToken;
-import org.gwtbootstrap3.client.ui.constants.HasToggle;
-import org.gwtbootstrap3.client.ui.constants.Toggle;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref,
-        HasToggle, HasTargetHistoryToken, Focusable {
+        HasToggle, HasTargetHistoryToken, Focusable, HasTarget {
 
     private final ToggleMixin<ThumbnailLink> toggleMixin = new ToggleMixin<ThumbnailLink>(this);
     private FocusableMixin<ThumbnailLink> focusableMixin;
@@ -125,6 +122,26 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
             focusableMixin = new FocusableMixin<ThumbnailLink>(this);
         }
         return focusableMixin;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getTarget() {
+        return getAnchorElement().getTarget();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setTarget(String target) {
+        getAnchorElement().setTarget(target);
+    }
+
+    private AnchorElement getAnchorElement() {
+        return AnchorElement.as(getElement());
     }
 
 }

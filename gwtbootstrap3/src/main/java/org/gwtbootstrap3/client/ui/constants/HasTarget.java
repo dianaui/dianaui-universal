@@ -22,9 +22,6 @@ package org.gwtbootstrap3.client.ui.constants;
 
 /**
  * Simple interface that will set/get the objects 'target' attribute
- * <b:Anchor target="_blank"/>
- * Anchor anchor = new Anchor();
- * anchor.setTarget(BLANK);
  *
  * @author Joshua Godi
  * @author Sven Jacobs

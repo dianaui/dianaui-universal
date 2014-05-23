@@ -30,6 +30,7 @@ import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
 import org.gwtbootstrap3.client.ui.constants.IconType;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Button based on {@code <a>} element.
@@ -163,6 +164,20 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
     @Override
     public void setTabIndex(final int index) {
         getFocusableMixin().setTabIndex(index);
+    }
+
+    @Override
+    public void setEnabled(final boolean enabled) {
+        if (enabled) {
+            removeStyleName(Styles.DISABLED);
+        } else {
+            addStyleName(Styles.DISABLED);
+        }
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return getStyleName().contains(Styles.DISABLED);
     }
 
     @Override

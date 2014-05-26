@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.editor.client.IsEditor;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.editor.ui.client.adapters.HasTextEditor;
@@ -27,8 +28,11 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasWidgets;
+import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.constants.Styles;
-import org.gwtbootstrap3.client.ui.html.Span;
+import org.gwtbootstrap3.client.ui.html.Text;
 
 /**
  * Badge for highlighting new or unread items.
@@ -42,20 +46,40 @@ import org.gwtbootstrap3.client.ui.html.Span;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class Badge extends Span implements com.google.gwt.user.client.ui.HasText, IsEditor<LeafValueEditor<String>>,
+public class Badge extends ComplexWidget implements HasWidgets, HasText, IsEditor<LeafValueEditor<String>>,
         HasClickHandlers {
+
+    private final Text text = new Text();
 
     private LeafValueEditor<String> editor;
 
     public Badge() {
+        setElement(Document.get().createSpanElement());
         setStyleName(Styles.BADGE);
     }
 
-    public Badge(final String html) {
-        super(html);
-        setStyleName(Styles.BADGE);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getText() {
+        return text.getText();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setText(final String text) {
+        this.text.setText(text);
+        insert(this.text, 0);
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public LeafValueEditor<String> asEditor() {
         if (editor == null) {
             editor = HasTextEditor.of(this);

@@ -22,9 +22,8 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.safehtml.shared.SafeHtml;
-import com.google.gwt.user.client.Event;
-import org.gwtbootstrap3.client.shared.event.AlertCloseEvent;
-import org.gwtbootstrap3.client.shared.event.AlertClosedEvent;
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasWidgets;
 import org.gwtbootstrap3.client.ui.base.button.CloseButton;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.AlertType;
@@ -44,7 +43,7 @@ import org.gwtbootstrap3.client.ui.html.Text;
  * @see org.gwtbootstrap3.client.shared.event.AlertCloseEvent
  * @see org.gwtbootstrap3.client.shared.event.AlertClosedEvent
  */
-public class Alert extends Div implements HasType<AlertType>, HasResponsiveness {
+public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType>, HasResponsiveness {
 
     private static final String CLOSE = "close";
 
@@ -105,19 +104,17 @@ public class Alert extends Div implements HasType<AlertType>, HasResponsiveness 
     }
 
     /**
-     * Returns the text of the alert.
-     *
-     * @return text of the alert
+     * {@inheritDoc}
      */
+    @Override
     public String getText() {
         return text.getText();
     }
 
     /**
-     * Sets the text for the alert
-     *
-     * @param text the text of the alert
+     * {@inheritDoc}
      */
+    @Override
     public void setText(final String text) {
         this.text.setText(text);
         insert(this.text, 0);
@@ -148,24 +145,6 @@ public class Alert extends Div implements HasType<AlertType>, HasResponsiveness 
     public void close() {
         // TODO
         // alert(getElement(), CLOSE);
-    }
-
-    protected void onClose(final Event evt) {
-        fireEvent(new AlertCloseEvent(evt));
-    }
-
-    protected void onClosed(final Event evt) {
-        fireEvent(new AlertClosedEvent(evt));
-    }
-
-    @Override
-    public void setVisibleOn(final String deviceSizeString) {
-        StyleHelper.setVisibleOn(this, deviceSizeString);
-    }
-
-    @Override
-    public void setHiddenOn(final String deviceSizeString) {
-        StyleHelper.setHiddenOn(this, deviceSizeString);
     }
 
 }

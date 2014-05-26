@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasWidgets;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.Div;
 import org.gwtbootstrap3.client.ui.html.Text;
@@ -27,7 +29,7 @@ import org.gwtbootstrap3.client.ui.html.Text;
 /**
  * @author Joshua Godi
  */
-public class PanelHeader extends Div {
+public class PanelHeader extends Div implements HasWidgets, HasText {
 
     private final Text text = new Text();
 
@@ -36,19 +38,17 @@ public class PanelHeader extends Div {
     }
 
     /**
-     * Returns the text of the panel header.
-     *
-     * @return text of the panel header
+     * {@inheritDoc}
      */
+    @Override
     public String getText() {
         return text.getText();
     }
 
     /**
-     * Sets the text for the panel header
-     *
-     * @param text the text of the panel header
+     * {@inheritDoc}
      */
+    @Override
     public void setText(final String text) {
         this.text.setText(text);
         insert(this.text, 0);

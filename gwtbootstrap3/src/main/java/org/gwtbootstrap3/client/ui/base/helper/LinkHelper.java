@@ -40,7 +40,7 @@ public final class LinkHelper {
                 event.preventDefault();
                 event.stopPropagation();
 
-                History.newItem(link);
+                History.newItem(link.replace("#", ""));
             }
         });
     }

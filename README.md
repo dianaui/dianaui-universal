@@ -259,3 +259,9 @@ Compare this to the HTML version:
     </ul>
 </div>
 ```
+Copyright and license
+---------------------
+
+Copyright 2012-2014 GWT Widgets under the [Apache License, Version 2.0](LICENSE). Supported by [Polusharie][polusharie].
+
+[polusharie]: http://www.polusharie.com

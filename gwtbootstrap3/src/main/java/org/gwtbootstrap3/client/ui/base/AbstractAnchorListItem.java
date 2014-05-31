@@ -21,7 +21,6 @@ package org.gwtbootstrap3.client.ui.base;
  */
 
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.Widget;
@@ -34,8 +33,8 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public abstract class AbstractAnchorListItem extends AbstractListItem implements HasHref, HasTargetHistoryToken,
-        HasClickHandlers, Focusable, HasToggle, HasTarget {
+public abstract class AbstractAnchorListItem extends AbstractListItem implements HasLink, HasTargetHistoryToken,
+        Focusable, HasToggle, HasTarget {
 
     protected final Anchor anchor;
 

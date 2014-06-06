@@ -22,6 +22,9 @@ package org.gwtbootstrap3.client.ui.base;
 
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.editor.client.IsEditor;
+import com.google.gwt.editor.client.LeafValueEditor;
+import com.google.gwt.editor.ui.client.adapters.HasTextEditor;
 import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
@@ -37,9 +40,11 @@ import org.gwtbootstrap3.client.ui.constants.HasResponsiveness;
  * @author Sven Jacobs
  * @author Joshua Godi
  */
-public abstract class AbstractTextWidget extends Widget implements HasId, HasHTML, HasResponsiveness, HasInlineStyle {
+public abstract class AbstractTextWidget extends Widget implements HasId, HasHTML, HasResponsiveness, HasInlineStyle,
+        IsEditor<LeafValueEditor<String>> {
 
     private final IdMixin<AbstractTextWidget> idMixin = new IdMixin<AbstractTextWidget>(this);
+    private LeafValueEditor<String> editor;
 
     protected AbstractTextWidget(final Element element) {
         setElement(element);
@@ -124,6 +129,14 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
     @Override
     public void setPaddingBottom(final double padding) {
         getElement().getStyle().setPaddingBottom(padding, Style.Unit.PX);
+    }
+
+    @Override
+    public LeafValueEditor<String> asEditor() {
+        if (editor == null) {
+            editor = HasTextEditor.of(this);
+        }
+        return editor;
     }
 
 }

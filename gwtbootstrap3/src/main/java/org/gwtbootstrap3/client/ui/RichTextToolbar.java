@@ -38,7 +38,7 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class RichTextToolbar extends Composite {
 
-    interface Binder extends UiBinder<Widget, RichTextToolbar> {
+    interface Binder extends UiBinder<ButtonToolBar, RichTextToolbar> {
     }
 
     private static final Binder binder = GWT.create(Binder.class);
@@ -256,6 +256,10 @@ public class RichTextToolbar extends Composite {
         // unless at least basic editing is supported.
         richText.addKeyUpHandler(handler);
         richText.addClickHandler(handler);
+    }
+
+    public ButtonToolBar getButtons() {
+        return (ButtonToolBar) getWidget();
     }
 
     private void updateStatus() {

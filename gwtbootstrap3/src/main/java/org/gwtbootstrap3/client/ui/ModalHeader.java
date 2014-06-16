@@ -20,8 +20,10 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.FlowPanel;
 import org.gwtbootstrap3.client.ui.base.button.CloseButton;
+import org.gwtbootstrap3.client.ui.constants.HeadingSize;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -31,7 +33,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class ModalHeader extends FlowPanel implements ModalComponent, IsClosable {
 
-    private final Heading heading = new Heading(4);
+    private final Heading heading = new Heading(HeadingSize.H4);
     private CloseButton closeButton = null;
 
     public ModalHeader() {
@@ -60,8 +62,8 @@ public class ModalHeader extends FlowPanel implements ModalComponent, IsClosable
     @Override
     public void setClosable(final boolean closable) {
         if (closable) {
-            closeButton = new CloseButton();
-            insert(closeButton, getElement(), 0, true);
+            closeButton = closeButton == null ? new CloseButton() : closeButton;
+            insert(closeButton, (Element) getElement(), 0, true);
         } else {
             closeButton.removeFromParent();
             closeButton = null;

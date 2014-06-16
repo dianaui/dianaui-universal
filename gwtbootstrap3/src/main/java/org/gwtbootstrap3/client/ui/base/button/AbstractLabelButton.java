@@ -21,6 +21,9 @@ package org.gwtbootstrap3.client.ui.base.button;
  */
 
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.editor.client.IsEditor;
+import com.google.gwt.editor.client.LeafValueEditor;
+import com.google.gwt.editor.client.adapters.TakesValueEditor;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.DOM;
@@ -38,10 +41,11 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @author Sven Jacobs
  */
 public abstract class AbstractLabelButton extends AbstractIconButton implements HasActive, HasName, HasFormValue,
-        HasValue<Boolean> {
+        HasValue<Boolean>, IsEditor<LeafValueEditor<Boolean>> {
 
     protected final CheckableInputButton input;
     private final ActiveMixin<AbstractLabelButton> activeMixin = new ActiveMixin<AbstractLabelButton>(this);
+    private LeafValueEditor<Boolean> editor;
 
     protected AbstractLabelButton(final TypeAttrType typeAttr) {
         super(ButtonType.DEFAULT);
@@ -132,6 +136,14 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
     @Override
     protected Element createElement() {
         return DOM.createLabel();
+    }
+
+    @Override
+    public LeafValueEditor<Boolean> asEditor() {
+        if (editor == null) {
+            editor = TakesValueEditor.of(this);
+        }
+        return editor;
     }
 
 }

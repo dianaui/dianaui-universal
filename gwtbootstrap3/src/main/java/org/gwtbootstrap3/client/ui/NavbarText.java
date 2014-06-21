@@ -32,7 +32,7 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @author Joshua Godi
  * @see NavbarLink
  */
-public class NavbarText extends ComplexWidget implements HasNavbarPull, HasResponsiveness {
+public class NavbarText extends ComplexWidget implements HasResponsiveness {
 
     public NavbarText() {
         setElement(Document.get().createPElement());
@@ -40,13 +40,13 @@ public class NavbarText extends ComplexWidget implements HasNavbarPull, HasRespo
     }
 
     @Override
-    public NavbarPull getPull() {
-        return NavbarPull.fromStyleName(getStyleName());
+    public void setPull(final Pull pull) {
+        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, NavbarPull.fromPull(pull));
     }
 
     @Override
-    public void setPull(final NavbarPull pull) {
-        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, pull);
+    public Pull getPull() {
+        return NavbarPull.fromStyleName(getStyleName()).toPull();
     }
 
     @Override

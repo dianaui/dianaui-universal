@@ -21,8 +21,8 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.constants.HasNavbarPull;
 import org.gwtbootstrap3.client.ui.constants.NavbarPull;
+import org.gwtbootstrap3.client.ui.constants.Pull;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.UnorderedList;
 
@@ -34,7 +34,7 @@ import org.gwtbootstrap3.client.ui.html.UnorderedList;
  * @see AnchorListItem
  * @see ListDropDown
  */
-public class NavbarNav extends UnorderedList implements HasNavbarPull {
+public class NavbarNav extends UnorderedList {
 
     public NavbarNav() {
         setStyleName(Styles.NAV);
@@ -42,12 +42,13 @@ public class NavbarNav extends UnorderedList implements HasNavbarPull {
     }
 
     @Override
-    public NavbarPull getPull() {
-        return NavbarPull.fromStyleName(getStyleName());
+    public void setPull(final Pull pull) {
+        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, NavbarPull.fromPull(pull));
     }
 
     @Override
-    public void setPull(final NavbarPull pull) {
-        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, pull);
+    public Pull getPull() {
+        return NavbarPull.fromStyleName(getStyleName()).toPull();
     }
+
 }

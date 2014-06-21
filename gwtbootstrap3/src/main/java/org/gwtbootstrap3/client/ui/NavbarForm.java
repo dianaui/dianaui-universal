@@ -22,27 +22,29 @@ package org.gwtbootstrap3.client.ui;
 
 import org.gwtbootstrap3.client.ui.base.form.AbstractForm;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.constants.HasNavbarPull;
+import org.gwtbootstrap3.client.ui.constants.HasPull;
 import org.gwtbootstrap3.client.ui.constants.NavbarPull;
+import org.gwtbootstrap3.client.ui.constants.Pull;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Sven Jacobs
  * @see Navbar
  */
-public class NavbarForm extends AbstractForm implements HasNavbarPull {
+public class NavbarForm extends AbstractForm implements HasPull {
 
     public NavbarForm() {
         setStyleName(Styles.NAVBAR_FORM);
     }
 
     @Override
-    public NavbarPull getPull() {
-        return NavbarPull.fromStyleName(getStyleName());
+    public void setPull(final Pull pull) {
+        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, NavbarPull.fromPull(pull));
     }
 
     @Override
-    public void setPull(final NavbarPull pull) {
-        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, pull);
+    public Pull getPull() {
+        return NavbarPull.fromStyleName(getStyleName()).toPull();
     }
+
 }

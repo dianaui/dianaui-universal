@@ -29,10 +29,8 @@ import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
-import org.gwtbootstrap3.client.ui.constants.DeviceSize;
-import org.gwtbootstrap3.client.ui.constants.HasId;
-import org.gwtbootstrap3.client.ui.constants.HasInlineStyle;
-import org.gwtbootstrap3.client.ui.constants.HasResponsiveness;
+import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * Base class for {@link Widget} that just contains text.
@@ -41,8 +39,9 @@ import org.gwtbootstrap3.client.ui.constants.HasResponsiveness;
  * @author Joshua Godi
  */
 public abstract class AbstractTextWidget extends Widget implements HasId, HasHTML, HasResponsiveness, HasInlineStyle,
-        IsEditor<LeafValueEditor<String>> {
+        IsEditor<LeafValueEditor<String>>, HasPull {
 
+    private final PullMixin<AbstractTextWidget> pullMixin = new PullMixin<AbstractTextWidget>(this);
     private final IdMixin<AbstractTextWidget> idMixin = new IdMixin<AbstractTextWidget>(this);
     private LeafValueEditor<String> editor;
 
@@ -136,6 +135,22 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
             editor = HasTextEditor.of(this);
         }
         return editor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
 }

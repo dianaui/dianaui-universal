@@ -20,8 +20,8 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.UIObject;
-import org.gwtbootstrap3.client.ui.constants.HasEnabled;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -30,23 +30,26 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class EnabledMixin<T extends UIObject & HasEnabled> extends AbstractMixin implements HasEnabled {
 
+    private static final String DISABLED = "disabled";
+
     public EnabledMixin(final T uiObject) {
         super(uiObject);
     }
 
     @Override
     public boolean isEnabled() {
-        return !uiObject.getElement().hasAttribute(DISABLED_PROPERTY);
+        return !uiObject.getElement().hasAttribute(DISABLED);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
         if (enabled) {
             uiObject.removeStyleName(Styles.DISABLED);
-            uiObject.getElement().removeAttribute(DISABLED_PROPERTY);
+            uiObject.getElement().removeAttribute(DISABLED);
         } else {
             uiObject.addStyleName(Styles.DISABLED);
-            uiObject.getElement().setAttribute(DISABLED_PROPERTY, "");
+            uiObject.getElement().setAttribute(DISABLED, "");
         }
     }
+
 }

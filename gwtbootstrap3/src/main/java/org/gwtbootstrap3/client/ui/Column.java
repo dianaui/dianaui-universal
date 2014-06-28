@@ -22,6 +22,7 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.uibinder.client.UiConstructor;
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.constants.ColumnOffset;
 import org.gwtbootstrap3.client.ui.constants.ColumnPull;
 import org.gwtbootstrap3.client.ui.constants.ColumnPush;
@@ -42,12 +43,11 @@ public class Column extends Div {
 
     /**
      * Creates a column with one size, and with one or more additional widgets added.
-     *
      * Additional sizes can be added with {@link #addSize(ColumnSize...)}.
      * Additional widgets can be added with {@link #add(Widget)}.
      *
-     * @param size Size of column
-     * @param firstWidget Widget to add
+     * @param size         Size of column
+     * @param firstWidget  Widget to add
      * @param otherWidgets Other widgets to add
      */
     public Column(final ColumnSize size, final Widget firstWidget, final Widget... otherWidgets) {

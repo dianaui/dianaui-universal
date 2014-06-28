@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui;
 
 /*
  * #%L
@@ -20,13 +20,26 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.Styles;
+
 /**
- * @author Joshua Godi
- * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
- * @see HasEnabled
+ * An inline radio element with a label for use within a {@link Form}.
+ * Multiple InlineRadio in the same container will be displayed in one line.
+ * <p/>
+ * Basically this is a non-styled {@link RadioButton}.
+ *
+ * @author Sven Jacobs
+ * @see org.gwtbootstrap3.client.ui.Radio
+ * @see org.gwtbootstrap3.client.ui.RadioButton
  */
-public interface HasEnabled extends com.google.gwt.user.client.ui.HasEnabled {
+public class InlineRadio extends RadioButton {
 
-    public static final String DISABLED_PROPERTY = "disabled";
+    public InlineRadio() {
+        setStyleName(Styles.RADIO_INLINE);
+    }
 
+    public InlineRadio(final String label) {
+        super(label);
+        setStyleName(Styles.RADIO_INLINE);
+    }
 }

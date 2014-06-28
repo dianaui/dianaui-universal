@@ -53,7 +53,7 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
         input = new CheckableInputButton(typeAttr);
         input.setStyleName("");
 
-        add(input, getElement());
+        add(input, (Element) getElement());
         iconTextMixin.addTextWidgetToParent();
     }
 

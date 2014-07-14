@@ -37,7 +37,6 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Container for drop down menu items.
- * <p/>
  * <strong>Must</strong> be encapsulated in a {@link ButtonGroup} to build button dropdowns.
  *
  * @author Sven Jacobs

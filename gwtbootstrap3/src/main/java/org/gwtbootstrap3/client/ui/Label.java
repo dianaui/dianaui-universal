@@ -31,8 +31,7 @@ import org.gwtbootstrap3.client.ui.constants.LabelType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
- * Bootstrap's label, see <a href="http://getbootstrap.com/components/#labels">documentation</Ga>.
- * <p/>
+ * Bootstrap's label, see <a href="http://getbootstrap.com/components/#labels">documentation</a>.
  * Not to be confused with {@code <label>} (see {@link FormLabel}) or GWT's {@link com.google.gwt.user.client.ui.Label}
  *
  * @author Sven Jacobs

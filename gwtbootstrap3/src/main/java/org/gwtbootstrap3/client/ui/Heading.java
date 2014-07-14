@@ -30,21 +30,16 @@ import org.gwtbootstrap3.client.ui.constants.Emphasis;
 
 /**
  * Represents a Heading tag, has an optional subtext.
- * <p/>
  * <h3>Bootstrap's Documentation</h3>
  * <a href="http://getbootstrap.com/css/#type">Typography</a>
- * <p/>
  * <h3>Usage in UiBinder</h3>
- * <p/>
  * <pre>
  * {@code
  * <b:Heading size="1">Heading Text</b:Heading>
  * <b:Heading size="1" subtext="Subtext Text">Heading Text</b:Heading>
  * }
  * </pre>
- * <p/>
  * <h3>Usage in Java</h3>
- * <p/>
  * <pre>
  * Heading h1 = new Heading(1, "Heading Text");
  * h1.setSubtext("Subtext Text); // optional

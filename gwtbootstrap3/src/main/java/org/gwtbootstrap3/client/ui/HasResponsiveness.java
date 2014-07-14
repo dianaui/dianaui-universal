@@ -22,9 +22,7 @@ package org.gwtbootstrap3.client.ui;
 
 /**
  * Interface to set the visibility and hidden properties of elements
- * <p/>
  * Example:
- * <p/>
  * hiddenOn="SM MD"
  * visibleOn="SM LG"
  * hiddenOn="LG"

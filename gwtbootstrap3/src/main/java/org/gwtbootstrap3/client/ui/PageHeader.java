@@ -26,9 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Page header with optional subtext
- * <p/>
  * <h3>UiBinder example</h3>
- * <p/>
  * <pre>
  * {@code
  *     <b:PageHeader subText="Some subtext">Page header title</b:PageHeader>

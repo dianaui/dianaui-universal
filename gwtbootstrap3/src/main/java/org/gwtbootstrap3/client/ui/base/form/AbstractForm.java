@@ -59,10 +59,10 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
         this(Document.get().createFormElement(), createIFrame);
         getElement().setAttribute(Attributes.ROLE, FORM);
     }
+
     /**
      * This constructor may be used by subclasses to explicitly use an existing
      * element. This element must be a &lt;form&gt; element.
-     * <p/>
      * <p>
      * If the createIFrame parameter is set to <code>true</code>, then the
      * wrapped form's target attribute will be set to a hidden iframe. If not,
@@ -171,7 +171,6 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
 
     /**
      * Submits the form.
-     * <p/>
      * <p>
      * The FormPanel must <em>not</em> be detached (i.e. removed from its parent
      * or otherwise disconnected from a {@link com.google.gwt.user.client.ui.RootPanel}) until the submission
@@ -326,7 +325,6 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
 
         /**
          * Fired when the form is submitted.
-         * <p/>
          * <p>
          * The FormPanel must <em>not</em> be detached (i.e. removed from its
          * parent or otherwise disconnected from a {@link com.google.gwt.user.client.ui.RootPanel}) until the

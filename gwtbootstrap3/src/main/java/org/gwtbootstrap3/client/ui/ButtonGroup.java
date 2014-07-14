@@ -25,7 +25,6 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Button group containing multiple buttons.
- * <p/>
  * <h3>UiBinder example</h3>
  * <pre>{@code
  *     <b:ButtonGroup>
@@ -34,7 +33,6 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  *         <b:Button>Button 3</b:Button>
  *     </b:ButtonGroup>
  * }</pre>
- * <p/>
  * Is also a container for dropdown buttons:
  * <pre>{@code
  *     <b:ButtonGroup>

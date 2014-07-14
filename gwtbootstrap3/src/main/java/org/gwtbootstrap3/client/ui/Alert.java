@@ -31,7 +31,6 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Alert block.
- * <p/>
  * Use {@link #setDismissable(boolean)} to add a close ("x") button.
  *
  * @author Sven Jacobs

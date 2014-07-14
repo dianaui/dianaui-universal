@@ -381,7 +381,6 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
 
         /**
          * Update the list of visible suggestions.
-         * <p/>
          * Use care when using isDisplayStringHtml; it is an easy way to expose
          * script-based security problems.
          *

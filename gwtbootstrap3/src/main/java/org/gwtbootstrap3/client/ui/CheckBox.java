@@ -34,7 +34,6 @@ import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * A checkbox with a label for use within a {@link Form}.
- * <p/>
  * Basically this is a non-styled {@link CheckBoxButton} encapsulated in a {@link Div}.
  *
  * @author Sven Jacobs

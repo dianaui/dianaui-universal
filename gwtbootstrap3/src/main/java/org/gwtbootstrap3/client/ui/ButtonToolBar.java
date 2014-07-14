@@ -26,7 +26,6 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Combines multiple button groups.
- * <p/>
  * <h3>UiBinder example</h3>
  * <pre>{@code
  *     <b:ButtonToolBar>

@@ -27,7 +27,6 @@ import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * Prepends or appends texts to input fields.
- * <p/>
  * For prepending/appending {@link Button} see {@link InputGroupButton}.
  * Needs to be encapsulated in an {@link InputGroup}.
  * <h3>UiBinder example</h3>
@@ -38,7 +37,6 @@ import org.gwtbootstrap3.client.ui.constants.*;
  *         <b:InputGroupAddon>Append something</b:InputGroupAddon>
  *     </b:InputGroup>
  * }</pre>
- * <p/>
  * Also see Bootstrap <a href="http://getbootstrap.com/components/#input-groups">documentation</a>.
  *
  * @author Sven Jacobs

@@ -70,10 +70,8 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
 
     /**
      * This will help to rebuild the Pagination based on the data inside the SimplePager passed in.
-     * <p/>
      * Make sure to all this after adding/remove data from any of the grid to ensure that this stays
      * current with the SimplePager.
-     * <p/>
      * ex.
      * dataProvider.getList().addAll(newData);
      * pagination.rebuild(mySimplePager);

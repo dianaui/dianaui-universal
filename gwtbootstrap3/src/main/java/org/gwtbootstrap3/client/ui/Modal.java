@@ -99,6 +99,11 @@ public class Modal extends ModalWithBackdrop implements IsClosable, HasResponsiv
     }
 
     @Override
+    public boolean isClosable() {
+        return header.isClosable();
+    }
+
+    @Override
     public void setClosable(final boolean closable) {
         header.setClosable(closable);
 
@@ -110,11 +115,6 @@ public class Modal extends ModalWithBackdrop implements IsClosable, HasResponsiv
                 }
             });
         }
-    }
-
-    @Override
-    public boolean isClosable() {
-        return header.isClosable();
     }
 
     @Override

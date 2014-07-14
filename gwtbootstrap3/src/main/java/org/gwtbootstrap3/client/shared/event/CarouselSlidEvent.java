@@ -34,13 +34,13 @@ public class CarouselSlidEvent extends GwtEvent<CarouselSlidHandler> implements 
     private final Carousel carousel;
     private final Event nativeEvent;
 
-    public static Type<CarouselSlidHandler> getType() {
-        return TYPE;
-    }
-
     public CarouselSlidEvent(final Carousel carousel, final Event nativeEvent) {
         this.carousel = carousel;
         this.nativeEvent = nativeEvent;
+    }
+
+    public static Type<CarouselSlidHandler> getType() {
+        return TYPE;
     }
 
     @Override

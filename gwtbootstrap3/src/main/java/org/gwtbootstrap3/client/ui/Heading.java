@@ -80,6 +80,15 @@ public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasA
     }
 
     /**
+     * Returns the subtext of the heading.
+     *
+     * @return subtext of the heading
+     */
+    public String getSubtext() {
+        return subtext;
+    }
+
+    /**
      * Sets the subtext for the heading (wrapped in a Small tag).
      *
      * @param subtext the subtext of the heading
@@ -89,15 +98,6 @@ public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasA
 
         // Render the inner html of the element
         render();
-    }
-
-    /**
-     * Returns the subtext of the heading.
-     *
-     * @return subtext of the heading
-     */
-    public String getSubtext() {
-        return subtext;
     }
 
     /**
@@ -127,14 +127,6 @@ public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasA
      * {@inheritDoc}
      */
     @Override
-    public void setEmphasis(final Emphasis emphasis) {
-        StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Emphasis getEmphasis() {
         return Emphasis.fromStyleName(getStyleName());
     }
@@ -143,8 +135,8 @@ public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasA
      * {@inheritDoc}
      */
     @Override
-    public void setAlignment(final Alignment alignment) {
-        StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
+    public void setEmphasis(final Emphasis emphasis) {
+        StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
     }
 
     /**
@@ -153,6 +145,14 @@ public class Heading extends ComplexWidget implements HasEmphasis, HasText, HasA
     @Override
     public Alignment getAlignment() {
         return Alignment.fromStyleName(getStyleName());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setAlignment(final Alignment alignment) {
+        StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
     }
 
     /**

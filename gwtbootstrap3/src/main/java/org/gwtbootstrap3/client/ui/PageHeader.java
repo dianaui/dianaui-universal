@@ -53,14 +53,14 @@ public class PageHeader extends Div implements HasText {
     }
 
     @Override
-    public void setText(final String text) {
-        heading = text;
-        render();
+    public String getText() {
+        return heading;
     }
 
     @Override
-    public String getText() {
-        return heading;
+    public void setText(final String text) {
+        heading = text;
+        render();
     }
 
     private void render() {

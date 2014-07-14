@@ -38,12 +38,12 @@ public enum FormType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static FormType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, FormType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static FormType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, FormType.class, DEFAULT);
     }
 }

@@ -44,13 +44,13 @@ public class Paragraph extends HTMLPanel implements HasHTML, HasAlignment, HasEm
     }
 
     @Override
-    public void setText(final String text) {
-        textMixin.setText(text);
+    public String getText() {
+        return textMixin.getText();
     }
 
     @Override
-    public String getText() {
-        return textMixin.getText();
+    public void setText(final String text) {
+        textMixin.setText(text);
     }
 
     @Override
@@ -64,22 +64,22 @@ public class Paragraph extends HTMLPanel implements HasHTML, HasAlignment, HasEm
     }
 
     @Override
-    public void setAlignment(final Alignment alignment) {
-        StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
-    }
-
-    @Override
     public Alignment getAlignment() {
         return Alignment.fromStyleName(getStyleName());
     }
 
     @Override
-    public void setEmphasis(final Emphasis emphasis) {
-        StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
+    public void setAlignment(final Alignment alignment) {
+        StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
     }
 
     @Override
     public Emphasis getEmphasis() {
         return Emphasis.fromStyleName(getStyleName());
+    }
+
+    @Override
+    public void setEmphasis(final Emphasis emphasis) {
+        StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
     }
 }

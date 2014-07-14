@@ -448,12 +448,12 @@ public enum IconType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static IconType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, IconType.class, null);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static IconType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, IconType.class, null);
     }
 }

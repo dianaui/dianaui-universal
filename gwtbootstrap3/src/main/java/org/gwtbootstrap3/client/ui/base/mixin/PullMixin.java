@@ -35,12 +35,12 @@ public class PullMixin<T extends UIObject & HasPull> extends AbstractMixin imple
     }
 
     @Override
-    public void setPull(final Pull pull) {
-        StyleHelper.addUniqueEnumStyleName(uiObject, Pull.class, pull);
+    public Pull getPull() {
+        return Pull.fromStyleName(uiObject.getStyleName());
     }
 
     @Override
-    public Pull getPull() {
-        return Pull.fromStyleName(uiObject.getStyleName());
+    public void setPull(final Pull pull) {
+        StyleHelper.addUniqueEnumStyleName(uiObject, Pull.class, pull);
     }
 }

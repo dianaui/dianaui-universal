@@ -44,12 +44,11 @@ import java.util.NoSuchElementException;
 public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHover {
 
     protected static int DEFAULT_TRANSITION_MS = 150;
-
+    private int transitionMs = DEFAULT_TRANSITION_MS;
     private boolean viewing = false;
     private Trigger trigger = Trigger.HOVER;
     private int hideDelayMs = 0;
     private int showDelayMs = 0;
-    private int transitionMs = DEFAULT_TRANSITION_MS;
     private Widget widget;
     private Div tooltip = new Div();
     private HandlerRegistration inHandler;
@@ -140,6 +139,10 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
 
     public boolean isViewing() {
         return viewing;
+    }
+
+    protected void setViewing(boolean viewing) {
+        this.viewing = viewing;
     }
 
     public void toggle() {
@@ -320,20 +323,15 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
     }
 
     @Override
-    public void setWidget(final IsWidget w) {
-        widget = (w == null) ? null : w.asWidget();
-
-        postSetWidget();
-    }
-
-    @Override
     public Widget getWidget() {
         return widget;
     }
 
     @Override
-    public void setId(final String id) {
-        tooltip.setId(id);
+    public void setWidget(final IsWidget w) {
+        widget = (w == null) ? null : w.asWidget();
+
+        postSetWidget();
     }
 
     @Override
@@ -342,8 +340,8 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
     }
 
     @Override
-    public void setPlacement(final Placement placement) {
-        StyleHelper.addUniqueEnumStyleName(tooltip, Placement.class, placement);
+    public void setId(final String id) {
+        tooltip.setId(id);
     }
 
     @Override
@@ -352,8 +350,8 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
     }
 
     @Override
-    public void setTrigger(final Trigger trigger) {
-        this.trigger = trigger;
+    public void setPlacement(final Placement placement) {
+        StyleHelper.addUniqueEnumStyleName(tooltip, Placement.class, placement);
     }
 
     @Override
@@ -362,8 +360,8 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
     }
 
     @Override
-    public void setShowDelayMs(final int showDelayMs) {
-        this.showDelayMs = showDelayMs;
+    public void setTrigger(final Trigger trigger) {
+        this.trigger = trigger;
     }
 
     @Override
@@ -372,13 +370,18 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
     }
 
     @Override
-    public void setHideDelayMs(final int hideDelayMs) {
-        this.hideDelayMs = hideDelayMs;
+    public void setShowDelayMs(final int showDelayMs) {
+        this.showDelayMs = showDelayMs;
     }
 
     @Override
     public int getHideDelayMs() {
         return hideDelayMs;
+    }
+
+    @Override
+    public void setHideDelayMs(final int hideDelayMs) {
+        this.hideDelayMs = hideDelayMs;
     }
 
     @Override
@@ -436,10 +439,6 @@ public class Tooltip implements IsWidget, HasWidgets, HasOneWidget, HasId, HasHo
     @Override
     public String toString() {
         return asWidget().toString();
-    }
-
-    protected void setViewing(boolean viewing) {
-        this.viewing = viewing;
     }
 
     private void postSetWidget() {

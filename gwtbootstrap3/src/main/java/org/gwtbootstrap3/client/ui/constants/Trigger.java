@@ -39,12 +39,12 @@ public enum Trigger implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static Trigger fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, Trigger.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static Trigger fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, Trigger.class, DEFAULT);
     }
 }

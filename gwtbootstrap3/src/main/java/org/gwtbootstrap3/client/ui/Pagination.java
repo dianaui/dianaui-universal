@@ -45,13 +45,13 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
     }
 
     @Override
-    public void setPaginationSize(final PaginationSize paginationSize) {
-        StyleHelper.addUniqueEnumStyleName(this, PaginationSize.class, paginationSize);
+    public PaginationSize getPaginationSize() {
+        return PaginationSize.fromStyleName(getStyleName());
     }
 
     @Override
-    public PaginationSize getPaginationSize() {
-        return PaginationSize.fromStyleName(getStyleName());
+    public void setPaginationSize(final PaginationSize paginationSize) {
+        StyleHelper.addUniqueEnumStyleName(this, PaginationSize.class, paginationSize);
     }
 
     public AnchorListItem addPreviousLink() {

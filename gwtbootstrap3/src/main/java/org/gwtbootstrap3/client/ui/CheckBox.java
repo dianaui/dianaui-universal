@@ -55,13 +55,13 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setName(final String name) {
-        button.setName(name);
+    public String getName() {
+        return button.getName();
     }
 
     @Override
-    public String getName() {
-        return button.getName();
+    public void setName(final String name) {
+        button.setName(name);
     }
 
     @Override
@@ -75,13 +75,13 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setActive(final boolean active) {
-        button.setActive(active);
+    public boolean isActive() {
+        return button.isActive();
     }
 
     @Override
-    public boolean isActive() {
-        return button.isActive();
+    public void setActive(final boolean active) {
+        button.setActive(active);
     }
 
     @Override
@@ -95,18 +95,13 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setGlyphicon(GlyphiconType iconType) {
-        button.setGlyphicon(iconType);
-    }
-
-    @Override
     public GlyphiconType getGlyphicon() {
         return button.getGlyphicon();
     }
 
     @Override
-    public void setFontAwesomeIcon(final IconType iconType) {
-        button.setFontAwesomeIcon(iconType);
+    public void setGlyphicon(GlyphiconType iconType) {
+        button.setGlyphicon(iconType);
     }
 
     @Override
@@ -115,13 +110,13 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void clearIcon() {
-        button.clearIcon();
+    public void setFontAwesomeIcon(final IconType iconType) {
+        button.setFontAwesomeIcon(iconType);
     }
 
     @Override
-    public void setIconPosition(final IconPosition iconPosition) {
-        button.setIconPosition(iconPosition);
+    public void clearIcon() {
+        button.clearIcon();
     }
 
     @Override
@@ -130,8 +125,8 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setIconSize(final IconSize iconSize) {
-        button.setIconSize(iconSize);
+    public void setIconPosition(final IconPosition iconPosition) {
+        button.setIconPosition(iconPosition);
     }
 
     @Override
@@ -140,8 +135,8 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setIconFlip(final IconFlip iconFlip) {
-        button.setIconFlip(iconFlip);
+    public void setIconSize(final IconSize iconSize) {
+        button.setIconSize(iconSize);
     }
 
     @Override
@@ -150,8 +145,8 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setIconRotate(final IconRotate iconRotate) {
-        button.setIconRotate(iconRotate);
+    public void setIconFlip(final IconFlip iconFlip) {
+        button.setIconFlip(iconFlip);
     }
 
     @Override
@@ -160,8 +155,8 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setIconBordered(final boolean iconBordered) {
-        button.setIconBordered(iconBordered);
+    public void setIconRotate(final IconRotate iconRotate) {
+        button.setIconRotate(iconRotate);
     }
 
     @Override
@@ -170,8 +165,8 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setIconMuted(final boolean iconMuted) {
-        button.setIconMuted(iconMuted);
+    public void setIconBordered(final boolean iconBordered) {
+        button.setIconBordered(iconBordered);
     }
 
     @Override
@@ -180,8 +175,8 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setIconLight(final boolean iconLight) {
-        button.setIconLight(iconLight);
+    public void setIconMuted(final boolean iconMuted) {
+        button.setIconMuted(iconMuted);
     }
 
     @Override
@@ -190,13 +185,18 @@ public class CheckBox extends Div implements HasName, HasEnabled, HasActive, Has
     }
 
     @Override
-    public void setIconSpin(final boolean iconSpin) {
-        button.setIconSpin(iconSpin);
+    public void setIconLight(final boolean iconLight) {
+        button.setIconLight(iconLight);
     }
 
     @Override
     public boolean isIconSpin() {
         return button.isIconSpin();
+    }
+
+    @Override
+    public void setIconSpin(final boolean iconSpin) {
+        button.setIconSpin(iconSpin);
     }
 
     @Override

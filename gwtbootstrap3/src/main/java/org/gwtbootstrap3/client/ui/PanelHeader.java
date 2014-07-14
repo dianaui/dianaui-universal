@@ -52,13 +52,13 @@ public class PanelHeader extends HTMLPanel implements HasHTML {
     }
 
     @Override
-    public void setText(final String text) {
-        textMixin.setText(text);
+    public String getText() {
+        return textMixin.getText();
     }
 
     @Override
-    public String getText() {
-        return textMixin.getText();
+    public void setText(final String text) {
+        textMixin.setText(text);
     }
 
     @Override

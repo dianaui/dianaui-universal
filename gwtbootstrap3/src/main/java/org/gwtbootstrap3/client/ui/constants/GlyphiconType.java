@@ -236,13 +236,13 @@ public enum GlyphiconType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static GlyphiconType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, GlyphiconType.class, null);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static GlyphiconType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, GlyphiconType.class, null);
     }
 
 }

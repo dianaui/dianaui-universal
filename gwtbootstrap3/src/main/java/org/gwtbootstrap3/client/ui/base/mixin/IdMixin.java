@@ -33,12 +33,12 @@ public class IdMixin<T extends UIObject & HasId> extends AbstractMixin implement
     }
 
     @Override
-    public void setId(final String id) {
-        uiObject.getElement().setId(id);
+    public String getId() {
+        return uiObject.getElement().getId();
     }
 
     @Override
-    public String getId() {
-        return uiObject.getElement().getId();
+    public void setId(final String id) {
+        uiObject.getElement().setId(id);
     }
 }

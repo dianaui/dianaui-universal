@@ -35,17 +35,17 @@ public class SpyMixin<T extends UIObject & HasSpy> extends AbstractMixin impleme
     }
 
     @Override
+    public Spy getSpy() {
+        final String spy = uiObject.getElement().getAttribute(Attributes.DATA_SPY);
+        return spy != null ? Spy.valueOf(spy) : null;
+    }
+
+    @Override
     public void setSpy(final Spy spy) {
         if (spy != null) {
             uiObject.getElement().setAttribute(Attributes.DATA_SPY, spy.getSpy());
         } else {
             uiObject.getElement().removeAttribute(Attributes.DATA_SPY);
         }
-    }
-
-    @Override
-    public Spy getSpy() {
-        final String spy = uiObject.getElement().getAttribute(Attributes.DATA_SPY);
-        return spy != null ? Spy.valueOf(spy) : null;
     }
 }

@@ -30,16 +30,16 @@ public class HideEvent extends GwtEvent<HideHandler> {
     private static final Type<HideHandler> TYPE = new Type<HideHandler>();
     private final NativeEvent nativeEvent;
 
-    public static Type<HideHandler> getType() {
-        return TYPE;
-    }
-
     public HideEvent() {
         this(null);
     }
 
     public HideEvent(final NativeEvent nativeEvent) {
         this.nativeEvent = nativeEvent;
+    }
+
+    public static Type<HideHandler> getType() {
+        return TYPE;
     }
 
     @Override

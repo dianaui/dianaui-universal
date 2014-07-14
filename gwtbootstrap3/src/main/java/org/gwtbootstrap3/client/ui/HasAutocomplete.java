@@ -26,7 +26,7 @@ public interface HasAutocomplete {
     String ON = "on";
     String OFF = "off";
 
-    void setAutocomplete(boolean autocomplete);
-
     String getAutocomplete();
+
+    void setAutocomplete(boolean autocomplete);
 }

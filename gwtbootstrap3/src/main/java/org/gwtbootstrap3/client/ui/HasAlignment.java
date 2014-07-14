@@ -30,16 +30,16 @@ import org.gwtbootstrap3.client.ui.constants.Alignment;
  */
 public interface HasAlignment {
     /**
-     * Sets this object's alignment.
-     *
-     * @param alignment the object's new alignment
-     */
-    void setAlignment(Alignment alignment);
-
-    /**
      * Get the object's alignment.
      *
      * @return the object's alignment
      */
     Alignment getAlignment();
+
+    /**
+     * Sets this object's alignment.
+     *
+     * @param alignment the object's new alignment
+     */
+    void setAlignment(Alignment alignment);
 }

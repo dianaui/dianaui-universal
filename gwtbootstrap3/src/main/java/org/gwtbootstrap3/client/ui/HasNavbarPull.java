@@ -26,7 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.NavbarPull;
  * @author Sven Jacobs
  */
 public interface HasNavbarPull {
-    void setPull(NavbarPull pull);
-
     NavbarPull getPull();
+
+    void setPull(NavbarPull pull);
 }

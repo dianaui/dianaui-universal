@@ -35,10 +35,167 @@ import org.gwtbootstrap3.client.ui.constants.*;
  */
 public abstract class AbstractIconButton extends AbstractButton implements HasText, HasIcon, HasIconPosition {
 
-    IconTextMixin<AbstractIconButton> iconTextMixin = new IconTextMixin<AbstractIconButton>(this);
-
     private final ButtonStateHandler buttonStateHandler = new ButtonStateHandler();
+    IconTextMixin<AbstractIconButton> iconTextMixin = new IconTextMixin<AbstractIconButton>(this);
     private String loadingText;
+
+    protected AbstractIconButton() {
+    }
+
+    protected AbstractIconButton(final ButtonType type) {
+        super(type);
+    }
+
+    public void setLoadingText(final String loadingText) {
+        this.loadingText = loadingText;
+    }
+
+    public ButtonStateHandler state() {
+        return buttonStateHandler;
+    }
+
+    @Override
+    public String getText() {
+        return iconTextMixin.getText();
+    }
+
+    @Override
+    public void setText(final String text) {
+        iconTextMixin.setText(text);
+
+        onChanged();
+    }
+
+    @Override
+    public GlyphiconType getGlyphicon() {
+        return iconTextMixin.getGlyphicon();
+    }
+
+    @Override
+    public void setGlyphicon(GlyphiconType iconType) {
+        iconTextMixin.setGlyphicon(iconType);
+
+        onChanged();
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return iconTextMixin.getFontAwesomeIcon();
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        iconTextMixin.setFontAwesomeIcon(iconType);
+
+        onChanged();
+    }
+
+    // TODO
+    @Override
+    public void clearIcon() {
+        iconTextMixin.setFontAwesomeIcon(null);
+
+        onChanged();
+    }
+
+    @Override
+    public IconPosition getIconPosition() {
+        return iconTextMixin.getIconPosition();
+    }
+
+    @Override
+    public void setIconPosition(final IconPosition iconPosition) {
+        iconTextMixin.setIconPosition(iconPosition);
+
+        onChanged();
+    }
+
+    @Override
+    public IconSize getIconSize() {
+        return iconTextMixin.getIconSize();
+    }
+
+    @Override
+    public void setIconSize(final IconSize iconSize) {
+        iconTextMixin.setIconSize(iconSize);
+
+        onChanged();
+    }
+
+    @Override
+    public IconFlip getIconFlip() {
+        return iconTextMixin.getIconFlip();
+    }
+
+    @Override
+    public void setIconFlip(final IconFlip iconFlip) {
+        iconTextMixin.setIconFlip(iconFlip);
+
+        onChanged();
+    }
+
+    @Override
+    public IconRotate getIconRotate() {
+        return iconTextMixin.getIconRotate();
+    }
+
+    @Override
+    public void setIconRotate(final IconRotate iconRotate) {
+        iconTextMixin.setIconRotate(iconRotate);
+
+        onChanged();
+    }
+
+    @Override
+    public boolean isIconBordered() {
+        return iconTextMixin.isIconBordered();
+    }
+
+    @Override
+    public void setIconBordered(final boolean iconBordered) {
+        iconTextMixin.setIconBordered(iconBordered);
+
+        onChanged();
+    }
+
+    @Override
+    public boolean isIconMuted() {
+        return iconTextMixin.isIconMuted();
+    }
+
+    @Override
+    public void setIconMuted(final boolean iconMuted) {
+        iconTextMixin.setIconMuted(iconMuted);
+
+        onChanged();
+    }
+
+    @Override
+    public boolean isIconLight() {
+        return iconTextMixin.isIconLight();
+    }
+
+    @Override
+    public void setIconLight(final boolean iconLight) {
+        iconTextMixin.setIconLight(iconLight);
+
+        onChanged();
+    }
+
+    @Override
+    public boolean isIconSpin() {
+        return iconTextMixin.isIconSpin();
+    }
+
+    @Override
+    public void setIconSpin(final boolean iconSpin) {
+        iconTextMixin.setIconSpin(iconSpin);
+
+        onChanged();
+    }
+
+    protected void onChanged() {
+    }
 
     public class ButtonStateHandler {
 
@@ -59,164 +216,6 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
             setText(text);
         }
 
-    }
-
-    protected AbstractIconButton() {
-    }
-
-    protected AbstractIconButton(final ButtonType type) {
-        super(type);
-    }
-
-    public void setLoadingText(final String loadingText) {
-        this.loadingText = loadingText;
-    }
-
-    public ButtonStateHandler state() {
-        return buttonStateHandler;
-    }
-
-    @Override
-    public void setText(final String text) {
-        iconTextMixin.setText(text);
-
-        onChanged();
-    }
-
-    @Override
-    public String getText() {
-        return iconTextMixin.getText();
-    }
-
-    @Override
-    public void setGlyphicon(GlyphiconType iconType) {
-        iconTextMixin.setGlyphicon(iconType);
-
-        onChanged();
-    }
-
-    @Override
-    public GlyphiconType getGlyphicon() {
-        return iconTextMixin.getGlyphicon();
-    }
-
-    @Override
-    public void setFontAwesomeIcon(final IconType iconType) {
-        iconTextMixin.setFontAwesomeIcon(iconType);
-
-        onChanged();
-    }
-
-    @Override
-    public IconType getFontAwesomeIcon() {
-        return iconTextMixin.getFontAwesomeIcon();
-    }
-
-    // TODO
-    @Override
-    public void clearIcon() {
-        iconTextMixin.setFontAwesomeIcon(null);
-
-        onChanged();
-    }
-
-    @Override
-    public void setIconPosition(final IconPosition iconPosition) {
-        iconTextMixin.setIconPosition(iconPosition);
-
-        onChanged();
-    }
-
-    @Override
-    public IconPosition getIconPosition() {
-        return iconTextMixin.getIconPosition();
-    }
-
-    @Override
-    public void setIconSize(final IconSize iconSize) {
-        iconTextMixin.setIconSize(iconSize);
-
-        onChanged();
-    }
-
-    @Override
-    public IconSize getIconSize() {
-        return iconTextMixin.getIconSize();
-    }
-
-    @Override
-    public void setIconFlip(final IconFlip iconFlip) {
-        iconTextMixin.setIconFlip(iconFlip);
-
-        onChanged();
-    }
-
-    @Override
-    public IconFlip getIconFlip() {
-        return iconTextMixin.getIconFlip();
-    }
-
-    @Override
-    public void setIconRotate(final IconRotate iconRotate) {
-        iconTextMixin.setIconRotate(iconRotate);
-
-        onChanged();
-    }
-
-    @Override
-    public IconRotate getIconRotate() {
-        return iconTextMixin.getIconRotate();
-    }
-
-    @Override
-    public void setIconBordered(final boolean iconBordered) {
-        iconTextMixin.setIconBordered(iconBordered);
-
-        onChanged();
-    }
-
-    @Override
-    public boolean isIconBordered() {
-        return iconTextMixin.isIconBordered();
-    }
-
-    @Override
-    public void setIconMuted(final boolean iconMuted) {
-        iconTextMixin.setIconMuted(iconMuted);
-
-        onChanged();
-    }
-
-    @Override
-    public boolean isIconMuted() {
-        return iconTextMixin.isIconMuted();
-    }
-
-    @Override
-    public void setIconLight(final boolean iconLight) {
-        iconTextMixin.setIconLight(iconLight);
-
-        onChanged();
-    }
-
-    @Override
-    public boolean isIconLight() {
-        return iconTextMixin.isIconLight();
-    }
-
-    @Override
-    public void setIconSpin(final boolean iconSpin) {
-        iconTextMixin.setIconSpin(iconSpin);
-
-        onChanged();
-    }
-
-    @Override
-    public boolean isIconSpin() {
-        return iconTextMixin.isIconSpin();
-    }
-
-    protected void onChanged() {
     }
 
 }

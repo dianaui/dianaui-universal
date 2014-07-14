@@ -58,10 +58,6 @@ public class Input extends ValueBoxBase<String> implements HasInputType {
         getElement().setAttribute(MAX, max);
     }
 
-    public void setType(final InputType inputType) {
-        getElement().setAttribute(TYPE, inputType.getType());
-    }
-
     @Override
     public InputType getType() {
         if (getElement().getAttribute(TYPE) == null || getElement().getAttribute(TYPE).isEmpty()) {
@@ -70,14 +66,18 @@ public class Input extends ValueBoxBase<String> implements HasInputType {
         return InputType.valueOf(getElement().getAttribute(TYPE));
     }
 
-    @Override
-    public void setPlaceholder(final String placeHolder) {
-        getElement().setAttribute(PLACEHOLDER, placeHolder != null ? placeHolder : "");
+    public void setType(final InputType inputType) {
+        getElement().setAttribute(TYPE, inputType.getType());
     }
 
     @Override
     public String getPlaceholder() {
         return getElement().getAttribute(PLACEHOLDER);
+    }
+
+    @Override
+    public void setPlaceholder(final String placeHolder) {
+        getElement().setAttribute(PLACEHOLDER, placeHolder != null ? placeHolder : "");
     }
 
 }

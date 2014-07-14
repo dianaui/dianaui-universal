@@ -67,12 +67,17 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
         return addDomHandler(handler, DoubleClickEvent.getType());
     }
 
+    public String getText() {
+        return span.getText();
+    }
+
     public void setText(final String text) {
         span.setText(text);
     }
 
-    public String getText() {
-        return span.getText();
+    @Override
+    public String getHref() {
+        return AnchorElement.as(getElement()).getHref();
     }
 
     @Override
@@ -81,8 +86,8 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
     }
 
     @Override
-    public String getHref() {
-        return AnchorElement.as(getElement()).getHref();
+    public String getTargetHistoryToken() {
+        return targetHistoryToken;
     }
 
     @Override
@@ -93,17 +98,12 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
     }
 
     @Override
-    public String getTargetHistoryToken() {
-        return targetHistoryToken;
+    public boolean isActive() {
+        return activeMixin.isActive();
     }
 
     @Override
     public void setActive(final boolean active) {
         activeMixin.setActive(active);
-    }
-
-    @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
     }
 }

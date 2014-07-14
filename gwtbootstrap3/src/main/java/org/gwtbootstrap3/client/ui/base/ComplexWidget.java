@@ -53,13 +53,13 @@ public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiven
     }
 
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
+    public String getId() {
+        return idMixin.getId();
     }
 
     @Override
-    public String getId() {
-        return idMixin.getId();
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 
     @Override

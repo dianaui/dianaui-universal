@@ -43,23 +43,23 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasTex
     }
 
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
-    }
-
-    @Override
     public String getId() {
         return idMixin.getId();
     }
 
     @Override
-    public void setText(final String text) {
-        getElement().setInnerText(text);
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 
     @Override
     public String getText() {
         return getElement().getInnerText();
+    }
+
+    @Override
+    public void setText(final String text) {
+        getElement().setInnerText(text);
     }
 
     @Override

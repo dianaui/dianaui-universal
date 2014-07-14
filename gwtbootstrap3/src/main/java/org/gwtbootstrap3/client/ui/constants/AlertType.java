@@ -40,12 +40,12 @@ public enum AlertType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static AlertType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, AlertType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static AlertType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, AlertType.class, DEFAULT);
     }
 }

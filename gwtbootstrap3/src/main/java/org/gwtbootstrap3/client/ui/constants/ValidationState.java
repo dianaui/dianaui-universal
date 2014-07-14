@@ -39,12 +39,12 @@ public enum ValidationState implements Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static ValidationState fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, ValidationState.class, NONE);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static ValidationState fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, ValidationState.class, NONE);
     }
 }

@@ -133,6 +133,11 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
     }
 
     @Override
+    public String getHref() {
+        return getAnchorElement().getHref();
+    }
+
+    @Override
     public void setHref(final String href) {
         if (href == null) {
             getAnchorElement().removeAttribute(HREF);
@@ -142,13 +147,13 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
     }
 
     @Override
-    public String getHref() {
-        return getAnchorElement().getHref();
+    public int getTabIndex() {
+        return getFocusableMixin().getTabIndex();
     }
 
     @Override
-    public int getTabIndex() {
-        return getFocusableMixin().getTabIndex();
+    public void setTabIndex(final int index) {
+        getFocusableMixin().setTabIndex(index);
     }
 
     @Override
@@ -162,8 +167,8 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
     }
 
     @Override
-    public void setTabIndex(final int index) {
-        getFocusableMixin().setTabIndex(index);
+    public boolean isEnabled() {
+        return getStyleName().contains(Styles.DISABLED);
     }
 
     @Override
@@ -173,11 +178,6 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
         } else {
             addStyleName(Styles.DISABLED);
         }
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return getStyleName().contains(Styles.DISABLED);
     }
 
     @Override

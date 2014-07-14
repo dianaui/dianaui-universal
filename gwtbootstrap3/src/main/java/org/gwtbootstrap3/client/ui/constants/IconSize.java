@@ -40,12 +40,12 @@ public enum IconSize implements Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static IconSize fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, IconSize.class, NONE);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static IconSize fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, IconSize.class, NONE);
     }
 }

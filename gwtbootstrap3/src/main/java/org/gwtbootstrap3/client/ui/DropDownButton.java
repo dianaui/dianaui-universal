@@ -53,23 +53,23 @@ public class DropDownButton extends ButtonGroup implements HasText, HasEnabled {
     }
 
     @Override
-    public void setText(String text) {
-        button.setText(text);
-    }
-
-    @Override
     public String getText() {
         return button.getText();
     }
 
     @Override
-    public void setEnabled(boolean enabled) {
-        button.setEnabled(enabled);
+    public void setText(String text) {
+        button.setText(text);
     }
 
     @Override
     public boolean isEnabled() {
         return button.isEnabled();
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        button.setEnabled(enabled);
     }
 
 }

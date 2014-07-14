@@ -50,23 +50,23 @@ public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implement
     }
 
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
-    }
-
-    @Override
     public String getId() {
         return idMixin.getId();
     }
 
     @Override
-    public void setSpy(final Spy spy) {
-        spyMixin.setSpy(spy);
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 
     @Override
     public Spy getSpy() {
         return spyMixin.getSpy();
+    }
+
+    @Override
+    public void setSpy(final Spy spy) {
+        spyMixin.setSpy(spy);
     }
 
     @Override

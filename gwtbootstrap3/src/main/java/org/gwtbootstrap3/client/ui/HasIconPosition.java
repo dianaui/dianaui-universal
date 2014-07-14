@@ -26,7 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.IconPosition;
  * @author Sven Jacobs
  */
 public interface HasIconPosition {
-    void setIconPosition(IconPosition iconPosition);
-
     IconPosition getIconPosition();
+
+    void setIconPosition(IconPosition iconPosition);
 }

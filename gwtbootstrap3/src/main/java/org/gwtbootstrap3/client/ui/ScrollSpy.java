@@ -50,6 +50,24 @@ public class ScrollSpy {
     private final Element spyOn;
     private final String target;
 
+    private ScrollSpy(final Element spyOn, final String selector) {
+
+        this.spyOn = spyOn;
+        this.target = selector;
+    }
+
+    private ScrollSpy(final Element spyOn, final HasId target) {
+
+        final String id = target.getId();
+
+        if (id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("ScrollSpy target element must have id");
+        }
+
+        this.spyOn = spyOn;
+        this.target = "#" + id;
+    }
+
     /**
      * Attaches ScrollSpy to document {@code <body>} and with the specified
      * target CSS selector.
@@ -98,24 +116,6 @@ public class ScrollSpy {
      */
     public static ScrollSpy scrollSpy(final Element spyOn, final String selector) {
         return new ScrollSpy(spyOn, selector);
-    }
-
-    private ScrollSpy(final Element spyOn, final String selector) {
-
-        this.spyOn = spyOn;
-        this.target = selector;
-    }
-
-    private ScrollSpy(final Element spyOn, final HasId target) {
-
-        final String id = target.getId();
-
-        if (id == null || id.isEmpty()) {
-            throw new IllegalArgumentException("ScrollSpy target element must have id");
-        }
-
-        this.spyOn = spyOn;
-        this.target = "#" + id;
     }
 
     /**

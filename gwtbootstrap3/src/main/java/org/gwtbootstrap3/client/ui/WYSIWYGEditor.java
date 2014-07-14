@@ -75,6 +75,11 @@ public class WYSIWYGEditor extends Div implements HasValueChangeHandlers<String>
     }
 
     @Override
+    public ButtonSize getSize() {
+        return toolbar.boldButton.getSize();
+    }
+
+    @Override
     public void setSize(ButtonSize size) {
         toolbar.boldButton.setSize(size);
         toolbar.italicButton.setSize(size);
@@ -96,10 +101,5 @@ public class WYSIWYGEditor extends Div implements HasValueChangeHandlers<String>
         toolbar.removeFormatButton.setSize(size);
         toolbar.undoButton.setSize(size);
         toolbar.redoButton.setSize(size);
-    }
-
-    @Override
-    public ButtonSize getSize() {
-        return toolbar.boldButton.getSize();
     }
 }

@@ -53,23 +53,23 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setHref(final String href) {
-        anchor.setHref(href);
-    }
-
-    @Override
     public String getHref() {
         return anchor.getHref();
     }
 
     @Override
-    public void setTargetHistoryToken(final String targetHistoryToken) {
-        anchor.setTargetHistoryToken(targetHistoryToken);
+    public void setHref(final String href) {
+        anchor.setHref(href);
     }
 
     @Override
     public String getTargetHistoryToken() {
         return anchor.getTargetHistoryToken();
+    }
+
+    @Override
+    public void setTargetHistoryToken(final String targetHistoryToken) {
+        anchor.setTargetHistoryToken(targetHistoryToken);
     }
 
     @Override
@@ -83,6 +83,11 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
+    public void setTabIndex(final int index) {
+        anchor.setTabIndex(index);
+    }
+
+    @Override
     public void setAccessKey(final char key) {
         anchor.setAccessKey(key);
     }
@@ -93,8 +98,8 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setTabIndex(final int index) {
-        anchor.setTabIndex(index);
+    public Toggle getToggle() {
+        return anchor.getToggle();
     }
 
     @Override
@@ -103,18 +108,13 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public Toggle getToggle() {
-        return anchor.getToggle();
+    public String getTarget() {
+        return anchor.getTarget();
     }
 
     @Override
     public void setTarget(String target) {
         anchor.setTarget(target);
-    }
-
-    @Override
-    public String getTarget() {
-        return anchor.getTarget();
     }
 
 }

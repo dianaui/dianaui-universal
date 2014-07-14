@@ -54,6 +54,11 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
+    public GlyphiconType getGlyphicon() {
+        return glyphicon != null ? glyphicon.getType() : null;
+    }
+
+    @Override
     public void setGlyphicon(GlyphiconType iconType) {
         if (glyphicon == null) {
             glyphicon = new Glyphicon(getElement());
@@ -63,8 +68,8 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
-    public GlyphiconType getGlyphicon() {
-        return glyphicon != null ? glyphicon.getType() : null;
+    public IconType getFontAwesomeIcon() {
+        return fontAwesomeIcon != null ? fontAwesomeIcon.getType() : null;
     }
 
     @Override
@@ -77,8 +82,8 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
-    public IconType getFontAwesomeIcon() {
-        return fontAwesomeIcon != null ? fontAwesomeIcon.getType() : null;
+    public IconSize getIconSize() {
+        return iconSize;
     }
 
     @Override
@@ -91,8 +96,8 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
-    public IconSize getIconSize() {
-        return iconSize;
+    public IconFlip getIconFlip() {
+        return iconFlip;
     }
 
     @Override
@@ -105,8 +110,8 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
-    public IconFlip getIconFlip() {
-        return iconFlip;
+    public IconRotate getIconRotate() {
+        return iconRotate;
     }
 
     @Override
@@ -119,8 +124,8 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
-    public IconRotate getIconRotate() {
-        return iconRotate;
+    public boolean isIconBordered() {
+        return iconBordered;
     }
 
     @Override
@@ -133,8 +138,8 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
-    public boolean isIconBordered() {
-        return iconBordered;
+    public boolean isIconMuted() {
+        return iconMuted;
     }
 
     @Override
@@ -147,8 +152,8 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
-    public boolean isIconMuted() {
-        return iconMuted;
+    public boolean isIconLight() {
+        return iconLight;
     }
 
     @Override
@@ -161,8 +166,8 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     }
 
     @Override
-    public boolean isIconLight() {
-        return iconLight;
+    public boolean isIconSpin() {
+        return iconSpin;
     }
 
     @Override
@@ -172,11 +177,6 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
         if (fontAwesomeIcon != null) {
             fontAwesomeIcon.setSpin(iconSpin);
         }
-    }
-
-    @Override
-    public boolean isIconSpin() {
-        return iconSpin;
     }
 
 }

@@ -151,23 +151,23 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setFontAwesomeIcon(IconType iconType) {
-        fontAwesomeIcon = iconType;
-    }
-
-    @Override
     public IconType getFontAwesomeIcon() {
         return fontAwesomeIcon;
     }
 
     @Override
-    public void setGlyphicon(GlyphiconType iconType) {
-        glyphicon = iconType;
+    public void setFontAwesomeIcon(IconType iconType) {
+        fontAwesomeIcon = iconType;
     }
 
     @Override
     public GlyphiconType getGlyphicon() {
         return glyphicon;
+    }
+
+    @Override
+    public void setGlyphicon(GlyphiconType iconType) {
+        glyphicon = iconType;
     }
 
     @Override
@@ -177,18 +177,13 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setIconSize(IconSize iconSize) {
-        this.iconSize = iconSize;
-    }
-
-    @Override
     public IconSize getIconSize() {
         return iconSize;
     }
 
     @Override
-    public void setIconFlip(IconFlip iconFlip) {
-        this.iconFlip = iconFlip;
+    public void setIconSize(IconSize iconSize) {
+        this.iconSize = iconSize;
     }
 
     @Override
@@ -197,8 +192,8 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setIconRotate(IconRotate iconRotate) {
-        this.iconRotate = iconRotate;
+    public void setIconFlip(IconFlip iconFlip) {
+        this.iconFlip = iconFlip;
     }
 
     @Override
@@ -207,8 +202,8 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setIconBordered(boolean iconBordered) {
-        this.iconBordered = iconBordered;
+    public void setIconRotate(IconRotate iconRotate) {
+        this.iconRotate = iconRotate;
     }
 
     @Override
@@ -217,8 +212,8 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setIconMuted(boolean iconMuted) {
-        this.iconMuted = iconMuted;
+    public void setIconBordered(boolean iconBordered) {
+        this.iconBordered = iconBordered;
     }
 
     @Override
@@ -227,8 +222,8 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setIconLight(boolean iconLight) {
-        this.iconLight = iconLight;
+    public void setIconMuted(boolean iconMuted) {
+        this.iconMuted = iconMuted;
     }
 
     @Override
@@ -237,8 +232,8 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setIconSpin(boolean iconSpin) {
-        this.iconSpin = iconSpin;
+    public void setIconLight(boolean iconLight) {
+        this.iconLight = iconLight;
     }
 
     @Override
@@ -247,13 +242,18 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setIconPosition(IconPosition iconPosition) {
-        this.iconPosition = iconPosition;
+    public void setIconSpin(boolean iconSpin) {
+        this.iconSpin = iconSpin;
     }
 
     @Override
     public IconPosition getIconPosition() {
         return iconPosition;
+    }
+
+    @Override
+    public void setIconPosition(IconPosition iconPosition) {
+        this.iconPosition = iconPosition;
     }
 
 }

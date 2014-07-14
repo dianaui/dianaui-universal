@@ -133,12 +133,12 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
         setHref(href);
     }
 
-    public void setText(final String text) {
-        anchor.setText(text);
-    }
-
     public String getText() {
         return anchor.getText();
+    }
+
+    public void setText(final String text) {
+        anchor.setText(text);
     }
 
     public String getHTML() {
@@ -150,18 +150,13 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void setGlyphicon(final GlyphiconType iconType) {
-        anchor.setGlyphicon(iconType);
-    }
-
-    @Override
     public GlyphiconType getGlyphicon() {
         return anchor.getGlyphicon();
     }
 
     @Override
-    public void setFontAwesomeIcon(final IconType iconType) {
-        anchor.setFontAwesomeIcon(iconType);
+    public void setGlyphicon(final GlyphiconType iconType) {
+        anchor.setGlyphicon(iconType);
     }
 
     @Override
@@ -170,13 +165,13 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void clearIcon() {
-        anchor.setFontAwesomeIcon(null);
+    public void setFontAwesomeIcon(final IconType iconType) {
+        anchor.setFontAwesomeIcon(iconType);
     }
 
     @Override
-    public void setIconPosition(final IconPosition iconPosition) {
-        anchor.setIconPosition(iconPosition);
+    public void clearIcon() {
+        anchor.setFontAwesomeIcon(null);
     }
 
     @Override
@@ -185,8 +180,8 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void setIconSize(final IconSize iconSize) {
-        anchor.setIconSize(iconSize);
+    public void setIconPosition(final IconPosition iconPosition) {
+        anchor.setIconPosition(iconPosition);
     }
 
     @Override
@@ -195,8 +190,8 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void setIconFlip(IconFlip iconFlip) {
-        anchor.setIconFlip(iconFlip);
+    public void setIconSize(final IconSize iconSize) {
+        anchor.setIconSize(iconSize);
     }
 
     @Override
@@ -205,8 +200,8 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void setIconRotate(IconRotate iconRotate) {
-        anchor.setIconRotate(iconRotate);
+    public void setIconFlip(IconFlip iconFlip) {
+        anchor.setIconFlip(iconFlip);
     }
 
     @Override
@@ -215,8 +210,8 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void setIconBordered(boolean iconBordered) {
-        anchor.setIconBordered(iconBordered);
+    public void setIconRotate(IconRotate iconRotate) {
+        anchor.setIconRotate(iconRotate);
     }
 
     @Override
@@ -225,8 +220,8 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void setIconMuted(boolean iconMuted) {
-        anchor.setIconMuted(iconMuted);
+    public void setIconBordered(boolean iconBordered) {
+        anchor.setIconBordered(iconBordered);
     }
 
     @Override
@@ -235,8 +230,8 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void setIconLight(boolean iconLight) {
-        anchor.setIconLight(iconLight);
+    public void setIconMuted(boolean iconMuted) {
+        anchor.setIconMuted(iconMuted);
     }
 
     @Override
@@ -245,13 +240,18 @@ public class AnchorListItem extends AbstractAnchorListItem implements HasIcon, H
     }
 
     @Override
-    public void setIconSpin(boolean iconSpin) {
-        anchor.setIconSpin(iconSpin);
+    public void setIconLight(boolean iconLight) {
+        anchor.setIconLight(iconLight);
     }
 
     @Override
     public boolean isIconSpin() {
         return anchor.isIconSpin();
+    }
+
+    @Override
+    public void setIconSpin(boolean iconSpin) {
+        anchor.setIconSpin(iconSpin);
     }
 
 }

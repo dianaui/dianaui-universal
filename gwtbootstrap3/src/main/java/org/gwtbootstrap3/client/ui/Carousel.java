@@ -35,15 +35,14 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class Carousel extends Div {
     public static final String HOVER = "hover";
+    private String pause = HOVER;
     public static final String CAROUSEL = "carousel";
     public static final String CYCLE = "cycle";
     public static final String PAUSE = "pause";
     public static final String PREV = "prev";
     public static final String NEXT = "next";
-
     // Bootstrap default values: http://getbootstrap.com/javascript/#carousel
     private int interval = 5000;
-    private String pause = HOVER;
     private boolean wrap = true;
 
     public Carousel() {

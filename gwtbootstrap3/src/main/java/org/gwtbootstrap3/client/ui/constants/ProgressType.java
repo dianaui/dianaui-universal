@@ -36,12 +36,12 @@ public enum ProgressType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static ProgressType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, ProgressType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static ProgressType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, ProgressType.class, DEFAULT);
     }
 }

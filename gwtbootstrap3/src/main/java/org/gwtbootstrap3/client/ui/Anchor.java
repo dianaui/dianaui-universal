@@ -105,18 +105,13 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setText(final String text) {
-        iconTextMixin.setText(text);
-    }
-
-    @Override
     public String getText() {
         return iconTextMixin.getText();
     }
 
     @Override
-    public void setGlyphicon(final GlyphiconType iconType) {
-        iconTextMixin.setGlyphicon(iconType);
+    public void setText(final String text) {
+        iconTextMixin.setText(text);
     }
 
     @Override
@@ -125,8 +120,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setFontAwesomeIcon(final IconType iconType) {
-        iconTextMixin.setFontAwesomeIcon(iconType);
+    public void setGlyphicon(final GlyphiconType iconType) {
+        iconTextMixin.setGlyphicon(iconType);
     }
 
     @Override
@@ -135,13 +130,13 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void clearIcon() {
-        iconTextMixin.setFontAwesomeIcon(null);
+    public void setFontAwesomeIcon(final IconType iconType) {
+        iconTextMixin.setFontAwesomeIcon(iconType);
     }
 
     @Override
-    public void setIconPosition(final IconPosition iconPosition) {
-        iconTextMixin.setIconPosition(iconPosition);
+    public void clearIcon() {
+        iconTextMixin.setFontAwesomeIcon(null);
     }
 
     @Override
@@ -150,8 +145,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setIconSize(final IconSize iconSize) {
-        iconTextMixin.setIconSize(iconSize);
+    public void setIconPosition(final IconPosition iconPosition) {
+        iconTextMixin.setIconPosition(iconPosition);
     }
 
     @Override
@@ -160,8 +155,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setIconFlip(final IconFlip iconFlip) {
-        iconTextMixin.setIconFlip(iconFlip);
+    public void setIconSize(final IconSize iconSize) {
+        iconTextMixin.setIconSize(iconSize);
     }
 
     @Override
@@ -170,8 +165,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setIconRotate(final IconRotate iconRotate) {
-        iconTextMixin.setIconRotate(iconRotate);
+    public void setIconFlip(final IconFlip iconFlip) {
+        iconTextMixin.setIconFlip(iconFlip);
     }
 
     @Override
@@ -180,8 +175,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setIconBordered(final boolean iconBordered) {
-        iconTextMixin.setIconBordered(iconBordered);
+    public void setIconRotate(final IconRotate iconRotate) {
+        iconTextMixin.setIconRotate(iconRotate);
     }
 
     @Override
@@ -190,8 +185,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setIconMuted(final boolean iconMuted) {
-        iconTextMixin.setIconMuted(iconMuted);
+    public void setIconBordered(final boolean iconBordered) {
+        iconTextMixin.setIconBordered(iconBordered);
     }
 
     @Override
@@ -200,8 +195,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setIconLight(final boolean iconLight) {
-        iconTextMixin.setIconLight(iconLight);
+    public void setIconMuted(final boolean iconMuted) {
+        iconTextMixin.setIconMuted(iconMuted);
     }
 
     @Override
@@ -210,13 +205,23 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setIconSpin(final boolean iconSpin) {
-        iconTextMixin.setIconSpin(iconSpin);
+    public void setIconLight(final boolean iconLight) {
+        iconTextMixin.setIconLight(iconLight);
     }
 
     @Override
     public boolean isIconSpin() {
         return iconTextMixin.isIconSpin();
+    }
+
+    @Override
+    public void setIconSpin(final boolean iconSpin) {
+        iconTextMixin.setIconSpin(iconSpin);
+    }
+
+    @Override
+    public String getHref() {
+        return AnchorElement.as(getElement()).getHref();
     }
 
     @Override
@@ -229,8 +234,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public String getHref() {
-        return AnchorElement.as(getElement()).getHref();
+    public String getTargetHistoryToken() {
+        return targetHistoryToken;
     }
 
     @Override
@@ -241,8 +246,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public String getTargetHistoryToken() {
-        return targetHistoryToken;
+    public String getDataParent() {
+        return parentMixin.getDataParent();
     }
 
     @Override
@@ -251,18 +256,13 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public String getDataParent() {
-        return parentMixin.getDataParent();
+    public Toggle getToggle() {
+        return toggle;
     }
 
     @Override
     public void setToggle(final Toggle toggle) {
         this.toggle = toggle;
-    }
-
-    @Override
-    public Toggle getToggle() {
-        return toggle;
     }
 
     @Override
@@ -296,13 +296,13 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     }
 
     @Override
-    public void setTarget(String target) {
-        getAnchorElement().setTarget(target);
+    public String getTarget() {
+        return getAnchorElement().getTarget();
     }
 
     @Override
-    public String getTarget() {
-        return getAnchorElement().getTarget();
+    public void setTarget(String target) {
+        getAnchorElement().setTarget(target);
     }
 
     @Override

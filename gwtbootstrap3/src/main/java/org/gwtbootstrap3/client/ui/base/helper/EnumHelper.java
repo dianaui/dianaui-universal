@@ -27,6 +27,9 @@ import com.google.gwt.dom.client.Style;
  */
 public final class EnumHelper {
 
+    private EnumHelper() {
+    }
+
     /**
      * Returns first enum constant found in at space-separated list of style names.
      *
@@ -55,8 +58,5 @@ public final class EnumHelper {
         }
 
         return defaultValue;
-    }
-
-    private EnumHelper() {
     }
 }

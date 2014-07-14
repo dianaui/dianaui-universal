@@ -39,12 +39,12 @@ public enum ProgressBarType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static ProgressBarType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, ProgressBarType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static ProgressBarType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, ProgressBarType.class, DEFAULT);
     }
 }

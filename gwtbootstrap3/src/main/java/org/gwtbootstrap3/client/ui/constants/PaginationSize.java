@@ -37,12 +37,12 @@ public enum PaginationSize implements Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static PaginationSize fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, PaginationSize.class, NONE);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static PaginationSize fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, PaginationSize.class, NONE);
     }
 }

@@ -35,17 +35,17 @@ public class ParentMixin<T extends UIObject & HasToggle> extends AbstractMixin i
     }
 
     @Override
+    public String getDataParent() {
+        return uiObject.getElement().getAttribute(Attributes.DATA_PARENT);
+    }
+
+    @Override
     public void setDataParent(final String href) {
         if (href != null) {
             uiObject.getElement().setAttribute(Attributes.DATA_PARENT, href);
         } else {
             uiObject.getElement().removeAttribute(Attributes.DATA_PARENT);
         }
-    }
-
-    @Override
-    public String getDataParent() {
-        return uiObject.getElement().getAttribute(Attributes.DATA_PARENT);
     }
 
 }

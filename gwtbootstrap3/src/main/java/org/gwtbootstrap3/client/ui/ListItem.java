@@ -33,13 +33,13 @@ public class ListItem extends AbstractListItem implements HasText {
     }
 
     @Override
-    public void setText(String text) {
-        getElement().setInnerText(text);
+    public String getText() {
+        return getElement().getInnerText();
     }
 
     @Override
-    public String getText() {
-        return getElement().getInnerText();
+    public void setText(String text) {
+        getElement().setInnerText(text);
     }
 
 }

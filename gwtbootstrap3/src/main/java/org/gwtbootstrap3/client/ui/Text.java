@@ -46,13 +46,13 @@ public class Text extends Widget implements HasText {
     }
 
     @Override
-    public void setText(final String txt) {
-        text.setData(txt);
+    public String getText() {
+        return text.getData();
     }
 
     @Override
-    public String getText() {
-        return text.getData();
+    public void setText(final String txt) {
+        text.setData(txt);
     }
 
     @Override

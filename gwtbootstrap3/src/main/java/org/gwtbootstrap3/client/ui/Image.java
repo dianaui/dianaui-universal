@@ -67,13 +67,13 @@ public class Image extends com.google.gwt.user.client.ui.Image implements HasTyp
     }
 
     @Override
-    public void setType(final ImageType type) {
-        StyleHelper.addEnumStyleName(this, type);
+    public ImageType getType() {
+        return ImageType.fromStyleName(getStyleName());
     }
 
     @Override
-    public ImageType getType() {
-        return ImageType.fromStyleName(getStyleName());
+    public void setType(final ImageType type) {
+        StyleHelper.addEnumStyleName(this, type);
     }
 
     @Override
@@ -91,12 +91,12 @@ public class Image extends com.google.gwt.user.client.ui.Image implements HasTyp
     }
 
     @Override
-    public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
     }
 }

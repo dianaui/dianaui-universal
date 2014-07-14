@@ -30,16 +30,16 @@ import org.gwtbootstrap3.client.ui.constants.Emphasis;
  */
 public interface HasEmphasis {
     /**
-     * Sets the object's emphasis.
-     *
-     * @param emphasis the object's new emphasis
-     */
-    void setEmphasis(Emphasis emphasis);
-
-    /**
      * Get the object's emphasis.
      *
      * @return the object's emphasis
      */
     Emphasis getEmphasis();
+
+    /**
+     * Sets the object's emphasis.
+     *
+     * @param emphasis the object's new emphasis
+     */
+    void setEmphasis(Emphasis emphasis);
 }

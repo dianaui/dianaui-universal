@@ -34,38 +34,38 @@ import org.gwtbootstrap3.client.ui.constants.IconType;
  */
 public interface HasIcon extends HasGlyphicon {
 
-    void setFontAwesomeIcon(IconType iconType);
-
     IconType getFontAwesomeIcon();
+
+    void setFontAwesomeIcon(IconType iconType);
 
     void clearIcon();
 
-    void setIconSize(IconSize iconSize);
-
     IconSize getIconSize();
 
-    void setIconFlip(IconFlip iconFlip);
+    void setIconSize(IconSize iconSize);
 
     IconFlip getIconFlip();
 
-    void setIconRotate(IconRotate iconRotate);
+    void setIconFlip(IconFlip iconFlip);
 
     IconRotate getIconRotate();
 
-    void setIconBordered(boolean iconBordered);
+    void setIconRotate(IconRotate iconRotate);
 
     boolean isIconBordered();
 
-    void setIconMuted(boolean iconMuted);
+    void setIconBordered(boolean iconBordered);
 
     boolean isIconMuted();
 
-    void setIconLight(boolean iconLight);
+    void setIconMuted(boolean iconMuted);
 
     boolean isIconLight();
 
-    void setIconSpin(boolean iconSpin);
+    void setIconLight(boolean iconLight);
 
     boolean isIconSpin();
+
+    void setIconSpin(boolean iconSpin);
 
 }

@@ -43,16 +43,12 @@ public class ProgressBar extends Div implements HasType<ProgressBarType> {
         span.setStyleName(Styles.SR_ONLY, srOnly);
     }
 
-    public void setText(final String text) {
-        span.setText(text);
-    }
-
     public String getText() {
         return span.getText();
     }
 
-    public void setPercent(final double percent) {
-        getElement().getStyle().setWidth(percent, Style.Unit.PCT);
+    public void setText(final String text) {
+        span.setText(text);
     }
 
     public double getPercent() {
@@ -60,13 +56,17 @@ public class ProgressBar extends Div implements HasType<ProgressBarType> {
         return width == null ? 0 : Double.valueOf(width.substring(0, width.indexOf("%")));
     }
 
-    @Override
-    public void setType(final ProgressBarType type) {
-        StyleHelper.addUniqueEnumStyleName(this, ProgressBarType.class, type);
+    public void setPercent(final double percent) {
+        getElement().getStyle().setWidth(percent, Style.Unit.PCT);
     }
 
     @Override
     public ProgressBarType getType() {
         return ProgressBarType.fromStyleName(getStyleName());
+    }
+
+    @Override
+    public void setType(final ProgressBarType type) {
+        StyleHelper.addUniqueEnumStyleName(this, ProgressBarType.class, type);
     }
 }

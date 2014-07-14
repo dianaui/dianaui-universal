@@ -51,6 +51,11 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
         iconTextMixin.addTextWidgetToParent();
     }
 
+    @Override
+    public Toggle getToggle() {
+        return toggleMixin.getToggle();
+    }
+
     /**
      * Specifies that this button acts as a toggle, for instance for a parent {@link org.gwtbootstrap3.client.ui.DropDown}
      * or {@link org.gwtbootstrap3.client.ui.ButtonGroup}
@@ -72,11 +77,6 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
             add(separator, getElement());
             add(caret, getElement());
         }
-    }
-
-    @Override
-    public Toggle getToggle() {
-        return toggleMixin.getToggle();
     }
 
     public void onBrowserEvent(Event event) {

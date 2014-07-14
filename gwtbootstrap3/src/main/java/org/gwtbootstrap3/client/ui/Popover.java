@@ -158,18 +158,13 @@ public class Popover extends ModalWithBackdrop implements HasHover {
     }
 
     @Override
-    public void setPlacement(final Placement placement) {
-        StyleHelper.addUniqueEnumStyleName(this, Placement.class, placement);
-    }
-
-    @Override
     public Placement getPlacement() {
         return Placement.fromStyleName(getStyleName());
     }
 
     @Override
-    public void setTrigger(final Trigger trigger) {
-        this.trigger = trigger;
+    public void setPlacement(final Placement placement) {
+        StyleHelper.addUniqueEnumStyleName(this, Placement.class, placement);
     }
 
     @Override
@@ -178,8 +173,8 @@ public class Popover extends ModalWithBackdrop implements HasHover {
     }
 
     @Override
-    public void setShowDelayMs(final int showDelayMs) {
-        this.showDelayMs = showDelayMs;
+    public void setTrigger(final Trigger trigger) {
+        this.trigger = trigger;
     }
 
     @Override
@@ -188,13 +183,18 @@ public class Popover extends ModalWithBackdrop implements HasHover {
     }
 
     @Override
-    public void setHideDelayMs(final int hideDelayMs) {
-        this.hideDelayMs = hideDelayMs;
+    public void setShowDelayMs(final int showDelayMs) {
+        this.showDelayMs = showDelayMs;
     }
 
     @Override
     public int getHideDelayMs() {
         return hideDelayMs;
+    }
+
+    @Override
+    public void setHideDelayMs(final int hideDelayMs) {
+        this.hideDelayMs = hideDelayMs;
     }
 
     protected void onShow() {

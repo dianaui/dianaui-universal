@@ -31,6 +31,26 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 public class TextArea extends TextBoxBase {
 
     /**
+     * Creates an empty text area.
+     */
+    public TextArea() {
+        super(Document.get().createTextAreaElement());
+        setStyleName(Styles.FORM_CONTROL);
+    }
+
+    /**
+     * This constructor may be used by subclasses to explicitly use an existing
+     * element. This element must be a &lt;textarea&gt; element.
+     *
+     * @param element the element to be used
+     */
+    protected TextArea(final Element element) {
+        super(element.<Element>cast());
+        TextAreaElement.as(element);
+        element.addClassName(Styles.FORM_CONTROL);
+    }
+
+    /**
      * Creates a TextArea widget that wraps an existing &lt;textarea&gt;
      * element.
      * <p/>
@@ -54,26 +74,6 @@ public class TextArea extends TextBoxBase {
     }
 
     /**
-     * Creates an empty text area.
-     */
-    public TextArea() {
-        super(Document.get().createTextAreaElement());
-        setStyleName(Styles.FORM_CONTROL);
-    }
-
-    /**
-     * This constructor may be used by subclasses to explicitly use an existing
-     * element. This element must be a &lt;textarea&gt; element.
-     *
-     * @param element the element to be used
-     */
-    protected TextArea(final Element element) {
-        super(element.<Element>cast());
-        TextAreaElement.as(element);
-        element.addClassName(Styles.FORM_CONTROL);
-    }
-
-    /**
      * Gets the requested width of the text box (this is not an exact value, as
      * not all characters are created equal).
      *
@@ -81,6 +81,16 @@ public class TextArea extends TextBoxBase {
      */
     public int getCharacterWidth() {
         return getTextAreaElement().getCols();
+    }
+
+    /**
+     * Sets the requested width of the text box (this is not an exact value, as
+     * not all characters are created equal).
+     *
+     * @param width the requested width, in characters
+     */
+    public void setCharacterWidth(final int width) {
+        getTextAreaElement().setCols(width);
     }
 
     @Override
@@ -100,16 +110,6 @@ public class TextArea extends TextBoxBase {
      */
     public int getVisibleLines() {
         return getTextAreaElement().getRows();
-    }
-
-    /**
-     * Sets the requested width of the text box (this is not an exact value, as
-     * not all characters are created equal).
-     *
-     * @param width the requested width, in characters
-     */
-    public void setCharacterWidth(final int width) {
-        getTextAreaElement().setCols(width);
     }
 
     /**

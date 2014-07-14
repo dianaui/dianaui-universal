@@ -53,13 +53,13 @@ public class Glyphicon extends ComplexWidget implements HasType<GlyphiconType> {
     }
 
     @Override
-    public void setType(final GlyphiconType type) {
-        StyleHelper.addUniqueEnumStyleName(this, GlyphiconType.class, type);
+    public GlyphiconType getType() {
+        return GlyphiconType.fromStyleName(getStyleName());
     }
 
     @Override
-    public GlyphiconType getType() {
-        return GlyphiconType.fromStyleName(getStyleName());
+    public void setType(final GlyphiconType type) {
+        StyleHelper.addUniqueEnumStyleName(this, GlyphiconType.class, type);
     }
 
 }

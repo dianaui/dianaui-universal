@@ -27,8 +27,8 @@ import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
  */
 public interface HasGlyphicon {
 
-    void setGlyphicon(GlyphiconType iconType);
-
     GlyphiconType getGlyphicon();
+
+    void setGlyphicon(GlyphiconType iconType);
 
 }

@@ -50,13 +50,18 @@ public abstract class AbstractListItem extends ComplexPanel implements HasId, Ha
     }
 
     @Override
+    public String getId() {
+        return getElement().getId();
+    }
+
+    @Override
     public void setId(String id) {
         getElement().setId(id);
     }
 
     @Override
-    public String getId() {
-        return getElement().getId();
+    public boolean isEnabled() {
+        return !StyleHelper.containsStyle(getStyleName(), Styles.DISABLED);
     }
 
     @Override
@@ -69,8 +74,8 @@ public abstract class AbstractListItem extends ComplexPanel implements HasId, Ha
     }
 
     @Override
-    public boolean isEnabled() {
-        return !StyleHelper.containsStyle(getStyleName(), Styles.DISABLED);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     @Override
@@ -79,18 +84,13 @@ public abstract class AbstractListItem extends ComplexPanel implements HasId, Ha
     }
 
     @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
+    public boolean isActive() {
+        return activeMixin.isActive();
     }
 
     @Override
     public void setActive(final boolean active) {
         activeMixin.setActive(active);
-    }
-
-    @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
     }
 
     @Override

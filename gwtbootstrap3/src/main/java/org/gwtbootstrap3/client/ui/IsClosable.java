@@ -24,7 +24,7 @@ package org.gwtbootstrap3.client.ui;
  * @author Sven Jacobs
  */
 public interface IsClosable {
-    void setClosable(boolean closable);
-
     boolean isClosable();
+
+    void setClosable(boolean closable);
 }

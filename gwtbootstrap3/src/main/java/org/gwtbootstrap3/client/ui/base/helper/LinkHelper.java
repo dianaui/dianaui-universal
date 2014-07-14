@@ -30,6 +30,9 @@ import org.gwtbootstrap3.client.ui.HasLink;
  */
 public final class LinkHelper {
 
+    private LinkHelper() {
+    }
+
     public static void setHref(HasLink widget, final String link) {
         widget.setHref(link);
 
@@ -43,9 +46,6 @@ public final class LinkHelper {
                 History.newItem(link.replace("#", ""));
             }
         });
-    }
-
-    private LinkHelper() {
     }
 
 }

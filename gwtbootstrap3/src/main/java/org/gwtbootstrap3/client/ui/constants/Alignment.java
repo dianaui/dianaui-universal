@@ -38,12 +38,12 @@ public enum Alignment implements Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static Alignment fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, Alignment.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static Alignment fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, Alignment.class, DEFAULT);
     }
 }

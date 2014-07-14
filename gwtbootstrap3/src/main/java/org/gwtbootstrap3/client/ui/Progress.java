@@ -36,22 +36,22 @@ public class Progress extends Div implements HasType<ProgressType>, HasActive {
     }
 
     @Override
-    public void setActive(final boolean active) {
-        activeMixin.setActive(active);
-    }
-
-    @Override
     public boolean isActive() {
         return activeMixin.isActive();
     }
 
     @Override
-    public void setType(final ProgressType type) {
-        StyleHelper.addUniqueEnumStyleName(this, ProgressType.class, type);
+    public void setActive(final boolean active) {
+        activeMixin.setActive(active);
     }
 
     @Override
     public ProgressType getType() {
         return ProgressType.fromStyleName(getStyleName());
+    }
+
+    @Override
+    public void setType(final ProgressType type) {
+        StyleHelper.addUniqueEnumStyleName(this, ProgressType.class, type);
     }
 }

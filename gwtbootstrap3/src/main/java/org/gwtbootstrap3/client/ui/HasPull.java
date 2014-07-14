@@ -26,7 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.Pull;
  * @author Sven Jacobs
  */
 public interface HasPull {
-    void setPull(Pull pull);
-
     Pull getPull();
+
+    void setPull(Pull pull);
 }

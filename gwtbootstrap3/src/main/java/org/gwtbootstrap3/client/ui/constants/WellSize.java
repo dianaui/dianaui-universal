@@ -38,12 +38,12 @@ public enum WellSize implements Size, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static WellSize fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, WellSize.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static WellSize fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, WellSize.class, DEFAULT);
     }
 }

@@ -43,12 +43,12 @@ public class ListBox extends com.google.gwt.user.client.ui.ListBox implements Ha
     }
 
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
+    public String getId() {
+        return idMixin.getId();
     }
 
     @Override
-    public String getId() {
-        return idMixin.getId();
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 }

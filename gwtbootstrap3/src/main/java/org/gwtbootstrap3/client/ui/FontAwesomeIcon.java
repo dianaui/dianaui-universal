@@ -52,13 +52,13 @@ public class FontAwesomeIcon extends ComplexWidget implements HasType<IconType> 
     }
 
     @Override
-    public void setType(final IconType type) {
-        StyleHelper.addUniqueEnumStyleName(this, IconType.class, type);
+    public IconType getType() {
+        return IconType.fromStyleName(getStyleName());
     }
 
     @Override
-    public IconType getType() {
-        return IconType.fromStyleName(getStyleName());
+    public void setType(final IconType type) {
+        StyleHelper.addUniqueEnumStyleName(this, IconType.class, type);
     }
 
     public void setLight(final boolean light) {

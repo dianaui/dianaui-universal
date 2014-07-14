@@ -28,9 +28,9 @@ import org.gwtbootstrap3.client.ui.constants.ValidationState;
  */
 public interface HasValidationState {
 
-    void setValidationState(ValidationState state);
-
     ValidationState getValidationState();
+
+    void setValidationState(ValidationState state);
 
     void clearValidationState();
 

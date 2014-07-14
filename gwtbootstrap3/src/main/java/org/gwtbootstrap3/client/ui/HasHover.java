@@ -29,20 +29,20 @@ import org.gwtbootstrap3.client.ui.constants.Trigger;
  */
 public interface HasHover {
 
-    void setPlacement(Placement placement);
-
     Placement getPlacement();
 
-    void setTrigger(Trigger trigger);
+    void setPlacement(Placement placement);
 
     Trigger getTrigger();
 
-    void setShowDelayMs(int showDelayMs);
+    void setTrigger(Trigger trigger);
 
     int getShowDelayMs();
 
-    void setHideDelayMs(int hideDelayMs);
+    void setShowDelayMs(int showDelayMs);
 
     int getHideDelayMs();
+
+    void setHideDelayMs(int hideDelayMs);
 
 }

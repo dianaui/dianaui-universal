@@ -41,12 +41,12 @@ public enum Emphasis implements Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static Emphasis fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, Emphasis.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static Emphasis fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, Emphasis.class, DEFAULT);
     }
 }

@@ -62,13 +62,13 @@ public class NavbarCollapseButton extends Composite implements HasResponsiveness
     }
 
     @Override
-    public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
     }
 
     private Span newBarIcon() {

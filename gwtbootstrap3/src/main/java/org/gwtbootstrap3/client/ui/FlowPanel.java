@@ -33,22 +33,22 @@ public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implement
     private final IdMixin<FlowPanel> idMixin = new IdMixin<FlowPanel>(this);
 
     @Override
-    public void setSpy(final Spy spy) {
-        spyMixin.setSpy(spy);
-    }
-
-    @Override
     public Spy getSpy() {
         return spyMixin.getSpy();
     }
 
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
+    public void setSpy(final Spy spy) {
+        spyMixin.setSpy(spy);
     }
 
     @Override
     public String getId() {
         return idMixin.getId();
+    }
+
+    @Override
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 }

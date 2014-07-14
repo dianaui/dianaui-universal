@@ -41,6 +41,11 @@ public class TabListItem extends AnchorListItem implements HasTarget {
         setToggle(Toggle.TAB);
     }
 
+    @Override
+    public String getHref() {
+        return getTarget();
+    }
+
     /**
      * We override set href here because we want to ensure that projects with gwt places and gwtp
      * don't try to execute a place change event with it being clicked
@@ -51,18 +56,13 @@ public class TabListItem extends AnchorListItem implements HasTarget {
     }
 
     @Override
-    public String getHref() {
-        return getTarget();
+    public String getTarget() {
+        return anchor.getTarget();
     }
 
     @Override
     public void setTarget(final String target) {
         anchor.setTarget(target);
-    }
-
-    @Override
-    public String getTarget() {
-        return anchor.getTarget();
     }
 
     public int getToggleIndex() {

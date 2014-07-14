@@ -41,12 +41,12 @@ public enum ButtonType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static ButtonType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, ButtonType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static ButtonType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, ButtonType.class, DEFAULT);
     }
 }

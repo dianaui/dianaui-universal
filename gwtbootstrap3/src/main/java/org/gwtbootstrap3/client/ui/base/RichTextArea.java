@@ -55,6 +55,14 @@ public class RichTextArea extends com.google.gwt.user.client.ui.RichTextArea imp
         });
     }
 
+    private static native void setStyleContent(StyleElement element, String css) /*-{
+        if (element.styleSheet) {
+            element.styleSheet.cssText = css;
+        } else {
+            element.appendChild(document.createTextNode(css));
+        }
+    }-*/;
+
     public void injectStyle(String css) {
         IFrameElement iframe = IFrameElement.as(getElement());
 
@@ -102,13 +110,5 @@ public class RichTextArea extends com.google.gwt.user.client.ui.RichTextArea imp
     public HandlerRegistration addChangeHandler(ChangeHandler handler) {
         return addDomHandler(handler, ChangeEvent.getType());
     }
-
-    private static native void setStyleContent(StyleElement element, String css) /*-{
-        if (element.styleSheet) {
-            element.styleSheet.cssText = css;
-        } else {
-            element.appendChild(document.createTextNode(css));
-        }
-    }-*/;
 
 }

@@ -26,7 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.Size;
  * @author Sven Jacobs
  */
 public interface HasSize<T extends Size> {
-    void setSize(T size);
-
     T getSize();
+
+    void setSize(T size);
 }

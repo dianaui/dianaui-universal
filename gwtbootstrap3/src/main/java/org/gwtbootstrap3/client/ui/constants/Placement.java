@@ -40,12 +40,12 @@ public enum Placement implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static Placement fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, Placement.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static Placement fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, Placement.class, DEFAULT);
     }
 }

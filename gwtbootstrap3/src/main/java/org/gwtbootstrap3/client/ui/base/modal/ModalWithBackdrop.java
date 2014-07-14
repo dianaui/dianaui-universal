@@ -39,11 +39,10 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 public abstract class ModalWithBackdrop extends Div {
 
     protected static int DEFAULT_TRANSITION_MS = 150;
-
-    private boolean viewing = false;
+    protected int transitionMs = DEFAULT_TRANSITION_MS;
     protected DivElement backdrop;
     protected ModalBackdrop backdropType = ModalBackdrop.TRUE;
-    protected int transitionMs = DEFAULT_TRANSITION_MS;
+    private boolean viewing = false;
 
     public ModalWithBackdrop() {
         setStyleName(Styles.MODAL);
@@ -82,6 +81,10 @@ public abstract class ModalWithBackdrop extends Div {
 
     public boolean isViewing() {
         return viewing;
+    }
+
+    protected void setViewing(boolean viewing) {
+        this.viewing = viewing;
     }
 
     public void toggle() {
@@ -210,10 +213,6 @@ public abstract class ModalWithBackdrop extends Div {
 
     protected void deattach() {
         removeFromParent();
-    }
-
-    protected void setViewing(boolean viewing) {
-        this.viewing = viewing;
     }
 
     protected void initBackdrop() {

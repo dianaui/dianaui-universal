@@ -60,6 +60,11 @@ public class Label extends AbstractTextWidget implements HasType<LabelType>, Has
         setText(text);
     }
 
+    @Override
+    public LabelType getType() {
+        return LabelType.fromStyleName(getStyleName());
+    }
+
     /**
      * Sets type of label.
      *
@@ -68,11 +73,6 @@ public class Label extends AbstractTextWidget implements HasType<LabelType>, Has
     @Override
     public void setType(final LabelType type) {
         StyleHelper.addUniqueEnumStyleName(this, LabelType.class, type);
-    }
-
-    @Override
-    public LabelType getType() {
-        return LabelType.fromStyleName(getStyleName());
     }
 
     @Override

@@ -38,12 +38,12 @@ public enum IconRotate implements Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static IconRotate fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, IconRotate.class, NONE);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static IconRotate fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, IconRotate.class, NONE);
     }
 }

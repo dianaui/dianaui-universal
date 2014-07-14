@@ -30,6 +30,9 @@ import com.google.gwt.safehtml.shared.SafeHtmlUtils;
  */
 public final class SourceCodeHelper {
 
+    private SourceCodeHelper() {
+    }
+
     /**
      * If source code contains "\n" it will be replaced by a {@code <br>} element and "\s" will be replaced by a whitespace.
      *
@@ -46,8 +49,5 @@ public final class SourceCodeHelper {
         }
 
         return builder.toSafeHtml();
-    }
-
-    private SourceCodeHelper() {
     }
 }

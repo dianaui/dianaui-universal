@@ -40,12 +40,12 @@ public enum LabelType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static LabelType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, LabelType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static LabelType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, LabelType.class, DEFAULT);
     }
 }

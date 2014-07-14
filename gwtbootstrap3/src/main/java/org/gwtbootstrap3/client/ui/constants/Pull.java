@@ -38,12 +38,12 @@ public enum Pull implements Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static Pull fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, Pull.class, NONE);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static Pull fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, Pull.class, NONE);
     }
 }

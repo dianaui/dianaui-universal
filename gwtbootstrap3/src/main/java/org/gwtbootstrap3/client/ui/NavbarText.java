@@ -42,13 +42,13 @@ public class NavbarText extends Paragraph implements HasNavbarPull, HasResponsiv
     }
 
     @Override
-    public void setPull(final NavbarPull pull) {
-        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, pull);
+    public NavbarPull getPull() {
+        return NavbarPull.fromStyleName(getStyleName());
     }
 
     @Override
-    public NavbarPull getPull() {
-        return NavbarPull.fromStyleName(getStyleName());
+    public void setPull(final NavbarPull pull) {
+        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, pull);
     }
 
     @Override

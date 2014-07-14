@@ -49,6 +49,22 @@ public abstract class ValueDropDownButtonBase<T> extends DropDownButton implemen
         setList(list);
     }
 
+    public String getDefaultText() {
+        return defaultText;
+    }
+
+    public void setDefaultText(String defaultText) {
+        this.defaultText = defaultText;
+
+        if (value == null) {
+            getToggleButton().setText(defaultText);
+        }
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
     public void setList(List<T> list) {
         getMenu().clear();
 
@@ -71,22 +87,6 @@ public abstract class ValueDropDownButtonBase<T> extends DropDownButton implemen
                 getMenu().add(link);
             }
         }
-    }
-
-    public String getDefaultText() {
-        return defaultText;
-    }
-
-    public void setDefaultText(String defaultText) {
-        this.defaultText = defaultText;
-
-        if (value == null) {
-            getToggleButton().setText(defaultText);
-        }
-    }
-
-    public List<T> getList() {
-        return list;
     }
 
     public String getDisplayValue(T object, AnchorListItem item) {

@@ -29,7 +29,7 @@ public interface HasHref {
 
     public static final String HREF = "href";
 
-    void setHref(String href);
-
     String getHref();
+
+    void setHref(String href);
 }

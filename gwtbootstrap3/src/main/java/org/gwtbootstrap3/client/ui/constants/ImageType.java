@@ -38,12 +38,12 @@ public enum ImageType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static ImageType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, ImageType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static ImageType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, ImageType.class, DEFAULT);
     }
 }

@@ -24,7 +24,7 @@ package org.gwtbootstrap3.client.ui;
  * @author Sven Jacobs
  */
 public interface HasTabIndex {
-    void setTabIndex(int index);
-
     int getTabIndex();
+
+    void setTabIndex(int index);
 }

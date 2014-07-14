@@ -54,6 +54,11 @@ public class ModalHeader extends FlowPanel implements ModalComponent, IsClosable
     }
 
     @Override
+    public boolean isClosable() {
+        return closeButton != null && closeButton.getParent() != null;
+    }
+
+    @Override
     public void setClosable(final boolean closable) {
         if (closable) {
             closeButton = new CloseButton();
@@ -62,11 +67,6 @@ public class ModalHeader extends FlowPanel implements ModalComponent, IsClosable
             closeButton.removeFromParent();
             closeButton = null;
         }
-    }
-
-    @Override
-    public boolean isClosable() {
-        return closeButton != null && closeButton.getParent() != null;
     }
 
     @Override

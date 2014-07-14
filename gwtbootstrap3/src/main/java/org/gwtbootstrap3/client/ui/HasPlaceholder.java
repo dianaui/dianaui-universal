@@ -26,7 +26,7 @@ package org.gwtbootstrap3.client.ui;
 public interface HasPlaceholder {
     String PLACEHOLDER = "placeholder";
 
-    void setPlaceholder(String placeholder);
-
     String getPlaceholder();
+
+    void setPlaceholder(String placeholder);
 }

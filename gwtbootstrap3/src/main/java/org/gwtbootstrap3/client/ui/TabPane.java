@@ -67,17 +67,17 @@ public class TabPane extends Div implements HasActive {
     }
 
     @Override
+    public boolean isActive() {
+        return activeMixin.isActive();
+    }
+
+    @Override
     public void setActive(final boolean active) {
         activeMixin.setActive(active);
 
         if (isFade()) {
             setIn(active);
         }
-    }
-
-    @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
     }
 
 }

@@ -47,13 +47,13 @@ public class InputButton extends AbstractToggleButton implements HasName, HasFor
     }
 
     @Override
-    public void setText(final String text) {
-        getElement().setAttribute(Attributes.VALUE, text);
+    public String getText() {
+        return getElement().getAttribute(Attributes.VALUE);
     }
 
     @Override
-    public String getText() {
-        return getElement().getAttribute(Attributes.VALUE);
+    public void setText(final String text) {
+        getElement().setAttribute(Attributes.VALUE, text);
     }
 
     public void setTypeAttr(final TypeAttrType type) {
@@ -61,13 +61,13 @@ public class InputButton extends AbstractToggleButton implements HasName, HasFor
     }
 
     @Override
-    public void setName(final String name) {
-        InputElement.as(getElement()).setName(name);
+    public String getName() {
+        return InputElement.as(getElement()).getName();
     }
 
     @Override
-    public String getName() {
-        return InputElement.as(getElement()).getName();
+    public void setName(final String name) {
+        InputElement.as(getElement()).setName(name);
     }
 
     @Override

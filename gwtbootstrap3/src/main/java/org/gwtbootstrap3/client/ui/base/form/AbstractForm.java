@@ -44,148 +44,6 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
 
     private static final String FORM = "form";
     private static final FormPanelImpl impl = GWT.create(FormPanelImpl.class);
-
-    /**
-     * Fired when a form has been submitted successfully.
-     */
-    public static class SubmitCompleteEvent extends GwtEvent<SubmitCompleteHandler> {
-
-        /**
-         * The event type.
-         */
-        private static Type<SubmitCompleteHandler> TYPE;
-
-        /**
-         * Handler hook.
-         *
-         * @return the handler hook
-         */
-        static Type<SubmitCompleteHandler> getType() {
-            if (TYPE == null) {
-                TYPE = new Type<SubmitCompleteHandler>();
-            }
-            return TYPE;
-        }
-
-        private String resultHtml;
-
-        /**
-         * Create a submit complete event.
-         *
-         * @param resultsHtml the results from submitting the form
-         */
-        protected SubmitCompleteEvent(String resultsHtml) {
-            this.resultHtml = resultsHtml;
-        }
-
-        @Override
-        public final Type<SubmitCompleteHandler> getAssociatedType() {
-            return TYPE;
-        }
-
-        /**
-         * Gets the result text of the form submission.
-         *
-         * @return the result html, or <code>null</code> if there was an error
-         * reading it
-         * @tip The result html can be <code>null</code> as a result of
-         * submitting a form to a different domain.
-         */
-        public String getResults() {
-            return resultHtml;
-        }
-
-        @Override
-        protected void dispatch(SubmitCompleteHandler handler) {
-            handler.onSubmitComplete(this);
-        }
-    }
-
-    /**
-     * Handler for {@link SubmitCompleteEvent} events.
-     */
-    public interface SubmitCompleteHandler extends EventHandler {
-
-        /**
-         * Fired when a form has been submitted successfully.
-         *
-         * @param event the event
-         */
-        void onSubmitComplete(SubmitCompleteEvent event);
-    }
-
-    /**
-     * Fired when the form is submitted.
-     */
-    public static class SubmitEvent extends GwtEvent<SubmitHandler> {
-
-        /**
-         * The event type.
-         */
-        private static Type<SubmitHandler> TYPE = new Type<SubmitHandler>();
-
-        /**
-         * Handler hook.
-         *
-         * @return the handler hook
-         */
-        static Type<SubmitHandler> getType() {
-            if (TYPE == null) {
-                TYPE = new Type<SubmitHandler>();
-            }
-            return TYPE;
-        }
-
-        private boolean canceled = false;
-
-        /**
-         * Cancel the form submit. Firing this will prevent a subsequent
-         * {@link SubmitCompleteEvent} from being fired.
-         */
-        public void cancel() {
-            this.canceled = true;
-        }
-
-        @Override
-        public final Type<SubmitHandler> getAssociatedType() {
-            return TYPE;
-        }
-
-        /**
-         * Gets whether this form submit will be canceled.
-         *
-         * @return <code>true</code> if the form submit will be canceled
-         */
-        public boolean isCanceled() {
-            return canceled;
-        }
-
-        @Override
-        protected void dispatch(SubmitHandler handler) {
-            handler.onSubmit(this);
-        }
-    }
-
-    /**
-     * Handler for {@link SubmitEvent} events.
-     */
-    public interface SubmitHandler extends EventHandler {
-
-        /**
-         * Fired when the form is submitted.
-         * <p/>
-         * <p>
-         * The FormPanel must <em>not</em> be detached (i.e. removed from its
-         * parent or otherwise disconnected from a {@link com.google.gwt.user.client.ui.RootPanel}) until the
-         * submission is complete. Otherwise, notification of submission will
-         * fail.
-         * </p>
-         *
-         * @param event the event
-         */
-        void onSubmit(SubmitEvent event);
-    }
-
     private static int formId = 0;
     private String frameName;
     private Element synthesizedFrame;
@@ -201,7 +59,6 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
         this(Document.get().createFormElement(), createIFrame);
         getElement().setAttribute(Attributes.ROLE, FORM);
     }
-
     /**
      * This constructor may be used by subclasses to explicitly use an existing
      * element. This element must be a &lt;form&gt; element.
@@ -234,12 +91,12 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
         }
     }
 
-    public void setTarget(String target) {
-        getFormElement().setTarget(target);
-    }
-
     public String getTarget() {
         return getFormElement().getTarget();
+    }
+
+    public void setTarget(String target) {
+        getFormElement().setTarget(target);
     }
 
     /**
@@ -253,16 +110,6 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
     }
 
     /**
-     * Sets the 'action' associated with this form. This is the URL to which it
-     * will be submitted.
-     *
-     * @param url the form's action
-     */
-    public void setAction(SafeUri url) {
-        setAction(url.asString());
-    }
-
-    /**
      * Gets the 'action' associated with this form. This is the URL to which it
      * will be submitted.
      *
@@ -273,13 +120,13 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
     }
 
     /**
-     * Sets the encoding used for submitting this form. This should be either
-     * {@link com.google.gwt.user.client.ui.FormPanel#ENCODING_MULTIPART} or {@link com.google.gwt.user.client.ui.FormPanel#ENCODING_URLENCODED}.
+     * Sets the 'action' associated with this form. This is the URL to which it
+     * will be submitted.
      *
-     * @param encodingType the form's encoding
+     * @param url the form's action
      */
-    public void setEncoding(String encodingType) {
-        impl.setEncoding(getElement(), encodingType);
+    public void setAction(SafeUri url) {
+        setAction(url.asString());
     }
 
     /**
@@ -293,13 +140,13 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
     }
 
     /**
-     * Sets the HTTP method used for submitting this form. This should be either
-     * {@link com.google.gwt.user.client.ui.FormPanel#METHOD_GET} or {@link com.google.gwt.user.client.ui.FormPanel#METHOD_POST}.
+     * Sets the encoding used for submitting this form. This should be either
+     * {@link com.google.gwt.user.client.ui.FormPanel#ENCODING_MULTIPART} or {@link com.google.gwt.user.client.ui.FormPanel#ENCODING_URLENCODED}.
      *
-     * @param method the form's method
+     * @param encodingType the form's encoding
      */
-    public void setMethod(String method) {
-        getFormElement().setMethod(method);
+    public void setEncoding(String encodingType) {
+        impl.setEncoding(getElement(), encodingType);
     }
 
     /**
@@ -310,6 +157,16 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
      */
     public String getMethod() {
         return getFormElement().getMethod();
+    }
+
+    /**
+     * Sets the HTTP method used for submitting this form. This should be either
+     * {@link com.google.gwt.user.client.ui.FormPanel#METHOD_GET} or {@link com.google.gwt.user.client.ui.FormPanel#METHOD_POST}.
+     *
+     * @param method the form's method
+     */
+    public void setMethod(String method) {
+        getFormElement().setMethod(method);
     }
 
     /**
@@ -405,7 +262,6 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
         return getElement().cast();
     }
 
-
     private void createFrame() {
         // Attach a hidden IFrame to the form. This is the target iframe to
         // which
@@ -447,6 +303,146 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
                 fireEvent(new SubmitCompleteEvent(impl.getContents(synthesizedFrame)));
             }
         });
+    }
+
+
+    /**
+     * Handler for {@link SubmitCompleteEvent} events.
+     */
+    public interface SubmitCompleteHandler extends EventHandler {
+
+        /**
+         * Fired when a form has been submitted successfully.
+         *
+         * @param event the event
+         */
+        void onSubmitComplete(SubmitCompleteEvent event);
+    }
+
+    /**
+     * Handler for {@link SubmitEvent} events.
+     */
+    public interface SubmitHandler extends EventHandler {
+
+        /**
+         * Fired when the form is submitted.
+         * <p/>
+         * <p>
+         * The FormPanel must <em>not</em> be detached (i.e. removed from its
+         * parent or otherwise disconnected from a {@link com.google.gwt.user.client.ui.RootPanel}) until the
+         * submission is complete. Otherwise, notification of submission will
+         * fail.
+         * </p>
+         *
+         * @param event the event
+         */
+        void onSubmit(SubmitEvent event);
+    }
+
+    /**
+     * Fired when a form has been submitted successfully.
+     */
+    public static class SubmitCompleteEvent extends GwtEvent<SubmitCompleteHandler> {
+
+        /**
+         * The event type.
+         */
+        private static Type<SubmitCompleteHandler> TYPE;
+        private String resultHtml;
+
+        /**
+         * Create a submit complete event.
+         *
+         * @param resultsHtml the results from submitting the form
+         */
+        protected SubmitCompleteEvent(String resultsHtml) {
+            this.resultHtml = resultsHtml;
+        }
+
+        /**
+         * Handler hook.
+         *
+         * @return the handler hook
+         */
+        static Type<SubmitCompleteHandler> getType() {
+            if (TYPE == null) {
+                TYPE = new Type<SubmitCompleteHandler>();
+            }
+            return TYPE;
+        }
+
+        @Override
+        public final Type<SubmitCompleteHandler> getAssociatedType() {
+            return TYPE;
+        }
+
+        /**
+         * Gets the result text of the form submission.
+         *
+         * @return the result html, or <code>null</code> if there was an error
+         * reading it
+         * @tip The result html can be <code>null</code> as a result of
+         * submitting a form to a different domain.
+         */
+        public String getResults() {
+            return resultHtml;
+        }
+
+        @Override
+        protected void dispatch(SubmitCompleteHandler handler) {
+            handler.onSubmitComplete(this);
+        }
+    }
+
+    /**
+     * Fired when the form is submitted.
+     */
+    public static class SubmitEvent extends GwtEvent<SubmitHandler> {
+
+        /**
+         * The event type.
+         */
+        private static Type<SubmitHandler> TYPE = new Type<SubmitHandler>();
+        private boolean canceled = false;
+
+        /**
+         * Handler hook.
+         *
+         * @return the handler hook
+         */
+        static Type<SubmitHandler> getType() {
+            if (TYPE == null) {
+                TYPE = new Type<SubmitHandler>();
+            }
+            return TYPE;
+        }
+
+        /**
+         * Cancel the form submit. Firing this will prevent a subsequent
+         * {@link SubmitCompleteEvent} from being fired.
+         */
+        public void cancel() {
+            this.canceled = true;
+        }
+
+        @Override
+        public final Type<SubmitHandler> getAssociatedType() {
+            return TYPE;
+        }
+
+        /**
+         * Gets whether this form submit will be canceled.
+         *
+         * @return <code>true</code> if the form submit will be canceled
+         */
+        public boolean isCanceled() {
+            return canceled;
+        }
+
+        @Override
+        protected void dispatch(SubmitHandler handler) {
+            handler.onSubmit(this);
+        }
     }
 
 }

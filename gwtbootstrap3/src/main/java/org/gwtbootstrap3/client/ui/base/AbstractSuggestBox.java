@@ -41,6 +41,302 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
         HasSelectionHandlers<SuggestOracle.Suggestion>, HasText, HasEnabled, Focusable, HasAllFocusHandlers,
         HasPlaceholder {
 
+    protected final SuggestionDisplay display;
+    protected final ValueBoxBase<String> box;
+    private final SuggestOracle.Callback callback = new SuggestOracle.Callback() {
+        public void onSuggestionsReady(SuggestOracle.Request request, SuggestOracle.Response response) {
+            // If disabled while request was in-flight, drop it
+            if (!isEnabled()) {
+                return;
+            }
+
+            display.setMoreSuggestions(response.hasMoreSuggestions(), response.getMoreSuggestionsCount());
+            display.showSuggestions(AbstractSuggestBox.this, response.getSuggestions(),
+                    oracle.isDisplayStringHTML(), isAutoSelectEnabled(),
+                    suggestionCallback);
+        }
+    };
+    private final SuggestBox.SuggestionCallback suggestionCallback = new SuggestBox.SuggestionCallback() {
+        public void onSuggestionSelected(SuggestOracle.Suggestion suggestion) {
+            box.setFocus(true);
+            setNewSelection(suggestion);
+        }
+    };
+    private int limit = 20;
+    private boolean selectsFirstItem = true;
+    private SuggestOracle oracle;
+    private String currentText;
+    /**
+     * Constructor for {@link SuggestBox}. Creates a {@link org.gwtbootstrap3.client.ui.TextBox} to use with
+     * this {@link SuggestBox}.
+     *
+     * @param oracle the oracle for this <code>SuggestBox</code>
+     */
+    public AbstractSuggestBox(SuggestOracle oracle) {
+        this(oracle, new org.gwtbootstrap3.client.ui.TextBox());
+    }
+    /**
+     * Constructor for {@link SuggestBox}. The text box will be removed from it's
+     * current location and wrapped by the {@link SuggestBox}.
+     *
+     * @param oracle supplies suggestions based upon the current contents of the
+     *               text widget
+     * @param box    the text widget
+     */
+    public AbstractSuggestBox(SuggestOracle oracle, ValueBoxBase<String> box) {
+        this(oracle, box, new DefaultSuggestionDisplay());
+    }
+    /**
+     * Constructor for {@link SuggestBox}. The text box will be removed from it's
+     * current location and wrapped by the {@link SuggestBox}.
+     *
+     * @param oracle         supplies suggestions based upon the current contents of the
+     *                       text widget
+     * @param box            the text widget
+     * @param suggestDisplay the class used to display suggestions
+     */
+    public AbstractSuggestBox(SuggestOracle oracle, ValueBoxBase<String> box, SuggestionDisplay suggestDisplay) {
+        this.box = box;
+        this.display = suggestDisplay;
+        initWidget(box);
+
+        addEventsToTextBox();
+
+        setOracle(oracle);
+    }
+
+    /**
+     * Get the {@link SuggestionDisplay} used to display suggestions.
+     *
+     * @return the {@link SuggestionDisplay}
+     */
+    public SuggestionDisplay getSuggestionDisplay() {
+        return display;
+    }
+
+    /**
+     * Gets the suggest box's {@link com.google.gwt.user.client.ui.SuggestOracle}.
+     *
+     * @return the {@link SuggestOracle}
+     */
+    public SuggestOracle getSuggestOracle() {
+        return oracle;
+    }
+
+    /**
+     * Gets the limit for the number of suggestions that should be displayed for
+     * this box. It is up to the current {@link SuggestOracle} to enforce this
+     * limit.
+     *
+     * @return the limit for the number of suggestions
+     */
+    public int getLimit() {
+        return limit;
+    }
+
+    /**
+     * Sets the limit to the number of suggestions the oracle should provide. It
+     * is up to the oracle to enforce this limit.
+     *
+     * @param limit the limit to the number of suggestions provided
+     */
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    /**
+     * Returns whether or not the first suggestion will be automatically selected.
+     * This behavior is on by default.
+     *
+     * @return true if the first suggestion will be automatically selected
+     */
+    public boolean isAutoSelectEnabled() {
+        return selectsFirstItem;
+    }
+
+    /**
+     * Turns on or off the behavior that automatically selects the first suggested
+     * item. This behavior is on by default.
+     *
+     * @param selectsFirstItem Whether or not to automatically select the first
+     *                         suggestion
+     */
+    public void setAutoSelectEnabled(boolean selectsFirstItem) {
+        this.selectsFirstItem = selectsFirstItem;
+    }
+
+    /**
+     * Gets whether this widget is enabled.
+     *
+     * @return <code>true</code> if the widget is enabled
+     */
+    @Override
+    public boolean isEnabled() {
+        return box.isEnabled();
+    }
+
+    /**
+     * Sets whether this widget is enabled.
+     *
+     * @param enabled <code>true</code> to enable the widget, <code>false</code>
+     *                to disable it
+     */
+    @Override
+    public void setEnabled(boolean enabled) {
+        box.setEnabled(enabled);
+        if (!enabled) {
+            display.hideSuggestions();
+        }
+    }
+
+    protected abstract void setValue(SuggestOracle.Suggestion newValue);
+
+    @Override
+    public String getText() {
+        return box.getText();
+    }
+
+    @Override
+    public void setText(String text) {
+        box.setText(text);
+    }
+
+    @Override
+    public int getTabIndex() {
+        return box.getTabIndex();
+    }
+
+    @Override
+    public void setTabIndex(int index) {
+        box.setTabIndex(index);
+    }
+
+    @Override
+    public void setAccessKey(char key) {
+        box.setAccessKey(key);
+    }
+
+    public void setFocus(boolean focused) {
+        box.setFocus(focused);
+    }
+
+    @Override
+    public String getPlaceholder() {
+        return box.getPlaceholder();
+    }
+
+    @Override
+    public void setPlaceholder(String placeholder) {
+        box.setPlaceholder(placeholder);
+    }
+
+    @Override
+    public HandlerRegistration addBlurHandler(BlurHandler handler) {
+        return box.addBlurHandler(handler);
+    }
+
+    @Override
+    public HandlerRegistration addFocusHandler(FocusHandler handler) {
+        return box.addFocusHandler(handler);
+    }
+
+    @Override
+    public HandlerRegistration addSelectionHandler(SelectionHandler<SuggestOracle.Suggestion> handler) {
+        return addHandler(handler, SelectionEvent.getType());
+    }
+
+    void showSuggestions(String query) {
+        if (query.length() == 0) {
+            oracle.requestDefaultSuggestions(new SuggestOracle.Request(null, limit), callback);
+        } else {
+            oracle.requestSuggestions(new SuggestOracle.Request(query, limit), callback);
+        }
+    }
+
+    /**
+     * Set the new suggestion in the text box.
+     *
+     * @param curSuggestion the new suggestion
+     */
+    protected void setNewSelection(SuggestOracle.Suggestion curSuggestion) {
+        assert curSuggestion != null : "suggestion cannot be null";
+        currentText = curSuggestion.getReplacementString();
+        setText(currentText);
+        setValue(curSuggestion);
+        display.hideSuggestions();
+        fireSuggestionEvent(curSuggestion);
+    }
+
+    @Override
+    protected void onDetach() {
+        super.onDetach();
+
+        display.hideSuggestions();
+    }
+
+    private void refreshSuggestions() {
+        // Get the raw text.
+        String text = getText();
+        if (text.equals(currentText)) {
+            return;
+        } else {
+            currentText = text;
+        }
+        showSuggestions(text);
+    }
+
+    private void addEventsToTextBox() {
+        class TextBoxEvents implements KeyDownHandler, KeyUpHandler, ValueChangeHandler<String> {
+
+            public void onKeyDown(KeyDownEvent event) {
+                switch (event.getNativeKeyCode()) {
+                    case KeyCodes.KEY_DOWN:
+                        display.moveSelectionDown();
+                        break;
+                    case KeyCodes.KEY_UP:
+                        display.moveSelectionUp();
+                        break;
+                    case KeyCodes.KEY_ENTER:
+                    case KeyCodes.KEY_TAB:
+                        SuggestOracle.Suggestion suggestion = display.getCurrentSelection();
+                        if (suggestion == null) {
+                            display.hideSuggestions();
+                        } else {
+                            setNewSelection(suggestion);
+                        }
+                        break;
+                }
+            }
+
+            public void onKeyUp(KeyUpEvent event) {
+                // After every user key input, refresh the popup's suggestions.
+                refreshSuggestions();
+            }
+
+            public void onValueChange(ValueChangeEvent<String> event) {
+                delegateEvent(AbstractSuggestBox.this, event);
+            }
+        }
+
+        TextBoxEvents events = new TextBoxEvents();
+        box.addKeyDownHandler(events);
+        box.addKeyUpHandler(events);
+        box.addValueChangeHandler(events);
+    }
+
+    private void fireSuggestionEvent(SuggestOracle.Suggestion selectedSuggestion) {
+        SelectionEvent.fire(this, selectedSuggestion);
+    }
+
+    /**
+     * Sets the suggestion oracle used to create suggestions.
+     *
+     * @param oracle the oracle
+     */
+    private void setOracle(SuggestOracle oracle) {
+        this.oracle = oracle;
+    }
+
     /**
      * Used to display suggestions to the user.
      */
@@ -252,305 +548,6 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
             this.suggestion = suggestion;
         }
 
-    }
-
-    private int limit = 20;
-    private boolean selectsFirstItem = true;
-    private SuggestOracle oracle;
-    private String currentText;
-    protected final SuggestionDisplay display;
-    protected final ValueBoxBase<String> box;
-    private final SuggestOracle.Callback callback = new SuggestOracle.Callback() {
-        public void onSuggestionsReady(SuggestOracle.Request request, SuggestOracle.Response response) {
-            // If disabled while request was in-flight, drop it
-            if (!isEnabled()) {
-                return;
-            }
-
-            display.setMoreSuggestions(response.hasMoreSuggestions(), response.getMoreSuggestionsCount());
-            display.showSuggestions(AbstractSuggestBox.this, response.getSuggestions(),
-                    oracle.isDisplayStringHTML(), isAutoSelectEnabled(),
-                    suggestionCallback);
-        }
-    };
-    private final SuggestBox.SuggestionCallback suggestionCallback = new SuggestBox.SuggestionCallback() {
-        public void onSuggestionSelected(SuggestOracle.Suggestion suggestion) {
-            box.setFocus(true);
-            setNewSelection(suggestion);
-        }
-    };
-
-    /**
-     * Constructor for {@link SuggestBox}. Creates a {@link org.gwtbootstrap3.client.ui.TextBox} to use with
-     * this {@link SuggestBox}.
-     *
-     * @param oracle the oracle for this <code>SuggestBox</code>
-     */
-    public AbstractSuggestBox(SuggestOracle oracle) {
-        this(oracle, new org.gwtbootstrap3.client.ui.TextBox());
-    }
-
-    /**
-     * Constructor for {@link SuggestBox}. The text box will be removed from it's
-     * current location and wrapped by the {@link SuggestBox}.
-     *
-     * @param oracle supplies suggestions based upon the current contents of the
-     *               text widget
-     * @param box    the text widget
-     */
-    public AbstractSuggestBox(SuggestOracle oracle, ValueBoxBase<String> box) {
-        this(oracle, box, new DefaultSuggestionDisplay());
-    }
-
-    /**
-     * Constructor for {@link SuggestBox}. The text box will be removed from it's
-     * current location and wrapped by the {@link SuggestBox}.
-     *
-     * @param oracle         supplies suggestions based upon the current contents of the
-     *                       text widget
-     * @param box            the text widget
-     * @param suggestDisplay the class used to display suggestions
-     */
-    public AbstractSuggestBox(SuggestOracle oracle, ValueBoxBase<String> box, SuggestionDisplay suggestDisplay) {
-        this.box = box;
-        this.display = suggestDisplay;
-        initWidget(box);
-
-        addEventsToTextBox();
-
-        setOracle(oracle);
-    }
-
-    /**
-     * Get the {@link SuggestionDisplay} used to display suggestions.
-     *
-     * @return the {@link SuggestionDisplay}
-     */
-    public SuggestionDisplay getSuggestionDisplay() {
-        return display;
-    }
-
-    /**
-     * Gets the suggest box's {@link com.google.gwt.user.client.ui.SuggestOracle}.
-     *
-     * @return the {@link SuggestOracle}
-     */
-    public SuggestOracle getSuggestOracle() {
-        return oracle;
-    }
-
-    /**
-     * Gets the limit for the number of suggestions that should be displayed for
-     * this box. It is up to the current {@link SuggestOracle} to enforce this
-     * limit.
-     *
-     * @return the limit for the number of suggestions
-     */
-    public int getLimit() {
-        return limit;
-    }
-
-    /**
-     * Sets the limit to the number of suggestions the oracle should provide. It
-     * is up to the oracle to enforce this limit.
-     *
-     * @param limit the limit to the number of suggestions provided
-     */
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    /**
-     * Returns whether or not the first suggestion will be automatically selected.
-     * This behavior is on by default.
-     *
-     * @return true if the first suggestion will be automatically selected
-     */
-    public boolean isAutoSelectEnabled() {
-        return selectsFirstItem;
-    }
-
-    /**
-     * Turns on or off the behavior that automatically selects the first suggested
-     * item. This behavior is on by default.
-     *
-     * @param selectsFirstItem Whether or not to automatically select the first
-     *                         suggestion
-     */
-    public void setAutoSelectEnabled(boolean selectsFirstItem) {
-        this.selectsFirstItem = selectsFirstItem;
-    }
-
-    /**
-     * Gets whether this widget is enabled.
-     *
-     * @return <code>true</code> if the widget is enabled
-     */
-    @Override
-    public boolean isEnabled() {
-        return box.isEnabled();
-    }
-
-    /**
-     * Sets whether this widget is enabled.
-     *
-     * @param enabled <code>true</code> to enable the widget, <code>false</code>
-     *                to disable it
-     */
-    @Override
-    public void setEnabled(boolean enabled) {
-        box.setEnabled(enabled);
-        if (!enabled) {
-            display.hideSuggestions();
-        }
-    }
-
-    protected abstract void setValue(SuggestOracle.Suggestion newValue);
-
-    @Override
-    public String getText() {
-        return box.getText();
-    }
-
-    @Override
-    public void setText(String text) {
-        box.setText(text);
-    }
-
-    @Override
-    public int getTabIndex() {
-        return box.getTabIndex();
-    }
-
-    @Override
-    public void setAccessKey(char key) {
-        box.setAccessKey(key);
-    }
-
-    public void setFocus(boolean focused) {
-        box.setFocus(focused);
-    }
-
-    @Override
-    public void setTabIndex(int index) {
-        box.setTabIndex(index);
-    }
-
-    @Override
-    public void setPlaceholder(String placeholder) {
-        box.setPlaceholder(placeholder);
-    }
-
-    @Override
-    public String getPlaceholder() {
-        return box.getPlaceholder();
-    }
-
-    @Override
-    public HandlerRegistration addBlurHandler(BlurHandler handler) {
-        return box.addBlurHandler(handler);
-    }
-
-    @Override
-    public HandlerRegistration addFocusHandler(FocusHandler handler) {
-        return box.addFocusHandler(handler);
-    }
-
-    @Override
-    public HandlerRegistration addSelectionHandler(SelectionHandler<SuggestOracle.Suggestion> handler) {
-        return addHandler(handler, SelectionEvent.getType());
-    }
-
-    void showSuggestions(String query) {
-        if (query.length() == 0) {
-            oracle.requestDefaultSuggestions(new SuggestOracle.Request(null, limit), callback);
-        } else {
-            oracle.requestSuggestions(new SuggestOracle.Request(query, limit), callback);
-        }
-    }
-
-    /**
-     * Set the new suggestion in the text box.
-     *
-     * @param curSuggestion the new suggestion
-     */
-    protected void setNewSelection(SuggestOracle.Suggestion curSuggestion) {
-        assert curSuggestion != null : "suggestion cannot be null";
-        currentText = curSuggestion.getReplacementString();
-        setText(currentText);
-        setValue(curSuggestion);
-        display.hideSuggestions();
-        fireSuggestionEvent(curSuggestion);
-    }
-
-    @Override
-    protected void onDetach() {
-        super.onDetach();
-
-        display.hideSuggestions();
-    }
-
-    private void refreshSuggestions() {
-        // Get the raw text.
-        String text = getText();
-        if (text.equals(currentText)) {
-            return;
-        } else {
-            currentText = text;
-        }
-        showSuggestions(text);
-    }
-
-    private void addEventsToTextBox() {
-        class TextBoxEvents implements KeyDownHandler, KeyUpHandler, ValueChangeHandler<String> {
-
-            public void onKeyDown(KeyDownEvent event) {
-                switch (event.getNativeKeyCode()) {
-                    case KeyCodes.KEY_DOWN:
-                        display.moveSelectionDown();
-                        break;
-                    case KeyCodes.KEY_UP:
-                        display.moveSelectionUp();
-                        break;
-                    case KeyCodes.KEY_ENTER:
-                    case KeyCodes.KEY_TAB:
-                        SuggestOracle.Suggestion suggestion = display.getCurrentSelection();
-                        if (suggestion == null) {
-                            display.hideSuggestions();
-                        } else {
-                            setNewSelection(suggestion);
-                        }
-                        break;
-                }
-            }
-
-            public void onKeyUp(KeyUpEvent event) {
-                // After every user key input, refresh the popup's suggestions.
-                refreshSuggestions();
-            }
-
-            public void onValueChange(ValueChangeEvent<String> event) {
-                delegateEvent(AbstractSuggestBox.this, event);
-            }
-        }
-
-        TextBoxEvents events = new TextBoxEvents();
-        box.addKeyDownHandler(events);
-        box.addKeyUpHandler(events);
-        box.addValueChangeHandler(events);
-    }
-
-    private void fireSuggestionEvent(SuggestOracle.Suggestion selectedSuggestion) {
-        SelectionEvent.fire(this, selectedSuggestion);
-    }
-
-    /**
-     * Sets the suggestion oracle used to create suggestions.
-     *
-     * @param oracle the oracle
-     */
-    private void setOracle(SuggestOracle oracle) {
-        this.oracle = oracle;
     }
 
 }

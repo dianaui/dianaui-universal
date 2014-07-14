@@ -34,12 +34,12 @@ public class CarouselSlide extends Div implements HasActive {
     }
 
     @Override
-    public void setActive(final boolean active) {
-        activeMixin.setActive(active);
+    public boolean isActive() {
+        return activeMixin.isActive();
     }
 
     @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
+    public void setActive(final boolean active) {
+        activeMixin.setActive(active);
     }
 }

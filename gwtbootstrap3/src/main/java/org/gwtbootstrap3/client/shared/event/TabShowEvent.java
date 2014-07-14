@@ -34,13 +34,13 @@ public class TabShowEvent extends GwtEvent<TabShowHandler> implements TabEvent {
     private final TabListItem tab;
     private final Event nativeEvent;
 
-    public static Type<TabShowHandler> getType() {
-        return TYPE;
-    }
-
     public TabShowEvent(final TabListItem tab, final Event nativeEvent) {
         this.tab = tab;
         this.nativeEvent = nativeEvent;
+    }
+
+    public static Type<TabShowHandler> getType() {
+        return TYPE;
     }
 
     @Override

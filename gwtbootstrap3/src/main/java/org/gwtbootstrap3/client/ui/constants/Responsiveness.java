@@ -45,12 +45,12 @@ public enum Responsiveness implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static Responsiveness fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, Responsiveness.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static Responsiveness fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, Responsiveness.class, DEFAULT);
     }
 }

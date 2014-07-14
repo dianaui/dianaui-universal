@@ -40,12 +40,12 @@ public enum PanelType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static PanelType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, PanelType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static PanelType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, PanelType.class, DEFAULT);
     }
 }

@@ -48,6 +48,273 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
     private static String TABLE_END = "</table>";
     private static String TBODY_START = "<tbody>";
     private static String TBODY_END = "</tbody>";
+    private final Div container;
+    private CalendarModel calendarModel = new CalendarModel();
+    private DayOfWeekFormat dayOfWeekFormat;
+    private HourFormat hourFormat;
+    private Date value = new Date();
+    private boolean dateEnabled = true;
+    private boolean timeEnabled = true;
+    private boolean autoClose = true;
+    private Collapse dateCollapse;
+    private Div dateContainer;
+    private Collapse timeCollapse;
+    private Div timeContainer;
+    private Days days;
+    private Months months;
+    private Years years;
+    private Time time;
+    private Hours hours;
+    private Minutes minutes;
+    public DateTimePicker() {
+        setFade(false);
+        setBackdrop(ModalBackdrop.FALSE);
+
+        container = new Div();
+        container.addStyleName(Styles.DATETIMEPICKER);
+        container.addStyleName(Styles.DROPDOWN_MENU);
+
+        add(container);
+    }
+
+    public CalendarModel getCalendarModel() {
+        return calendarModel;
+    }
+
+    public DayOfWeekFormat getDayOfWeekFormat() {
+        return dayOfWeekFormat;
+    }
+
+    public void setDayOfWeekFormat(DayOfWeekFormat format) {
+        this.dayOfWeekFormat = format;
+
+        calendarModel.setDayOfWeekFormat(format.getFormat());
+
+        checkForRedraw();
+    }
+
+    public HourFormat getHourFormat() {
+        return hourFormat;
+    }
+
+    public void setHourFormat(HourFormat format) {
+        this.hourFormat = format;
+
+        calendarModel.setHourFormat(format.getFormat());
+
+        checkForRedraw();
+    }
+
+    public boolean isDateEnabled() {
+        return dateEnabled;
+    }
+
+    public void setDateEnabled(boolean enabled) {
+        if (!timeEnabled && !enabled) {
+            throw new RuntimeException("Can not disable date when time disabled");
+        }
+        this.dateEnabled = enabled;
+
+        checkForRedraw();
+    }
+
+    public boolean isTimeEnabled() {
+        return timeEnabled;
+    }
+
+    public void setTimeEnabled(boolean enabled) {
+        if (!dateEnabled && !enabled) {
+            throw new RuntimeException("Can not disable time when date disabled");
+        }
+        this.timeEnabled = enabled;
+
+        checkForRedraw();
+    }
+
+    public boolean isAutoClose() {
+        return autoClose;
+    }
+
+    public void setAutoClose(boolean enabled) {
+        this.autoClose = enabled;
+    }
+
+    @Override
+    protected void onShow() {
+        container.clear();
+
+        if (dateEnabled && timeEnabled) {
+            UnorderedList list = new UnorderedList();
+            list.setStyleName(Styles.LIST_UNSTYLED);
+
+            if (dateCollapse == null) {
+                dateCollapse = new Collapse(LIElement.TAG);
+
+                initDateContainer();
+                dateCollapse.add(dateContainer);
+            }
+
+            if (timeCollapse == null) {
+                timeCollapse = new Collapse(LIElement.TAG);
+                timeCollapse.setToggle(false);
+
+                initTimeContainer();
+                timeCollapse.add(timeContainer);
+            }
+
+            AnchorListItem switchItem = new AnchorListItem();
+            switchItem.setStyleName(Styles.DATETIMEPICKER_SWITCH);
+            switchItem.setGlyphicon(GlyphiconType.TIME);
+            switchItem.getAnchor().setStyleName(Styles.BTN);
+            switchItem.addClickHandler(new ClickHandler() {
+                @Override
+                public void onClick(ClickEvent event) {
+                    days.setDate(CalendarUtil.copyDate(value));
+                    time.setDate(CalendarUtil.copyDate(value));
+                    dateCollapse.toggle();
+                    timeCollapse.toggle();
+                }
+            });
+
+            list.add(dateCollapse);
+            list.add(switchItem);
+            list.add(timeCollapse);
+
+            container.add(list);
+
+            days.setDate(CalendarUtil.copyDate(value));
+        } else if (dateEnabled) {
+            initDateContainer();
+
+            container.add(dateContainer);
+
+            days.setDate(CalendarUtil.copyDate(value));
+        } else {
+            initTimeContainer();
+
+            container.add(timeContainer);
+
+            time.setDate(CalendarUtil.copyDate(value));
+        }
+
+        Event.setEventListener(getElement(), new EventListener() {
+            @Override
+            public void onBrowserEvent(Event event) {
+                if (Event.ONCLICK == event.getTypeInt() && event.getEventTarget().equals(getElement())) {
+                    hide();
+                }
+            }
+        });
+
+        setVisible(true);
+
+        super.onShow();
+    }
+
+    private void initTimeContainer() {
+        if (timeContainer == null) {
+            timeContainer = new Div();
+            timeContainer.setStyleName(Styles.TIMEPICKER);
+        }
+
+        if (time == null) {
+            time = new Time();
+            time.setDate(CalendarUtil.copyDate(value));
+            time.setVisible(true);
+        }
+
+        timeContainer.add(time);
+    }
+
+    private void initDateContainer() {
+        if (dateContainer == null) {
+            dateContainer = new Div();
+            dateContainer.setStyleName(Styles.DATEPICKER);
+        }
+
+        if (days == null) {
+            days = new Days();
+            days.setVisible(true);
+        }
+
+        dateContainer.add(days);
+    }
+
+    public void setPosition(int left, int top) {
+        container.getElement().getStyle().setLeft(left, Style.Unit.PX);
+        container.getElement().getStyle().setTop(top, Style.Unit.PX);
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        Style style = container.getElement().getStyle();
+
+        if (visible) {
+            style.setDisplay(Style.Display.BLOCK);
+            style.setZIndex(9999);
+            style.setPosition(Style.Position.ABSOLUTE);
+            style.setProperty("right", "auto");
+        } else {
+            super.setVisible(false);
+
+            style.clearDisplay();
+            style.clearZIndex();
+            style.clearPosition();
+            style.clearTop();
+            style.clearLeft();
+        }
+    }
+
+    @Override
+    public Date getValue() {
+        return value;
+    }
+
+    @Override
+    public void setValue(Date value) {
+        if (value != null) {
+            this.value = value;
+        }
+    }
+
+    @Override
+    public void setValue(Date value, boolean fireEvents) {
+        setValue(value);
+
+        if (fireEvents) {
+            ValueChangeEvent.fire(this, value);
+        }
+    }
+
+    @Override
+    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Date> handler) {
+        return addHandler(handler, ValueChangeEvent.getType());
+    }
+
+    @Override
+    public int getOffsetHeight() {
+        return container.getOffsetHeight();
+    }
+
+    @Override
+    public int getOffsetWidth() {
+        return container.getOffsetWidth();
+    }
+
+    private void checkForRedraw() {
+        if (isAttached() && isVisible()) {
+            show();
+        }
+    }
+
+    /**
+     * Remove all children of the node.
+     */
+    public final native Node removeAllChildren(Element element) /*-{
+        while (element.lastChild) {
+            element.removeChild(element.lastChild);
+        }
+    }-*/;
 
     private abstract class Picker extends Div {
 
@@ -710,276 +977,5 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
     }
-
-    private CalendarModel calendarModel = new CalendarModel();
-    private DayOfWeekFormat dayOfWeekFormat;
-    private HourFormat hourFormat;
-    private Date value = new Date();
-    private boolean dateEnabled = true;
-    private boolean timeEnabled = true;
-    private boolean autoClose = true;
-
-    private final Div container;
-    private Collapse dateCollapse;
-    private Div dateContainer;
-    private Collapse timeCollapse;
-    private Div timeContainer;
-
-    private Days days;
-    private Months months;
-    private Years years;
-    private Time time;
-    private Hours hours;
-    private Minutes minutes;
-
-    public DateTimePicker() {
-        setFade(false);
-        setBackdrop(ModalBackdrop.FALSE);
-
-        container = new Div();
-        container.addStyleName(Styles.DATETIMEPICKER);
-        container.addStyleName(Styles.DROPDOWN_MENU);
-
-        add(container);
-    }
-
-    public CalendarModel getCalendarModel() {
-        return calendarModel;
-    }
-
-    public DayOfWeekFormat getDayOfWeekFormat() {
-        return dayOfWeekFormat;
-    }
-
-    public void setDayOfWeekFormat(DayOfWeekFormat format) {
-        this.dayOfWeekFormat = format;
-
-        calendarModel.setDayOfWeekFormat(format.getFormat());
-
-        checkForRedraw();
-    }
-
-    public HourFormat getHourFormat() {
-        return hourFormat;
-    }
-
-    public void setHourFormat(HourFormat format) {
-        this.hourFormat = format;
-
-        calendarModel.setHourFormat(format.getFormat());
-
-        checkForRedraw();
-    }
-
-    public boolean isDateEnabled() {
-        return dateEnabled;
-    }
-
-    public void setDateEnabled(boolean enabled) {
-        if (!timeEnabled && !enabled) {
-            throw new RuntimeException("Can not disable date when time disabled");
-        }
-        this.dateEnabled = enabled;
-
-        checkForRedraw();
-    }
-
-    public boolean isTimeEnabled() {
-        return timeEnabled;
-    }
-
-    public void setTimeEnabled(boolean enabled) {
-        if (!dateEnabled && !enabled) {
-            throw new RuntimeException("Can not disable time when date disabled");
-        }
-        this.timeEnabled = enabled;
-
-        checkForRedraw();
-    }
-
-    public boolean isAutoClose() {
-        return autoClose;
-    }
-
-    public void setAutoClose(boolean enabled) {
-        this.autoClose = enabled;
-    }
-
-    @Override
-    protected void onShow() {
-        container.clear();
-
-        if (dateEnabled && timeEnabled) {
-            UnorderedList list = new UnorderedList();
-            list.setStyleName(Styles.LIST_UNSTYLED);
-
-            if (dateCollapse == null) {
-                dateCollapse = new Collapse(LIElement.TAG);
-
-                initDateContainer();
-                dateCollapse.add(dateContainer);
-            }
-
-            if (timeCollapse == null) {
-                timeCollapse = new Collapse(LIElement.TAG);
-                timeCollapse.setToggle(false);
-
-                initTimeContainer();
-                timeCollapse.add(timeContainer);
-            }
-
-            AnchorListItem switchItem = new AnchorListItem();
-            switchItem.setStyleName(Styles.DATETIMEPICKER_SWITCH);
-            switchItem.setGlyphicon(GlyphiconType.TIME);
-            switchItem.getAnchor().setStyleName(Styles.BTN);
-            switchItem.addClickHandler(new ClickHandler() {
-                @Override
-                public void onClick(ClickEvent event) {
-                    days.setDate(CalendarUtil.copyDate(value));
-                    time.setDate(CalendarUtil.copyDate(value));
-                    dateCollapse.toggle();
-                    timeCollapse.toggle();
-                }
-            });
-
-            list.add(dateCollapse);
-            list.add(switchItem);
-            list.add(timeCollapse);
-
-            container.add(list);
-
-            days.setDate(CalendarUtil.copyDate(value));
-        } else if (dateEnabled) {
-            initDateContainer();
-
-            container.add(dateContainer);
-
-            days.setDate(CalendarUtil.copyDate(value));
-        } else {
-            initTimeContainer();
-
-            container.add(timeContainer);
-
-            time.setDate(CalendarUtil.copyDate(value));
-        }
-
-        Event.setEventListener(getElement(), new EventListener() {
-            @Override
-            public void onBrowserEvent(Event event) {
-                if (Event.ONCLICK == event.getTypeInt() && event.getEventTarget().equals(getElement())) {
-                    hide();
-                }
-            }
-        });
-
-        setVisible(true);
-
-        super.onShow();
-    }
-
-    private void initTimeContainer() {
-        if (timeContainer == null) {
-            timeContainer = new Div();
-            timeContainer.setStyleName(Styles.TIMEPICKER);
-        }
-
-        if (time == null) {
-            time = new Time();
-            time.setDate(CalendarUtil.copyDate(value));
-            time.setVisible(true);
-        }
-
-        timeContainer.add(time);
-    }
-
-    private void initDateContainer() {
-        if (dateContainer == null) {
-            dateContainer = new Div();
-            dateContainer.setStyleName(Styles.DATEPICKER);
-        }
-
-        if (days == null) {
-            days = new Days();
-            days.setVisible(true);
-        }
-
-        dateContainer.add(days);
-    }
-
-    public void setPosition(int left, int top) {
-        container.getElement().getStyle().setLeft(left, Style.Unit.PX);
-        container.getElement().getStyle().setTop(top, Style.Unit.PX);
-    }
-
-    @Override
-    public void setVisible(boolean visible) {
-        Style style = container.getElement().getStyle();
-
-        if (visible) {
-            style.setDisplay(Style.Display.BLOCK);
-            style.setZIndex(9999);
-            style.setPosition(Style.Position.ABSOLUTE);
-            style.setProperty("right", "auto");
-        } else {
-            super.setVisible(false);
-
-            style.clearDisplay();
-            style.clearZIndex();
-            style.clearPosition();
-            style.clearTop();
-            style.clearLeft();
-        }
-    }
-
-    @Override
-    public Date getValue() {
-        return value;
-    }
-
-    @Override
-    public void setValue(Date value) {
-        if (value != null) {
-            this.value = value;
-        }
-    }
-
-    @Override
-    public void setValue(Date value, boolean fireEvents) {
-        setValue(value);
-
-        if (fireEvents) {
-            ValueChangeEvent.fire(this, value);
-        }
-    }
-
-    @Override
-    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Date> handler) {
-        return addHandler(handler, ValueChangeEvent.getType());
-    }
-
-    @Override
-    public int getOffsetHeight() {
-        return container.getOffsetHeight();
-    }
-
-    @Override
-    public int getOffsetWidth() {
-        return container.getOffsetWidth();
-    }
-
-    private void checkForRedraw() {
-        if (isAttached() && isVisible()) {
-            show();
-        }
-    }
-
-    /**
-     * Remove all children of the node.
-     */
-    public final native Node removeAllChildren(Element element) /*-{
-        while (element.lastChild) {
-            element.removeChild(element.lastChild);
-        }
-    }-*/;
 
 }

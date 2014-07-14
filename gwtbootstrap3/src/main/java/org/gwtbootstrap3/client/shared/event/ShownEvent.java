@@ -30,16 +30,16 @@ public class ShownEvent extends GwtEvent<ShownHandler> {
     private static final Type<ShownHandler> TYPE = new Type<ShownHandler>();
     private final NativeEvent nativeEvent;
 
-    public static Type<ShownHandler> getType() {
-        return TYPE;
-    }
-
     public ShownEvent() {
         this(null);
     }
 
     public ShownEvent(final NativeEvent nativeEvent) {
         this.nativeEvent = nativeEvent;
+    }
+
+    public static Type<ShownHandler> getType() {
+        return TYPE;
     }
 
     @Override

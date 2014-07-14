@@ -98,18 +98,23 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
-        getElement().setPropertyBoolean(DISABLED_PROPERTY, !enabled);
-    }
-
-    @Override
     public boolean isEnabled() {
         return !getElement().getPropertyBoolean(DISABLED_PROPERTY);
     }
 
     @Override
+    public void setEnabled(final boolean enabled) {
+        getElement().setPropertyBoolean(DISABLED_PROPERTY, !enabled);
+    }
+
+    @Override
     public HandlerRegistration addClickHandler(final ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
+    }
+
+    @Override
+    public ButtonType getType() {
+        return ButtonType.fromStyleName(getStyleName());
     }
 
     /**
@@ -123,8 +128,8 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
-    public ButtonType getType() {
-        return ButtonType.fromStyleName(getStyleName());
+    public ButtonSize getSize() {
+        return ButtonSize.fromStyleName(getStyleName());
     }
 
     /**
@@ -138,8 +143,8 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
-    public ButtonSize getSize() {
-        return ButtonSize.fromStyleName(getStyleName());
+    public String getTargetHistoryToken() {
+        return targetHistoryToken;
     }
 
     @Override
@@ -150,18 +155,13 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
-    public String getTargetHistoryToken() {
-        return targetHistoryToken;
+    public String getHref() {
+        return getElement().getAttribute(HREF);
     }
 
     @Override
     public void setHref(final String href) {
         getElement().setAttribute(HREF, href);
-    }
-
-    @Override
-    public String getHref() {
-        return getElement().getAttribute(HREF);
     }
 
     @Override

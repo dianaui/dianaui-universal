@@ -34,6 +34,9 @@ import org.gwtbootstrap3.client.ui.constants.Responsiveness;
  */
 public final class StyleHelper {
 
+    private StyleHelper() {
+    }
+
     /**
      * Convenience method for first removing all enum style constants and then adding the single one.
      *
@@ -239,8 +242,5 @@ public final class StyleHelper {
                 setHiddenOn(uiObject, deviceSize);
             }
         }
-    }
-
-    private StyleHelper() {
     }
 }

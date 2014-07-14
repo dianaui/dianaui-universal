@@ -59,13 +59,13 @@ public class DropDownMenu extends UnorderedList implements HasPull {
     }
 
     @Override
-    public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
     }
 
     public void show(final Widget relativeWidget) {

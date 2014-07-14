@@ -38,12 +38,12 @@ public enum TabPosition implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static TabPosition fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, TabPosition.class, TOP);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static TabPosition fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, TabPosition.class, TOP);
     }
 }

@@ -28,12 +28,10 @@ import org.gwtbootstrap3.client.ui.constants.Alignment;
 
 /**
  * Container with the h(1-6) tag so that you can do layouts like:
- * <p/>
  * <HeadingPanel>
  * <Icon/>
  * <Text/>
  * </HeadingPanel>
- * <p/>
  * Please note, this doesn't enforce any requirements on the children. It is up to
  * you to make sure you produce valid HTML code.
  *
@@ -48,12 +46,12 @@ public class HeadingPanel extends ComplexWidget implements HasAlignment {
     }
 
     @Override
-    public void setAlignment(final Alignment alignment) {
-        StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
+    public Alignment getAlignment() {
+        return Alignment.fromStyleName(getStyleName());
     }
 
     @Override
-    public Alignment getAlignment() {
-        return Alignment.fromStyleName(getStyleName());
+    public void setAlignment(final Alignment alignment) {
+        StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
     }
 }

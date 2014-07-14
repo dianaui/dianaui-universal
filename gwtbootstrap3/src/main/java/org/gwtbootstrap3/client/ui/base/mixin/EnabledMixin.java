@@ -35,6 +35,11 @@ public class EnabledMixin<T extends UIObject & HasEnabled> extends AbstractMixin
     }
 
     @Override
+    public boolean isEnabled() {
+        return !uiObject.getElement().hasAttribute(DISABLED_PROPERTY);
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         if (enabled) {
             uiObject.removeStyleName(Styles.DISABLED);
@@ -43,10 +48,5 @@ public class EnabledMixin<T extends UIObject & HasEnabled> extends AbstractMixin
             uiObject.addStyleName(Styles.DISABLED);
             uiObject.getElement().setAttribute(DISABLED_PROPERTY, "");
         }
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return !uiObject.getElement().hasAttribute(DISABLED_PROPERTY);
     }
 }

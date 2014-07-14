@@ -26,7 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * @author Sven Jacobs
  */
 public interface HasToggle {
-    void setToggle(Toggle toggle);
-
     Toggle getToggle();
+
+    void setToggle(Toggle toggle);
 }

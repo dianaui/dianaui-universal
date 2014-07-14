@@ -65,6 +65,11 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
         this(safeHtml.asString(), type);
     }
 
+    @Override
+    public AlertType getType() {
+        return AlertType.fromStyleName(getStyleName());
+    }
+
     /**
      * Sets alert type.
      *
@@ -76,9 +81,8 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
         StyleHelper.addUniqueEnumStyleName(this, AlertType.class, type);
     }
 
-    @Override
-    public AlertType getType() {
-        return AlertType.fromStyleName(getStyleName());
+    public boolean isDismissable() {
+        return closeButton.getParent() != null;
     }
 
     /**
@@ -94,10 +98,6 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
             closeButton.removeFromParent();
             removeStyleName(Styles.ALERT_DISMISSABLE);
         }
-    }
-
-    public boolean isDismissable() {
-        return closeButton.getParent() != null;
     }
 
     /**

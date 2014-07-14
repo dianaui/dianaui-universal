@@ -44,8 +44,8 @@ import org.gwtbootstrap3.client.ui.constants.TypeAttrType;
 public abstract class AbstractLabelButton extends AbstractIconButton implements HasActive, HasName, HasFormValue,
         HasValue<Boolean> {
 
-    private final ActiveMixin<AbstractLabelButton> activeMixin = new ActiveMixin<AbstractLabelButton>(this);
     protected final CheckableInputButton input;
+    private final ActiveMixin<AbstractLabelButton> activeMixin = new ActiveMixin<AbstractLabelButton>(this);
 
     protected AbstractLabelButton(final TypeAttrType typeAttr) {
         super(ButtonType.DEFAULT);
@@ -63,6 +63,11 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
     }
 
     @Override
+    public boolean isEnabled() {
+        return input.isEnabled();
+    }
+
+    @Override
     public void setEnabled(final boolean enabled) {
         if (enabled) {
             removeStyleName(Styles.DISABLED);
@@ -74,8 +79,8 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
     }
 
     @Override
-    public boolean isEnabled() {
-        return input.isEnabled();
+    public boolean isActive() {
+        return activeMixin.isActive();
     }
 
     @Override
@@ -84,18 +89,13 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
     }
 
     @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
+    public String getName() {
+        return input.getName();
     }
 
     @Override
     public void setName(final String name) {
         input.setName(name);
-    }
-
-    @Override
-    public String getName() {
-        return input.getName();
     }
 
     @Override
@@ -109,11 +109,6 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
     }
 
     @Override
-    public void setValue(final Boolean value) {
-        setValue(value, false);
-    }
-
-    @Override
     public void setValue(final Boolean value, final boolean fireEvents) {
         changeValue(value, fireEvents);
     }
@@ -121,6 +116,11 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
     @Override
     public Boolean getValue() {
         return input.getValue();
+    }
+
+    @Override
+    public void setValue(final Boolean value) {
+        setValue(value, false);
     }
 
     @Override

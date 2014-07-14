@@ -36,12 +36,12 @@ import org.gwtbootstrap3.client.ui.constants.FormType;
 public class Form extends AbstractForm implements HasType<FormType> {
 
     @Override
-    public void setType(final FormType type) {
-        StyleHelper.addUniqueEnumStyleName(this, FormType.class, type);
+    public FormType getType() {
+        return FormType.fromStyleName(getStyleName());
     }
 
     @Override
-    public FormType getType() {
-        return FormType.fromStyleName(getStyleName());
+    public void setType(final FormType type) {
+        StyleHelper.addUniqueEnumStyleName(this, FormType.class, type);
     }
 }

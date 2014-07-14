@@ -36,12 +36,12 @@ public enum NavbarType implements Type, Style.HasCssName {
         this.cssClass = cssClass;
     }
 
+    public static NavbarType fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, NavbarType.class, DEFAULT);
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
-    }
-
-    public static NavbarType fromStyleName(final String styleName) {
-        return EnumHelper.fromStyleName(styleName, NavbarType.class, DEFAULT);
     }
 }

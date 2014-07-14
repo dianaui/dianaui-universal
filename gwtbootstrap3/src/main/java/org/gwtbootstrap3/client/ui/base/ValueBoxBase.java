@@ -55,18 +55,13 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     }
 
     @Override
-    public void setPlaceholder(final String placeHolder) {
-        getElement().setAttribute(PLACEHOLDER, placeHolder != null ? placeHolder : "");
-    }
-
-    @Override
     public String getPlaceholder() {
         return getElement().getAttribute(PLACEHOLDER);
     }
 
     @Override
-    public void setAutocomplete(final boolean autoComplete) {
-        getElement().setAttribute(AUTOCOMPLETE, autoComplete ? ON : OFF);
+    public void setPlaceholder(final String placeHolder) {
+        getElement().setAttribute(PLACEHOLDER, placeHolder != null ? placeHolder : "");
     }
 
     @Override
@@ -75,13 +70,18 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     }
 
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
+    public void setAutocomplete(final boolean autoComplete) {
+        getElement().setAttribute(AUTOCOMPLETE, autoComplete ? ON : OFF);
     }
 
     @Override
     public String getId() {
         return idMixin.getId();
+    }
+
+    @Override
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 
     @Override

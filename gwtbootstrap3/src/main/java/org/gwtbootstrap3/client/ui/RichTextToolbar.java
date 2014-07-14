@@ -38,10 +38,143 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class RichTextToolbar extends Composite {
 
-    interface Binder extends UiBinder<ButtonToolBar, RichTextToolbar> {
+    private static final Binder binder = GWT.create(Binder.class);
+    @UiField
+    Button boldButton;
+    @UiField
+    Button italicButton;
+    @UiField
+    Button underlineButton;
+    @UiField
+    Button subscriptButton;
+    @UiField
+    Button superscriptButton;
+    @UiField
+    Button strikethroughButton;
+    @UiField
+    Button indentButton;
+    @UiField
+    Button outdentButton;
+    @UiField
+    Button justifyLeftButton;
+    @UiField
+    Button justifyCenterButton;
+    @UiField
+    Button justifyRightButton;
+    @UiField
+    Button hrButton;
+    @UiField
+    Button olButton;
+    @UiField
+    Button ulButton;
+    @UiField
+    Button imageButton;
+    @UiField
+    Button linkButton;
+    @UiField
+    Button unlinkButton;
+    @UiField
+    Button removeFormatButton;
+    @UiField
+    Button undoButton;
+    @UiField
+    Button redoButton;
+    private org.gwtbootstrap3.client.ui.base.RichTextArea richText;
+
+    /**
+     * Creates a new toolbar that drives the given rich text area.
+     *
+     * @param richText the rich text area to be controlled
+     */
+    public RichTextToolbar(final org.gwtbootstrap3.client.ui.base.RichTextArea richText) {
+        initWidget(binder.createAndBindUi(this));
+
+        richText.addInitializeHandler(new InitializeHandler() {
+            @Override
+            public void onInitialize(InitializeEvent event) {
+                IFrameElement iframe = IFrameElement.as(richText.getElement());
+
+                iframe.getContentDocument().getBody().getStyle().setMargin(0, Style.Unit.PX);
+                iframe.getContentDocument().getBody().getStyle().setPadding(0, Style.Unit.PX);
+            }
+        });
+
+        this.richText = richText;
+
+        richText.setHTML("<div></div>");
+
+        EventHandler handler = new EventHandler();
+
+        boldButton.addClickHandler(handler);
+        italicButton.addClickHandler(handler);
+        underlineButton.addClickHandler(handler);
+        subscriptButton.addClickHandler(handler);
+        superscriptButton.addClickHandler(handler);
+        justifyLeftButton.addClickHandler(handler);
+        justifyCenterButton.addClickHandler(handler);
+        justifyRightButton.addClickHandler(handler);
+        strikethroughButton.addClickHandler(handler);
+        indentButton.addClickHandler(handler);
+        outdentButton.addClickHandler(handler);
+        hrButton.addClickHandler(handler);
+        olButton.addClickHandler(handler);
+        ulButton.addClickHandler(handler);
+        imageButton.addClickHandler(handler);
+        linkButton.addClickHandler(handler);
+        unlinkButton.addClickHandler(handler);
+        removeFormatButton.addClickHandler(handler);
+        undoButton.addClickHandler(handler);
+        redoButton.addClickHandler(handler);
+
+        // We only use these handlers for updating status, so don't hook them up
+        // unless at least basic editing is supported.
+        richText.addKeyUpHandler(handler);
+        richText.addClickHandler(handler);
     }
 
-    private static final Binder binder = GWT.create(Binder.class);
+    public ButtonToolBar getButtons() {
+        return (ButtonToolBar) getWidget();
+    }
+
+    private void updateStatus() {
+        boldButton.setActive(richText.getFormatter().isBold());
+        italicButton.setActive(richText.getFormatter().isItalic());
+        underlineButton.setActive(richText.getFormatter().isUnderlined());
+        subscriptButton.setActive(richText.getFormatter().isSubscript());
+        superscriptButton.setActive(richText.getFormatter().isSuperscript());
+        strikethroughButton.setActive(richText.getFormatter().isStrikethrough());
+    }
+
+    public native void setSelectionRange(Element elem, int pos, int length) /*-{
+        try {
+            var selection = null, range2 = null;
+            var iframeWindow = elem.contentWindow;
+            var iframeDocument = iframeWindow.document;
+
+            selection = iframeWindow.getSelection();
+            range2 = selection.getRangeAt(0);
+
+            //create new range
+            var range = iframeDocument.createRange();
+            range.setStart(selection.anchorNode, pos);
+            range.setEnd(selection.anchorNode, length);
+
+            //remove the old range and add the newly created range
+            if (selection.removeRange) { // Firefox, Opera, IE after version 9
+                selection.removeRange(range2);
+            } else {
+                if (selection.removeAllRanges) { // Safari, Google Chrome
+                    selection.removeAllRanges();
+                }
+            }
+            selection.addRange(range);
+        } catch (e) {
+            $wnd.alert(e);
+        }
+    }-*/;
+
+    interface Binder extends UiBinder<ButtonToolBar, RichTextToolbar> {
+    }
 
     /**
      * We use an inner EventHandler class to avoid exposing event methods on the
@@ -143,160 +276,5 @@ public class RichTextToolbar extends Composite {
             }
         }
     }
-
-    private org.gwtbootstrap3.client.ui.base.RichTextArea richText;
-
-    @UiField
-    Button boldButton;
-
-    @UiField
-    Button italicButton;
-
-    @UiField
-    Button underlineButton;
-
-    @UiField
-    Button subscriptButton;
-
-    @UiField
-    Button superscriptButton;
-
-    @UiField
-    Button strikethroughButton;
-
-    @UiField
-    Button indentButton;
-
-    @UiField
-    Button outdentButton;
-
-    @UiField
-    Button justifyLeftButton;
-
-    @UiField
-    Button justifyCenterButton;
-
-    @UiField
-    Button justifyRightButton;
-
-    @UiField
-    Button hrButton;
-
-    @UiField
-    Button olButton;
-
-    @UiField
-    Button ulButton;
-
-    @UiField
-    Button imageButton;
-
-    @UiField
-    Button linkButton;
-
-    @UiField
-    Button unlinkButton;
-
-    @UiField
-    Button removeFormatButton;
-
-    @UiField
-    Button undoButton;
-
-    @UiField
-    Button redoButton;
-
-
-    /**
-     * Creates a new toolbar that drives the given rich text area.
-     *
-     * @param richText the rich text area to be controlled
-     */
-    public RichTextToolbar(final org.gwtbootstrap3.client.ui.base.RichTextArea richText) {
-        initWidget(binder.createAndBindUi(this));
-
-        richText.addInitializeHandler(new InitializeHandler() {
-            @Override
-            public void onInitialize(InitializeEvent event) {
-                IFrameElement iframe = IFrameElement.as(richText.getElement());
-
-                iframe.getContentDocument().getBody().getStyle().setMargin(0, Style.Unit.PX);
-                iframe.getContentDocument().getBody().getStyle().setPadding(0, Style.Unit.PX);
-            }
-        });
-
-        this.richText = richText;
-
-        richText.setHTML("<div></div>");
-
-        EventHandler handler = new EventHandler();
-
-        boldButton.addClickHandler(handler);
-        italicButton.addClickHandler(handler);
-        underlineButton.addClickHandler(handler);
-        subscriptButton.addClickHandler(handler);
-        superscriptButton.addClickHandler(handler);
-        justifyLeftButton.addClickHandler(handler);
-        justifyCenterButton.addClickHandler(handler);
-        justifyRightButton.addClickHandler(handler);
-        strikethroughButton.addClickHandler(handler);
-        indentButton.addClickHandler(handler);
-        outdentButton.addClickHandler(handler);
-        hrButton.addClickHandler(handler);
-        olButton.addClickHandler(handler);
-        ulButton.addClickHandler(handler);
-        imageButton.addClickHandler(handler);
-        linkButton.addClickHandler(handler);
-        unlinkButton.addClickHandler(handler);
-        removeFormatButton.addClickHandler(handler);
-        undoButton.addClickHandler(handler);
-        redoButton.addClickHandler(handler);
-
-        // We only use these handlers for updating status, so don't hook them up
-        // unless at least basic editing is supported.
-        richText.addKeyUpHandler(handler);
-        richText.addClickHandler(handler);
-    }
-
-    public ButtonToolBar getButtons() {
-        return (ButtonToolBar) getWidget();
-    }
-
-    private void updateStatus() {
-        boldButton.setActive(richText.getFormatter().isBold());
-        italicButton.setActive(richText.getFormatter().isItalic());
-        underlineButton.setActive(richText.getFormatter().isUnderlined());
-        subscriptButton.setActive(richText.getFormatter().isSubscript());
-        superscriptButton.setActive(richText.getFormatter().isSuperscript());
-        strikethroughButton.setActive(richText.getFormatter().isStrikethrough());
-    }
-
-    public native void setSelectionRange(Element elem, int pos, int length) /*-{
-        try {
-            var selection = null, range2 = null;
-            var iframeWindow = elem.contentWindow;
-            var iframeDocument = iframeWindow.document;
-
-            selection = iframeWindow.getSelection();
-            range2 = selection.getRangeAt(0);
-
-            //create new range
-            var range = iframeDocument.createRange();
-            range.setStart(selection.anchorNode, pos);
-            range.setEnd(selection.anchorNode, length);
-
-            //remove the old range and add the newly created range
-            if (selection.removeRange) { // Firefox, Opera, IE after version 9
-                selection.removeRange(range2);
-            } else {
-                if (selection.removeAllRanges) { // Safari, Google Chrome
-                    selection.removeAllRanges();
-                }
-            }
-            selection.addRange(range);
-        } catch (e) {
-            $wnd.alert(e);
-        }
-    }-*/;
 
 }

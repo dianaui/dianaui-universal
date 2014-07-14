@@ -32,12 +32,12 @@ public class AlertCloseEvent extends GwtEvent<AlertCloseHandler> {
 
     private final Event nativeEvent;
 
-    public static Type<AlertCloseHandler> getType() {
-        return TYPE;
-    }
-
     public AlertCloseEvent(final Event nativeEvent) {
         this.nativeEvent = nativeEvent;
+    }
+
+    public static Type<AlertCloseHandler> getType() {
+        return TYPE;
     }
 
     public Event getNativeEvent() {

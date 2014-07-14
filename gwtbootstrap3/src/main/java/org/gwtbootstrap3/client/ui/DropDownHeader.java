@@ -60,13 +60,13 @@ public class DropDownHeader extends Widget implements HasText, HasResponsiveness
     }
 
     @Override
-    public void setText(final String text) {
-        getElement().setInnerText(text);
+    public String getText() {
+        return getElement().getInnerText();
     }
 
     @Override
-    public String getText() {
-        return getElement().getInnerText();
+    public void setText(final String text) {
+        getElement().setInnerText(text);
     }
 
     @Override

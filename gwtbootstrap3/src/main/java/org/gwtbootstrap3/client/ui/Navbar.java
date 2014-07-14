@@ -44,21 +44,21 @@ public class Navbar extends ComplexWidget implements HasType<NavbarType> {
     }
 
     @Override
-    public void setType(final NavbarType type) {
-        StyleHelper.addUniqueEnumStyleName(this, NavbarType.class, type);
-    }
-
-    @Override
     public NavbarType getType() {
         return NavbarType.fromStyleName(getStyleName());
     }
 
-    public void setPosition(final NavbarPosition type) {
-        StyleHelper.addUniqueEnumStyleName(this, NavbarPosition.class, type);
+    @Override
+    public void setType(final NavbarType type) {
+        StyleHelper.addUniqueEnumStyleName(this, NavbarType.class, type);
     }
 
     public NavbarPosition getPosition() {
         return NavbarPosition.fromStyleName(getStyleName());
+    }
+
+    public void setPosition(final NavbarPosition type) {
+        StyleHelper.addUniqueEnumStyleName(this, NavbarPosition.class, type);
     }
 
 }

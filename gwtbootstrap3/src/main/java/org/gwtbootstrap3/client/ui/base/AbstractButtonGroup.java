@@ -93,6 +93,11 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
         return StyleHelper.containsStyle(getStyleName(), Styles.OPEN);
     }
 
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
     /**
      * Convenience method that will set the name of all child widgets that can have a name
      *
@@ -115,8 +120,8 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     }
 
     @Override
-    public String getName() {
-        return this.name;
+    public Toggle getToggle() {
+        return toggleMixin.getToggle();
     }
 
     @Override
@@ -125,8 +130,8 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     }
 
     @Override
-    public Toggle getToggle() {
-        return toggleMixin.getToggle();
+    public boolean isJustified() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.BTN_GROUP_JUSTIFIED);
     }
 
     /**
@@ -146,18 +151,13 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     }
 
     @Override
-    public boolean isJustified() {
-        return StyleHelper.containsStyle(getStyleName(), Styles.BTN_GROUP_JUSTIFIED);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     @Override
     public void setPull(final Pull pull) {
         pullMixin.setPull(pull);
-    }
-
-    @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
     }
 
     @Override

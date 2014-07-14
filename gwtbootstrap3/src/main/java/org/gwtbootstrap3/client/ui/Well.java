@@ -47,13 +47,13 @@ public class Well extends HTMLPanel implements HasSize<WellSize>, HasResponsiven
     }
 
     @Override
-    public void setSize(final WellSize size) {
-        StyleHelper.addUniqueEnumStyleName(this, WellSize.class, size);
+    public WellSize getSize() {
+        return WellSize.fromStyleName(getStyleName());
     }
 
     @Override
-    public WellSize getSize() {
-        return WellSize.fromStyleName(getStyleName());
+    public void setSize(final WellSize size) {
+        StyleHelper.addUniqueEnumStyleName(this, WellSize.class, size);
     }
 
     @Override

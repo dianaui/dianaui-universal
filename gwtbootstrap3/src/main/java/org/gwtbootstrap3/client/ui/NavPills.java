@@ -34,16 +34,16 @@ public class NavPills extends Nav implements HasStacked {
     }
 
     @Override
+    public boolean isStacked() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.NAV_STACKED);
+    }
+
+    @Override
     public void setStacked(final boolean stacked) {
         if (stacked) {
             addStyleName(Styles.NAV_STACKED);
         } else {
             removeStyleName(Styles.NAV_STACKED);
         }
-    }
-
-    @Override
-    public boolean isStacked() {
-        return StyleHelper.containsStyle(getStyleName(), Styles.NAV_STACKED);
     }
 }

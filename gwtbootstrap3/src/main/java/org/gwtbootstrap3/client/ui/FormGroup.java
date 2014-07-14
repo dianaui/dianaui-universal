@@ -52,13 +52,13 @@ public class FormGroup extends FormElementContainer implements HasValidationStat
     }
 
     @Override
-    public void setValidationState(final ValidationState state) {
-        StyleHelper.addUniqueEnumStyleName(this, ValidationState.class, state);
+    public ValidationState getValidationState() {
+        return ValidationState.fromStyleName(getStyleName());
     }
 
     @Override
-    public ValidationState getValidationState() {
-        return ValidationState.fromStyleName(getStyleName());
+    public void setValidationState(final ValidationState state) {
+        StyleHelper.addUniqueEnumStyleName(this, ValidationState.class, state);
     }
 
     @Override

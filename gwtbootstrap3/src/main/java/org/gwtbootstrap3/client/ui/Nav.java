@@ -38,16 +38,16 @@ public class Nav extends UnorderedList implements HasJustified {
     }
 
     @Override
+    public boolean isJustified() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.NAV_JUSTIFIED);
+    }
+
+    @Override
     public void setJustified(final boolean justified) {
         if (justified) {
             addStyleName(Styles.NAV_JUSTIFIED);
         } else {
             removeStyleName(Styles.NAV_JUSTIFIED);
         }
-    }
-
-    @Override
-    public boolean isJustified() {
-        return StyleHelper.containsStyle(getStyleName(), Styles.NAV_JUSTIFIED);
     }
 }

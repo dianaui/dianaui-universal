@@ -44,7 +44,9 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
      * Creates a value box that wraps the given browser element handle. This is
      * only used by subclasses.
      *
-     * @param elem the browser element to wrap
+     * @param elem     the browser element to wrap
+     * @param renderer renderer object
+     * @param parser   parser object
      */
     protected ValueBoxBase(final Element elem, final Renderer<T> renderer, final Parser<T> parser) {
         super(elem, renderer, parser);

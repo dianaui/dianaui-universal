@@ -66,6 +66,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
     private Time time;
     private Hours hours;
     private Minutes minutes;
+
     public DateTimePicker() {
         setFade(false);
         setBackdrop(ModalBackdrop.FALSE);
@@ -309,6 +310,9 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
 
     /**
      * Remove all children of the node.
+     *
+     * @param element base element
+     * @return node
      */
     public final native Node removeAllChildren(Element element) /*-{
         while (element.lastChild) {

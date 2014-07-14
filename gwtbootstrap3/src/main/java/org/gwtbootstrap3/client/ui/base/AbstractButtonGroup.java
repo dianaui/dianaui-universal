@@ -56,7 +56,7 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     /**
      * Makes this a "drop up" container for dropdown menus where the menu opens upwards.
      *
-     * @param dropUp
+     * @param dropUp dropup or not
      */
     public void setDropUp(final boolean dropUp) {
         if (dropUp) {

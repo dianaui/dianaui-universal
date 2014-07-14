@@ -36,7 +36,7 @@ public final class EnumHelper {
      * @param styleName    Space-separated list of styles
      * @param enumClass    Type of enum
      * @param defaultValue Default value of no match was found
-     * @param <E>
+     * @param <E>          enum type implementing {@link Style.HasCssName}
      * @return First enum constant found or default value
      */
     @SuppressWarnings("unchecked")

@@ -71,6 +71,7 @@ public class ScrollSpy {
      * target CSS selector.
      *
      * @param selector CSS selector for target element
+     * @return scroll spy object
      */
     public static ScrollSpy scrollSpy(final String selector) {
         return new ScrollSpy((Element) Document.get().getBody().cast(), selector);
@@ -81,6 +82,7 @@ public class ScrollSpy {
      * target element that <strong>must</strong> have an ID.
      *
      * @param target Target element having an ID
+     * @return scroll spy object
      */
     public static ScrollSpy scrollSpy(final HasId target) {
         return new ScrollSpy((Element) Document.get().getBody().cast(), target);
@@ -91,6 +93,7 @@ public class ScrollSpy {
      *
      * @param spyOn    Spy on this object
      * @param selector CSS selector of target element
+     * @return scroll spy object
      */
     public static ScrollSpy scrollSpy(final UIObject spyOn, final String selector) {
         return new ScrollSpy(spyOn.getElement(), selector);
@@ -101,6 +104,7 @@ public class ScrollSpy {
      *
      * @param spyOn  Spy on this object
      * @param target Target element having an ID
+     * @return scroll spy object
      */
     public static ScrollSpy scrollSpy(final UIObject spyOn, final HasId target) {
         return new ScrollSpy(spyOn.getElement(), target);
@@ -111,6 +115,7 @@ public class ScrollSpy {
      *
      * @param spyOn    Spy on this element
      * @param selector CSS selector of target element
+     * @return scroll spy object
      */
     public static ScrollSpy scrollSpy(final Element spyOn, final String selector) {
         return new ScrollSpy(spyOn, selector);

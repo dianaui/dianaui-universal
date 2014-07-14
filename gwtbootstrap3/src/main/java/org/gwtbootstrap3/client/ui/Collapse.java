@@ -67,6 +67,8 @@ public class Collapse extends CustomWidget {
 
     /**
      * Sets the default state to show or hide. Show is true.
+     *
+     * @param toggle toggle
      */
     public void setToggle(final boolean toggle) {
         this.toggle = toggle;

@@ -58,6 +58,7 @@ public class TextArea extends TextBoxBase {
      * {@link RootPanel#detachNow(Widget)}.
      *
      * @param element the element to be wrapped
+     * @return TextArea object
      */
     public static TextArea wrap(final Element element) {
         // Assert that the element is attached.

@@ -40,6 +40,11 @@ public final class StyleHelper {
     /**
      * Convenience method for first removing all enum style constants and then adding the single one.
      *
+     * @param uiObject  Object to remove CSS class names from
+     * @param enumClass Enum representing CSS class names
+     * @param style     enum type implementing {@link Style.HasCssName}
+     * @param <F>       enum class
+     * @param <E>       enum type implementing {@link Style.HasCssName}
      * @see #removeEnumStyleNames(com.google.gwt.user.client.ui.UIObject, Class)
      * @see #addEnumStyleName(com.google.gwt.user.client.ui.UIObject, com.google.gwt.dom.client.Style.HasCssName)
      */
@@ -55,7 +60,7 @@ public final class StyleHelper {
      *
      * @param uiObject  Object to remove CSS class names from
      * @param enumClass Enum representing CSS class names
-     * @param <E>       Enum type implementing {@link Style.HasCssName}
+     * @param <E>       enum type implementing {@link Style.HasCssName}
      */
     public static <E extends Enum<? extends Style.HasCssName>> void removeEnumStyleNames(final UIObject uiObject,
                                                                                          final Class<E> enumClass) {
@@ -74,6 +79,7 @@ public final class StyleHelper {
      *
      * @param uiObject Object to add style to
      * @param style    Style name
+     * @param <E>      enum type implementing {@link Style.HasCssName}
      */
     public static <E extends Style.HasCssName> void addEnumStyleName(final UIObject uiObject,
                                                                      final E style) {
@@ -88,6 +94,7 @@ public final class StyleHelper {
      *
      * @param uiObject Object to add style to
      * @param style    Style name
+     * @param <E>      enum type implementing {@link Style.HasCssName}
      */
     public static <E extends Style.HasCssName> void removeEnumStyleName(final UIObject uiObject,
                                                                         final E style) {

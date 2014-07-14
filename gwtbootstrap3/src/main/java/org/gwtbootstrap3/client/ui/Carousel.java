@@ -84,6 +84,8 @@ public class Carousel extends Div {
 
     /**
      * Causes the carousel to jump to that slide
+     *
+     * @param slideNumber slideNumber
      */
     public void jumpToSlide(final int slideNumber) {
         // TODO
@@ -116,6 +118,8 @@ public class Carousel extends Div {
 
     /**
      * Fired when the carousel is starting to change slides
+     *
+     * @param evt event
      */
     private void onSlide(final Event evt) {
         fireEvent(new CarouselSlideEvent(this, evt));
@@ -123,6 +127,8 @@ public class Carousel extends Div {
 
     /**
      * Fired when the carousel is finished changing slides
+     *
+     * @param evt event
      */
     private void onSlid(final Event evt) {
         fireEvent(new CarouselSlidEvent(this, evt));

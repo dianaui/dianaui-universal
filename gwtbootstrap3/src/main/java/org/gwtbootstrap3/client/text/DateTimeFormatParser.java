@@ -44,11 +44,12 @@ public class DateTimeFormatParser implements Parser<Date> {
 
     /**
      * Create an instance with the given format.
+     *
+     * @param format date time format
      */
     public DateTimeFormatParser(DateTimeFormat format) {
         this.format = format;
     }
-
 
     public Date parse(CharSequence object) throws ParseException {
         if ("".equals(object.toString())) {

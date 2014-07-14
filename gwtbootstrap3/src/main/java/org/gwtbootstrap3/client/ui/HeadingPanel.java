@@ -28,10 +28,15 @@ import org.gwtbootstrap3.client.ui.constants.Alignment;
 
 /**
  * Container with the h(1-6) tag so that you can do layouts like:
- * <HeadingPanel>
- * <Icon/>
- * <Text/>
- * </HeadingPanel>
+ * <h3>UiBinder example</h3>
+ * <pre>
+ * {@code
+ *     <b:HeadingPanel>
+ *         <b:Icon/>
+ *         <b:Text/>
+ *     </b:HeadingPanel>
+ * }
+ * </pre>
  * Please note, this doesn't enforce any requirements on the children. It is up to
  * you to make sure you produce valid HTML code.
  *

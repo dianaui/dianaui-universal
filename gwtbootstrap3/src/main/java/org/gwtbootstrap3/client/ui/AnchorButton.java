@@ -24,9 +24,7 @@ import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.ui.Focusable;
 import org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton;
-import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
 import org.gwtbootstrap3.client.ui.constants.IconType;
@@ -36,12 +34,11 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * Button based on {@code <a>} element.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see Button
  * @see org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton
  */
-public class AnchorButton extends AbstractToggleButton implements HasHref, Focusable {
-
-    private FocusableMixin focusableMixin;
+public class AnchorButton extends AbstractToggleButton implements HasHref {
 
     public AnchorButton() {
         this(ButtonType.DEFAULT);
@@ -147,26 +144,6 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
     }
 
     @Override
-    public int getTabIndex() {
-        return getFocusableMixin().getTabIndex();
-    }
-
-    @Override
-    public void setTabIndex(final int index) {
-        getFocusableMixin().setTabIndex(index);
-    }
-
-    @Override
-    public void setAccessKey(final char key) {
-        getFocusableMixin().setAccessKey(key);
-    }
-
-    @Override
-    public void setFocus(final boolean focused) {
-        getFocusableMixin().setFocus(focused);
-    }
-
-    @Override
     public boolean isEnabled() {
         return getStyleName().contains(Styles.DISABLED);
     }
@@ -183,13 +160,6 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, Focus
     @Override
     protected Element createElement() {
         return DOM.createAnchor();
-    }
-
-    private FocusableMixin getFocusableMixin() {
-        if (focusableMixin == null) {
-            focusableMixin = new FocusableMixin(getAnchorElement());
-        }
-        return focusableMixin;
     }
 
     private AnchorElement getAnchorElement() {

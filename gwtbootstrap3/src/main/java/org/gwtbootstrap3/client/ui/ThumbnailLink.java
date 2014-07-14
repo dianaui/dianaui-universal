@@ -33,18 +33,18 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref,
-        HasToggle, HasTargetHistoryToken, HasTabIndex, Focusable {
+        HasToggle, HasTargetHistoryToken, Focusable {
 
     private final ToggleMixin<ThumbnailLink> toggleMixin = new ToggleMixin<ThumbnailLink>(this);
-    private final FocusableMixin focusableMixin;
+    private FocusableMixin<ThumbnailLink> focusableMixin;
     private String targetHistoryToken;
 
     public ThumbnailLink(final String href) {
         setElement(Document.get().createAnchorElement());
         setHref(href);
-        focusableMixin = new FocusableMixin(AnchorElement.as(getElement()));
     }
 
     public ThumbnailLink(final String text, final String href) {
@@ -66,18 +66,13 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
     }
 
     @Override
-    public String getHref() {
-        return AnchorElement.as(getElement()).getHref();
-    }
-
-    @Override
     public void setHref(final String href) {
         AnchorElement.as(getElement()).setHref(href);
     }
 
     @Override
-    public String getTargetHistoryToken() {
-        return targetHistoryToken;
+    public String getHref() {
+        return AnchorElement.as(getElement()).getHref();
     }
 
     @Override
@@ -88,8 +83,8 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
     }
 
     @Override
-    public Toggle getToggle() {
-        return toggleMixin.getToggle();
+    public String getTargetHistoryToken() {
+        return targetHistoryToken;
     }
 
     @Override
@@ -98,22 +93,35 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
     }
 
     @Override
+    public Toggle getToggle() {
+        return toggleMixin.getToggle();
+    }
+
+    @Override
     public int getTabIndex() {
-        return focusableMixin.getTabIndex();
+        return getFocusableMixin().getTabIndex();
     }
 
     @Override
     public void setTabIndex(final int index) {
-        focusableMixin.setTabIndex(index);
+        getFocusableMixin().setTabIndex(index);
     }
 
     @Override
     public void setAccessKey(final char key) {
-        focusableMixin.setAccessKey(key);
+        getFocusableMixin().setAccessKey(key);
     }
 
     @Override
     public void setFocus(final boolean focused) {
-        focusableMixin.setFocus(focused);
+        getFocusableMixin().setFocus(focused);
     }
+
+    private FocusableMixin getFocusableMixin() {
+        if (focusableMixin == null) {
+            focusableMixin = new FocusableMixin<ThumbnailLink>(this);
+        }
+        return focusableMixin;
+    }
+
 }

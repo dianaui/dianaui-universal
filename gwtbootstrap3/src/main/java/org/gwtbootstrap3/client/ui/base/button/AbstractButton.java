@@ -28,12 +28,14 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.*;
 import org.gwtbootstrap3.client.ui.base.AbstractButtonGroup;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonSize;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
@@ -48,9 +50,10 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * @see org.gwtbootstrap3.client.ui.HasEnabled
  */
 public abstract class AbstractButton extends ComplexWidget implements HasEnabled, HasActive, HasType<ButtonType>,
-        HasSize<ButtonSize>, HasClickHandlers, HasTargetHistoryToken, HasHref {
+        HasSize<ButtonSize>, HasClickHandlers, HasTargetHistoryToken, HasHref, Focusable {
 
     private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<AbstractButton>(this);
+    private FocusableMixin<AbstractButton> focusableMixin;
     private String targetHistoryToken;
 
     /**
@@ -164,6 +167,27 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         getElement().setAttribute(HREF, href);
     }
 
+
+    @Override
+    public int getTabIndex() {
+        return getFocusableMixin().getTabIndex();
+    }
+
+    @Override
+    public void setAccessKey(final char key) {
+        getFocusableMixin().setAccessKey(key);
+    }
+
+    @Override
+    public void setFocus(final boolean focused) {
+        getFocusableMixin().setFocus(focused);
+    }
+
+    @Override
+    public void setTabIndex(final int index) {
+        getFocusableMixin().setTabIndex(index);
+    }
+
     @Override
     public void onBrowserEvent(Event event) {
         switch (DOM.eventGetType(event)) {
@@ -198,6 +222,13 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         super.onAttach();
 
         sinkEvents(Event.ONCLICK);
+    }
+
+    private FocusableMixin getFocusableMixin() {
+        if (focusableMixin == null) {
+            focusableMixin = new FocusableMixin<AbstractButton>(this);
+        }
+        return focusableMixin;
     }
 
 }

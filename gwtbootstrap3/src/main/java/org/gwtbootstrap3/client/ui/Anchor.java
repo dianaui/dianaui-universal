@@ -42,11 +42,11 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Anchor extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref, HasToggle,
-        HasParent, HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, HasTabIndex, Focusable, HasTarget {
+        HasParent, HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasTarget {
 
     private final ParentMixin<Anchor> parentMixin = new ParentMixin<Anchor>(this);
     private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<Anchor>(this);
-    private FocusableMixin focusableMixin;
+    private FocusableMixin<Anchor> focusableMixin;
     private String targetHistoryToken;
     private Toggle toggle;
 
@@ -317,7 +317,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     private FocusableMixin getFocusableMixin() {
         if (focusableMixin == null) {
-            focusableMixin = new FocusableMixin(getAnchorElement());
+            focusableMixin = new FocusableMixin<Anchor>(this);
         }
         return focusableMixin;
     }

@@ -35,6 +35,10 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ * @see org.gwtbootstrap3.client.shared.event.ShowEvent
+ * @see org.gwtbootstrap3.client.shared.event.ShownEvent
+ * @see org.gwtbootstrap3.client.shared.event.HideEvent
+ * @see org.gwtbootstrap3.client.shared.event.HiddenEvent
  */
 public abstract class ModalWithBackdrop extends Div {
 

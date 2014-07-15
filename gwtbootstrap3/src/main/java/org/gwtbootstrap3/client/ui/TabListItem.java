@@ -69,11 +69,11 @@ public class TabListItem extends AnchorListItem implements HasTarget {
         return toggleIndex;
     }
 
-    public void setToogleIndex(int toggleIndex) {
+    public void setToogleIndex(final int toggleIndex) {
         this.toggleIndex = toggleIndex;
     }
 
-    public void onBrowserEvent(Event event) {
+    public void onBrowserEvent(final Event event) {
         super.onBrowserEvent(event);
 
         switch (DOM.eventGetType(event)) {
@@ -107,7 +107,7 @@ public class TabListItem extends AnchorListItem implements HasTarget {
         sinkEvents(Event.ONCLICK);
     }
 
-    private void uncheckTabs(NavTabs tabs) {
+    private void uncheckTabs(final NavTabs tabs) {
         for (int i = 0; i < tabs.getWidgetCount(); i++) {
             ((HasActive) tabs.getWidget(i)).setActive(false);
         }

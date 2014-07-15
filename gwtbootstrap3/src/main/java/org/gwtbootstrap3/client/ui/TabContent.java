@@ -40,7 +40,7 @@ public class TabContent extends Div implements HasValueChangeHandlers<Integer> {
     }
 
     @Override
-    public void add(Widget child) {
+    public void add(final Widget child) {
         if (!(child instanceof TabPane)) {
             throw new IllegalArgumentException("TabContent must have children of type TabPane.");
         }
@@ -52,7 +52,7 @@ public class TabContent extends Div implements HasValueChangeHandlers<Integer> {
         return addHandler(handler, ValueChangeEvent.getType());
     }
 
-    public void selectTab(int index) {
+    public void selectTab(final int index) {
         for (int i = 0; i < getWidgetCount(); i++) {
             final TabPane tab = (TabPane) getWidget(i);
 

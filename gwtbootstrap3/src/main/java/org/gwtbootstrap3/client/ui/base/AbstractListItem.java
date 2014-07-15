@@ -55,7 +55,7 @@ public abstract class AbstractListItem extends ComplexPanel implements HasId, Ha
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(final String id) {
         getElement().setId(id);
     }
 

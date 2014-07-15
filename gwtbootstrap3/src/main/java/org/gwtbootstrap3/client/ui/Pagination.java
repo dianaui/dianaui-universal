@@ -85,7 +85,7 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
             return;
         }
 
-        AnchorListItem prev = addPreviousLink();
+        final AnchorListItem prev = addPreviousLink();
         prev.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
@@ -96,10 +96,10 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
 
         for (int i = 0; i < pager.getPageCount(); i++) {
             final int display = i + 1;
-            AnchorListItem page = new AnchorListItem(String.valueOf(display));
+            final AnchorListItem page = new AnchorListItem(String.valueOf(display));
             page.addClickHandler(new ClickHandler() {
                 @Override
-                public void onClick(ClickEvent event) {
+                public void onClick(final ClickEvent event) {
                     pager.setPage(display - 1);
                 }
             });
@@ -111,7 +111,7 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
             add(page);
         }
 
-        AnchorListItem next = addNextLink();
+        final AnchorListItem next = addNextLink();
         next.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {

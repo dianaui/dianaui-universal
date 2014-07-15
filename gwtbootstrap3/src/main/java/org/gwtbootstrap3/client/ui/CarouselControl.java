@@ -20,7 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import com.google.gwt.user.client.DOM;
+import com.google.gwt.dom.client.Document;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.Attributes;
@@ -38,7 +38,7 @@ public class CarouselControl extends ComplexWidget {
     private final FontAwesomeIcon fontAwesomeIcon = new FontAwesomeIcon();
 
     public CarouselControl() {
-        setElement(DOM.createAnchor());
+        setElement(Document.get().createAnchorElement());
         setStyleName(Styles.CAROUSEL_CONTROL);
 
         add(fontAwesomeIcon);

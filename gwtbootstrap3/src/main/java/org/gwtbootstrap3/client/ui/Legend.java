@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.DOM;
 import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
 
@@ -32,7 +33,7 @@ import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
 public class Legend extends AbstractTextWidget {
 
     public Legend() {
-        super(DOM.createLegend());
+        super(Document.get().createLegendElement());
     }
 
     public Legend(final String text) {

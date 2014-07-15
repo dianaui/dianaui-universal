@@ -28,7 +28,7 @@ import org.gwtbootstrap3.client.ui.base.AbstractListItem;
  */
 public class ListItem extends AbstractListItem implements HasText {
 
-    public ListItem(String text) {
+    public ListItem(final String text) {
         setText(text);
     }
 
@@ -38,7 +38,7 @@ public class ListItem extends AbstractListItem implements HasText {
     }
 
     @Override
-    public void setText(String text) {
+    public void setText(final String text) {
         getElement().setInnerText(text);
     }
 

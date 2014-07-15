@@ -43,7 +43,7 @@ public class TabPane extends Div implements HasActive {
         return StyleHelper.containsStyle(getStyleName(), Styles.FADE);
     }
 
-    public void setFade(boolean fade) {
+    public void setFade(final boolean fade) {
         if (fade) {
             addStyleName(Styles.FADE);
         } else {

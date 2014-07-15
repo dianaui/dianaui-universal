@@ -41,7 +41,7 @@ public class TabPanel extends Div implements HasTabPosition {
     }
 
     @Override
-    public void setTabPosition(TabPosition tabPosition) {
+    public void setTabPosition(final TabPosition tabPosition) {
         // If the tab position if not the default TOP, we need to add the custom CSS for LEFT/RIGHT/BOTTOM tabs
         if (!TabPosition.TOP.equals(tabPosition)) {
             StyleInjector.inject(GwtBootstrap3ClientBundle.INSTANCE.bootstrapTabsCss().getText());

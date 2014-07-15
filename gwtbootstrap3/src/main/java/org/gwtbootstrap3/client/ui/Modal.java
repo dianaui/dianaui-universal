@@ -66,10 +66,6 @@ import org.gwtbootstrap3.client.ui.constants.Attributes;
  * @see ModalHeader
  * @see ModalBody
  * @see ModalFooter
- * @see org.gwtbootstrap3.client.shared.event.ShowEvent
- * @see org.gwtbootstrap3.client.shared.event.ShownEvent
- * @see org.gwtbootstrap3.client.shared.event.HideEvent
- * @see org.gwtbootstrap3.client.shared.event.HiddenEvent
  */
 public class Modal extends ModalWithBackdrop implements IsClosable, HasResponsiveness {
 
@@ -90,7 +86,7 @@ public class Modal extends ModalWithBackdrop implements IsClosable, HasResponsiv
     }
 
     @Override
-    public void setWidth(String width) {
+    public void setWidth(final String width) {
         dialog.setWidth(width);
     }
 

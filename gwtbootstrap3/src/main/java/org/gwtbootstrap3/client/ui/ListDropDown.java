@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.base.AbstractListItem;
 import org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton;
@@ -70,7 +71,7 @@ public class ListDropDown extends AbstractListItem {
             child.setStyleName(Styles.DROPDOWN_TOGGLE);
         }
 
-        add(child, getElement());
+        add(child, (Element) getElement());
     }
 
     public void toggle() {

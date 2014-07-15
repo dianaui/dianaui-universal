@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.Event;
 import org.gwtbootstrap3.client.shared.event.AlertCloseEvent;
@@ -91,7 +92,7 @@ public class Alert extends HTMLPanel implements HasType<AlertType>, HasResponsiv
      */
     public void setDismissable(final boolean dismissable) {
         if (dismissable) {
-            insert(closeButton, getElement(), 0, true);
+            insert(closeButton, (Element) getElement(), 0, true);
             addStyleName(Styles.ALERT_DISMISSABLE);
         } else {
             closeButton.removeFromParent();

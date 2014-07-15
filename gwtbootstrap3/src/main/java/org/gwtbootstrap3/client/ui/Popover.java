@@ -56,15 +56,15 @@ public class Popover extends ModalWithBackdrop implements HasHover {
         this(null, null);
     }
 
-    public Popover(Placement placement) {
+    public Popover(final Placement placement) {
         this(null, placement);
     }
 
-    public Popover(String heading) {
+    public Popover(final String heading) {
         this(heading, null);
     }
 
-    public Popover(String heading, Placement placement) {
+    public Popover(final String heading, final Placement placement) {
         removeStyleName(Styles.MODAL);
         addStyleName(Styles.POPOVER);
 
@@ -92,7 +92,7 @@ public class Popover extends ModalWithBackdrop implements HasHover {
         return header.getText();
     }
 
-    public void setHeading(String heading) {
+    public void setHeading(final String heading) {
         super.insert(header, 0);
         header.setText(heading);
     }
@@ -105,19 +105,19 @@ public class Popover extends ModalWithBackdrop implements HasHover {
         return body;
     }
 
-    public void setPosition(int left, int top) {
+    public void setPosition(final int left, final int top) {
         getElement().getStyle().setLeft(left, Style.Unit.PX);
         getElement().getStyle().setTop(top, Style.Unit.PX);
     }
 
-    public void bind(Widget widget) {
+    public void bind(final Widget widget) {
         this.widget = widget;
 
         postSetWidget();
     }
 
     @Override
-    public void add(Widget w) {
+    public void add(final Widget w) {
         // User can supply own ModalHeader
         if (w instanceof PopoverHeader) {
             header.removeFromParent();
@@ -133,7 +133,7 @@ public class Popover extends ModalWithBackdrop implements HasHover {
     }
 
     @Override
-    public void insert(Widget child, int beforeIndex) {
+    public void insert(final Widget child, final int beforeIndex) {
         throw new UnsupportedOperationException("Popover does not support insert widgets");
     }
 
@@ -143,12 +143,12 @@ public class Popover extends ModalWithBackdrop implements HasHover {
     }
 
     @Override
-    public boolean remove(Widget w) {
+    public boolean remove(final Widget w) {
         return body.remove(w);
     }
 
     @Override
-    public boolean remove(int index) {
+    public boolean remove(final int index) {
         return body.remove(index);
     }
 

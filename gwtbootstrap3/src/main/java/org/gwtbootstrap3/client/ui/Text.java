@@ -76,6 +76,7 @@ public class Text extends Widget implements HasText {
             throw new IllegalStateException("Text is not attached!");
         }
         isAttached = false;
-        AttachEvent.fire(this, isAttached);
+        AttachEvent.fire(this, false);
     }
+
 }

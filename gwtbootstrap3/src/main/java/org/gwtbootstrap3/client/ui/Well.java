@@ -26,11 +26,8 @@ import org.gwtbootstrap3.client.ui.constants.WellSize;
 
 /**
  * Widget representing the Bootstrap Well
- * <p/>
  * <a href="http://getbootstrap.com/components/#wells">Bootstrap Documentation</a>
- * <p/>
  * <h3>UiBinder example</h3>
- * <p/>
  * <pre>
  * {@code
  *     <b:Well>

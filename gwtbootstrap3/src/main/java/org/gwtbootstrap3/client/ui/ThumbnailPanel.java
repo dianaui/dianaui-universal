@@ -24,11 +24,8 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Widget representing the Bootstrap Thumbnail for use with other components
- * <p/>
  * <a href="http://getbootstrap.com/components/#thumbnails">Bootstrap Documentation</a> (Custom Content section)
- * <p/>
  * <h3>UiBinder example</h3>
- * <p/>
  * <pre>
  * {@code
  * <b:ThumbnailPanel>

@@ -35,6 +35,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * </b:ThumbnailPanel>
  * }
  * </pre>
+ *
  * @author Joshua Godi
  */
 public class ThumbnailPanel extends Div {

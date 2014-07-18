@@ -21,7 +21,7 @@ package org.gwtbootstrap3.client.ui.html;
  */
 
 import com.google.gwt.dom.client.Document;
-import org.gwtbootstrap3.client.ui.ListItem;
+import org.gwtbootstrap3.client.ui.AnchorListItem;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 

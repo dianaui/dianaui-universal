@@ -61,4 +61,5 @@ public class Span extends HTMLPanel implements HasHTML {
     public void setHTML(final String html) {
         textMixin.setHTML(html);
     }
+
 }

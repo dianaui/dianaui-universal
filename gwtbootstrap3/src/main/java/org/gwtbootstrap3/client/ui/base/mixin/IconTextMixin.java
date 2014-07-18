@@ -21,19 +21,9 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  */
 
 import com.google.gwt.user.client.ui.HasText;
-<<<<<<< HEAD
 import org.gwtbootstrap3.client.ui.*;
-=======
-import org.gwtbootstrap3.client.ui.HasIcon;
-import org.gwtbootstrap3.client.ui.HasIconPosition;
-import org.gwtbootstrap3.client.ui.Icon;
->>>>>>> cf47040... Moving all the base HTML elements to an HTML folder to separate them from the actual library. Since these widgets will exhibit some special behavior, they need to be separate.
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
-import org.gwtbootstrap3.client.ui.constants.IconFlip;
-import org.gwtbootstrap3.client.ui.constants.IconPosition;
-import org.gwtbootstrap3.client.ui.constants.IconRotate;
-import org.gwtbootstrap3.client.ui.constants.IconSize;
-import org.gwtbootstrap3.client.ui.constants.IconType;
+import org.gwtbootstrap3.client.ui.constants.*;
 import org.gwtbootstrap3.client.ui.html.Text;
 
 /**

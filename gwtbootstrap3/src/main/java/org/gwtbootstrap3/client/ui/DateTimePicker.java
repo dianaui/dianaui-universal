@@ -35,6 +35,8 @@ import com.google.gwt.user.datepicker.client.CalendarUtil;
 import org.gwtbootstrap3.client.ui.base.helper.CalendarModel;
 import org.gwtbootstrap3.client.ui.base.modal.ModalWithBackdrop;
 import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.html.Div;
+import org.gwtbootstrap3.client.ui.html.UnorderedList;
 
 import java.math.BigDecimal;
 import java.util.Date;

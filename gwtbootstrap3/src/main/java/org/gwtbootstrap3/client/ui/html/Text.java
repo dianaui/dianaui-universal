@@ -22,7 +22,6 @@ package org.gwtbootstrap3.client.ui.html;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -75,30 +74,6 @@ public class Text extends Widget implements HasText {
     @Override
     public void setText(final String txt) {
         text.setData(txt);
-    }
-
-    @Override
-    public boolean isAttached() {
-        return isAttached;
-    }
-
-    @Override
-    protected void onAttach() {
-        if (isAttached()) {
-            throw new IllegalStateException("Text is already attached!");
-        }
-        isAttached = true;
-        onLoad();
-        AttachEvent.fire(this, isAttached);
-    }
-
-    @Override
-    protected void onDetach() {
-        if (!isAttached()) {
-            throw new IllegalStateException("Text is not attached!");
-        }
-        isAttached = false;
-        AttachEvent.fire(this, false);
     }
 
 }

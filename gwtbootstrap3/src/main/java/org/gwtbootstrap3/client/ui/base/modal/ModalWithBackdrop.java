@@ -29,9 +29,9 @@ import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.RootPanel;
 import org.gwtbootstrap3.client.shared.event.*;
-import org.gwtbootstrap3.client.ui.Div;
 import org.gwtbootstrap3.client.ui.constants.ModalBackdrop;
 import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.html.Div;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>

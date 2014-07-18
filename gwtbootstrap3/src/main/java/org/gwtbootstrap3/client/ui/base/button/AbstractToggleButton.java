@@ -20,16 +20,13 @@ package org.gwtbootstrap3.client.ui.base.button;
  * #L%
  */
 
-<<<<<<< HEAD
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
-import org.gwtbootstrap3.client.ui.*;
+import org.gwtbootstrap3.client.ui.ButtonGroup;
+import org.gwtbootstrap3.client.ui.DropDownButton;
+import org.gwtbootstrap3.client.ui.HasToggle;
+import org.gwtbootstrap3.client.ui.ListDropDown;
 import org.gwtbootstrap3.client.ui.base.mixin.ToggleMixin;
-=======
-import com.google.gwt.dom.client.Element;
-import org.gwtbootstrap3.client.ui.HasDataToggle;
-import org.gwtbootstrap3.client.ui.base.mixin.DataToggleMixin;
->>>>>>> cf47040... Moving all the base HTML elements to an HTML folder to separate them from the actual library. Since these widgets will exhibit some special behavior, they need to be separate.
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.Toggle;

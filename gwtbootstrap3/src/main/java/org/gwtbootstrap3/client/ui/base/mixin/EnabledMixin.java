@@ -21,12 +21,12 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  */
 
 import com.google.gwt.user.client.ui.UIObject;
-import org.gwtbootstrap3.client.ui.HasEnabled;
+import org.gwtbootstrap3.client.ui.constants.HasEnabled;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
- * @see org.gwtbootstrap3.client.ui.HasEnabled
+ * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public class EnabledMixin<T extends UIObject & HasEnabled> extends AbstractMixin implements HasEnabled {
 

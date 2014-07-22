@@ -22,12 +22,10 @@ package org.gwtbootstrap3.client.ui.base;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.ComplexPanel;
-import org.gwtbootstrap3.client.ui.*;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
-import org.gwtbootstrap3.client.ui.constants.Pull;
-import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * Base class for list items.
@@ -37,7 +35,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @see org.gwtbootstrap3.client.ui.ListItem
  * @see org.gwtbootstrap3.client.ui.AnchorListItem
  * @see org.gwtbootstrap3.client.ui.ListDropDown
- * @see org.gwtbootstrap3.client.ui.HasEnabled
+ * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public abstract class AbstractListItem extends ComplexPanel implements HasId, HasEnabled, HasPull, HasActive,
         HasResponsiveness {

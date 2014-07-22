@@ -21,8 +21,6 @@ package org.gwtbootstrap3.client.ui.base.button;
  */
 
 import com.google.gwt.user.client.ui.HasText;
-import org.gwtbootstrap3.client.ui.HasIcon;
-import org.gwtbootstrap3.client.ui.HasIconPosition;
 import org.gwtbootstrap3.client.ui.base.mixin.IconTextMixin;
 import org.gwtbootstrap3.client.ui.constants.*;
 

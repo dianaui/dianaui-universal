@@ -21,7 +21,8 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  */
 
 import com.google.gwt.user.client.ui.HasText;
-import org.gwtbootstrap3.client.ui.*;
+import org.gwtbootstrap3.client.ui.FontAwesomeIcon;
+import org.gwtbootstrap3.client.ui.Glyphicon;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.constants.*;
 import org.gwtbootstrap3.client.ui.html.Text;

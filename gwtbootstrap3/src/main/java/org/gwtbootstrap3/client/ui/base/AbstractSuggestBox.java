@@ -27,8 +27,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.*;
 import org.gwtbootstrap3.client.ui.AnchorListItem;
 import org.gwtbootstrap3.client.ui.DropDownMenu;
-import org.gwtbootstrap3.client.ui.HasEnabled;
-import org.gwtbootstrap3.client.ui.HasPlaceholder;
+import org.gwtbootstrap3.client.ui.constants.HasEnabled;
+import org.gwtbootstrap3.client.ui.constants.HasPlaceholder;
 
 import java.util.Collection;
 

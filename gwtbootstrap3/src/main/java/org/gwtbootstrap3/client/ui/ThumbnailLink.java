@@ -29,6 +29,9 @@ import com.google.gwt.user.client.ui.Focusable;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.ToggleMixin;
+import org.gwtbootstrap3.client.ui.constants.HasHref;
+import org.gwtbootstrap3.client.ui.constants.HasTargetHistoryToken;
+import org.gwtbootstrap3.client.ui.constants.HasToggle;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**

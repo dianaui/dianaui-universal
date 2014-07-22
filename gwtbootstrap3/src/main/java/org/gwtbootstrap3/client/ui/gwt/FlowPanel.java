@@ -20,10 +20,10 @@ package org.gwtbootstrap3.client.ui.gwt;
  * #L%
  */
 
-import org.gwtbootstrap3.client.ui.HasId;
-import org.gwtbootstrap3.client.ui.HasSpy;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;
+import org.gwtbootstrap3.client.ui.constants.HasId;
+import org.gwtbootstrap3.client.ui.constants.HasSpy;
 import org.gwtbootstrap3.client.ui.constants.Spy;
 
 /**

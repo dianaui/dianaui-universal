@@ -28,6 +28,7 @@ import com.google.gwt.user.client.TakesValue;
 import com.google.gwt.user.client.ui.HasValue;
 import org.gwtbootstrap3.client.ui.base.RichTextArea;
 import org.gwtbootstrap3.client.ui.constants.ButtonSize;
+import org.gwtbootstrap3.client.ui.constants.HasSize;
 import org.gwtbootstrap3.client.ui.html.Div;
 
 /**

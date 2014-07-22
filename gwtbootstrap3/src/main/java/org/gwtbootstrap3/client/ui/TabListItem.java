@@ -22,6 +22,8 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
+import org.gwtbootstrap3.client.ui.constants.HasActive;
+import org.gwtbootstrap3.client.ui.constants.HasTarget;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**

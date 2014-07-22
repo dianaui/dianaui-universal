@@ -26,12 +26,13 @@ import com.google.gwt.text.shared.testing.PassthroughRenderer;
 import com.google.gwt.uibinder.client.UiConstructor;
 import org.gwtbootstrap3.client.ui.base.ValueBoxBase;
 import org.gwtbootstrap3.client.ui.constants.ElementTags;
+import org.gwtbootstrap3.client.ui.constants.HasInputType;
 import org.gwtbootstrap3.client.ui.constants.InputType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
- * @see org.gwtbootstrap3.client.ui.HasEnabled
+ * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public class Input extends ValueBoxBase<String> implements HasInputType {
 

@@ -40,7 +40,7 @@ import org.gwtbootstrap3.client.ui.html.Div;
  *
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
- * @see org.gwtbootstrap3.client.ui.HasEnabled
+ * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public class CheckBox extends Div implements HasName, HasEnabled, HasActive, HasText, HasIcon, HasIconPosition,
         HasClickHandlers, HasFormValue, HasValue<Boolean>, IsEditor<LeafValueEditor<Boolean>> {

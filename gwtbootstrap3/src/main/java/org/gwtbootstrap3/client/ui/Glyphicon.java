@@ -27,6 +27,7 @@ import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.ElementTags;
 import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
+import org.gwtbootstrap3.client.ui.constants.HasType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**

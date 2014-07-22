@@ -22,12 +22,13 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.dom.client.Document;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
+import org.gwtbootstrap3.client.ui.constants.HasEnabled;
 
 /**
  * @author Sven Jacobs
  * @author Joshua Godi
  * @see Form
- * @see org.gwtbootstrap3.client.ui.HasEnabled
+ * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public class FieldSet extends ComplexWidget implements HasEnabled {
 

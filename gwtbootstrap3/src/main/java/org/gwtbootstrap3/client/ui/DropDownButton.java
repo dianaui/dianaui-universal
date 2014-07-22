@@ -21,6 +21,7 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.user.client.ui.HasText;
+import org.gwtbootstrap3.client.ui.constants.HasEnabled;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**

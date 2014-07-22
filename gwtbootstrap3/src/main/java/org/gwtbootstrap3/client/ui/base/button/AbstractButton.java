@@ -30,16 +30,13 @@ import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.Widget;
-import org.gwtbootstrap3.client.ui.*;
+import org.gwtbootstrap3.client.ui.RadioButton;
 import org.gwtbootstrap3.client.ui.base.AbstractButtonGroup;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
-import org.gwtbootstrap3.client.ui.constants.ButtonSize;
-import org.gwtbootstrap3.client.ui.constants.ButtonType;
-import org.gwtbootstrap3.client.ui.constants.Styles;
-import org.gwtbootstrap3.client.ui.constants.Toggle;
+import org.gwtbootstrap3.client.ui.constants.*;
 
 /**
  * Abstract base class for different kinds of buttons.
@@ -47,7 +44,7 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
  * @author Sven Jacobs
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
- * @see org.gwtbootstrap3.client.ui.HasEnabled
+ * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public abstract class AbstractButton extends ComplexWidget implements HasEnabled, HasActive, HasType<ButtonType>,
         HasSize<ButtonSize>, HasClickHandlers, HasTargetHistoryToken, HasHref, Focusable {

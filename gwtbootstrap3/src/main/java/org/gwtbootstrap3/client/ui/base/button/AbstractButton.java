@@ -27,13 +27,18 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Focusable;
+import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.RadioButton;
 import org.gwtbootstrap3.client.ui.base.*;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.ButtonSize;
+import org.gwtbootstrap3.client.ui.constants.ButtonType;
+import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**
  * Abstract base class for different kinds of buttons.
@@ -41,12 +46,12 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @author Sven Jacobs
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
- * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public abstract class AbstractButton extends ComplexWidget implements HasEnabled, HasActive, HasType<ButtonType>,
         HasSize<ButtonSize>, HasClickHandlers, HasTargetHistoryToken, HasHref, Focusable, HasAllMouseHandlers {
 
     private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<AbstractButton>(this);
+    private EnabledMixin<AbstractButton> enabledMixin;
     private FocusableMixin<AbstractButton> focusableMixin;
     private String targetHistoryToken;
 
@@ -96,12 +101,12 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
 
     @Override
     public boolean isEnabled() {
-        return !getElement().getPropertyBoolean(DISABLED_PROPERTY);
+        return getEnabledMixin().isEnabled();
     }
 
     @Override
     public void setEnabled(final boolean enabled) {
-        getElement().setPropertyBoolean(DISABLED_PROPERTY, !enabled);
+        getEnabledMixin().setEnabled(enabled);
     }
 
     @Override
@@ -253,6 +258,13 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
             focusableMixin = new FocusableMixin<AbstractButton>(this);
         }
         return focusableMixin;
+    }
+
+    private EnabledMixin getEnabledMixin() {
+        if (enabledMixin == null) {
+            enabledMixin = new EnabledMixin<AbstractButton>(this);
+        }
+        return enabledMixin;
     }
 
 }

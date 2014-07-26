@@ -21,16 +21,18 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.ui.HasEnabled;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
-import org.gwtbootstrap3.client.ui.constants.HasEnabled;
+import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
 
 /**
  * @author Sven Jacobs
  * @author Joshua Godi
  * @see Form
- * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public class FieldSet extends ComplexWidget implements HasEnabled {
+
+    private EnabledMixin<FieldSet> enabledMixin;
 
     public FieldSet() {
         setElement(Document.get().createFieldSetElement());
@@ -38,12 +40,19 @@ public class FieldSet extends ComplexWidget implements HasEnabled {
 
     @Override
     public boolean isEnabled() {
-        return !getElement().getPropertyBoolean(DISABLED_PROPERTY);
+        return getEnabledMixin().isEnabled();
     }
 
     @Override
     public void setEnabled(final boolean enabled) {
-        getElement().setPropertyBoolean(DISABLED_PROPERTY, !enabled);
+        getEnabledMixin().setEnabled(enabled);
+    }
+
+    private EnabledMixin getEnabledMixin() {
+        if (enabledMixin == null) {
+            enabledMixin = new EnabledMixin<FieldSet>(this);
+        }
+        return enabledMixin;
     }
 
 }

@@ -21,10 +21,12 @@ package org.gwtbootstrap3.client.ui.base;
  */
 
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.ui.HasEnabled;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.Pull;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Base class for list items.
@@ -34,7 +36,6 @@ import org.gwtbootstrap3.client.ui.constants.*;
  * @see org.gwtbootstrap3.client.ui.ListItem
  * @see org.gwtbootstrap3.client.ui.AnchorListItem
  * @see org.gwtbootstrap3.client.ui.ListDropDown
- * @see org.gwtbootstrap3.client.ui.constants.HasEnabled
  */
 public abstract class AbstractListItem extends ComplexWidget implements HasId, HasEnabled, HasPull, HasActive,
         HasResponsiveness {

@@ -21,6 +21,7 @@ package org.gwtbootstrap3.client.ui;
  */
 
 
+import org.gwtbootstrap3.client.ui.constants.HeadingSize;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -29,7 +30,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 public class PopoverHeader extends Heading {
 
     public PopoverHeader() {
-        super(3);
+        super(HeadingSize.H3);
         setStyleName(Styles.POPOVER_TITLE);
     }
 

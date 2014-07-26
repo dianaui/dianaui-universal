@@ -187,12 +187,14 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
             @Override
             public void execute() {
-                text.removeFromParent();
-                separator.removeFromParent();
+                if (text.isAttached())
+                    text.removeFromParent();
 
-                if (fontAwesomeIcon != null) {
+                if (separator.isAttached())
+                    separator.removeFromParent();
+
+                if (fontAwesomeIcon != null)
                     fontAwesomeIcon.removeFromParent();
-                }
 
                 fontAwesomeIcon = newIcon;
                 fontAwesomeIcon.setSize(iconSize);
@@ -212,7 +214,9 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
                     widget.insert(separator, position++);
                 }
 
-                widget.insert(text, position++);
+                if (text.getText() != null && text.getText().length() > 0) {
+                    widget.insert(text, position);
+                }
 
                 if (iconPosition == IconPosition.RIGHT) {
                     widget.insert(separator, position++);
@@ -227,16 +231,14 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
             @Override
             public void execute() {
-                if (text.isAttached()) {
+                if (text.isAttached())
                     text.removeFromParent();
-                }
-                if (separator.isAttached()) {
-                    separator.removeFromParent();
-                }
 
-                if (glyphicon != null) {
+                if (separator.isAttached())
+                    separator.removeFromParent();
+
+                if (glyphicon != null)
                     glyphicon.removeFromParent();
-                }
 
                 glyphicon = newIcon;
 

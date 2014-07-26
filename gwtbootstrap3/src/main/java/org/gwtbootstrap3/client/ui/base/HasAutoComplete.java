@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,23 +20,14 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
-/**
- * @author Sven Jacobs
- */
-public interface HasType<T extends Type> {
+public interface HasAutoComplete {
 
-    /**
-     * Gets the type of the widget
-     *
-     * @return type of the widget
-     */
-    T getType();
+    String AUTOCOMPLETE = "autocomplete";
+    String ON = "on";
+    String OFF = "off";
 
-    /**
-     * Sets the type on the widget
-     *
-     * @param type T type
-     */
-    void setType(T type);
+    String getAutoComplete();
+
+    void setAutoComplete(boolean autocomplete);
 
 }

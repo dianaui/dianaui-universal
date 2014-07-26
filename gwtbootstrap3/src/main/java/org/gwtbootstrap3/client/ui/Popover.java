@@ -28,6 +28,7 @@ import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.HandlerRegistration;
+import org.gwtbootstrap3.client.ui.base.HasHover;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.modal.ModalWithBackdrop;
 import org.gwtbootstrap3.client.ui.constants.*;

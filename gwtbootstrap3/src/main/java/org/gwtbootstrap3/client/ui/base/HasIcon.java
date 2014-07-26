@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -19,6 +19,11 @@ package org.gwtbootstrap3.client.ui.constants;
  * limitations under the License.
  * #L%
  */
+
+import org.gwtbootstrap3.client.ui.constants.IconFlip;
+import org.gwtbootstrap3.client.ui.constants.IconRotate;
+import org.gwtbootstrap3.client.ui.constants.IconSize;
+import org.gwtbootstrap3.client.ui.constants.IconType;
 
 /**
  * Interface for all the properties of Icons

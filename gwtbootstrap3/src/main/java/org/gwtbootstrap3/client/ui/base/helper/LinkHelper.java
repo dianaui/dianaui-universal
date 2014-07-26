@@ -23,7 +23,7 @@ package org.gwtbootstrap3.client.ui.base.helper;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.History;
-import org.gwtbootstrap3.client.ui.constants.HasLink;
+import org.gwtbootstrap3.client.ui.base.HasLink;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>

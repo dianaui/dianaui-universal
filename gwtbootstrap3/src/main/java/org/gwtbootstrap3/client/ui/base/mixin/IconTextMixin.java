@@ -25,6 +25,9 @@ import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.FontAwesomeIcon;
 import org.gwtbootstrap3.client.ui.Glyphicon;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
+import org.gwtbootstrap3.client.ui.base.HasGlyphicon;
+import org.gwtbootstrap3.client.ui.base.HasIcon;
+import org.gwtbootstrap3.client.ui.base.HasIconPosition;
 import org.gwtbootstrap3.client.ui.constants.*;
 import org.gwtbootstrap3.client.ui.html.Text;
 

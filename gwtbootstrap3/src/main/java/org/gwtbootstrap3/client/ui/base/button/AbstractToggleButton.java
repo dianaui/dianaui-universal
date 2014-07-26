@@ -29,7 +29,7 @@ import org.gwtbootstrap3.client.ui.DropDownButton;
 import org.gwtbootstrap3.client.ui.ListDropDown;
 import org.gwtbootstrap3.client.ui.base.mixin.ToggleMixin;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
-import org.gwtbootstrap3.client.ui.constants.HasToggle;
+import org.gwtbootstrap3.client.ui.base.HasToggle;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 import org.gwtbootstrap3.client.ui.html.Text;

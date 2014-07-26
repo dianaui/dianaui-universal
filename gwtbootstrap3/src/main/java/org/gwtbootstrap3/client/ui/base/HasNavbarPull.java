@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,16 +20,13 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.NavbarPull;
+
 /**
- * Interface for Widgets that can be put into a {@link org.gwtbootstrap3.client.ui.Form} and can have a form value,
- * which is the "value" attribute of the element that is passed to the form's receiver on submit.
- * Not to be confused with {@link com.google.gwt.user.client.ui.HasValue}.
- *
  * @author Sven Jacobs
  */
-public interface HasFormValue {
+public interface HasNavbarPull {
+    NavbarPull getPull();
 
-    String getFormValue();
-
-    void setFormValue(final String value);
+    void setPull(NavbarPull pull);
 }

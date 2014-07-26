@@ -1,10 +1,10 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
  * GwtBootstrap3
  * %%
- * Copyright (C) 2013 - 2014 GwtBootstrap3
+ * Copyright (C) 2013 GwtBootstrap3
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,22 +21,12 @@ package org.gwtbootstrap3.client.ui.constants;
  */
 
 /**
- * @author Joshua Godi
+ * @author Pontus Enmark
  */
-public interface HasInlineStyle {
-    void setMarginTop(double margin);
+public interface HasPlaceholder {
+    String PLACEHOLDER = "placeholder";
 
-    void setMarginLeft(double margin);
+    String getPlaceholder();
 
-    void setMarginRight(double margin);
-
-    void setMarginBottom(double margin);
-
-    void setPaddingTop(double padding);
-
-    void setPaddingLeft(double padding);
-
-    void setPaddingRight(double padding);
-
-    void setPaddingBottom(double padding);
+    void setPlaceholder(String placeholder);
 }

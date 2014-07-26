@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,23 +20,26 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.Alignment;
+
 /**
- * @author Sven Jacobs
+ * An object that implements this interface has alignment, which can be set and
+ * retrieved using these methods.
+ *
+ * @author Joshua Godi
  */
-public interface HasSpy {
+public interface HasAlignment {
+    /**
+     * Get the object's alignment.
+     *
+     * @return the object's alignment
+     */
+    Alignment getAlignment();
 
     /**
-     * Gets the data spy attribute for the widget
+     * Sets this object's alignment.
      *
-     * @return data spy attribute on the widget
+     * @param alignment the object's new alignment
      */
-    Spy getSpy();
-
-    /**
-     * Set the data spy attribute on the widget
-     *
-     * @param spy data spy attribute for the widget
-     */
-    void setSpy(Spy spy);
-
+    void setAlignment(Alignment alignment);
 }

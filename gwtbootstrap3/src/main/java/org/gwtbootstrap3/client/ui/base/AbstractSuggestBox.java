@@ -28,7 +28,6 @@ import com.google.gwt.user.client.ui.*;
 import org.gwtbootstrap3.client.ui.AnchorListItem;
 import org.gwtbootstrap3.client.ui.DropDownMenu;
 import org.gwtbootstrap3.client.ui.constants.HasEnabled;
-import org.gwtbootstrap3.client.ui.constants.HasPlaceholder;
 
 import java.util.Collection;
 

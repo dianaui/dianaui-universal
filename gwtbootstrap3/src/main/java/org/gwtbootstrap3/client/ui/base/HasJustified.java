@@ -1,10 +1,10 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
- * GWT Widgets
+ * GwtBootstrap3
  * %%
- * Copyright (C) 2014 GWT Widgets
+ * Copyright (C) 2013 GwtBootstrap3
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,12 +21,10 @@ package org.gwtbootstrap3.client.ui.constants;
  */
 
 /**
- * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ * @author Sven Jacobs
  */
-public interface HasGlyphicon {
+public interface HasJustified {
+    boolean isJustified();
 
-    GlyphiconType getGlyphicon();
-
-    void setGlyphicon(GlyphiconType iconType);
-
+    void setJustified(boolean justified);
 }

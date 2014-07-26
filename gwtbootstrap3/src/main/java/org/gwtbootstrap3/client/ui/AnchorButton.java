@@ -24,6 +24,7 @@ import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickHandler;
+import org.gwtbootstrap3.client.ui.base.HasHref;
 import org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton;
 import org.gwtbootstrap3.client.ui.constants.*;
 

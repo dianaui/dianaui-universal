@@ -22,6 +22,9 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.safehtml.shared.SafeUri;
+import org.gwtbootstrap3.client.ui.base.HasPull;
+import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
+import org.gwtbootstrap3.client.ui.base.HasType;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
 import org.gwtbootstrap3.client.ui.constants.*;

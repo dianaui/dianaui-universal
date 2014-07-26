@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -23,8 +23,8 @@ package org.gwtbootstrap3.client.ui.constants;
 /**
  * @author Sven Jacobs
  */
-public interface HasPull {
-    Pull getPull();
+public interface HasTargetHistoryToken {
+    String getTargetHistoryToken();
 
-    void setPull(Pull pull);
+    void setTargetHistoryToken(String targetHistoryToken);
 }

@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -23,8 +23,13 @@ package org.gwtbootstrap3.client.ui.constants;
 /**
  * @author Sven Jacobs
  */
-public interface HasToggle {
-    Toggle getToggle();
+public interface HasHref {
+    // Empty HREF to avoid issues when clicking!
+    public static final String EMPTY_HREF = "javascript:;";
 
-    void setToggle(Toggle toggle);
+    public static final String HREF = "href";
+
+    String getHref();
+
+    void setHref(String href);
 }

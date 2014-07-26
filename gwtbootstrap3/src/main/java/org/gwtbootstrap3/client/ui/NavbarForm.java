@@ -22,7 +22,7 @@ package org.gwtbootstrap3.client.ui;
 
 import org.gwtbootstrap3.client.ui.base.form.AbstractForm;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.constants.HasPull;
+import org.gwtbootstrap3.client.ui.base.HasPull;
 import org.gwtbootstrap3.client.ui.constants.NavbarPull;
 import org.gwtbootstrap3.client.ui.constants.Pull;
 import org.gwtbootstrap3.client.ui.constants.Styles;

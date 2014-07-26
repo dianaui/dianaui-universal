@@ -20,6 +20,9 @@ package org.gwtbootstrap3.client.ui.gwt;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.base.HasId;
+import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
+import org.gwtbootstrap3.client.ui.base.HasSpy;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;

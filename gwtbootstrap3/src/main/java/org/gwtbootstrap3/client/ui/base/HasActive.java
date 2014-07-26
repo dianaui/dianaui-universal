@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -23,8 +23,8 @@ package org.gwtbootstrap3.client.ui.constants;
 /**
  * @author Sven Jacobs
  */
-public interface HasIconPosition {
-    IconPosition getIconPosition();
+public interface HasActive {
+    boolean isActive();
 
-    void setIconPosition(IconPosition iconPosition);
+    void setActive(boolean active);
 }

@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,11 +20,15 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
-/**
- * @author Sven Jacobs
- */
-public interface HasJustified {
-    boolean isJustified();
+import org.gwtbootstrap3.client.ui.constants.InputType;
 
-    void setJustified(boolean justified);
+/**
+ * @author Joshua Godi
+ */
+public interface HasInputType {
+    public static final String TYPE = "type";
+
+    InputType getType();
+
+    void setType(InputType inputType);
 }

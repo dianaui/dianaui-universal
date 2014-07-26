@@ -25,8 +25,8 @@ import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.HTMLMixin;
 import org.gwtbootstrap3.client.ui.constants.Alignment;
 import org.gwtbootstrap3.client.ui.constants.Emphasis;
-import org.gwtbootstrap3.client.ui.constants.HasAlignment;
-import org.gwtbootstrap3.client.ui.constants.HasEmphasis;
+import org.gwtbootstrap3.client.ui.base.HasAlignment;
+import org.gwtbootstrap3.client.ui.base.HasEmphasis;
 import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
 /**

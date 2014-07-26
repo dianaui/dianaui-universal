@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,29 +20,13 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.IconPosition;
+
 /**
- * Simple interface that will set/get the objects 'target' attribute
- *
- * @author Joshua Godi
  * @author Sven Jacobs
- * @see org.gwtbootstrap3.client.ui.constants.Attributes
  */
-public interface HasTarget {
+public interface HasIconPosition {
+    IconPosition getIconPosition();
 
-    public static final String BLANK = "_blank";
-
-    /**
-     * Set the target attribute of the object
-     *
-     * @param target target attribute
-     */
-    void setTarget(String target);
-
-    /**
-     * Get the target attribute of the object
-     *
-     * @return target attribute
-     */
-    String getTarget();
-
+    void setIconPosition(IconPosition iconPosition);
 }

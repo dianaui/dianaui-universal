@@ -1,10 +1,10 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
  * GwtBootstrap3
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2013 - 2014 GwtBootstrap3
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,14 +20,23 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
-public interface HasAutoComplete {
+/**
+ * @author Joshua Godi
+ */
+public interface HasInlineStyle {
+    void setMarginTop(double margin);
 
-    String AUTOCOMPLETE = "autocomplete";
-    String ON = "on";
-    String OFF = "off";
+    void setMarginLeft(double margin);
 
-    String getAutoComplete();
+    void setMarginRight(double margin);
 
-    void setAutoComplete(boolean autocomplete);
+    void setMarginBottom(double margin);
 
+    void setPaddingTop(double padding);
+
+    void setPaddingLeft(double padding);
+
+    void setPaddingRight(double padding);
+
+    void setPaddingBottom(double padding);
 }

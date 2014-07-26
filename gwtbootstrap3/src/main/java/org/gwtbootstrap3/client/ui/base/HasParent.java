@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -21,10 +21,10 @@ package org.gwtbootstrap3.client.ui.constants;
  */
 
 /**
- * @author Sven Jacobs
+ * @author Grant Slender
  */
-public interface HasId {
-    String getId();
+public interface HasParent {
+    String getDataParent();
 
-    void setId(String id);
+    void setDataParent(String href);
 }

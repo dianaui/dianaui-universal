@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,11 +20,13 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.Pull;
+
 /**
  * @author Sven Jacobs
  */
-public interface HasActive {
-    boolean isActive();
+public interface HasPull {
+    Pull getPull();
 
-    void setActive(boolean active);
+    void setPull(Pull pull);
 }

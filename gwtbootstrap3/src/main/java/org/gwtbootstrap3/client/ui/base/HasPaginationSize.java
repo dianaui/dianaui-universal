@@ -1,10 +1,10 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
  * GwtBootstrap3
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2013 - 2014 GwtBootstrap3
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +20,13 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
-/**
- * @author Grant Slender
- */
-public interface HasParent {
-    String getDataParent();
+import org.gwtbootstrap3.client.ui.constants.PaginationSize;
 
-    void setDataParent(String href);
+/**
+ * @author Joshua Godi
+ */
+public interface HasPaginationSize {
+    PaginationSize getPaginationSize();
+
+    void setPaginationSize(PaginationSize paginationSize);
 }

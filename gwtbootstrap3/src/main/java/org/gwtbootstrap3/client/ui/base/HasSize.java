@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,24 +20,13 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
-/**
- * An object that implements this interface has emphasis, which can be set and
- * retrieved using these methods.
- *
- * @author Joshua Godi
- */
-public interface HasEmphasis {
-    /**
-     * Get the object's emphasis.
-     *
-     * @return the object's emphasis
-     */
-    Emphasis getEmphasis();
+import org.gwtbootstrap3.client.ui.constants.Size;
 
-    /**
-     * Sets the object's emphasis.
-     *
-     * @param emphasis the object's new emphasis
-     */
-    void setEmphasis(Emphasis emphasis);
+/**
+ * @author Sven Jacobs
+ */
+public interface HasSize<T extends Size> {
+    T getSize();
+
+    void setSize(T size);
 }

@@ -1,10 +1,10 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +20,10 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import com.google.gwt.event.dom.client.HasClickHandlers;
+
 /**
- * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public interface HasInputType {
-    public static final String TYPE = "type";
-
-    InputType getType();
-
-    void setType(InputType inputType);
+public interface HasLink extends HasHref, HasClickHandlers {
 }

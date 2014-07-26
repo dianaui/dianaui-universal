@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,11 +20,13 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
-/**
- * @author Sven Jacobs
- */
-public interface HasTargetHistoryToken {
-    String getTargetHistoryToken();
+import org.gwtbootstrap3.client.ui.constants.Placement;
 
-    void setTargetHistoryToken(String targetHistoryToken);
+/**
+ * @author Pontus Enmark
+ */
+public interface HasPlacement {
+    Placement getPlacement();
+
+    void setPlacement(Placement placement);
 }

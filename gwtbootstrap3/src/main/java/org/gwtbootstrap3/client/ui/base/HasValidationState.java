@@ -1,10 +1,10 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,24 +20,31 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.ValidationState;
+
 /**
- * An object that implements this interface has alignment, which can be set and
- * retrieved using these methods.
- *
- * @author Joshua Godi
+ * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public interface HasAlignment {
-    /**
-     * Get the object's alignment.
-     *
-     * @return the object's alignment
-     */
-    Alignment getAlignment();
+public interface HasValidationState {
 
     /**
-     * Sets this object's alignment.
+     * Gets the validation state of the widget
      *
-     * @param alignment the object's new alignment
+     * @return widget's validation state
      */
-    void setAlignment(Alignment alignment);
+    ValidationState getValidationState();
+
+    /**
+     * Sets the validation state on the widget
+     *
+     * @param state validation state
+     */
+    void setValidationState(ValidationState state);
+
+    /**
+     * Clear the validation state on the widget
+     */
+    void clearValidationState();
+
 }

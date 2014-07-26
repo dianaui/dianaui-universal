@@ -1,10 +1,10 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
- * GwtBootstrap3
+ * GWT Widgets
  * %%
- * Copyright (C) 2013 GwtBootstrap3
+ * Copyright (C) 2014 GWT Widgets
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,16 +20,29 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.Placement;
+import org.gwtbootstrap3.client.ui.constants.Trigger;
+
 /**
- * @author Sven Jacobs
+ * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public interface HasHref {
-    // Empty HREF to avoid issues when clicking!
-    public static final String EMPTY_HREF = "javascript:;";
+public interface HasHover {
 
-    public static final String HREF = "href";
+    Placement getPlacement();
 
-    String getHref();
+    void setPlacement(Placement placement);
 
-    void setHref(String href);
+    Trigger getTrigger();
+
+    void setTrigger(Trigger trigger);
+
+    int getShowDelayMs();
+
+    void setShowDelayMs(int showDelayMs);
+
+    int getHideDelayMs();
+
+    void setHideDelayMs(int hideDelayMs);
+
 }

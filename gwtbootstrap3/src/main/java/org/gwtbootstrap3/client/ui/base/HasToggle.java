@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,11 +20,13 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.Toggle;
+
 /**
  * @author Sven Jacobs
  */
-public interface HasStacked {
-    boolean isStacked();
+public interface HasToggle {
+    Toggle getToggle();
 
-    void setStacked(boolean stacked);
+    void setToggle(Toggle toggle);
 }

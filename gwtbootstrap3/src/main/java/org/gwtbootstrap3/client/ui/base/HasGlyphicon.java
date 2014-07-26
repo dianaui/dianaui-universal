@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,26 +20,15 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.constants.GlyphiconType;
+
 /**
- * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public interface HasHover {
+public interface HasGlyphicon {
 
-    Placement getPlacement();
+    GlyphiconType getGlyphicon();
 
-    void setPlacement(Placement placement);
-
-    Trigger getTrigger();
-
-    void setTrigger(Trigger trigger);
-
-    int getShowDelayMs();
-
-    void setShowDelayMs(int showDelayMs);
-
-    int getHideDelayMs();
-
-    void setHideDelayMs(int hideDelayMs);
+    void setGlyphicon(GlyphiconType iconType);
 
 }

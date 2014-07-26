@@ -1,4 +1,4 @@
-package org.gwtbootstrap3.client.ui.constants;
+package org.gwtbootstrap3.client.ui.base;
 
 /*
  * #%L
@@ -20,33 +20,26 @@ package org.gwtbootstrap3.client.ui.constants;
  * #L%
  */
 
-import org.gwtbootstrap3.client.ui.constants.DeviceSize;
+import org.gwtbootstrap3.client.ui.constants.Emphasis;
 
 /**
- * Interface to set the visibility and hidden properties of elements
- * Example:
- * hiddenOn="SM MD"
- * hiddenOn="SM,MD"
- * visibleOn="SM LG"
- * visibleOn="MD,LG"
- * hiddenOn="LG"
+ * An object that implements this interface has emphasis, which can be set and
+ * retrieved using these methods.
  *
  * @author Joshua Godi
  */
-public interface HasResponsiveness {
+public interface HasEmphasis {
     /**
-     * Sets the devices that the element is visible on
+     * Get the object's emphasis.
      *
-     * @param deviceSize device size
-     * @see org.gwtbootstrap3.client.ui.constants.DeviceSize
+     * @return the object's emphasis
      */
-    void setVisibleOn(final DeviceSize deviceSize);
+    Emphasis getEmphasis();
 
     /**
-     * Sets the devices that the element is hidden on
+     * Sets the object's emphasis.
      *
-     * @param deviceSize device sizes
-     * @see org.gwtbootstrap3.client.ui.constants.DeviceSize
+     * @param emphasis the object's new emphasis
      */
-    void setHiddenOn(final DeviceSize deviceSize);
+    void setEmphasis(Emphasis emphasis);
 }

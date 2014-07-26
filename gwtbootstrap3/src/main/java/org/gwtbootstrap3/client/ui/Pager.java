@@ -55,6 +55,14 @@ public class Pager extends UnorderedList implements HasResponsiveness {
         }
     }
 
+    public AnchorListItem getPrevious() {
+        return previous;
+    }
+
+    public AnchorListItem getNext() {
+        return next;
+    }
+
     public void setPreviousText(final String text) {
         previous.setText(text);
     }

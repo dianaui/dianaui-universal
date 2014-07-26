@@ -27,7 +27,8 @@ import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.DeviceSize;
+import org.gwtbootstrap3.client.ui.constants.Pull;
 
 /**
  * Base class for widgets that contain further widgets.
@@ -157,16 +158,16 @@ public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiven
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
     }
 
 }

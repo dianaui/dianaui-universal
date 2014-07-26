@@ -29,7 +29,8 @@ import org.gwtbootstrap3.client.ui.base.HasSpy;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.SpyMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.DeviceSize;
+import org.gwtbootstrap3.client.ui.constants.Spy;
 
 /**
  * @author Sven Jacobs

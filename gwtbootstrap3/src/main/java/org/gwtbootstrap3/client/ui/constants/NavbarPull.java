@@ -42,6 +42,16 @@ public enum NavbarPull implements Style.HasCssName {
         return EnumHelper.fromStyleName(styleName, NavbarPull.class, NONE);
     }
 
+    public static NavbarPull fromPull(final Pull pull) {
+        NavbarPull navbarPull;
+
+        if (pull == Pull.LEFT) {
+            return NavbarPull.LEFT;
+        }
+
+        return NavbarPull.RIGHT;
+    }
+
     @Override
     public String getCssName() {
         return cssClass;
@@ -53,16 +63,6 @@ public enum NavbarPull implements Style.HasCssName {
         }
 
         return this == NavbarPull.RIGHT ? Pull.RIGHT : Pull.LEFT;
-    }
-
-    public static NavbarPull fromPull(final Pull pull) {
-        NavbarPull navbarPull;
-
-        if (pull == Pull.LEFT) {
-            return NavbarPull.LEFT;
-        }
-
-        return NavbarPull.RIGHT;
     }
 
 }

@@ -21,7 +21,10 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.IconPosition;
+import org.gwtbootstrap3.client.ui.constants.IconSize;
+import org.gwtbootstrap3.client.ui.constants.IconType;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.UnorderedList;
 
 /**

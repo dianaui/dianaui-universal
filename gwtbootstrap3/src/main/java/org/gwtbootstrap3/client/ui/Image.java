@@ -27,7 +27,10 @@ import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
 import org.gwtbootstrap3.client.ui.base.HasType;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.DeviceSize;
+import org.gwtbootstrap3.client.ui.constants.ImageType;
+import org.gwtbootstrap3.client.ui.constants.Pull;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi

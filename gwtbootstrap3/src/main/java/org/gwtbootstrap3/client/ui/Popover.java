@@ -31,7 +31,10 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 import org.gwtbootstrap3.client.ui.base.HasHover;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.modal.ModalWithBackdrop;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.ModalBackdrop;
+import org.gwtbootstrap3.client.ui.constants.Placement;
+import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.constants.Trigger;
 
 /**
  * @author Joshua Godi

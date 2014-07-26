@@ -28,18 +28,18 @@ import org.gwtbootstrap3.client.ui.constants.TabPosition;
 public interface HasTabPosition {
 
     /**
+     * Gets the tab position
+     *
+     * @return tab position
+     */
+    TabPosition getTabPosition();
+
+    /**
      * Sets the positions of the tab (left, right, bottom, top)
      * Default: TOP
      *
      * @param tabPosition position of the tabs
      */
     void setTabPosition(TabPosition tabPosition);
-
-    /**
-     * Gets the tab position
-     *
-     * @return tab position
-     */
-    TabPosition getTabPosition();
 
 }

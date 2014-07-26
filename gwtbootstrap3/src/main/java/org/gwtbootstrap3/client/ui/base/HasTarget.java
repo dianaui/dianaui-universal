@@ -32,17 +32,17 @@ public interface HasTarget {
     public static final String BLANK = "_blank";
 
     /**
-     * Set the target attribute of the object
-     *
-     * @param target target attribute
-     */
-    void setTarget(String target);
-
-    /**
      * Get the target attribute of the object
      *
      * @return target attribute
      */
     String getTarget();
+
+    /**
+     * Set the target attribute of the object
+     *
+     * @param target target attribute
+     */
+    void setTarget(String target);
 
 }

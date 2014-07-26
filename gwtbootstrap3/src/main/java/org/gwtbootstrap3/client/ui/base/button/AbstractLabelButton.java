@@ -33,7 +33,9 @@ import org.gwtbootstrap3.client.ui.CheckableInputButton;
 import org.gwtbootstrap3.client.ui.base.HasActive;
 import org.gwtbootstrap3.client.ui.base.HasFormValue;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.ButtonType;
+import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.constants.TypeAttrType;
 
 /**
  * Base class for {@link org.gwtbootstrap3.client.ui.CheckBoxButton}

@@ -21,9 +21,9 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import com.google.gwt.user.client.Timer;
+import org.gwtbootstrap3.client.ui.base.HasActive;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
-import org.gwtbootstrap3.client.ui.base.HasActive;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.Div;
 

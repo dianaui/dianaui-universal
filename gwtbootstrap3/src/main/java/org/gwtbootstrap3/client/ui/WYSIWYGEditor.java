@@ -26,9 +26,9 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.TakesValue;
 import com.google.gwt.user.client.ui.HasValue;
+import org.gwtbootstrap3.client.ui.base.HasSize;
 import org.gwtbootstrap3.client.ui.base.RichTextArea;
 import org.gwtbootstrap3.client.ui.constants.ButtonSize;
-import org.gwtbootstrap3.client.ui.base.HasSize;
 import org.gwtbootstrap3.client.ui.html.Div;
 
 /**

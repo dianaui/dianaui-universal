@@ -137,11 +137,6 @@ public class AnchorListItem extends AbstractAnchorListItem implements com.google
         setHref(href);
     }
 
-    @Override
-    public void setText(final String text) {
-        anchor.setText(text);
-    }
-
     public String getHTML() {
         return anchor.getHTML();
     }
@@ -153,6 +148,11 @@ public class AnchorListItem extends AbstractAnchorListItem implements com.google
     @Override
     public String getText() {
         return anchor.getText();
+    }
+
+    @Override
+    public void setText(final String text) {
+        anchor.setText(text);
     }
 
 }

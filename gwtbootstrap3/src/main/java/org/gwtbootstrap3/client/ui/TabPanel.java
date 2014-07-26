@@ -22,8 +22,8 @@ package org.gwtbootstrap3.client.ui;
 
 import com.google.gwt.dom.client.StyleInjector;
 import org.gwtbootstrap3.client.GwtBootstrap3ClientBundle;
-import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.HasTabPosition;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.TabPosition;
 import org.gwtbootstrap3.client.ui.html.Div;

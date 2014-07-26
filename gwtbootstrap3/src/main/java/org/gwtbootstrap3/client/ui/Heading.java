@@ -28,7 +28,10 @@ import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.HasAlignment;
 import org.gwtbootstrap3.client.ui.base.HasEmphasis;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.Alignment;
+import org.gwtbootstrap3.client.ui.constants.Emphasis;
+import org.gwtbootstrap3.client.ui.constants.HeadingSize;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.Small;
 import org.gwtbootstrap3.client.ui.html.Text;
 

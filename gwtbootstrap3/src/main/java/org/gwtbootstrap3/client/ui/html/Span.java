@@ -41,12 +41,12 @@ public class Span extends HTMLPanel {
         setHTML(html);
     }
 
-    public void setText(final String text) {
-        textMixin.setText(text);
-    }
-
     public String getText() {
         return textMixin.getText();
+    }
+
+    public void setText(final String text) {
+        textMixin.setText(text);
     }
 
     public String getHTML() {

@@ -128,18 +128,13 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setFontAwesomeIcon(final IconType iconType) {
-        anchor.setFontAwesomeIcon(iconType);
-    }
-
-    @Override
     public IconType getFontAwesomeIcon() {
         return anchor.getFontAwesomeIcon();
     }
 
     @Override
-    public void setIconPosition(final IconPosition iconPosition) {
-        anchor.setIconPosition(iconPosition);
+    public void setFontAwesomeIcon(final IconType iconType) {
+        anchor.setFontAwesomeIcon(iconType);
     }
 
     @Override
@@ -148,8 +143,8 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setIconSize(final IconSize iconSize) {
-        anchor.setIconSize(iconSize);
+    public void setIconPosition(final IconPosition iconPosition) {
+        anchor.setIconPosition(iconPosition);
     }
 
     @Override
@@ -158,8 +153,8 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setIconFlip(final IconFlip iconFlip) {
-        anchor.setIconFlip(iconFlip);
+    public void setIconSize(final IconSize iconSize) {
+        anchor.setIconSize(iconSize);
     }
 
     @Override
@@ -168,8 +163,8 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setIconRotate(final IconRotate iconRotate) {
-        anchor.setIconRotate(iconRotate);
+    public void setIconFlip(final IconFlip iconFlip) {
+        anchor.setIconFlip(iconFlip);
     }
 
     @Override
@@ -178,8 +173,8 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setIconBordered(final boolean iconBordered) {
-        anchor.setIconBordered(iconBordered);
+    public void setIconRotate(final IconRotate iconRotate) {
+        anchor.setIconRotate(iconRotate);
     }
 
     @Override
@@ -188,8 +183,8 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setIconMuted(final boolean iconMuted) {
-        anchor.setIconMuted(iconMuted);
+    public void setIconBordered(final boolean iconBordered) {
+        anchor.setIconBordered(iconBordered);
     }
 
     @Override
@@ -198,8 +193,8 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setIconLight(final boolean iconLight) {
-        anchor.setIconLight(iconLight);
+    public void setIconMuted(final boolean iconMuted) {
+        anchor.setIconMuted(iconMuted);
     }
 
     @Override
@@ -208,13 +203,18 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setIconSpin(final boolean iconSpin) {
-        anchor.setIconSpin(iconSpin);
+    public void setIconLight(final boolean iconLight) {
+        anchor.setIconLight(iconLight);
     }
 
     @Override
     public boolean isIconSpin() {
         return anchor.isIconSpin();
+    }
+
+    @Override
+    public void setIconSpin(final boolean iconSpin) {
+        anchor.setIconSpin(iconSpin);
     }
 
     @Override

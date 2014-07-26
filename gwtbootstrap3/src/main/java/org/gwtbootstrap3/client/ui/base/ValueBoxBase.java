@@ -25,7 +25,7 @@ import com.google.gwt.text.shared.Parser;
 import com.google.gwt.text.shared.Renderer;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.DeviceSize;
 
 /**
  * @see org.gwtbootstrap3.client.ui.constants.HasEnabled

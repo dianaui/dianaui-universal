@@ -20,9 +20,9 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
 import org.gwtbootstrap3.client.ui.base.HasSize;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.WellSize;
 import org.gwtbootstrap3.client.ui.html.Div;

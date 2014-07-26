@@ -20,9 +20,9 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import org.gwtbootstrap3.client.ui.base.HasPull;
 import org.gwtbootstrap3.client.ui.base.form.AbstractForm;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.base.HasPull;
 import org.gwtbootstrap3.client.ui.constants.NavbarPull;
 import org.gwtbootstrap3.client.ui.constants.Pull;
 import org.gwtbootstrap3.client.ui.constants.Styles;
@@ -38,13 +38,13 @@ public class NavbarForm extends AbstractForm implements HasPull {
     }
 
     @Override
-    public void setPull(final Pull pull) {
-        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, NavbarPull.fromPull(pull));
+    public Pull getPull() {
+        return NavbarPull.fromStyleName(getStyleName()).toPull();
     }
 
     @Override
-    public Pull getPull() {
-        return NavbarPull.fromStyleName(getStyleName()).toPull();
+    public void setPull(final Pull pull) {
+        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, NavbarPull.fromPull(pull));
     }
 
 }

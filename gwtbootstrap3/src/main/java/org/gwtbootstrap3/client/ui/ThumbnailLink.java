@@ -29,7 +29,7 @@ import com.google.gwt.user.client.ui.Focusable;
 import org.gwtbootstrap3.client.ui.base.*;
 import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.ToggleMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 /**
  * @author Joshua Godi

@@ -46,16 +46,16 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
      * {@inheritDoc}
      */
     @Override
-    public void setType(final ImageType type) {
-        StyleHelper.addEnumStyleName(this, type);
+    public ImageType getType() {
+        return ImageType.fromStyleName(getStyleName());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ImageType getType() {
-        return ImageType.fromStyleName(getStyleName());
+    public void setType(final ImageType type) {
+        StyleHelper.addEnumStyleName(this, type);
     }
 
     /**
@@ -77,15 +77,6 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
     }
 
     /**
-     * Set the URL of the image
-     *
-     * @param url String image url
-     */
-    public void setUrl(final String url) {
-        image.setUrl(url);
-    }
-
-    /**
      * Gets the URL of the image
      *
      * @return String image url
@@ -95,12 +86,12 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
     }
 
     /**
-     * Sets the alt text of the image
+     * Set the URL of the image
      *
-     * @param alt String image alt text
+     * @param url String image url
      */
-    public void setAlt(final String alt) {
-        image.setAltText(alt);
+    public void setUrl(final String url) {
+        image.setUrl(url);
     }
 
     /**
@@ -110,5 +101,14 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
      */
     public String getAlt() {
         return image.getAltText();
+    }
+
+    /**
+     * Sets the alt text of the image
+     *
+     * @param alt String image alt text
+     */
+    public void setAlt(final String alt) {
+        image.setAltText(alt);
     }
 }

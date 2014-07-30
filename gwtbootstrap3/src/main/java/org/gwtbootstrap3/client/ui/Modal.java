@@ -83,6 +83,12 @@ public class Modal extends ModalWithBackdrop implements IsClosable {
     public void setKeyboard(final boolean keyboard) {
         getElement().setAttribute(Attributes.DATA_KEYBOARD, Boolean.toString(keyboard));
     }
+    
+    public void setSize(ModalSize size) {
+    	dialog.removeStyleName(ModalSize.SMALL.getCss());
+    	dialog.removeStyleName(ModalSize.LARGE.getCss());
+    	dialog.addStyleName(size.getCss());
+    }
 
     @Override
     public void setWidth(final String width) {

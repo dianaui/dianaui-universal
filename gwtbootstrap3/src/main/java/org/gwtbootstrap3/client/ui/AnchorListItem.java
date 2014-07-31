@@ -43,7 +43,7 @@ import org.gwtbootstrap3.client.ui.constants.IconType;
  * @see NavPills
  * @see Navbar
  */
-public class AnchorListItem extends AbstractAnchorListItem implements com.google.gwt.user.client.ui.HasText {
+public class AnchorListItem extends AbstractAnchorListItem {
 
     public AnchorListItem() {
     }
@@ -145,12 +145,10 @@ public class AnchorListItem extends AbstractAnchorListItem implements com.google
         anchor.setHTML(html);
     }
 
-    @Override
     public String getText() {
         return anchor.getText();
     }
 
-    @Override
     public void setText(final String text) {
         anchor.setText(text);
     }

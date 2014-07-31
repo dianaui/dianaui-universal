@@ -28,6 +28,7 @@ import org.gwtbootstrap3.client.ui.html.Text;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class PanelHeader extends Div implements HasWidgets, HasText {
 
@@ -35,6 +36,11 @@ public class PanelHeader extends Div implements HasWidgets, HasText {
 
     public PanelHeader() {
         setStyleName(Styles.PANEL_HEADING);
+    }
+
+    public PanelHeader(final String text) {
+        this();
+        setText(text);
     }
 
     /**

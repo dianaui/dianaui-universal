@@ -58,6 +58,11 @@ public class Badge extends ComplexWidget implements HasWidgets, HasText, IsEdito
         setStyleName(Styles.BADGE);
     }
 
+    public Badge(final String text) {
+        this();
+        setText(text);
+    }
+
     /**
      * {@inheritDoc}
      */

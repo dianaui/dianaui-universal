@@ -1,0 +1,55 @@
+<!--
+  #%L
+  GwtBootstrap3
+  %%
+  Copyright (C) 2013 - 2014 GwtBootstrap3
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:b="urn:import:com.dianaui.universal.core.client.ui">
+
+    <b:ButtonToolBar>
+        <b:ButtonGroup>
+            <b:Button fontAwesomeIcon="BOLD" toggle="BUTTON" ui:field="boldButton"/>
+            <b:Button fontAwesomeIcon="ITALIC" toggle="BUTTON" ui:field="italicButton"/>
+            <b:Button fontAwesomeIcon="UNDERLINE" toggle="BUTTON" ui:field="underlineButton"/>
+            <b:Button fontAwesomeIcon="SUBSCRIPT" toggle="BUTTON" ui:field="subscriptButton"/>
+            <b:Button fontAwesomeIcon="SUPERSCRIPT" toggle="BUTTON" ui:field="superscriptButton"/>
+            <b:Button fontAwesomeIcon="STRIKETHROUGH" toggle="BUTTON" ui:field="strikethroughButton"/>
+        </b:ButtonGroup>
+        <b:ButtonGroup>
+            <b:Button fontAwesomeIcon="ALIGN_LEFT" ui:field="justifyLeftButton"/>
+            <b:Button fontAwesomeIcon="ALIGN_CENTER" ui:field="justifyCenterButton"/>
+            <b:Button fontAwesomeIcon="ALIGN_RIGHT" ui:field="justifyRightButton"/>
+            <b:Button fontAwesomeIcon="INDENT" ui:field="indentButton"/>
+            <b:Button fontAwesomeIcon="DEDENT" ui:field="outdentButton"/>
+            <b:Button fontAwesomeIcon="ELLIPSIS_H" ui:field="hrButton"/>
+            <b:Button fontAwesomeIcon="LIST_OL" ui:field="olButton"/>
+            <b:Button fontAwesomeIcon="LIST_UL" ui:field="ulButton"/>
+            <b:Button fontAwesomeIcon="PICTURE_O" ui:field="imageButton"/>
+            <b:Button fontAwesomeIcon="LINK" ui:field="linkButton"/>
+        </b:ButtonGroup>
+        <b:ButtonGroup>
+            <b:Button fontAwesomeIcon="UNLINK" ui:field="unlinkButton"/>
+            <b:Button fontAwesomeIcon="ERASER" ui:field="removeFormatButton"/>
+        </b:ButtonGroup>
+        <b:ButtonGroup>
+            <b:Button fontAwesomeIcon="REPLY" ui:field="undoButton"/>
+            <b:Button fontAwesomeIcon="MAIL_FORWARD" ui:field="redoButton"/>
+        </b:ButtonGroup>
+    </b:ButtonToolBar>
+
+</ui:UiBinder>

@@ -85,6 +85,10 @@ public class Modal extends ModalWithBackdrop implements IsClosable {
         getElement().setAttribute(Attributes.DATA_KEYBOARD, Boolean.toString(keyboard));
     }
 
+    public ModalSize getSize() {
+        return ModalSize.fromStyleName(getStyleName());
+    }
+
     public void setSize(ModalSize size) {
         StyleHelper.addUniqueEnumStyleName(dialog, ModalSize.class, size);
     }

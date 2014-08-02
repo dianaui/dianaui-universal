@@ -21,7 +21,7 @@ package com.dianaui.universal.core.ui.base.helper;
 
 import org.junit.Test;
 
-import static com.dianaui.universal.core.ui.base.helper.StyleHelper.containsStyle;
+import static com.dianaui.universal.core.client.ui.base.helper.StyleHelper.containsStyle;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

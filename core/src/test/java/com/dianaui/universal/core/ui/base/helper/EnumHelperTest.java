@@ -19,10 +19,10 @@
  */
 package com.dianaui.universal.core.ui.base.helper;
 
-import com.dianaui.universal.core.ui.constants.Pull;
+import com.dianaui.universal.core.client.ui.constants.Pull;
 import org.junit.Test;
 
-import static com.dianaui.universal.core.ui.base.helper.EnumHelper.fromStyleName;
+import static com.dianaui.universal.core.client.ui.base.helper.EnumHelper.fromStyleName;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;

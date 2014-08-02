@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.gwt-widgets</groupId>
-    <artifactId>gwt-widgets</artifactId>
+    <groupId>com.dianaui</groupId>
+    <artifactId>dianaui-universal</artifactId>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
-    <name>GWT Widgets Parent</name>
+    <name>Diana UI Parent</name>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -20,9 +20,9 @@
     </prerequisites>
 
     <scm>
-        <connection>scm:git:git@github.com:donbeave/gwt-widgets.git</connection>
-        <developerConnection>scm:git:git@github.com:donbeave/gwt-widgets.git</developerConnection>
-        <url>git@github.com:donbeave/gwt-widgets.git</url>
+        <connection>scm:git:git@github.com:donbeave/dianaui-universal.git</connection>
+        <developerConnection>scm:git:git@github.com:donbeave/dianaui-universal.git</developerConnection>
+        <url>git@github.com:donbeave/dianaui-universal.git</url>
     </scm>
 
     <licenses>
@@ -68,7 +68,7 @@
     </developers>
 
     <modules>
-        <module>gwtbootstrap3</module>
+        <module>core</module>
     </modules>
 
     <properties>
@@ -99,9 +99,9 @@
                 <version>1.7</version>
                 <configuration>
                     <licenseName>apache_v2</licenseName>
-                    <inceptionYear>2013</inceptionYear>
-                    <organizationName>GwtBootstrap3</organizationName>
-                    <projectName>GwtBootstrap3</projectName>
+                    <inceptionYear>2014</inceptionYear>
+                    <organizationName>Diana UI</organizationName>
+                    <projectName>Diana UI Core</projectName>
                     <includes>
                         <include>**/*.java</include>
                         <include>**/*.xml</include>
@@ -213,7 +213,7 @@
     </build>
 
     <repositories>
-		<repository>
+        <repository>
             <id>sonatype-nexus</id>
             <name>Sonatype Nexus</name>
             <url>http://repository.sonatype.org/content/groups/public/</url>
@@ -223,7 +223,7 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-		</repository>
+        </repository>
     </repositories>
 
     <pluginRepositories>

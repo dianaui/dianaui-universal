@@ -52,7 +52,7 @@ public class IconStack extends ComplexPanel implements HasResponsiveness {
     @Override
     public void add(final Widget child) {
         if (!(child instanceof FontAwesomeIcon)) {
-            throw new IllegalArgumentException("An IconStack can only have children that are of type Icon.");
+            throw new IllegalArgumentException("An IconStack can only have children that are of type FontAwesomeIcon.");
         }
 
         add(child, (Element) getElement());

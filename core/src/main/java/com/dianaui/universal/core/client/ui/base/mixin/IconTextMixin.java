@@ -78,7 +78,14 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
 
     @Override
     public void setGlyphicon(GlyphiconType iconType) {
-        render(new Glyphicon(iconType));
+        removeFontAwesomeIcon();
+
+        if (glyphicon == null)
+            glyphicon = new Glyphicon();
+
+        glyphicon.setType(iconType);
+
+        render();
     }
 
     @Override
@@ -88,12 +95,20 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
 
     @Override
     public void setFontAwesomeIcon(final IconType iconType) {
-        render(new FontAwesomeIcon(iconType));
+        removeGlyphicon();
+
+        if (fontAwesomeIcon == null)
+            fontAwesomeIcon = new FontAwesomeIcon();
+
+        fontAwesomeIcon.setType(iconType);
+
+        render();
     }
 
     @Override
     public void clearIcon() {
-        fontAwesomeIcon = null;
+        removeGlyphicon();
+        removeFontAwesomeIcon();
     }
 
     @Override
@@ -103,8 +118,11 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
 
     @Override
     public void setIconPosition(final IconPosition iconPosition) {
-        this.iconPosition = iconPosition;
-        render(fontAwesomeIcon);
+        if (this.iconPosition != iconPosition) {
+            this.iconPosition = iconPosition;
+
+            render();
+        }
     }
 
     @Override
@@ -115,7 +133,10 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconSize(final IconSize iconSize) {
         this.iconSize = iconSize;
-        render(fontAwesomeIcon);
+
+        if (fontAwesomeIcon != null && fontAwesomeIcon.getSize() != iconSize) {
+            render();
+        }
     }
 
     @Override
@@ -126,7 +147,10 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconFlip(IconFlip iconFlip) {
         this.iconFlip = iconFlip;
-        render(fontAwesomeIcon);
+
+        if (fontAwesomeIcon != null && fontAwesomeIcon.getFlip() != iconFlip) {
+            render();
+        }
     }
 
     @Override
@@ -137,7 +161,10 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconRotate(IconRotate iconRotate) {
         this.iconRotate = iconRotate;
-        render(fontAwesomeIcon);
+
+        if (fontAwesomeIcon != null && fontAwesomeIcon.getRotate() != iconRotate) {
+            render();
+        }
     }
 
     @Override
@@ -148,7 +175,10 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconBordered(boolean iconBordered) {
         this.iconBordered = iconBordered;
-        render(fontAwesomeIcon);
+
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isBorder() != iconBordered) {
+            render();
+        }
     }
 
     @Override
@@ -159,7 +189,10 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconMuted(boolean iconMuted) {
         this.iconMuted = iconMuted;
-        render(fontAwesomeIcon);
+
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isMuted() != iconMuted) {
+            render();
+        }
     }
 
     @Override
@@ -170,7 +203,10 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconLight(boolean iconLight) {
         this.iconLight = iconLight;
-        render(fontAwesomeIcon);
+
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isLight() != iconLight) {
+            render();
+        }
     }
 
     @Override
@@ -181,88 +217,74 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     @Override
     public void setIconSpin(boolean iconSpin) {
         this.iconSpin = iconSpin;
-        render(fontAwesomeIcon);
+
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isSpin() != iconSpin) {
+            render();
+        }
     }
 
-    private void render(final FontAwesomeIcon newIcon) {
-        // We defer to make sure the elements are available to manipulate their positions
-        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
-            public void execute() {
-                if (text.isAttached())
-                    text.removeFromParent();
+    private void render() {
+        if (glyphicon != null || fontAwesomeIcon != null) {
+            // We defer to make sure the elements are available to manipulate their positions
+            Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+                @Override
+                public void execute() {
+                    if (text.isAttached())
+                        text.removeFromParent();
 
-                if (separator.isAttached())
-                    separator.removeFromParent();
+                    if (separator.isAttached())
+                        separator.removeFromParent();
 
-                if (fontAwesomeIcon != null)
-                    fontAwesomeIcon.removeFromParent();
+                    if (fontAwesomeIcon != null)
+                        fontAwesomeIcon.removeFromParent();
 
-                fontAwesomeIcon = newIcon;
-                fontAwesomeIcon.setSize(iconSize);
-                fontAwesomeIcon.setFlip(iconFlip);
-                fontAwesomeIcon.setRotate(iconRotate);
-                fontAwesomeIcon.setMuted(iconMuted);
-                fontAwesomeIcon.setSpin(iconSpin);
-                fontAwesomeIcon.setBorder(iconBordered);
-                fontAwesomeIcon.setLight(iconLight);
+                    if (glyphicon != null)
+                        glyphicon.removeFromParent();
 
-                // Since we are dealing with Icon/Text, we can insert them at the right position
-                // Helps on widgets like ButtonDropDown, where it has a caret added
-                int position = 0;
+                    if (fontAwesomeIcon != null) {
+                        fontAwesomeIcon.setSize(iconSize);
+                        fontAwesomeIcon.setFlip(iconFlip);
+                        fontAwesomeIcon.setRotate(iconRotate);
+                        fontAwesomeIcon.setMuted(iconMuted);
+                        fontAwesomeIcon.setSpin(iconSpin);
+                        fontAwesomeIcon.setBorder(iconBordered);
+                        fontAwesomeIcon.setLight(iconLight);
+                    }
 
-                if (iconPosition == IconPosition.LEFT) {
-                    widget.insert(fontAwesomeIcon, position++);
-                    widget.insert(separator, position++);
+                    // Since we are dealing with Icon/Text, we can insert them at the right position
+                    // Helps on widgets like ButtonDropDown, where it has a caret added
+                    int position = 0;
+
+                    if (iconPosition == IconPosition.LEFT) {
+                        widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position++);
+                        widget.insert(separator, position++);
+                    }
+
+                    if (text.getText() != null && text.getText().length() > 0) {
+                        widget.insert(text, position);
+                    }
+
+                    if (iconPosition == IconPosition.RIGHT) {
+                        widget.insert(separator, position++);
+                        widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position);
+                    }
                 }
-
-                if (text.getText() != null && text.getText().length() > 0) {
-                    widget.insert(text, position);
-                }
-
-                if (iconPosition == IconPosition.RIGHT) {
-                    widget.insert(separator, position++);
-                    widget.insert(fontAwesomeIcon, position);
-                }
-            }
-        });
+            });
+        }
     }
 
-    private void render(final Glyphicon newIcon) {
-        // We defer to make sure the elements are available to manipulate their positions
-        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
-            public void execute() {
-                if (text.isAttached())
-                    text.removeFromParent();
+    private void removeFontAwesomeIcon() {
+        if (fontAwesomeIcon != null)
+            fontAwesomeIcon.removeFromParent();
 
-                if (separator.isAttached())
-                    separator.removeFromParent();
+        fontAwesomeIcon = null;
+    }
 
-                if (glyphicon != null)
-                    glyphicon.removeFromParent();
+    private void removeGlyphicon() {
+        if (glyphicon != null)
+            glyphicon.removeFromParent();
 
-                glyphicon = newIcon;
-
-                // Since we are dealing with Icon/Text, we can insert them at the right position
-                // Helps on widgets like ButtonDropDown, where it has a caret added
-                int position = 0;
-
-                if (iconPosition == IconPosition.LEFT) {
-                    widget.insert(glyphicon, position++);
-                    widget.insert(separator, position++);
-                }
-
-                if (text.getText() != null && text.getText().length() > 0) {
-                    widget.insert(text, position);
-                }
-
-                if (iconPosition == IconPosition.RIGHT) {
-                    widget.insert(separator, position++);
-                    widget.insert(glyphicon, position);
-                }
-            }
-        });
+        glyphicon = null;
     }
 
 }

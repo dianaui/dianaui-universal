@@ -24,7 +24,6 @@ import com.dianaui.universal.core.client.ui.base.HasType;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.*;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.uibinder.client.UiConstructor;
 
 /**
@@ -37,11 +36,7 @@ import com.google.gwt.uibinder.client.UiConstructor;
 public class FontAwesomeIcon extends ComplexWidget implements HasType<IconType> {
 
     public FontAwesomeIcon() {
-        this(Document.get().createElement(ElementTags.I));
-    }
-
-    protected FontAwesomeIcon(Element element) {
-        setElement(element);
+        setElement(Document.get().createElement(ElementTags.I));
         addStyleName(Styles.FONT_AWESOME_BASE);
     }
 
@@ -61,52 +56,92 @@ public class FontAwesomeIcon extends ComplexWidget implements HasType<IconType> 
         StyleHelper.addUniqueEnumStyleName(this, IconType.class, type);
     }
 
+    public boolean isLight() {
+        return StyleHelper.containsStyle(Styles.ICON_LIGHT, getStyleName());
+    }
+
     public void setLight(final boolean light) {
         StyleHelper.toggleStyleName(this, light, Styles.ICON_LIGHT);
+    }
+
+    public boolean isMuted() {
+        return StyleHelper.containsStyle(Styles.ICON_MUTED, getStyleName());
     }
 
     public void setMuted(final boolean muted) {
         StyleHelper.toggleStyleName(this, muted, Styles.ICON_MUTED);
     }
 
+    public boolean isBorder() {
+        return StyleHelper.containsStyle(Styles.ICON_BORDER, getStyleName());
+    }
+
     public void setBorder(final boolean border) {
         StyleHelper.toggleStyleName(this, border, Styles.ICON_BORDER);
+    }
+
+    public boolean isStackBase() {
+        return StyleHelper.containsStyle(Styles.ICON_STACK_BASE, getStyleName());
     }
 
     public void setStackBase(final boolean stackBase) {
         StyleHelper.toggleStyleName(this, stackBase, Styles.ICON_STACK_BASE);
     }
 
+    public boolean isFixedWidth() {
+        return StyleHelper.containsStyle(Styles.ICON_FIXED_WIDTH, getStyleName());
+    }
+
     public void setFixedWidth(final boolean fixedWidth) {
         StyleHelper.toggleStyleName(this, fixedWidth, Styles.ICON_FIXED_WIDTH);
+    }
+
+    public boolean isStackTop() {
+        return StyleHelper.containsStyle(Styles.ICON_STACK_TOP, getStyleName());
     }
 
     public void setStackTop(final boolean stackTop) {
         StyleHelper.toggleStyleName(this, stackTop, Styles.ICON_STACK_TOP);
     }
 
+    public boolean isSpin() {
+        return StyleHelper.containsStyle(Styles.ICON_SPIN, getStyleName());
+    }
+
     public void setSpin(final boolean spin) {
         StyleHelper.toggleStyleName(this, spin, Styles.ICON_SPIN);
     }
 
+    public IconRotate getRotate() {
+        return IconRotate.fromStyleName(getStyleName());
+    }
+
     public void setRotate(final IconRotate iconRotate) {
-        if (iconRotate == null || iconRotate == IconRotate.NONE) {
+        if (iconRotate == null) {
             return;
         }
 
         StyleHelper.addUniqueEnumStyleName(this, IconRotate.class, iconRotate);
     }
 
+    public IconFlip getFlip() {
+        return IconFlip.fromStyleName(getStyleName());
+    }
+
     public void setFlip(final IconFlip iconFlip) {
-        if (iconFlip == null || iconFlip == IconFlip.NONE) {
+        if (iconFlip == null) {
             return;
         }
 
         StyleHelper.addUniqueEnumStyleName(this, IconFlip.class, iconFlip);
     }
 
+    public IconSize getSize() {
+        return IconSize.fromStyleName(getStyleName());
+    }
+
     public void setSize(final IconSize iconSize) {
-        if (iconSize == null || iconSize == IconSize.NONE) {
+        if (iconSize == null) {
             return;
         }
 

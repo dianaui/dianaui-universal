@@ -24,6 +24,7 @@ import com.dianaui.universal.core.client.ui.base.HasType;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.*;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.uibinder.client.UiConstructor;
 
 /**
@@ -36,7 +37,11 @@ import com.google.gwt.uibinder.client.UiConstructor;
 public class FontAwesomeIcon extends ComplexWidget implements HasType<IconType> {
 
     public FontAwesomeIcon() {
-        setElement(Document.get().createElement(ElementTags.I));
+        this(Document.get().createElement(ElementTags.I));
+    }
+
+    protected FontAwesomeIcon(Element element) {
+        setElement(element);
         addStyleName(Styles.FONT_AWESOME_BASE);
     }
 

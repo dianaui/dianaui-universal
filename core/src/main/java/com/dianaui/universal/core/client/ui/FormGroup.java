@@ -25,6 +25,7 @@ import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.constants.ValidationState;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * @author Sven Jacobs
@@ -35,6 +36,19 @@ public class FormGroup extends FormElementContainer implements HasValidationStat
     public FormGroup() {
         setElement(Document.get().createDivElement());
         setStyleName(Styles.FORM_GROUP);
+    }
+
+    public void setFeedback(boolean feedback) {
+        StyleHelper.toggleStyleName(this, feedback, Styles.HAS_FEEDBACK);
+    }
+
+    @Override
+    public void add(final Widget w) {
+        super.add(w);
+
+        if (w instanceof FormControlFeedback) {
+            addStyleName(Styles.HAS_FEEDBACK);
+        }
     }
 
     @Override

@@ -83,6 +83,11 @@ public class Modal extends ModalWithBackdrop implements IsClosable {
     // TODO
     public void setKeyboard(final boolean keyboard) {
         getElement().setAttribute(Attributes.DATA_KEYBOARD, Boolean.toString(keyboard));
+
+        // tabindex must be set to -1 for ESC key to work
+        if (keyboard) {
+            getElement().setAttribute(Attributes.TABINDEX, "-1");
+        }
     }
 
     public ModalSize getSize() {

@@ -20,12 +20,15 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.AbstractTextWidget;
+import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.Attributes;
+import com.dianaui.universal.core.client.ui.constants.ColumnSize;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class FormLabel extends AbstractTextWidget {
 
@@ -46,4 +49,13 @@ public class FormLabel extends AbstractTextWidget {
             getElement().removeAttribute(Attributes.FOR);
         }
     }
+
+    public ColumnSize getColumnSize() {
+        return ColumnSize.fromStyleName(getStyleName());
+    }
+
+    public void setColumnSize(final ColumnSize columnSize) {
+        StyleHelper.addUniqueEnumStyleName(this, ColumnSize.class, columnSize);
+    }
+
 }

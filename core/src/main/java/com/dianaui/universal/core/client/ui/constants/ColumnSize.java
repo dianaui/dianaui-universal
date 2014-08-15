@@ -19,6 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui.constants;
 
+import com.dianaui.universal.core.client.ui.base.helper.EnumHelper;
 import com.google.gwt.dom.client.Style;
 
 /**
@@ -85,6 +86,10 @@ public enum ColumnSize implements Size, Style.HasCssName {
 
     private ColumnSize(final String cssClass) {
         this.cssClass = cssClass;
+    }
+
+    public static ColumnSize fromStyleName(final String styleName) {
+        return EnumHelper.fromStyleName(styleName, ColumnSize.class, null);
     }
 
     @Override

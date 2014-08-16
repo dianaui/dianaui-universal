@@ -19,9 +19,9 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.constants.HeadingSize;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.html.Div;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.ui.HasText;
 
 /**
@@ -35,47 +35,64 @@ import com.google.gwt.user.client.ui.HasText;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class PageHeader extends Div implements HasText {
 
-    private String heading;
-    private String subText;
+    private Heading heading = new Heading(HeadingSize.H1);
 
     public PageHeader() {
         setStyleName(Styles.PAGE_HEADER);
+        add(heading);
     }
 
-    public void setSubText(final String subText) {
-        this.subText = subText;
-        render();
+    /**
+     * Creates a Heading with the passed in size and text.
+     *
+     * @param text text for the heading
+     */
+    public PageHeader(final String text) {
+        this();
+        setText(text);
+    }
+
+    /**
+     * Creates a Heading with the passed in size and text.
+     *
+     * @param text    text for the heading
+     * @param subtext subtext for the heading
+     */
+    public PageHeader(final String text, final String subtext) {
+        this(text);
+        setSubText(subtext);
+    }
+
+    public Heading getHeading() {
+        return heading;
+    }
+
+    /**
+     * @return subtext of the heading
+     */
+    public String getSubText() {
+        return heading.getText();
+    }
+
+    /**
+     * @param subtext the subtext of the heading
+     */
+    public void setSubText(final String subtext) {
+        heading.setSubText(subtext);
     }
 
     @Override
     public String getText() {
-        return heading;
+        return heading.getText();
     }
 
     @Override
     public void setText(final String text) {
-        heading = text;
-        render();
+        heading.setText(text);
     }
 
-    private void render() {
-        final SafeHtmlBuilder builder = new SafeHtmlBuilder();
-
-        builder.appendHtmlConstant("<h1>");
-        builder.appendEscaped(heading == null ? "" : heading);
-
-        if (subText != null && !subText.isEmpty()) {
-            builder.appendEscaped(" ");
-            builder.appendHtmlConstant("<small>");
-            builder.appendEscaped(subText);
-            builder.appendHtmlConstant("</small>");
-        }
-
-        builder.appendHtmlConstant("</h1>");
-
-        getElement().setInnerSafeHtml(builder.toSafeHtml());
-    }
 }

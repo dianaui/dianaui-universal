@@ -31,6 +31,7 @@ import com.dianaui.universal.core.client.ui.html.Small;
 import com.dianaui.universal.core.client.ui.html.Text;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.uibinder.client.UiConstructor;
+import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 
@@ -64,13 +65,14 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * <h3>Usage in Java</h3>
  * <pre>
  * Heading h1 = new Heading(1, "Heading Text");
- * h1.setSubtext("Subtext Text); // optional
+ * h1.setSubText("Subtext Text); // optional
  * </pre>
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEmphasis, HasAlignment {
+public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHTML, HasEmphasis, HasAlignment {
 
     private final Small subtext = new Small();
     private final Text text = new Text();
@@ -105,7 +107,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      */
     public Heading(final HeadingSize size, final String text, final String subtext) {
         this(size, text);
-        setSubtext(subtext);
+        setSubText(subtext);
     }
 
     /**
@@ -113,7 +115,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      *
      * @return subtext of the heading
      */
-    public String getSubtext() {
+    public String getSubText() {
         return subtext.getText();
     }
 
@@ -123,10 +125,13 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      *
      * @param subtext the subtext of the heading
      */
-    public void setSubtext(final String subtext) {
+    public void setSubText(final String subtext) {
         // Force a space between the heading and the subtext
         this.subtext.setText(" " + subtext);
-        add(this.subtext);
+
+        if (!this.subtext.isAttached()) {
+            insert(this.subtext, this.text.isAttached() ? 1 : 0);
+        }
     }
 
     /**
@@ -143,7 +148,20 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
     @Override
     public void setText(final String text) {
         this.text.setText(text);
-        insert(this.text, 0);
+
+        if (!this.text.isAttached()) {
+            insert(this.text, 0);
+        }
+    }
+
+    @Override
+    public String getHTML() {
+        return getElement().getInnerHTML();
+    }
+
+    @Override
+    public void setHTML(String html) {
+        getElement().setInnerHTML(html);
     }
 
     /**
@@ -177,7 +195,6 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
     public void setAlignment(final Alignment alignment) {
         StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
     }
-
 
     /**
      * {@inheritDoc}

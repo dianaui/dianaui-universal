@@ -94,7 +94,9 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
 
         switch (DOM.eventGetType(event)) {
             case Event.ONCLICK:
-                if (getToggle() == Toggle.DROPDOWN && getParent() instanceof ListDropDown) {
+                if (getToggle() == Toggle.BUTTON) {
+                   toggle();
+                } else if (getToggle() == Toggle.DROPDOWN && getParent() instanceof ListDropDown) {
                     ((ListDropDown) getParent()).toggle();
                 } else if (getToggle() == Toggle.DROPDOWN && getParent() instanceof DropDownButton) {
                     ((DropDownButton) getParent()).toggle();

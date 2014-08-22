@@ -22,6 +22,7 @@ package com.dianaui.universal.core.client.ui;
 import com.dianaui.universal.core.client.ui.base.ComplexWidget;
 import com.dianaui.universal.core.client.ui.base.HasAlignment;
 import com.dianaui.universal.core.client.ui.base.HasEmphasis;
+import com.dianaui.universal.core.client.ui.base.HasSubText;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.Alignment;
 import com.dianaui.universal.core.client.ui.constants.Emphasis;
@@ -48,7 +49,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * </b:Heading>
  *
  * <b:Heading size="H1" text="Heading Text" subtext="Subtext Text"/>
- * <b:Heading size="H1" subtext="Subtext Text" text="Heading Text"/>
+ * <b:Heading size="H1" subText="Subtext Text" text="Heading Text"/>
  *
  * <b:Heading size="H1">
  *     <b:Icon type="..."/>
@@ -58,7 +59,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * <b:Heading size="H1">
  *     <b:Icon type="..."/>
  *     <b:Text text="Heading with icon"/>
- *     <b:Small text=" subtext"/>
+ *     <b:Small text=" subText"/>
  * </b:Heading>
  * }
  * </pre>
@@ -72,9 +73,10 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHTML, HasEmphasis, HasAlignment {
+public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHTML, HasEmphasis, HasAlignment,
+        HasSubText {
 
-    private final Small subtext = new Small();
+    private final Small subText = new Small();
     private final Text text = new Text();
 
     /**
@@ -103,11 +105,11 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHT
      *
      * @param size    size of the heading
      * @param text    text for the heading
-     * @param subtext subtext for the heading
+     * @param subText subtext for the heading
      */
-    public Heading(final HeadingSize size, final String text, final String subtext) {
+    public Heading(final HeadingSize size, final String text, final String subText) {
         this(size, text);
-        setSubText(subtext);
+        setSubText(subText);
     }
 
     /**
@@ -116,21 +118,21 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHT
      * @return subtext of the heading
      */
     public String getSubText() {
-        return subtext.getText();
+        return subText.getText();
     }
 
     /**
      * Sets the subtext for the heading (wrapped in a Small tag).
      * When using the setter for this, the subtext will be added after the text
      *
-     * @param subtext the subtext of the heading
+     * @param subText the subtext of the heading
      */
-    public void setSubText(final String subtext) {
+    public void setSubText(final String subText) {
         // Force a space between the heading and the subtext
-        this.subtext.setText(" " + subtext);
+        this.subText.setText(" " + subText);
 
-        if (!this.subtext.isAttached()) {
-            insert(this.subtext, this.text.isAttached() ? 1 : 0);
+        if (!this.subText.isAttached()) {
+            insert(this.subText, this.text.isAttached() ? 1 : 0);
         }
     }
 

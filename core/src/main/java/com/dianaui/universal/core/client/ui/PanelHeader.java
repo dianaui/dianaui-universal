@@ -19,19 +19,32 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.base.HasSubText;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.html.Div;
-import com.dianaui.universal.core.client.ui.html.Text;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
+ * Page header with optional subtext
+ * <p/>
+ * <h3>UiBinder example</h3>
+ * <p/>
+ * <pre>
+ * {@code
+ *     <b:PageHeader subText="Some subtext">Page header title</b:PageHeader>
+ * }
+ * </pre>
+ *
+ * @author Sven Jacobs
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class PanelHeader extends Div implements HasWidgets, HasText {
+public class PanelHeader extends Div implements HasWidgets, HasText, HasSubText {
 
-    private final Text text = new Text();
+    private String heading;
+    private String subText;
 
     public PanelHeader() {
         setStyleName(Styles.PANEL_HEADING);
@@ -47,7 +60,7 @@ public class PanelHeader extends Div implements HasWidgets, HasText {
      */
     @Override
     public String getText() {
-        return text.getText();
+        return heading;
     }
 
     /**
@@ -55,8 +68,37 @@ public class PanelHeader extends Div implements HasWidgets, HasText {
      */
     @Override
     public void setText(final String text) {
-        this.text.setText(text);
-        insert(this.text, 0);
+        heading = text;
+        render();
+    }
+
+    @Override
+    public void setSubText(final String subText) {
+        this.subText = subText;
+        render();
+    }
+
+    @Override
+    public String getSubText() {
+        return subText;
+    }
+
+    private void render() {
+        final SafeHtmlBuilder builder = new SafeHtmlBuilder();
+
+        builder.appendHtmlConstant("<h1>");
+        builder.appendEscaped(heading == null ? "" : heading);
+
+        if (subText != null && !subText.isEmpty()) {
+            builder.appendEscaped(" ");
+            builder.appendHtmlConstant("<small>");
+            builder.appendEscaped(subText);
+            builder.appendHtmlConstant("</small>");
+        }
+
+        builder.appendHtmlConstant("</h1>");
+
+        getElement().setInnerSafeHtml(builder.toSafeHtml());
     }
 
 }

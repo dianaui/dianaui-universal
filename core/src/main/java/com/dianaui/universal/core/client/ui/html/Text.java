@@ -99,5 +99,5 @@ public class Text extends Widget implements HasText {
         isAttached = false;
         AttachEvent.fire(this, false);
     }
-    
+
 }

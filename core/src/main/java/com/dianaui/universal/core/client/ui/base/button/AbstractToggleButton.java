@@ -55,6 +55,15 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
         setType(type);
     }
 
+    /**
+     * Toggles the display of the caret for the button
+     *
+     * @param toggleCaret show/hide the caret for the button
+     */
+    public void setToggleCaret(final boolean toggleCaret) {
+        caret.setVisible(toggleCaret);
+    }
+    
     @Override
     public Toggle getToggle() {
         return toggleMixin.getToggle();
@@ -94,7 +103,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
         switch (DOM.eventGetType(event)) {
             case Event.ONCLICK:
                 if (getToggle() == Toggle.BUTTON) {
-                   toggle();
+                    toggle();
                 } else if (getToggle() == Toggle.DROPDOWN && getParent() instanceof ListDropDown) {
                     ((ListDropDown) getParent()).toggle();
                 } else if (getToggle() == Toggle.DROPDOWN && getParent() instanceof DropDownButton) {

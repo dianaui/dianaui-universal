@@ -67,4 +67,8 @@ public interface HasIcon extends HasGlyphicon {
 
     void setIconSpin(boolean iconSpin);
 
+    void setIconFixedWidth(boolean iconFixedWidth);
+
+    boolean isIconFixedWidth();
+
 }

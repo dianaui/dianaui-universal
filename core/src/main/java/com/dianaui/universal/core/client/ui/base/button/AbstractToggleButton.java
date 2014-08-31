@@ -63,7 +63,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
     public void setToggleCaret(final boolean toggleCaret) {
         caret.setVisible(toggleCaret);
     }
-    
+
     @Override
     public Toggle getToggle() {
         return toggleMixin.getToggle();

@@ -55,6 +55,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     private boolean iconSpin = false;
     private boolean iconBordered = false;
     private boolean iconLight = false;
+    private boolean iconFixedWidth = false;
 
     public IconTextMixin(final T widget) {
         this.widget = widget;
@@ -251,6 +252,19 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
         }
     }
 
+    @Override
+    public void setIconFixedWidth(final boolean iconFixedWidth) {
+        this.iconFixedWidth = iconFixedWidth;
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isSpin() != iconSpin) {
+            render();
+        }
+    }
+
+    @Override
+    public boolean isIconFixedWidth() {
+        return iconFixedWidth;
+    }
+
     private void render() {
         // We defer to make sure the elements are available to manipulate their positions
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
@@ -276,6 +290,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
                     fontAwesomeIcon.setSpin(iconSpin);
                     fontAwesomeIcon.setBorder(iconBordered);
                     fontAwesomeIcon.setLight(iconLight);
+                    fontAwesomeIcon.setFixedWidth(iconFixedWidth);
                 }
 
                 // Since we are dealing with Icon/Text, we can insert them at the right position

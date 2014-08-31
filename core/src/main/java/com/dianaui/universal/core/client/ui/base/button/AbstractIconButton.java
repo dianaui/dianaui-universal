@@ -229,4 +229,13 @@ public abstract class AbstractIconButton extends AbstractButton implements HasHT
 
     }
 
+    public void setIconFixedWidth(final boolean iconFixedWidth) {
+        iconTextMixin.setIconFixedWidth(iconFixedWidth);
+    }
+
+    @Override
+    public boolean isIconFixedWidth() {
+        return iconTextMixin.isIconFixedWidth();
+    }
+
 }

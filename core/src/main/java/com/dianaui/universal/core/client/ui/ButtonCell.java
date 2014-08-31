@@ -48,6 +48,7 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     private boolean iconMuted = false;
     private boolean iconLight = false;
     private boolean iconSpin = false;
+    private boolean iconFixedWidth = false;
     private IconPosition iconPosition = IconPosition.LEFT;
 
     public ButtonCell() {
@@ -101,20 +102,24 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
                 String iconClasses = fontAwesomeIcon != null ? Styles.FONT_AWESOME_BASE + " " +
                         fontAwesomeIcon.getCssName() : Styles.GLYPHICON_BASE + " " + glyphicon.getCssName();
 
-                if (iconSize != null)
-                    iconClasses += iconSize.getCssName() + " ";
-                if (iconFlip != null)
-                    iconClasses += iconFlip.getCssName() + " ";
-                if (iconRotate != null)
-                    iconClasses += iconRotate.getCssName() + " ";
-                if (iconBordered)
-                    iconClasses += Styles.ICON_BORDER + " ";
-                if (iconMuted)
-                    iconClasses += Styles.ICON_MUTED + " ";
-                if (iconLight)
-                    iconClasses += Styles.ICON_LIGHT + " ";
-                if (iconSpin)
-                    iconClasses += Styles.ICON_SPIN + " ";
+                if (fontAwesomeIcon != null) {
+                    if (iconSize != null)
+                        iconClasses += iconSize.getCssName() + " ";
+                    if (iconFlip != null)
+                        iconClasses += iconFlip.getCssName() + " ";
+                    if (iconRotate != null)
+                        iconClasses += iconRotate.getCssName() + " ";
+                    if (iconBordered)
+                        iconClasses += Styles.ICON_BORDER + " ";
+                    if (iconMuted)
+                        iconClasses += Styles.ICON_MUTED + " ";
+                    if (iconLight)
+                        iconClasses += Styles.ICON_LIGHT + " ";
+                    if (iconSpin)
+                        iconClasses += Styles.ICON_SPIN + " ";
+                    if (iconFixedWidth)
+                        iconClasses += Styles.ICON_FIXED_WIDTH;
+                }
 
                 iconHtml = "<i class=\"" + iconClasses + "\"></i> ";
             }
@@ -246,6 +251,16 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     @Override
     public void setIconSpin(boolean iconSpin) {
         this.iconSpin = iconSpin;
+    }
+
+    @Override
+    public void setIconFixedWidth(boolean iconFixedWidth) {
+        this.iconFixedWidth = iconFixedWidth;
+    }
+
+    @Override
+    public boolean isIconFixedWidth() {
+        return iconFixedWidth;
     }
 
     @Override

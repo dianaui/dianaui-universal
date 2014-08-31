@@ -177,4 +177,14 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasHTML,
         iconTextMixin.setIconSpin(iconSpin);
     }
 
+    @Override
+    public void setIconFixedWidth(final boolean iconFixedWidth) {
+        iconTextMixin.setIconFixedWidth(iconFixedWidth);
+    }
+
+    @Override
+    public boolean isIconFixedWidth() {
+        return iconTextMixin.isIconFixedWidth();
+    }
+
 }

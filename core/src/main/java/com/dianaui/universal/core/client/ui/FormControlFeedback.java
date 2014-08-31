@@ -40,6 +40,7 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     private boolean iconSpin = false;
     private boolean iconBordered = false;
     private boolean iconLight = false;
+    private boolean iconFixedWidth = false;
 
     public FormControlFeedback() {
         setElement(Document.get().createSpanElement());
@@ -77,6 +78,15 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
     public void setFontAwesomeIcon(IconType iconType) {
         if (fontAwesomeIcon == null) {
             fontAwesomeIcon = new FontAwesomeIcon(getElement());
+            fontAwesomeIcon.setMuted(iconMuted);
+            fontAwesomeIcon.setSize(iconSize);
+            fontAwesomeIcon.setFlip(iconFlip);
+            fontAwesomeIcon.setRotate(iconRotate);
+            fontAwesomeIcon.setMuted(iconMuted);
+            fontAwesomeIcon.setSpin(iconSpin);
+            fontAwesomeIcon.setBorder(iconBordered);
+            fontAwesomeIcon.setLight(iconLight);
+            fontAwesomeIcon.setFixedWidth(iconFixedWidth);
         }
 
         fontAwesomeIcon.setType(iconType);
@@ -178,6 +188,19 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
         if (fontAwesomeIcon != null) {
             fontAwesomeIcon.setSpin(iconSpin);
         }
+    }
+
+    public void setIconFixedWidth(final boolean iconFixedWidth) {
+        this.iconFixedWidth = iconFixedWidth;
+
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setFixedWidth(iconFixedWidth);
+        }
+    }
+
+    @Override
+    public boolean isIconFixedWidth() {
+        return iconFixedWidth;
     }
 
 }

@@ -221,4 +221,14 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
         anchor.clearIcon();
     }
 
+    @Override
+    public void setIconFixedWidth(final boolean iconFixedWidth) {
+        anchor.setIconFixedWidth(iconFixedWidth);
+    }
+
+    @Override
+    public boolean isIconFixedWidth() {
+        return anchor.isIconFixedWidth();
+    }
+
 }

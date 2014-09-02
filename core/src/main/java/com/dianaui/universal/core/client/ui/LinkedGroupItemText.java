@@ -20,8 +20,8 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.ComplexWidget;
+import com.dianaui.universal.core.client.ui.base.mixin.HTMLMixin;
 import com.dianaui.universal.core.client.ui.constants.Styles;
-import com.dianaui.universal.core.client.ui.html.Text;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -31,7 +31,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
  */
 public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, HasText {
 
-    private final Text text = new Text();
+    private final HTMLMixin<LinkedGroupItemText> textMixin = new HTMLMixin<LinkedGroupItemText>(this);
 
     public LinkedGroupItemText() {
         setElement(Document.get().createPElement());
@@ -43,7 +43,15 @@ public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, Ha
      */
     @Override
     public String getText() {
-        return text.getText();
+        return textMixin.getText();
+    }
+
+    public String getHTML() {
+        return textMixin.getHTML();
+    }
+
+    public void setHTML(final String html) {
+        textMixin.setHTML(html);
     }
 
     /**
@@ -51,8 +59,7 @@ public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, Ha
      */
     @Override
     public void setText(final String text) {
-        this.text.setText(text);
-        insert(this.text, 0);
+        this.textMixin.setText(text);
     }
 
 }

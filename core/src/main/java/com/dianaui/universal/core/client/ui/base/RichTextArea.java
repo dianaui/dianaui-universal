@@ -19,6 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui.base;
 
+import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.IFrameElement;
 import com.google.gwt.dom.client.StyleElement;
 import com.google.gwt.editor.client.LeafValueEditor;
@@ -39,6 +40,8 @@ public class RichTextArea extends com.google.gwt.user.client.ui.RichTextArea imp
     private boolean valueChangeHandlerInitialized;
 
     public RichTextArea() {
+        addStyleName(Styles.FORM_CONTROL);
+
         addBlurHandler(new BlurHandler() {
             @Override
             public void onBlur(BlurEvent event) {

@@ -23,7 +23,7 @@ import com.dianaui.universal.core.client.ui.base.HasIcon;
 import com.dianaui.universal.core.client.ui.base.HasIconPosition;
 import com.dianaui.universal.core.client.ui.base.mixin.IconTextMixin;
 import com.dianaui.universal.core.client.ui.constants.*;
-import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasHTML;
 
 /**
  * Base class for buttons that can contain an icon.
@@ -32,7 +32,7 @@ import com.google.gwt.user.client.ui.HasText;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see com.dianaui.universal.core.client.ui.FontAwesomeIcon
  */
-public abstract class AbstractIconButton extends AbstractButton implements HasText, HasIcon, HasIconPosition {
+public abstract class AbstractIconButton extends AbstractButton implements HasHTML, HasIcon, HasIconPosition {
 
     private final ButtonStateHandler buttonStateHandler = new ButtonStateHandler();
     IconTextMixin<AbstractIconButton> iconTextMixin = new IconTextMixin<AbstractIconButton>(this);
@@ -61,6 +61,18 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     @Override
     public void setText(final String text) {
         iconTextMixin.setText(text);
+
+        onChanged();
+    }
+
+    @Override
+    public String getHTML() {
+        return iconTextMixin.getHTML();
+    }
+
+    @Override
+    public void setHTML(final String html) {
+        iconTextMixin.setHTML(html);
 
         onChanged();
     }

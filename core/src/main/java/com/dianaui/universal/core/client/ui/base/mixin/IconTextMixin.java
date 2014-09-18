@@ -26,9 +26,14 @@ import com.dianaui.universal.core.client.ui.base.HasGlyphicon;
 import com.dianaui.universal.core.client.ui.base.HasIcon;
 import com.dianaui.universal.core.client.ui.base.HasIconPosition;
 import com.dianaui.universal.core.client.ui.constants.*;
+import com.dianaui.universal.core.client.ui.html.Span;
 import com.dianaui.universal.core.client.ui.html.Text;
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.Widget;
+
+import java.util.logging.Logger;
 
 /**
  * Mixin for Widgets that have text and an optional icon.
@@ -36,11 +41,11 @@ import com.google.gwt.user.client.ui.HasText;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIconPosition> implements HasText, HasIcon,
-        HasGlyphicon, HasIconPosition {
+public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon & HasIconPosition> implements HasText,
+        HasHTML, HasIcon, HasGlyphicon, HasIconPosition {
 
     private final T widget;
-    private final Text text = new Text();
+    private Widget text = new Text();
     private final Text separator = new Text(" ");
     private Glyphicon glyphicon;
     private FontAwesomeIcon fontAwesomeIcon;
@@ -63,12 +68,36 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
 
     @Override
     public String getText() {
-        return text.getText();
+        return text instanceof Text ? ((Text) text).getText() : null;
     }
 
     @Override
     public void setText(final String text) {
-        this.text.setText(text);
+        if (text == null || !(this.text instanceof Text)) {
+            if (this.text != null && this.text.isAttached())
+                this.text.removeFromParent();
+            this.text = new Text();
+        }
+        ((Text) this.text).setText(text);
+
+        render();
+    }
+
+    @Override
+    public String getHTML() {
+        return text instanceof Span ? ((Span) text).getHTML() : null;
+    }
+
+    @Override
+    public void setHTML(final String html) {
+        if (text == null || !(text instanceof Span)) {
+            if (text != null && text.isAttached())
+                text.removeFromParent();
+            text = new Span();
+        }
+        ((Span) this.text).setHTML(html);
+
+        render();
     }
 
     @Override
@@ -224,53 +253,50 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIcon
     }
 
     private void render() {
-        if (glyphicon != null || fontAwesomeIcon != null) {
-            // We defer to make sure the elements are available to manipulate their positions
-            Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-                @Override
-                public void execute() {
-                    if (text.isAttached())
-                        text.removeFromParent();
+        // We defer to make sure the elements are available to manipulate their positions
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                if (text != null && text.isAttached())
+                    text.removeFromParent();
 
-                    if (separator.isAttached())
-                        separator.removeFromParent();
+                if (separator.isAttached())
+                    separator.removeFromParent();
 
-                    if (fontAwesomeIcon != null)
-                        fontAwesomeIcon.removeFromParent();
+                if (fontAwesomeIcon != null)
+                    fontAwesomeIcon.removeFromParent();
 
-                    if (glyphicon != null)
-                        glyphicon.removeFromParent();
+                if (glyphicon != null)
+                    glyphicon.removeFromParent();
 
-                    if (fontAwesomeIcon != null) {
-                        fontAwesomeIcon.setSize(iconSize);
-                        fontAwesomeIcon.setFlip(iconFlip);
-                        fontAwesomeIcon.setRotate(iconRotate);
-                        fontAwesomeIcon.setMuted(iconMuted);
-                        fontAwesomeIcon.setSpin(iconSpin);
-                        fontAwesomeIcon.setBorder(iconBordered);
-                        fontAwesomeIcon.setLight(iconLight);
-                    }
-
-                    // Since we are dealing with Icon/Text, we can insert them at the right position
-                    // Helps on widgets like ButtonDropDown, where it has a caret added
-                    int position = 0;
-
-                    if (iconPosition == IconPosition.LEFT) {
-                        widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position++);
-                        widget.insert(separator, position++);
-                    }
-
-                    if (text.getText() != null && text.getText().length() > 0) {
-                        widget.insert(text, position);
-                    }
-
-                    if (iconPosition == IconPosition.RIGHT) {
-                        widget.insert(separator, position++);
-                        widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position);
-                    }
+                if (fontAwesomeIcon != null) {
+                    fontAwesomeIcon.setSize(iconSize);
+                    fontAwesomeIcon.setFlip(iconFlip);
+                    fontAwesomeIcon.setRotate(iconRotate);
+                    fontAwesomeIcon.setMuted(iconMuted);
+                    fontAwesomeIcon.setSpin(iconSpin);
+                    fontAwesomeIcon.setBorder(iconBordered);
+                    fontAwesomeIcon.setLight(iconLight);
                 }
-            });
-        }
+
+                // Since we are dealing with Icon/Text, we can insert them at the right position
+                // Helps on widgets like ButtonDropDown, where it has a caret added
+                int position = 0;
+
+                if (iconPosition == IconPosition.LEFT && (glyphicon != null || fontAwesomeIcon != null)) {
+                    widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position++);
+                    widget.insert(separator, position++);
+                }
+
+                if (text != null)
+                    widget.insert(text, position);
+
+                if (iconPosition == IconPosition.RIGHT && (glyphicon != null || fontAwesomeIcon != null)) {
+                    widget.insert(separator, position++);
+                    widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position);
+                }
+            }
+        });
     }
 
     private void removeFontAwesomeIcon() {

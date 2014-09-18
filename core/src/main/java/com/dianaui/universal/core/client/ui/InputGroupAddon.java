@@ -24,7 +24,7 @@ import com.dianaui.universal.core.client.ui.base.HasIcon;
 import com.dianaui.universal.core.client.ui.base.HasIconPosition;
 import com.dianaui.universal.core.client.ui.base.mixin.IconTextMixin;
 import com.dianaui.universal.core.client.ui.constants.*;
-import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasHTML;
 
 /**
  * Prepends or appends texts to input fields.
@@ -44,13 +44,12 @@ import com.google.gwt.user.client.ui.HasText;
  * @see InputGroup
  * @see InputGroupButton
  */
-public class InputGroupAddon extends AbstractInputGroupAddon implements HasText, HasIcon, HasIconPosition {
+public class InputGroupAddon extends AbstractInputGroupAddon implements HasHTML, HasIcon, HasIconPosition {
 
     IconTextMixin<InputGroupAddon> iconTextMixin = new IconTextMixin<InputGroupAddon>(this);
 
     public InputGroupAddon() {
         super(Styles.INPUT_GROUP_ADDON);
-        iconTextMixin.addTextWidgetToParent();
     }
 
     @Override
@@ -61,6 +60,16 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     @Override
     public void setText(final String text) {
         iconTextMixin.setText(text);
+    }
+
+    @Override
+    public String getHTML() {
+        return iconTextMixin.getHTML();
+    }
+
+    @Override
+    public void setHTML(String html) {
+        iconTextMixin.setHTML(html);
     }
 
     @Override

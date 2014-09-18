@@ -22,7 +22,7 @@ package com.dianaui.universal.core.client.ui;
 import com.dianaui.universal.core.client.ui.constants.HeadingSize;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.html.Div;
-import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasHTML;
 
 /**
  * Page header with optional subtext
@@ -37,7 +37,7 @@ import com.google.gwt.user.client.ui.HasText;
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class PageHeader extends Div implements HasText {
+public class PageHeader extends Div implements HasHTML {
 
     private Heading heading = new Heading(HeadingSize.H1);
 
@@ -93,6 +93,16 @@ public class PageHeader extends Div implements HasText {
     @Override
     public void setText(final String text) {
         heading.setText(text);
+    }
+
+    @Override
+    public String getHTML() {
+        return heading.getHTML();
+    }
+
+    @Override
+    public void setHTML(final String html) {
+        heading.setHTML(html);
     }
 
 }

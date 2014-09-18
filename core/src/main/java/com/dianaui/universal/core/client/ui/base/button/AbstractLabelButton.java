@@ -57,7 +57,6 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
         input.setStyleName("");
 
         add(input, (Element) getElement());
-        iconTextMixin.addTextWidgetToParent();
     }
 
     protected AbstractLabelButton(final TypeAttrType typeAttr, final String label) {

@@ -21,10 +21,11 @@ package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
+import com.dianaui.universal.core.client.ui.base.mixin.HTMLMixin;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -46,7 +47,9 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Sven Jacobs
  * @author Joshua Godi
  */
-public class DropDownHeader extends Widget implements HasText, HasResponsiveness {
+public class DropDownHeader extends Widget implements HasHTML, HasResponsiveness {
+
+    private final HTMLMixin<DropDownHeader> htmlMixin = new HTMLMixin<DropDownHeader>(this);
 
     public DropDownHeader() {
         setElement(Document.get().createLIElement());
@@ -60,12 +63,22 @@ public class DropDownHeader extends Widget implements HasText, HasResponsiveness
 
     @Override
     public String getText() {
-        return getElement().getInnerText();
+        return htmlMixin.getText();
     }
 
     @Override
     public void setText(final String text) {
-        getElement().setInnerText(text);
+        htmlMixin.setText(text);
+    }
+
+    @Override
+    public String getHTML() {
+        return htmlMixin.getHTML();
+    }
+
+    @Override
+    public void setHTML(final String html) {
+        htmlMixin.setHTML(html);
     }
 
     @Override

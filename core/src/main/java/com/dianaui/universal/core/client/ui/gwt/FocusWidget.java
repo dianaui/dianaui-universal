@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package com.dianaui.universal.core.client.ui;
+package com.dianaui.universal.core.client.ui.gwt;
 
 import com.dianaui.universal.core.client.ui.base.HasId;
 import com.dianaui.universal.core.client.ui.base.HasPull;

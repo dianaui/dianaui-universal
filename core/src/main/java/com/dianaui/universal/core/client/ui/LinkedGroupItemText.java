@@ -32,7 +32,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, HasText {
 
     private final HTMLMixin<LinkedGroupItemText> htmlMixin = new HTMLMixin<LinkedGroupItemText>(this);
-    
+
     public LinkedGroupItemText() {
         setElement(Document.get().createPElement());
         setStyleName(Styles.LIST_GROUP_ITEM_TEXT);

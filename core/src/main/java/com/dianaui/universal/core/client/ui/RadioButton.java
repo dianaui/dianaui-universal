@@ -19,46 +19,171 @@
  */
 package com.dianaui.universal.core.client.ui;
 
-import com.dianaui.universal.core.client.ui.base.AbstractButtonGroup;
-import com.dianaui.universal.core.client.ui.base.button.AbstractLabelButton;
-import com.dianaui.universal.core.client.ui.constants.Toggle;
-import com.dianaui.universal.core.client.ui.constants.TypeAttrType;
-import com.google.gwt.user.client.ui.Widget;
+import com.dianaui.universal.core.client.ui.base.HasActive;
+import com.dianaui.universal.core.client.ui.base.HasSize;
+import com.dianaui.universal.core.client.ui.base.HasType;
+import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
+import com.dianaui.universal.core.client.ui.base.mixin.ActiveMixin;
+import com.dianaui.universal.core.client.ui.constants.ButtonSize;
+import com.dianaui.universal.core.client.ui.constants.ButtonType;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.i18n.client.HasDirection.Direction;
+import com.google.gwt.i18n.shared.DirectionEstimator;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.uibinder.client.UiConstructor;
 
 /**
- * Button representing a radio box.
- * Used within a {@link ButtonGroup} that
- * has toggle set to {@code Toogle.BUTTONS}.
+ * Button representing a radio button used within a {@link ButtonGroup} that has
+ * toggle set to {@code Toogle.BUTTONS}.
+ * If you are looking for a classic radio button see {@link RadioButton}.
  *
  * @author Sven Jacobs
  */
-public class RadioButton extends AbstractLabelButton {
+public class RadioButton extends Radio implements HasActive, HasType<ButtonType>, HasSize<ButtonSize> {
 
-    public RadioButton() {
-        super(TypeAttrType.RADIO);
+    private final ActiveMixin<RadioButton> activeMixin = new ActiveMixin<RadioButton>(this);
+
+    /**
+     * Creates a new radio associated with a particular group, and initialized
+     * with the given HTML label. All radio buttons associated with the same
+     * group name belong to a mutually-exclusive set.
+     * <p/>
+     * Radio buttons are grouped by their name attribute, so changing their name
+     * using the setName() method will also change their associated group.
+     *
+     * @param name  the group name with which to associate the radio button
+     * @param label this radio button's html label
+     */
+    public RadioButton(String name, SafeHtml label) {
+        this(name, label.asString(), true);
     }
 
-    public RadioButton(final String label) {
-        super(TypeAttrType.RADIO, label);
+    /**
+     * @param name  the group name with which to associate the radio button
+     * @param label this radio button's html label
+     * @param dir   the text's direction. Note that {@code DEFAULT} means
+     *              direction should be inherited from the widget's parent
+     *              element.
+     * @see #RadioButtonToggle(String, SafeHtml)
+     */
+    public RadioButton(String name, SafeHtml label, Direction dir) {
+        this(name);
+        setHTML(label, dir);
+    }
+
+    /**
+     * @param name               the group name with which to associate the radio button
+     * @param label              this radio button's html label
+     * @param directionEstimator A DirectionEstimator object used for automatic direction
+     *                           adjustment. For convenience,
+     *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
+     * @see #RadioButtonToggle(String, SafeHtml)
+     */
+    public RadioButton(String name, SafeHtml label, DirectionEstimator directionEstimator) {
+        this(name);
+        setDirectionEstimator(directionEstimator);
+        setHTML(label.asString());
+    }
+
+    /**
+     * Creates a new radio associated with a particular group, and initialized
+     * with the given HTML label. All radio buttons associated with the same
+     * group name belong to a mutually-exclusive set.
+     * <p/>
+     * Radio buttons are grouped by their name attribute, so changing their name
+     * using the setName() method will also change their associated group.
+     *
+     * @param name  the group name with which to associate the radio button
+     * @param label this radio button's label
+     */
+    public RadioButton(String name, String label) {
+        this(name);
+        setText(label);
+    }
+
+    /**
+     * @param name  the group name with which to associate the radio button
+     * @param label this radio button's label
+     * @param dir   the text's direction. Note that {@code DEFAULT} means
+     *              direction should be inherited from the widget's parent
+     *              element.
+     * @see #RadioButtonToggle(String, SafeHtml)
+     */
+    public RadioButton(String name, String label, Direction dir) {
+        this(name);
+        setText(label, dir);
+    }
+
+    /**
+     * @param name               the group name with which to associate the radio button
+     * @param label              this radio button's label
+     * @param directionEstimator A DirectionEstimator object used for automatic direction
+     *                           adjustment. For convenience,
+     *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
+     * @see #RadioButtonToggle(String, SafeHtml)
+     */
+    public RadioButton(String name, String label, DirectionEstimator directionEstimator) {
+        this(name);
+        setDirectionEstimator(directionEstimator);
+        setText(label);
+    }
+
+    /**
+     * Creates a new radio button associated with a particular group, and
+     * initialized with the given label (optionally treated as HTML). All radio
+     * buttons associated with the same group name belong to a
+     * mutually-exclusive set.
+     * <p/>
+     * Radio buttons are grouped by their name attribute, so changing their name
+     * using the setName() method will also change their associated group.
+     *
+     * @param name   name the group with which to associate the radio button
+     * @param label  this radio button's label
+     * @param asHTML <code>true</code> to treat the specified label as HTML
+     */
+    public RadioButton(String name, String label, boolean asHTML) {
+        this(name);
+        if (asHTML) {
+            setHTML(label);
+        } else {
+            setText(label);
+        }
+    }
+
+    @UiConstructor
+    public RadioButton(String name) {
+        super(Document.get().createRadioInputElement(name));
     }
 
     @Override
-    public void setValue(final Boolean value, final boolean fireEvents) {
-        if (getParent() instanceof AbstractButtonGroup) {
-            Toggle toggle = ((AbstractButtonGroup) getParent()).getToggle();
+    public void setSize(ButtonSize size) {
+        StyleHelper.addUniqueEnumStyleName(this, ButtonSize.class, size);
+    }
 
-            if (toggle != null && toggle == Toggle.BUTTONS) {
-                for (int i = 0; i < ((AbstractButtonGroup) getParent()).getWidgetCount(); i++) {
-                    Widget widget = ((AbstractButtonGroup) getParent()).getWidget(i);
+    @Override
+    public ButtonSize getSize() {
+        return ButtonSize.fromStyleName(getStyleName());
+    }
 
-                    if (widget instanceof RadioButton) {
-                        ((RadioButton) widget).changeValue(false, fireEvents);
-                    }
-                }
-            }
-        }
+    @Override
+    public void setType(ButtonType type) {
+        StyleHelper.addUniqueEnumStyleName(this, ButtonType.class, type);
+    }
 
-        super.setValue(value, fireEvents);
+    @Override
+    public ButtonType getType() {
+        return ButtonType.fromStyleName(getStyleName());
+    }
+
+    @Override
+    public void setActive(boolean active) {
+        setValue(active);
+        activeMixin.setActive(active);
+    }
+
+    @Override
+    public boolean isActive() {
+        return activeMixin.isActive();
     }
 
 }

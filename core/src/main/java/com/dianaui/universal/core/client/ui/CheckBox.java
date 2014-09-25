@@ -27,8 +27,7 @@ import com.google.gwt.dom.client.Style.WhiteSpace;
 import com.google.gwt.editor.client.IsEditor;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.editor.client.adapters.TakesValueEditor;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -57,7 +56,8 @@ import com.google.gwt.user.client.ui.*;
  * @see Radio
  */
 public class CheckBox extends ButtonBase implements HasHTML, HasName, HasValue<Boolean>, HasWordWrap,
-        HasDirectionalSafeHtml, HasDirectionEstimator, IsEditor<LeafValueEditor<Boolean>>, HasFormValue {
+        HasDirectionalSafeHtml, HasDirectionEstimator, IsEditor<LeafValueEditor<Boolean>>, HasFormValue,
+        HasChangeHandlers {
 
     protected DirectionalTextHelper directionalTextHelper;
     protected InputElement inputElem;
@@ -431,6 +431,11 @@ public class CheckBox extends ButtonBase implements HasHTML, HasName, HasValue<B
         } else {
             super.sinkEvents(eventBitsToAdd);
         }
+    }
+
+    @Override
+    public HandlerRegistration addChangeHandler(ChangeHandler handler) {
+        return addDomHandler(handler, ChangeEvent.getType());
     }
 
     protected void ensureDomEventHandlers() {

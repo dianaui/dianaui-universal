@@ -47,7 +47,7 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
         HasValue<Boolean>, IsEditor<LeafValueEditor<Boolean>> {
 
     protected final CheckableInputButton input;
-    private final ActiveMixin<AbstractLabelButton> activeMixin = new ActiveMixin<AbstractLabelButton>(this);
+    private ActiveMixin<AbstractLabelButton> activeMixin;
     private LeafValueEditor<Boolean> editor;
 
     protected AbstractLabelButton(final TypeAttrType typeAttr) {
@@ -82,7 +82,7 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return getActiveMixin().isActive();
     }
 
     @Override
@@ -131,7 +131,7 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
     }
 
     protected void changeValue(final Boolean value, final boolean fireEvents) {
-        activeMixin.setActive(value);
+        getActiveMixin().setActive(value);
         input.setValue(value, fireEvents);
     }
 
@@ -146,6 +146,13 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
             editor = TakesValueEditor.of(this);
         }
         return editor;
+    }
+
+    private ActiveMixin<AbstractLabelButton> getActiveMixin() {
+        if (activeMixin == null) {
+            activeMixin = new ActiveMixin<AbstractLabelButton>(this);
+        }
+        return activeMixin;
     }
 
 }

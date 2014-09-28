@@ -33,8 +33,6 @@ import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
-import java.util.logging.Logger;
-
 /**
  * Mixin for Widgets that have text and an optional icon.
  *
@@ -73,11 +71,12 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
     @Override
     public void setText(final String text) {
-        if (text == null || !(this.text instanceof Text)) {
-            if (this.text != null && this.text.isAttached())
-                this.text.removeFromParent();
-            this.text = new Text();
+        if (text == null) {
+            this.text.removeFromParent();
         }
+        if (!(this.text instanceof Text))
+            this.text = new Text();
+
         ((Text) this.text).setText(text);
 
         render();
@@ -90,11 +89,11 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
     @Override
     public void setHTML(final String html) {
-        if (text == null || !(text instanceof Span)) {
-            if (text != null && text.isAttached())
-                text.removeFromParent();
+        if (text != null)
+            text.removeFromParent();
+        if (!(text instanceof Span))
             text = new Span();
-        }
+
         ((Span) this.text).setHTML(html);
 
         render();
@@ -260,7 +259,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
                 if (text != null && text.isAttached())
                     text.removeFromParent();
 
-                if (separator.isAttached())
+                if (separator != null)
                     separator.removeFromParent();
 
                 if (fontAwesomeIcon != null)
@@ -281,7 +280,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
                 // Since we are dealing with Icon/Text, we can insert them at the right position
                 // Helps on widgets like ButtonDropDown, where it has a caret added
-                int position = 0;
+                int position = widget.getWidgetCount();
 
                 if (iconPosition == IconPosition.LEFT && (glyphicon != null || fontAwesomeIcon != null)) {
                     widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position++);

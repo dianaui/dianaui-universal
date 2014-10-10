@@ -20,6 +20,9 @@
 package com.dianaui.universal.core.client.ui.html;
 
 import com.dianaui.universal.core.client.ui.base.ComplexWidget;
+import com.dianaui.universal.core.client.ui.base.HasAlignment;
+import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
+import com.dianaui.universal.core.client.ui.constants.Alignment;
 import com.google.gwt.dom.client.Document;
 
 /**
@@ -27,7 +30,7 @@ import com.google.gwt.dom.client.Document;
  *
  * @author Joshua Godi
  */
-public class Div extends ComplexWidget {
+public class Div extends ComplexWidget implements HasAlignment {
 
     public Div() {
         setElement(Document.get().createDivElement());
@@ -36,6 +39,16 @@ public class Div extends ComplexWidget {
     public Div(String styleName) {
         this();
         setStyleName(styleName);
+    }
+
+    @Override
+    public Alignment getAlignment() {
+        return Alignment.fromStyleName(getStyleName());
+    }
+
+    @Override
+    public void setAlignment(final Alignment alignment) {
+        StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
     }
 
 }

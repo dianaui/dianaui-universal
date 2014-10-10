@@ -11,6 +11,8 @@
 
     <artifactId>dianaui-universal-core</artifactId>
     <name>Diana UI Universal Core</name>
+    <description>Native GWT Widgets library, based on Bootstrap</description>
+    <url>http://http://www.dianaui.com/</url>
 
     <dependencies>
         <dependency>

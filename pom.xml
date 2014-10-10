@@ -8,6 +8,8 @@
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>Diana UI Parent</name>
+    <description>Native GWT Widgets library, based on Bootstrap</description>
+    <url>http://http://www.dianaui.com/</url>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>

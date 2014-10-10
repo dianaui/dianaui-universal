@@ -19,6 +19,9 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.base.HasSize;
+import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
+import com.dianaui.universal.core.client.ui.constants.InputGroupSize;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.html.Div;
 
@@ -30,10 +33,20 @@ import com.dianaui.universal.core.client.ui.html.Div;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see InputGroupAddon
  */
-public class InputGroup extends Div {
+public class InputGroup extends Div implements HasSize<InputGroupSize> {
 
     public InputGroup() {
         setStyleName(Styles.INPUT_GROUP);
+    }
+
+    @Override
+    public InputGroupSize getSize() {
+        return InputGroupSize.fromStyleName(getStyleName());
+    }
+
+    @Override
+    public void setSize(InputGroupSize size) {
+        StyleHelper.addUniqueEnumStyleName(this, InputGroupSize.class, size);
     }
 
 }

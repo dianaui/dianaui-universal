@@ -22,10 +22,7 @@ package com.dianaui.universal.core.client.ui.base;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.PullMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.ToggleMixin;
-import com.dianaui.universal.core.client.ui.constants.DeviceSize;
-import com.dianaui.universal.core.client.ui.constants.Pull;
-import com.dianaui.universal.core.client.ui.constants.Styles;
-import com.dianaui.universal.core.client.ui.constants.Toggle;
+import com.dianaui.universal.core.client.ui.constants.*;
 import com.dianaui.universal.core.client.ui.gwt.FlowPanel;
 import com.google.gwt.event.logical.shared.HasOpenHandlers;
 import com.google.gwt.event.logical.shared.OpenEvent;
@@ -43,7 +40,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @see com.dianaui.universal.core.client.ui.VerticalButtonGroup
  */
 public abstract class AbstractButtonGroup extends FlowPanel implements HasName, HasToggle, HasJustified, HasPull,
-        HasResponsiveness, HasOpenHandlers<Boolean> {
+        HasResponsiveness, HasOpenHandlers<Boolean>, HasSize<ButtonGroupSize> {
 
     private final PullMixin<AbstractButtonGroup> pullMixin = new PullMixin<AbstractButtonGroup>(this);
     private final ToggleMixin<AbstractButtonGroup> toggleMixin = new ToggleMixin<AbstractButtonGroup>(this);
@@ -167,6 +164,16 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     @Override
     public void setHiddenOn(final DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
+    }
+
+    @Override
+    public ButtonGroupSize getSize() {
+        return ButtonGroupSize.fromStyleName(getStyleName());
+    }
+
+    @Override
+    public void setSize(ButtonGroupSize size) {
+        StyleHelper.addUniqueEnumStyleName(this, ButtonGroupSize.class, size);
     }
 
     @Override

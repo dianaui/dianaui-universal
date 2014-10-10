@@ -24,6 +24,7 @@ import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.PullMixin;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
 import com.dianaui.universal.core.client.ui.constants.Pull;
+import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.ComplexPanel;
@@ -34,7 +35,8 @@ import com.google.gwt.user.client.ui.Widget;
  *
  * @author Sven Jacobs
  */
-public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiveness, HasInlineStyle, HasPull {
+public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiveness, HasInlineStyle, HasPull,
+        HasCenterBlock {
 
     private final IdMixin<ComplexWidget> idMixin = new IdMixin<ComplexWidget>(this);
     private final PullMixin<ComplexWidget> pullMixin = new PullMixin<ComplexWidget>(this);
@@ -167,6 +169,16 @@ public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiven
     @Override
     public void setPull(final Pull pull) {
         pullMixin.setPull(pull);
+    }
+
+    @Override
+    public boolean isCenterBlock() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.CENTER_BLOCK);
+    }
+
+    @Override
+    public void setCenterBlock(boolean centerBlock) {
+        StyleHelper.toggleStyleName(this, centerBlock, Styles.CENTER_BLOCK);
     }
 
 }

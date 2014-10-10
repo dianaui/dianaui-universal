@@ -19,6 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.base.HasCenterBlock;
 import com.dianaui.universal.core.client.ui.base.HasPull;
 import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
 import com.dianaui.universal.core.client.ui.base.HasType;
@@ -35,7 +36,7 @@ import com.google.gwt.safehtml.shared.SafeUri;
  * @author Joshua Godi
  */
 public class Image extends com.google.gwt.user.client.ui.Image implements HasType<ImageType>, HasResponsiveness,
-        HasPull {
+        HasPull, HasCenterBlock {
 
     private final PullMixin<Image> pullMixin = new PullMixin<Image>(this);
 
@@ -105,6 +106,16 @@ public class Image extends com.google.gwt.user.client.ui.Image implements HasTyp
     @Override
     public void setPull(final Pull pull) {
         pullMixin.setPull(pull);
+    }
+
+    @Override
+    public boolean isCenterBlock() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.CENTER_BLOCK);
+    }
+
+    @Override
+    public void setCenterBlock(boolean centerBlock) {
+        StyleHelper.toggleStyleName(this, centerBlock, Styles.CENTER_BLOCK);
     }
 
 }

@@ -56,6 +56,8 @@ public final class Styles {
     public static final String CAROUSEL_INDICATORS = "carousel-indicators";
     public static final String CAROUSEL_INNER = "carousel-inner";
 
+    public static final String CENTER_BLOCK = "center-block";
+
     public static final String CHECKBOX = "checkbox";
     public static final String CHECKBOX_INLINE = "checkbox-inline";
 

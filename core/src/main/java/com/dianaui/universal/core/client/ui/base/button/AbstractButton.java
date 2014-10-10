@@ -231,10 +231,6 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
                                 ((RadioButton) widget).setValue(false);
                             }
                         }
-
-                        if (this instanceof RadioButton) {
-                            ((RadioButton) this).setValue(true);
-                        }
                     }
                 }
             default:

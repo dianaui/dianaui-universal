@@ -61,13 +61,13 @@ public class TextSuggestBox extends AbstractSuggestBox<String> {
     }
 
     @Override
-    protected void setValue(SuggestOracle.Suggestion newValue) {
-        box.setValue(newValue.getReplacementString());
+    public void setValue(String newValue) {
+        box.setValue(newValue);
     }
 
     @Override
-    public void setValue(String newValue) {
-        box.setValue(newValue);
+    protected void setValue(SuggestOracle.Suggestion newValue) {
+        box.setValue(newValue.getReplacementString());
     }
 
     @Override

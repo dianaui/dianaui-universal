@@ -152,4 +152,12 @@ public class AnchorListItem extends AbstractAnchorListItem {
         anchor.setText(text);
     }
 
+    public boolean isIconList() {
+        return anchor.isIconList();
+    }
+
+    public void setIconList(final boolean iconList) {
+        anchor.setIconList(iconList);
+    }
+
 }

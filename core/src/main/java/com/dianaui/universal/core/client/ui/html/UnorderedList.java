@@ -19,6 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui.html;
 
+import com.dianaui.universal.core.client.ui.AnchorListItem;
 import com.dianaui.universal.core.client.ui.base.AbstractListItem;
 import com.dianaui.universal.core.client.ui.base.ComplexWidget;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
@@ -71,8 +72,8 @@ public class UnorderedList extends ComplexWidget {
     @Override
     public void add(final Widget child) {
         if (isListIcons()) {
-            if (child instanceof AbstractListItem) {
-                StyleHelper.toggleStyleName(child, true, Styles.FONT_AWESOME_LI);
+            if (child instanceof AnchorListItem) {
+                ((AnchorListItem) child).setIconList(true);
             }
         }
         super.add(child);
@@ -122,8 +123,8 @@ public class UnorderedList extends ComplexWidget {
         StyleHelper.toggleStyleName(this, listIcons, Styles.FONT_AWESOME_UL);
 
         for (Widget child : getChildren()) {
-            if (child instanceof AbstractListItem) {
-                StyleHelper.toggleStyleName(child, listIcons, Styles.FONT_AWESOME_LI);
+            if (child instanceof AnchorListItem) {
+                ((AnchorListItem) child).setIconList(true);
             }
         }
     }

@@ -484,5 +484,4 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
         setValue(getValue());
     }
 
-
 }

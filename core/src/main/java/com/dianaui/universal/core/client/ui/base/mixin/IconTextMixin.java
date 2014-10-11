@@ -25,6 +25,7 @@ import com.dianaui.universal.core.client.ui.base.ComplexWidget;
 import com.dianaui.universal.core.client.ui.base.HasGlyphicon;
 import com.dianaui.universal.core.client.ui.base.HasIcon;
 import com.dianaui.universal.core.client.ui.base.HasIconPosition;
+import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.*;
 import com.dianaui.universal.core.client.ui.html.Span;
 import com.dianaui.universal.core.client.ui.html.Text;
@@ -56,6 +57,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     private boolean iconBordered = false;
     private boolean iconLight = false;
     private boolean iconFixedWidth = false;
+    private boolean iconList = false;
 
     public IconTextMixin(final T widget) {
         this.widget = widget;
@@ -265,6 +267,18 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
         }
     }
 
+    public boolean isIconList() {
+        return iconList;
+    }
+
+    public void setIconList(final boolean iconList) {
+        this.iconList = iconList;
+        if (fontAwesomeIcon != null &&
+                StyleHelper.containsStyle(fontAwesomeIcon.getStyleName(), Styles.FONT_AWESOME_LI) != iconList) {
+            render();
+        }
+    }
+
     private void render() {
         // We defer to make sure the elements are available to manipulate their positions
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
@@ -291,6 +305,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
                     fontAwesomeIcon.setBorder(iconBordered);
                     fontAwesomeIcon.setLight(iconLight);
                     fontAwesomeIcon.setFixedWidth(iconFixedWidth);
+                    StyleHelper.toggleStyleName(fontAwesomeIcon, iconList, Styles.FONT_AWESOME_LI);
                 }
 
                 // Since we are dealing with Icon/Text, we can insert them at the right position

@@ -23,6 +23,7 @@ import com.dianaui.universal.core.client.ui.base.ComplexWidget;
 import com.dianaui.universal.core.client.ui.base.HasType;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.*;
+import com.dianaui.universal.core.client.ui.html.UnorderedList;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.uibinder.client.UiConstructor;
@@ -152,4 +153,20 @@ public class FontAwesomeIcon extends ComplexWidget implements HasType<IconType> 
 
         StyleHelper.addUniqueEnumStyleName(this, IconSize.class, iconSize);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onAttach() {
+        super.onAttach();
+
+        // Adding styles to the icon item depending on the parent
+        if (getParent() != null && getParent() instanceof ListItem && getParent().getParent() != null &&
+                getParent().getParent() instanceof UnorderedList &&
+                ((UnorderedList) getParent().getParent()).isListIcons()) {
+            addStyleName(Styles.FONT_AWESOME_LI);
+        }
+    }
+
 }

@@ -496,6 +496,14 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
         }
     }
 
+    protected boolean isIconList() {
+        return iconTextMixin.isIconList();
+    }
+
+    protected void setIconList(final boolean iconList) {
+        iconTextMixin.setIconList(iconList);
+    }
+
     private FocusableMixin getFocusableMixin() {
         if (focusableMixin == null) {
             focusableMixin = new FocusableMixin<Anchor>(this);

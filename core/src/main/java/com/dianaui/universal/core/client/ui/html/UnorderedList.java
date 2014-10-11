@@ -72,7 +72,7 @@ public class UnorderedList extends ComplexWidget {
     public void add(final Widget child) {
         if (isListIcons()) {
             if (child instanceof AbstractListItem) {
-                StyleHelper.toggleStyleName(this, true, Styles.FONT_AWESOME_LI);
+                StyleHelper.toggleStyleName(child, true, Styles.FONT_AWESOME_LI);
             }
         }
         super.add(child);
@@ -123,7 +123,7 @@ public class UnorderedList extends ComplexWidget {
 
         for (Widget child : getChildren()) {
             if (child instanceof AbstractListItem) {
-                StyleHelper.toggleStyleName(this, listIcons, Styles.FONT_AWESOME_LI);
+                StyleHelper.toggleStyleName(child, listIcons, Styles.FONT_AWESOME_LI);
             }
         }
     }

@@ -40,28 +40,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox implements HasResponsiveness, HasId,
         HasPull, HasFormValue {
 
-    /**
-     * Creates a SimpleCheckBox widget that wraps an existing &lt;input
-     * type='checkbox'&gt; element.
-     * This element must already be attached to the document. If the element is
-     * removed from the document, you must call
-     * {@link RootPanel#detachNow(com.google.gwt.user.client.ui.Widget)}.
-     *
-     * @param element the element to be wrapped
-     */
-    public static SimpleCheckBox wrap(Element element) {
-        // Assert that the element is attached.
-        assert Document.get().getBody().isOrHasChild(element);
-
-        SimpleCheckBox checkBox = new SimpleCheckBox(InputElement.as(element));
-
-        // Mark it attached and remember it for cleanup.
-        checkBox.onAttach();
-        RootPanel.detachOnWindowClose(checkBox);
-
-        return checkBox;
-    }
-
     private final IdMixin<SimpleCheckBox> idMixin = new IdMixin<SimpleCheckBox>(this);
     private final PullMixin<SimpleCheckBox> pullMixin = new PullMixin<SimpleCheckBox>(this);
     private final EnabledMixin<SimpleCheckBox> enabledMixin = new EnabledMixin<SimpleCheckBox>(this);
@@ -84,9 +62,26 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
         super(element);
     }
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
+    /**
+     * Creates a SimpleCheckBox widget that wraps an existing &lt;input
+     * type='checkbox'&gt; element.
+     * This element must already be attached to the document. If the element is
+     * removed from the document, you must call
+     * {@link RootPanel#detachNow(com.google.gwt.user.client.ui.Widget)}.
+     *
+     * @param element the element to be wrapped
+     */
+    public static SimpleCheckBox wrap(Element element) {
+        // Assert that the element is attached.
+        assert Document.get().getBody().isOrHasChild(element);
+
+        SimpleCheckBox checkBox = new SimpleCheckBox(InputElement.as(element));
+
+        // Mark it attached and remember it for cleanup.
+        checkBox.onAttach();
+        RootPanel.detachOnWindowClose(checkBox);
+
+        return checkBox;
     }
 
     @Override
@@ -94,12 +89,9 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
         return enabledMixin.isEnabled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
+    public void setEnabled(boolean enabled) {
+        enabledMixin.setEnabled(enabled);
     }
 
     /**
@@ -108,6 +100,14 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
     @Override
     public String getId() {
         return idMixin.getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 
     /**
@@ -130,16 +130,16 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
     }
 
 }

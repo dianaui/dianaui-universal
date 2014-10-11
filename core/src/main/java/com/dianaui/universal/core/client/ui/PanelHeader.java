@@ -73,14 +73,14 @@ public class PanelHeader extends Div implements HasWidgets, HasText, HasSubText 
     }
 
     @Override
-    public void setSubText(final String subText) {
-        this.subText = subText;
-        render();
+    public String getSubText() {
+        return subText;
     }
 
     @Override
-    public String getSubText() {
-        return subText;
+    public void setSubText(final String subText) {
+        this.subText = subText;
+        render();
     }
 
     private void render() {

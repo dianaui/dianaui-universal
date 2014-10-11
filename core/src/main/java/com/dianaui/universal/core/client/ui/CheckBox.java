@@ -206,6 +206,30 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     /**
+     * {@inheritDoc}
+     * <p/>
+     * See note at {@link #setDirectionEstimator(DirectionEstimator)}.
+     */
+    @Override
+    public void setDirectionEstimator(boolean enabled) {
+        directionalTextHelper.setDirectionEstimator(enabled);
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * Note: DirectionEstimator should be set before the label has any content;
+     * it's highly recommended to set it using a constructor. Reason: if the
+     * label already has non-empty content, this will update its direction
+     * according to the new estimator's result. This may cause flicker, and thus
+     * should be avoided.
+     */
+    @Override
+    public void setDirectionEstimator(DirectionEstimator directionEstimator) {
+        directionalTextHelper.setDirectionEstimator(directionEstimator);
+    }
+
+    /**
      * Returns the value property of the input element that backs this widget.
      * This is the value that will be associated with the CheckBox name and
      * submitted to the server if a {@link FormPanel} that holds it is submitted
@@ -219,9 +243,30 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
         return inputElem.getValue();
     }
 
+    /**
+     * Set the value property on the input element that backs this widget. This
+     * is the value that will be associated with the CheckBox's name and
+     * submitted to the server if a {@link FormPanel} that holds it is submitted
+     * and the box is checked.
+     * <p/>
+     * Don't confuse this with {@link #setValue}, which actually checks and
+     * unchecks the box.
+     *
+     * @param value
+     */
+    @Override
+    public void setFormValue(String value) {
+        inputElem.setValue(value);
+    }
+
     @Override
     public String getHTML() {
         return directionalTextHelper.getTextOrHtml(true);
+    }
+
+    @Override
+    public void setHTML(String html) {
+        directionalTextHelper.setTextOrHtml(html, true);
     }
 
     @Override
@@ -230,13 +275,35 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
+    public void setName(String name) {
+        inputElem.setName(name);
+    }
+
+    @Override
     public int getTabIndex() {
         return inputElem.getTabIndex();
     }
 
     @Override
+    public void setTabIndex(int index) {
+        // Need to guard against call to setTabIndex before inputElem is
+        // initialized. This happens because FocusWidget's (a superclass of
+        // CheckBox) setElement method calls setTabIndex before inputElem is
+        // initialized. See CheckBox's protected constructor for more
+        // information.
+        if (inputElem != null) {
+            inputElem.setTabIndex(index);
+        }
+    }
+
+    @Override
     public String getText() {
         return directionalTextHelper.getTextOrHtml(false);
+    }
+
+    @Override
+    public void setText(String text) {
+        directionalTextHelper.setTextOrHtml(text, false);
     }
 
     @Override
@@ -263,9 +330,28 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
         }
     }
 
+    /**
+     * Checks or unchecks the check box.
+     * <p/>
+     * Note that this <em>does not</em> set the value property of the checkbox
+     * input element wrapped by this widget. For access to that property, see
+     * {@link #setFormValue(String)}
+     *
+     * @param value true to check, false to uncheck; null value implies false
+     */
+    @Override
+    public void setValue(Boolean value) {
+        setValue(value, false);
+    }
+
     @Override
     public boolean getWordWrap() {
         return !WhiteSpace.NOWRAP.getCssName().equals(getElement().getStyle().getWhiteSpace());
+    }
+
+    @Override
+    public void setWordWrap(boolean wrap) {
+        getElement().getStyle().setWhiteSpace(wrap ? WhiteSpace.NORMAL : WhiteSpace.NOWRAP);
     }
 
     @Override
@@ -288,30 +374,6 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
         inputElem.setAccessKey("" + key);
     }
 
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * See note at {@link #setDirectionEstimator(DirectionEstimator)}.
-     */
-    @Override
-    public void setDirectionEstimator(boolean enabled) {
-        directionalTextHelper.setDirectionEstimator(enabled);
-    }
-
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * Note: DirectionEstimator should be set before the label has any content;
-     * it's highly recommended to set it using a constructor. Reason: if the
-     * label already has non-empty content, this will update its direction
-     * according to the new estimator's result. This may cause flicker, and thus
-     * should be avoided.
-     */
-    @Override
-    public void setDirectionEstimator(DirectionEstimator directionEstimator) {
-        directionalTextHelper.setDirectionEstimator(directionEstimator);
-    }
-
     @Override
     public void setFocus(boolean focused) {
         if (focused) {
@@ -321,71 +383,14 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
         }
     }
 
-    /**
-     * Set the value property on the input element that backs this widget. This
-     * is the value that will be associated with the CheckBox's name and
-     * submitted to the server if a {@link FormPanel} that holds it is submitted
-     * and the box is checked.
-     * <p/>
-     * Don't confuse this with {@link #setValue}, which actually checks and
-     * unchecks the box.
-     *
-     * @param value
-     */
-    @Override
-    public void setFormValue(String value) {
-        inputElem.setValue(value);
-    }
-
     @Override
     public void setHTML(SafeHtml html, Direction dir) {
         directionalTextHelper.setTextOrHtml(html.asString(), dir, true);
     }
 
     @Override
-    public void setHTML(String html) {
-        directionalTextHelper.setTextOrHtml(html, true);
-    }
-
-    @Override
-    public void setName(String name) {
-        inputElem.setName(name);
-    }
-
-    @Override
-    public void setTabIndex(int index) {
-        // Need to guard against call to setTabIndex before inputElem is
-        // initialized. This happens because FocusWidget's (a superclass of
-        // CheckBox) setElement method calls setTabIndex before inputElem is
-        // initialized. See CheckBox's protected constructor for more
-        // information.
-        if (inputElem != null) {
-            inputElem.setTabIndex(index);
-        }
-    }
-
-    @Override
-    public void setText(String text) {
-        directionalTextHelper.setTextOrHtml(text, false);
-    }
-
-    @Override
     public void setText(String text, Direction dir) {
         directionalTextHelper.setTextOrHtml(text, dir, false);
-    }
-
-    /**
-     * Checks or unchecks the check box.
-     * <p/>
-     * Note that this <em>does not</em> set the value property of the checkbox
-     * input element wrapped by this widget. For access to that property, see
-     * {@link #setFormValue(String)}
-     *
-     * @param value true to check, false to uncheck; null value implies false
-     */
-    @Override
-    public void setValue(Boolean value) {
-        setValue(value, false);
     }
 
     /**
@@ -415,11 +420,6 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
         if (fireEvents) {
             ValueChangeEvent.fire(this, value);
         }
-    }
-
-    @Override
-    public void setWordWrap(boolean wrap) {
-        getElement().getStyle().setWhiteSpace(wrap ? WhiteSpace.NORMAL : WhiteSpace.NOWRAP);
     }
 
     // Unlike other widgets the CheckBox sinks on its inputElement, not

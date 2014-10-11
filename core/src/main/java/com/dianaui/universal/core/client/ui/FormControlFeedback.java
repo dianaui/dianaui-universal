@@ -190,17 +190,17 @@ public class FormControlFeedback extends ComplexWidget implements HasIcon, HasGl
         }
     }
 
+    @Override
+    public boolean isIconFixedWidth() {
+        return iconFixedWidth;
+    }
+
     public void setIconFixedWidth(final boolean iconFixedWidth) {
         this.iconFixedWidth = iconFixedWidth;
 
         if (fontAwesomeIcon != null) {
             fontAwesomeIcon.setFixedWidth(iconFixedWidth);
         }
-    }
-
-    @Override
-    public boolean isIconFixedWidth() {
-        return iconFixedWidth;
     }
 
 }

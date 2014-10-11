@@ -222,13 +222,13 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setIconFixedWidth(final boolean iconFixedWidth) {
-        anchor.setIconFixedWidth(iconFixedWidth);
+    public boolean isIconFixedWidth() {
+        return anchor.isIconFixedWidth();
     }
 
     @Override
-    public boolean isIconFixedWidth() {
-        return anchor.isIconFixedWidth();
+    public void setIconFixedWidth(final boolean iconFixedWidth) {
+        anchor.setIconFixedWidth(iconFixedWidth);
     }
 
 }

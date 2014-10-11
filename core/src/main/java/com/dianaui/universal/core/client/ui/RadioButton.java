@@ -182,18 +182,13 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
     }
 
     @Override
-    public void setSize(ButtonSize size) {
-        StyleHelper.addUniqueEnumStyleName(this, ButtonSize.class, size);
-    }
-
-    @Override
     public ButtonSize getSize() {
         return ButtonSize.fromStyleName(getStyleName());
     }
 
     @Override
-    public void setType(ButtonType type) {
-        StyleHelper.addUniqueEnumStyleName(this, ButtonType.class, type);
+    public void setSize(ButtonSize size) {
+        StyleHelper.addUniqueEnumStyleName(this, ButtonSize.class, size);
     }
 
     @Override
@@ -202,14 +197,19 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
     }
 
     @Override
-    public void setActive(boolean active) {
-        setValue(active);
-        activeMixin.setActive(active);
+    public void setType(ButtonType type) {
+        StyleHelper.addUniqueEnumStyleName(this, ButtonType.class, type);
     }
 
     @Override
     public boolean isActive() {
         return activeMixin.isActive();
+    }
+
+    @Override
+    public void setActive(boolean active) {
+        setValue(active);
+        activeMixin.setActive(active);
     }
 
 }

@@ -254,13 +254,13 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void setIconFixedWidth(boolean iconFixedWidth) {
-        this.iconFixedWidth = iconFixedWidth;
+    public boolean isIconFixedWidth() {
+        return iconFixedWidth;
     }
 
     @Override
-    public boolean isIconFixedWidth() {
-        return iconFixedWidth;
+    public void setIconFixedWidth(boolean iconFixedWidth) {
+        this.iconFixedWidth = iconFixedWidth;
     }
 
     @Override

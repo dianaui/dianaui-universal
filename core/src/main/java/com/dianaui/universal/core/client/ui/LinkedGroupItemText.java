@@ -46,20 +46,20 @@ public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, Ha
         return htmlMixin.getText();
     }
 
-    public String getHTML() {
-        return htmlMixin.getHTML();
-    }
-
-    public void setHTML(final String html) {
-        htmlMixin.setHTML(html);
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
     public void setText(final String text) {
         this.htmlMixin.setText(text);
+    }
+
+    public String getHTML() {
+        return htmlMixin.getHTML();
+    }
+
+    public void setHTML(final String html) {
+        htmlMixin.setHTML(html);
     }
 
 }

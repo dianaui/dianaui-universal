@@ -37,16 +37,16 @@ public class Widget extends com.google.gwt.user.client.ui.Widget implements HasR
      * {@inheritDoc}
      */
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
+    public String getId() {
+        return idMixin.getId();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getId() {
-        return idMixin.getId();
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 
     /**
@@ -69,16 +69,16 @@ public class Widget extends com.google.gwt.user.client.ui.Widget implements HasR
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
     }
 
 }

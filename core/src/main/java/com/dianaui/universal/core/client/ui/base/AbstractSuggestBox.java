@@ -46,6 +46,9 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
             setNewSelection(suggestion);
         }
     };
+    private int limit = 20;
+    private boolean selectsFirstItem = true;
+    private SuggestOracle oracle;
     private final SuggestOracle.Callback callback = new SuggestOracle.Callback() {
         public void onSuggestionsReady(SuggestOracle.Request request, SuggestOracle.Response response) {
             // If disabled while request was in-flight, drop it
@@ -59,9 +62,6 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
                     suggestionCallback);
         }
     };
-    private int limit = 20;
-    private boolean selectsFirstItem = true;
-    private SuggestOracle oracle;
     private String currentText;
 
     /**

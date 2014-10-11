@@ -43,8 +43,8 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
         HasHTML, HasIcon, HasGlyphicon, HasIconPosition {
 
     private final T widget;
-    private Widget text = new Text();
     private final Text separator = new Text(" ");
+    private Widget text = new Text();
     private Glyphicon glyphicon;
     private FontAwesomeIcon fontAwesomeIcon;
     private IconPosition iconPosition = IconPosition.LEFT;
@@ -253,16 +253,16 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     }
 
     @Override
+    public boolean isIconFixedWidth() {
+        return iconFixedWidth;
+    }
+
+    @Override
     public void setIconFixedWidth(final boolean iconFixedWidth) {
         this.iconFixedWidth = iconFixedWidth;
         if (fontAwesomeIcon != null && fontAwesomeIcon.isSpin() != iconSpin) {
             render();
         }
-    }
-
-    @Override
-    public boolean isIconFixedWidth() {
-        return iconFixedWidth;
     }
 
     private void render() {

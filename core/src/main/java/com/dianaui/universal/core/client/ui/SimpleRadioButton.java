@@ -44,33 +44,10 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadioButton implements HasResponsiveness,
         HasId, HasPull, HasFormValue {
 
-    private Boolean oldValue;
-
-    /**
-     * Creates a SimpleRadioButton widget that wraps an existing &lt;input
-     * type='radio'&gt; element.
-     * This element must already be attached to the document. If the element is
-     * removed from the document, you must call
-     * {@link RootPanel#detachNow(com.google.gwt.user.client.ui.Widget)}.
-     *
-     * @param element the element to be wrapped
-     */
-    public static SimpleRadioButton wrap(Element element) {
-        // Assert that the element is attached.
-        assert Document.get().getBody().isOrHasChild(element);
-
-        SimpleRadioButton radioButton = new SimpleRadioButton(InputElement.as(element));
-
-        // Mark it attached and remember it for cleanup.
-        radioButton.onAttach();
-        RootPanel.detachOnWindowClose(radioButton);
-
-        return radioButton;
-    }
-
     private final IdMixin<SimpleRadioButton> idMixin = new IdMixin<SimpleRadioButton>(this);
     private final PullMixin<SimpleRadioButton> pullMixin = new PullMixin<SimpleRadioButton>(this);
     private final EnabledMixin<SimpleRadioButton> enabledMixin = new EnabledMixin<SimpleRadioButton>(this);
+    private Boolean oldValue;
 
     /**
      * Creates a new radio associated with a particular group name. All radio
@@ -103,9 +80,26 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
         sinkEvents(Event.ONKEYDOWN);
     }
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
+    /**
+     * Creates a SimpleRadioButton widget that wraps an existing &lt;input
+     * type='radio'&gt; element.
+     * This element must already be attached to the document. If the element is
+     * removed from the document, you must call
+     * {@link RootPanel#detachNow(com.google.gwt.user.client.ui.Widget)}.
+     *
+     * @param element the element to be wrapped
+     */
+    public static SimpleRadioButton wrap(Element element) {
+        // Assert that the element is attached.
+        assert Document.get().getBody().isOrHasChild(element);
+
+        SimpleRadioButton radioButton = new SimpleRadioButton(InputElement.as(element));
+
+        // Mark it attached and remember it for cleanup.
+        radioButton.onAttach();
+        RootPanel.detachOnWindowClose(radioButton);
+
+        return radioButton;
     }
 
     @Override
@@ -113,12 +107,9 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
         return enabledMixin.isEnabled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setId(final String id) {
-        idMixin.setId(id);
+    public void setEnabled(boolean enabled) {
+        enabledMixin.setEnabled(enabled);
     }
 
     /**
@@ -127,6 +118,14 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
     @Override
     public String getId() {
         return idMixin.getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setId(final String id) {
+        idMixin.setId(id);
     }
 
     /**
@@ -149,16 +148,16 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+    public Pull getPull() {
+        return pullMixin.getPull();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
+    public void setPull(final Pull pull) {
+        pullMixin.setPull(pull);
     }
 
     /**
@@ -167,19 +166,19 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
     @Override
     public void onBrowserEvent(Event event) {
         switch (DOM.eventGetType(event)) {
-        case Event.ONMOUSEUP:
-        case Event.ONBLUR:
-        case Event.ONKEYDOWN:
-            // Note the old value for onValueChange purposes (in ONCLICK case)
-            oldValue = getValue();
-            break;
+            case Event.ONMOUSEUP:
+            case Event.ONBLUR:
+            case Event.ONKEYDOWN:
+                // Note the old value for onValueChange purposes (in ONCLICK case)
+                oldValue = getValue();
+                break;
 
-        case Event.ONCLICK:
-            // Let our handlers hear about the click...
-            super.onBrowserEvent(event);
-            // ...and now maybe tell them about the change
-            ValueChangeEvent.fireIfNotEqual(SimpleRadioButton.this, oldValue, getValue());
-            return;
+            case Event.ONCLICK:
+                // Let our handlers hear about the click...
+                super.onBrowserEvent(event);
+                // ...and now maybe tell them about the change
+                ValueChangeEvent.fireIfNotEqual(SimpleRadioButton.this, oldValue, getValue());
+                return;
         }
 
         super.onBrowserEvent(event);

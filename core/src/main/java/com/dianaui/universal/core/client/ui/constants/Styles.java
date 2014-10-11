@@ -95,6 +95,8 @@ public final class Styles {
     public static final String FADE = "fade";
 
     public static final String FONT_AWESOME_BASE = "fa";
+    public static final String FONT_AWESOME_UL = "fa-ul";
+    public static final String FONT_AWESOME_LI = "fa-li";
 
     public static final String FORM_CONTROL = "form-control";
     public static final String FORM_CONTROL_FEEDBACK = "form-control-feedback";

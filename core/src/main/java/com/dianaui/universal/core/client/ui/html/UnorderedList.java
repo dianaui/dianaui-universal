@@ -19,11 +19,12 @@
  */
 package com.dianaui.universal.core.client.ui.html;
 
-import com.dianaui.universal.core.client.ui.ListItem;
+import com.dianaui.universal.core.client.ui.base.AbstractListItem;
 import com.dianaui.universal.core.client.ui.base.ComplexWidget;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Widget representing an Unordered List
@@ -38,6 +39,7 @@ import com.google.gwt.dom.client.Document;
  * </pre>
  *
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see com.dianaui.universal.core.client.ui.ListItem
  */
 public class UnorderedList extends ComplexWidget {
@@ -54,13 +56,26 @@ public class UnorderedList extends ComplexWidget {
      *
      * @param widgets widgets to be added
      */
-    public UnorderedList(final ListItem... widgets) {
+    public UnorderedList(final AbstractListItem... widgets) {
         this();
 
         // Add all the list items to the widget
-        for (final ListItem li : widgets) {
+        for (final AbstractListItem li : widgets) {
             add(li);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void add(final Widget child) {
+        if (isListIcons()) {
+            if (child instanceof AbstractListItem) {
+                StyleHelper.toggleStyleName(this, true, Styles.FONT_AWESOME_LI);
+            }
+        }
+        super.add(child);
     }
 
     /**
@@ -97,6 +112,20 @@ public class UnorderedList extends ComplexWidget {
      */
     public void setInline(final boolean inline) {
         StyleHelper.toggleStyleName(this, inline, Styles.LIST_INLINE);
+    }
+
+    public boolean isListIcons() {
+        return StyleHelper.containsStyle(Styles.FONT_AWESOME_UL, getStyleName());
+    }
+
+    public void setListIcons(final boolean listIcons) {
+        StyleHelper.toggleStyleName(this, listIcons, Styles.FONT_AWESOME_UL);
+
+        for (Widget child : getChildren()) {
+            if (child instanceof AbstractListItem) {
+                StyleHelper.toggleStyleName(this, listIcons, Styles.FONT_AWESOME_LI);
+            }
+        }
     }
 
 }

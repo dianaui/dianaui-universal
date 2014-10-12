@@ -21,7 +21,7 @@ package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.HasSize;
 import com.dianaui.universal.core.client.ui.base.RichTextArea;
-import com.dianaui.universal.core.client.ui.constants.ButtonSize;
+import com.dianaui.universal.core.client.ui.constants.ButtonGroupSize;
 import com.dianaui.universal.core.client.ui.html.Div;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
@@ -34,7 +34,7 @@ import com.google.gwt.user.client.ui.HasValue;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class WYSIWYGEditor extends Div implements HasValueChangeHandlers<String>, HasValue<String>,
-        TakesValue<String>, LeafValueEditor<String>, HasSize<ButtonSize> {
+        TakesValue<String>, LeafValueEditor<String>, HasSize<ButtonGroupSize> {
 
     private RichTextToolbar toolbar;
     private RichTextArea textArea;
@@ -76,31 +76,15 @@ public class WYSIWYGEditor extends Div implements HasValueChangeHandlers<String>
     }
 
     @Override
-    public ButtonSize getSize() {
-        return toolbar.boldButton.getSize();
+    public ButtonGroupSize getSize() {
+        return toolbar.group1.getSize();
     }
 
     @Override
-    public void setSize(ButtonSize size) {
-        toolbar.boldButton.setSize(size);
-        toolbar.italicButton.setSize(size);
-        toolbar.underlineButton.setSize(size);
-        toolbar.subscriptButton.setSize(size);
-        toolbar.superscriptButton.setSize(size);
-        toolbar.strikethroughButton.setSize(size);
-        toolbar.indentButton.setSize(size);
-        toolbar.outdentButton.setSize(size);
-        toolbar.justifyLeftButton.setSize(size);
-        toolbar.justifyCenterButton.setSize(size);
-        toolbar.justifyRightButton.setSize(size);
-        toolbar.hrButton.setSize(size);
-        toolbar.olButton.setSize(size);
-        toolbar.ulButton.setSize(size);
-        toolbar.imageButton.setSize(size);
-        toolbar.linkButton.setSize(size);
-        toolbar.unlinkButton.setSize(size);
-        toolbar.removeFormatButton.setSize(size);
-        toolbar.undoButton.setSize(size);
-        toolbar.redoButton.setSize(size);
+    public void setSize(ButtonGroupSize size) {
+        toolbar.group1.setSize(size);
+        toolbar.group2.setSize(size);
+        toolbar.group3.setSize(size);
+        toolbar.group4.setSize(size);
     }
 }

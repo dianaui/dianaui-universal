@@ -38,6 +38,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class RichTextToolbar extends Composite {
 
     private static final Binder binder = GWT.create(Binder.class);
+
     @UiField
     Button boldButton;
     @UiField
@@ -78,6 +79,15 @@ public class RichTextToolbar extends Composite {
     Button undoButton;
     @UiField
     Button redoButton;
+    @UiField
+    ButtonGroup group1;
+    @UiField
+    ButtonGroup group2;
+    @UiField
+    ButtonGroup group3;
+    @UiField
+    ButtonGroup group4;
+
     private com.dianaui.universal.core.client.ui.base.RichTextArea richText;
 
     /**
@@ -136,12 +146,14 @@ public class RichTextToolbar extends Composite {
     }
 
     private void updateStatus() {
-        boldButton.setActive(richText.getFormatter().isBold());
-        italicButton.setActive(richText.getFormatter().isItalic());
-        underlineButton.setActive(richText.getFormatter().isUnderlined());
-        subscriptButton.setActive(richText.getFormatter().isSubscript());
-        superscriptButton.setActive(richText.getFormatter().isSuperscript());
-        strikethroughButton.setActive(richText.getFormatter().isStrikethrough());
+        if (richText.getFormatter() != null) {
+            boldButton.setActive(richText.getFormatter().isBold());
+            italicButton.setActive(richText.getFormatter().isItalic());
+            underlineButton.setActive(richText.getFormatter().isUnderlined());
+            subscriptButton.setActive(richText.getFormatter().isSubscript());
+            superscriptButton.setActive(richText.getFormatter().isSuperscript());
+            strikethroughButton.setActive(richText.getFormatter().isStrikethrough());
+        }
     }
 
     public native void setSelectionRange(Element elem, int pos, int length) /*-{

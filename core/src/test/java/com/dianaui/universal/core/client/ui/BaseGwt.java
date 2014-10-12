@@ -1,10 +1,8 @@
-package org.gwtbootstrap3.client.ui;
-
 /*
  * #%L
- * GwtBootstrap3
+ * Diana UI Core
  * %%
- * Copyright (C) 2013 - 2014 GwtBootstrap3
+ * Copyright (C) 2014 Diana UI
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +17,11 @@ package org.gwtbootstrap3.client.ui;
  * limitations under the License.
  * #L%
  */
+package com.dianaui.universal.core.client.ui;
 
-import org.gwtbootstrap3.client.ui.base.HasActive;
-import org.gwtbootstrap3.client.ui.base.HasFormValue;
-import org.gwtbootstrap3.client.ui.constants.Styles;
-
+import com.dianaui.universal.core.client.ui.base.HasActive;
+import com.dianaui.universal.core.client.ui.base.HasFormValue;
+import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.ui.HasEnabled;
@@ -41,7 +39,7 @@ public abstract class BaseGwt extends GWTTestCase {
      */
     @Override
     public String getModuleName() {
-        return "org.gwtbootstrap3.GwtBootstrap3";
+        return "com.dianaui.universal.core.DianaUICore";
     }
 
     public <T extends UIObject & HasActive> void checkActive(T button) {

@@ -1,10 +1,8 @@
-package org.gwtbootstrap3.client.ui;
-
 /*
  * #%L
- * GwtBootstrap3
+ * Diana UI Core
  * %%
- * Copyright (C) 2013 - 2014 GwtBootstrap3
+ * Copyright (C) 2014 Diana UI
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,15 +17,11 @@ package org.gwtbootstrap3.client.ui;
  * limitations under the License.
  * #L%
  */
+package com.dianaui.universal.core.client.ui;
 
-import org.gwtbootstrap3.client.ui.base.HasFormValue;
-import org.gwtbootstrap3.client.ui.constants.Styles;
-
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.InputElement;
-import com.google.gwt.dom.client.LabelElement;
-import com.google.gwt.dom.client.Node;
-import com.google.gwt.dom.client.Text;
+import com.dianaui.universal.core.client.ui.base.HasFormValue;
+import com.dianaui.universal.core.client.ui.constants.Styles;
+import com.google.gwt.dom.client.*;
 import com.google.gwt.editor.client.IsEditor;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.user.client.ui.HasEnabled;

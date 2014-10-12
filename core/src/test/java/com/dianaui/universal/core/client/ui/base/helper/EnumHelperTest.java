@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package com.dianaui.universal.core.ui.base.helper;
+package com.dianaui.universal.core.client.ui.base.helper;
 
 import com.dianaui.universal.core.client.ui.constants.Pull;
 import org.junit.Test;

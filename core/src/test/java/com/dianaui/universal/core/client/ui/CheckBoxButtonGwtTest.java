@@ -19,7 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui;
 
-public class CheckBoxButtonGwt extends InputToggleButtonGwt {
+public class CheckBoxButtonGwtTest extends InputToggleButtonGwt {
 
     public void testCheckBoxButton() {
         checkLayout(new CheckBoxButton());

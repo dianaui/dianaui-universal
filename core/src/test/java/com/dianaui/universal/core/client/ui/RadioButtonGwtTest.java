@@ -19,7 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui;
 
-public class RadioButtonGwt extends InputToggleButtonGwt {
+public class RadioButtonGwtTest extends InputToggleButtonGwt {
 
     public void testRadioButton() {
         checkLayout(new RadioButton("name"));

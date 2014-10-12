@@ -94,6 +94,11 @@
             <version>${gwt.version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.googlecode.gwt-test-utils</groupId>
+            <artifactId>gwt-test-utils</artifactId>
+            <version>0.47</version>
+        </dependency>
     </dependencies>
 
     <build>

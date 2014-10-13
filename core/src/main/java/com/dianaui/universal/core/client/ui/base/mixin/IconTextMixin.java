@@ -45,7 +45,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
     private final T widget;
     private final Text separator = new Text(" ");
-    private Widget text = new Text();
+    private Widget text;
     private Glyphicon glyphicon;
     private FontAwesomeIcon fontAwesomeIcon;
     private IconPosition iconPosition = IconPosition.LEFT;
@@ -69,18 +69,25 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
     @Override
     public String getText() {
+        if (text instanceof Span) {
+            return ((Span) text).getText();
+        }
         return text instanceof Text ? ((Text) text).getText() : null;
     }
 
     @Override
     public void setText(final String text) {
-        if (text == null) {
+        if (this.text != null) {
             this.text.removeFromParent();
         }
-        if (!(this.text instanceof Text))
-            this.text = new Text();
+        if (text == null) {
+            this.text = null;
+        } else {
+            if (!(this.text instanceof Text))
+                this.text = new Text();
 
-        ((Text) this.text).setText(text);
+            ((Text) this.text).setText(text);
+        }
 
         render();
     }
@@ -109,6 +116,11 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
     @Override
     public void setGlyphicon(GlyphiconType iconType) {
+        if (iconType == null) {
+            clearIcon();
+            return;
+        }
+
         removeFontAwesomeIcon();
 
         if (glyphicon == null)
@@ -126,6 +138,11 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
     @Override
     public void setFontAwesomeIcon(final IconType iconType) {
+        if (iconType == null) {
+            clearIcon();
+            return;
+        }
+
         removeGlyphicon();
 
         if (fontAwesomeIcon == null)
@@ -284,7 +301,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
             @Override
             public void execute() {
-                if (text != null && text.isAttached())
+                if (text != null)
                     text.removeFromParent();
 
                 if (separator != null)
@@ -314,14 +331,16 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
                 if (iconPosition == IconPosition.LEFT && (glyphicon != null || fontAwesomeIcon != null)) {
                     widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position++);
-                    widget.insert(separator, position++);
+                    if (text != null)
+                        widget.insert(separator, position++);
                 }
 
                 if (text != null)
-                    widget.insert(text, position);
+                    widget.insert(text, position++);
 
                 if (iconPosition == IconPosition.RIGHT && (glyphicon != null || fontAwesomeIcon != null)) {
-                    widget.insert(separator, position++);
+                    if (text != null)
+                        widget.insert(separator, position++);
                     widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position);
                 }
             }

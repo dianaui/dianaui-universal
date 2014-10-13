@@ -32,15 +32,15 @@ import org.junit.Test;
 @GwtModule("com.dianaui.universal.core.DianaUICore")
 public class AnchorButtonTest extends GwtTest {
 
-    static String getHtml(String content) {
-        return "<a class=\"btn btn-default\" href=\"javascript:;\">" + (content != null ? content : "") + "</a>";
-    }
-
     static String TEST_TEXT = "Test";
     static String BOLD_TEXT = "bold";
     static String BOLD_HTML = "<strong>bold</strong>";
     static String ITALIC_HTML = "<em>italic</em>";
     static String FA_ANCHOR_HTML = "<i class=\"fa fa-anchor\"></i>";
+
+    static String getHtml(String content) {
+        return "<a class=\"btn btn-default\" href=\"javascript:;\">" + (content != null ? content : "") + "</a>";
+    }
 
     @Test
     public void buttonTextAndHtml() {

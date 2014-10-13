@@ -422,7 +422,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      */
     @Override
     public String getHTML() {
-        return getElement().getInnerHTML();
+        return iconTextMixin.getHTML();
     }
 
     /**
@@ -430,7 +430,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      */
     @Override
     public void setHTML(String html) {
-        getElement().setInnerHTML(html);
+        iconTextMixin.setHTML(html);
     }
 
     /**

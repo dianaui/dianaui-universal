@@ -40,6 +40,10 @@ public class Container extends Div {
         if (isFluid) {
             removeStyleName(Styles.CONTAINER);
             addStyleName(Styles.CONTAINER_FLUID);
+        } else {
+            addStyleName(Styles.CONTAINER);
+            removeStyleName(Styles.CONTAINER_FLUID);
         }
     }
+
 }

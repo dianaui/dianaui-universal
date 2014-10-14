@@ -37,8 +37,6 @@ import com.google.gwt.user.client.ui.Focusable;
 public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref,
         HasToggle, HasTargetHistoryToken, Focusable, HasTarget {
 
-    private final ToggleMixin<ThumbnailLink> toggleMixin = new ToggleMixin<ThumbnailLink>(this);
-    private FocusableMixin<ThumbnailLink> focusableMixin;
     private String targetHistoryToken;
 
     public ThumbnailLink(final String href) {
@@ -88,40 +86,34 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
 
     @Override
     public Toggle getToggle() {
-        return toggleMixin.getToggle();
+        return ToggleMixin.getToggle(this);
     }
 
     @Override
     public void setToggle(final Toggle toggle) {
-        toggleMixin.setToggle(toggle);
+        ToggleMixin.setToggle(this, toggle);
     }
 
     @Override
     public int getTabIndex() {
-        return getFocusableMixin().getTabIndex();
+        return FocusableMixin.getTabIndex(this);
     }
 
     @Override
     public void setTabIndex(final int index) {
-        getFocusableMixin().setTabIndex(index);
+        FocusableMixin.setTabIndex(this, index);
     }
 
     @Override
     public void setAccessKey(final char key) {
-        getFocusableMixin().setAccessKey(key);
+        FocusableMixin.setAccessKey(this, key);
     }
 
     @Override
     public void setFocus(final boolean focused) {
-        getFocusableMixin().setFocus(focused);
+        FocusableMixin.setFocus(this, focused);
     }
 
-    private FocusableMixin getFocusableMixin() {
-        if (focusableMixin == null) {
-            focusableMixin = new FocusableMixin<ThumbnailLink>(this);
-        }
-        return focusableMixin;
-    }
 
     /**
      * {@inheritDoc}

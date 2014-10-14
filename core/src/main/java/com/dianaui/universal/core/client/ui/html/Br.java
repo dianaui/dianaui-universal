@@ -30,4 +30,5 @@ public class Br extends ComplexWidget {
     public Br() {
         setElement(Document.get().createBRElement());
     }
+
 }

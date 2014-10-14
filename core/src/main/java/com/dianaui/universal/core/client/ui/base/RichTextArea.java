@@ -19,6 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui.base;
 
+import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.IFrameElement;
 import com.google.gwt.dom.client.StyleElement;
@@ -35,7 +36,7 @@ import com.google.gwt.user.client.ui.HasValue;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class RichTextArea extends com.google.gwt.user.client.ui.RichTextArea implements
-        HasValueChangeHandlers<String>, HasValue<String>, TakesValue<String>, LeafValueEditor<String> {
+        HasId, HasValueChangeHandlers<String>, HasValue<String>, TakesValue<String>, LeafValueEditor<String> {
 
     private boolean valueChangeHandlerInitialized;
 
@@ -93,6 +94,16 @@ public class RichTextArea extends com.google.gwt.user.client.ui.RichTextArea imp
         if (fireEvents) {
             ValueChangeEvent.fireIfNotEqual(this, getHTML(), value);
         }
+    }
+
+    @Override
+    public String getId() {
+        return IdMixin.getId(this);
+    }
+
+    @Override
+    public void setId(final String id) {
+        IdMixin.setId(this, id);
     }
 
     @Override

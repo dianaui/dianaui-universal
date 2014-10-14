@@ -28,6 +28,7 @@ import com.dianaui.universal.core.client.ui.constants.Alignment;
  * @author Joshua Godi
  */
 public interface HasAlignment {
+
     /**
      * Get the object's alignment.
      *
@@ -41,4 +42,5 @@ public interface HasAlignment {
      * @param alignment the object's new alignment
      */
     void setAlignment(Alignment alignment);
+
 }

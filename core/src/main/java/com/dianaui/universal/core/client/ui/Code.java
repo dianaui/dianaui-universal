@@ -47,4 +47,5 @@ public class Code extends AbstractTextWidget {
     public void setHTML(final String html) {
         getElement().setInnerHTML(SourceCodeHelper.parseCode(html).asString());
     }
+
 }

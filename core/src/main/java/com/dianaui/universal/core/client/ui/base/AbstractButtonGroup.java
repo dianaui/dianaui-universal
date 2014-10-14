@@ -36,14 +36,13 @@ import com.google.gwt.user.client.ui.Widget;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see com.dianaui.universal.core.client.ui.ButtonGroup
  * @see com.dianaui.universal.core.client.ui.VerticalButtonGroup
  */
 public abstract class AbstractButtonGroup extends FlowPanel implements HasName, HasToggle, HasJustified, HasPull,
         HasResponsiveness, HasOpenHandlers<Boolean>, HasSize<ButtonGroupSize> {
 
-    private final PullMixin<AbstractButtonGroup> pullMixin = new PullMixin<AbstractButtonGroup>(this);
-    private final ToggleMixin<AbstractButtonGroup> toggleMixin = new ToggleMixin<AbstractButtonGroup>(this);
     private String name;
 
     protected AbstractButtonGroup(final String styleName) {
@@ -118,12 +117,12 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
 
     @Override
     public Toggle getToggle() {
-        return toggleMixin.getToggle();
+        return ToggleMixin.getToggle(this);
     }
 
     @Override
     public void setToggle(final Toggle toggle) {
-        toggleMixin.setToggle(toggle);
+        ToggleMixin.setToggle(this, toggle);
     }
 
     @Override
@@ -148,12 +147,12 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
 
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
     @Override

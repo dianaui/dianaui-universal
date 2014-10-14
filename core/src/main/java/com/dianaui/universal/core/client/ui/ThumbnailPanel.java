@@ -46,4 +46,5 @@ public class ThumbnailPanel extends Div {
     public ThumbnailPanel() {
         addStyleName(Styles.THUMBNAIL);
     }
+
 }

@@ -29,4 +29,5 @@ public class NavbarBrand extends Anchor {
     public NavbarBrand() {
         setStyleName(Styles.NAVBAR_BRAND);
     }
+
 }

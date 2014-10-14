@@ -30,4 +30,5 @@ public class CarouselCaption extends Div {
     public CarouselCaption() {
         setStyleName(Styles.CAROUSEL_CAPTION);
     }
+
 }

@@ -38,4 +38,5 @@ public class Strong extends AbstractTextWidget {
         this();
         setHTML(text);
     }
+
 }

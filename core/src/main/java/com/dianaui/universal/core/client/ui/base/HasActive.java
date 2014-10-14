@@ -23,7 +23,9 @@ package com.dianaui.universal.core.client.ui.base;
  * @author Sven Jacobs
  */
 public interface HasActive {
+
     boolean isActive();
 
     void setActive(boolean active);
+
 }

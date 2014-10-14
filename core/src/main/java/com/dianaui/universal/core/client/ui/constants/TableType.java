@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum TableType implements Type, Style.HasCssName {
+
     DEFAULT("table"),
     STRIPED("table-striped"),
     BORDERED("table-bordered"),
@@ -46,4 +47,5 @@ public enum TableType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

@@ -20,27 +20,21 @@
 package com.dianaui.universal.core.client.ui.base.mixin;
 
 import com.dianaui.universal.core.client.ui.constants.Styles;
-import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.UIObject;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class EnabledMixin<T extends UIObject & HasEnabled> extends AbstractMixin implements HasEnabled {
+public class EnabledMixin {
 
     private static final String DISABLED = "disabled";
 
-    public EnabledMixin(final T uiObject) {
-        super(uiObject);
-    }
-
-    @Override
-    public boolean isEnabled() {
+    public static boolean isEnabled(final UIObject uiObject) {
         return !uiObject.getElement().hasAttribute(DISABLED);
     }
 
-    @Override
-    public void setEnabled(boolean enabled) {
+    public static void setEnabled(final UIObject uiObject, final boolean enabled) {
         if (enabled) {
             uiObject.removeStyleName(Styles.DISABLED);
             uiObject.getElement().removeAttribute(DISABLED);

@@ -32,15 +32,13 @@ import com.google.gwt.user.client.ui.HasEnabled;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see com.dianaui.universal.core.client.ui.ListItem
  * @see com.dianaui.universal.core.client.ui.AnchorListItem
  * @see com.dianaui.universal.core.client.ui.ListDropDown
  */
 public abstract class AbstractListItem extends ComplexWidget implements HasId, HasEnabled, HasPull, HasActive,
         HasResponsiveness {
-
-    private final ActiveMixin<AbstractListItem> activeMixin = new ActiveMixin<AbstractListItem>(this);
-    private final PullMixin<AbstractListItem> pullMixin = new PullMixin<AbstractListItem>(this);
 
     protected AbstractListItem() {
         setElement(Document.get().createLIElement());
@@ -62,22 +60,22 @@ public abstract class AbstractListItem extends ComplexWidget implements HasId, H
 
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
     public void setActive(final boolean active) {
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
     }
 
 }

@@ -21,39 +21,24 @@ package com.dianaui.universal.core.client.ui.gwt;
 
 import com.dianaui.universal.core.client.ui.base.HasId;
 import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
-import com.dianaui.universal.core.client.ui.base.HasSpy;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
-import com.dianaui.universal.core.client.ui.base.mixin.SpyMixin;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
-import com.dianaui.universal.core.client.ui.constants.Spy;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implements HasSpy, HasId, HasResponsiveness {
-
-    private final SpyMixin<FlowPanel> spyMixin = new SpyMixin<FlowPanel>(this);
-    private final IdMixin<FlowPanel> idMixin = new IdMixin<FlowPanel>(this);
-
-    @Override
-    public Spy getSpy() {
-        return spyMixin.getSpy();
-    }
-
-    @Override
-    public void setSpy(final Spy spy) {
-        spyMixin.setSpy(spy);
-    }
+public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implements HasId, HasResponsiveness {
 
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
     @Override

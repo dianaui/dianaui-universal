@@ -35,4 +35,5 @@ public class MediaBody extends Div {
     public MediaBody() {
         setStyleName(Styles.MEDIA_BODY);
     }
+
 }

@@ -40,13 +40,11 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * A simple radio button widget, with no label.
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadioButton implements HasResponsiveness,
         HasId, HasPull, HasFormValue {
 
-    private final IdMixin<SimpleRadioButton> idMixin = new IdMixin<SimpleRadioButton>(this);
-    private final PullMixin<SimpleRadioButton> pullMixin = new PullMixin<SimpleRadioButton>(this);
-    private final EnabledMixin<SimpleRadioButton> enabledMixin = new EnabledMixin<SimpleRadioButton>(this);
     private Boolean oldValue;
 
     /**
@@ -104,12 +102,12 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
 
     @Override
     public boolean isEnabled() {
-        return enabledMixin.isEnabled();
+        return EnabledMixin.isEnabled(this);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
+        EnabledMixin.setEnabled(this, enabled);
     }
 
     /**
@@ -117,7 +115,7 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      */
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     /**
@@ -125,7 +123,7 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      */
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
     /**
@@ -149,7 +147,7 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      */
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     /**
@@ -157,7 +155,7 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      */
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
     /**

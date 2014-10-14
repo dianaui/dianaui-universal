@@ -28,17 +28,17 @@ import com.dianaui.universal.core.client.ui.base.mixin.PullMixin;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
 import com.dianaui.universal.core.client.ui.constants.Pull;
 
+/**
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ */
 public class Widget extends com.google.gwt.user.client.ui.Widget implements HasResponsiveness, HasId, HasPull {
-
-    private final IdMixin<Widget> idMixin = new IdMixin<Widget>(this);
-    private final PullMixin<Widget> pullMixin = new PullMixin<Widget>(this);
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     /**
@@ -46,7 +46,7 @@ public class Widget extends com.google.gwt.user.client.ui.Widget implements HasR
      */
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
     /**
@@ -70,7 +70,7 @@ public class Widget extends com.google.gwt.user.client.ui.Widget implements HasR
      */
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     /**
@@ -78,7 +78,7 @@ public class Widget extends com.google.gwt.user.client.ui.Widget implements HasR
      */
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
 }

@@ -34,12 +34,10 @@ import com.google.gwt.user.client.ui.Widget;
  * Base class for widgets that contain further widgets.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiveness, HasInlineStyle, HasPull,
         HasCenterBlock {
-
-    private final IdMixin<ComplexWidget> idMixin = new IdMixin<ComplexWidget>(this);
-    private final PullMixin<ComplexWidget> pullMixin = new PullMixin<ComplexWidget>(this);
 
     /**
      * {@inheritDoc}
@@ -64,7 +62,7 @@ public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiven
      */
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     /**
@@ -72,7 +70,7 @@ public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiven
      */
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
     /**
@@ -160,7 +158,7 @@ public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiven
      */
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     /**
@@ -168,7 +166,7 @@ public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiven
      */
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
     @Override

@@ -23,9 +23,11 @@ package com.dianaui.universal.core.client.ui.base;
  * @author Pontus Enmark
  */
 public interface HasPlaceholder {
+
     String PLACEHOLDER = "placeholder";
 
     String getPlaceholder();
 
     void setPlaceholder(String placeholder);
+
 }

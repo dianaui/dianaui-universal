@@ -29,4 +29,5 @@ public class ClearFix extends Div {
     public ClearFix() {
         addStyleName(Styles.CLEARFIX);
     }
+
 }

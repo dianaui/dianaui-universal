@@ -20,16 +20,16 @@
 package com.dianaui.universal.core.client.ui.html;
 
 import com.dianaui.universal.core.client.ui.base.mixin.HTMLMixin;
+import com.dianaui.universal.core.client.ui.base.mixin.TextMixin;
 import com.dianaui.universal.core.client.ui.gwt.HTMLPanel;
 import com.google.gwt.dom.client.SpanElement;
 
 /**
  * @author Sven Jacobs
  * @author Grant Slender
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Span extends HTMLPanel {
-
-    private final HTMLMixin<Span> textMixin = new HTMLMixin<Span>(this);
 
     public Span() {
         super(SpanElement.TAG, "");
@@ -41,19 +41,19 @@ public class Span extends HTMLPanel {
     }
 
     public String getText() {
-        return textMixin.getText();
+        return TextMixin.getText(this);
     }
 
     public void setText(final String text) {
-        textMixin.setText(text);
+        TextMixin.setText(this, text);
     }
 
     public String getHTML() {
-        return textMixin.getHTML();
+        return HTMLMixin.getHTML(this);
     }
 
     public void setHTML(final String html) {
-        textMixin.setHTML(html);
+        HTMLMixin.setHTML(this, html);
     }
 
 }

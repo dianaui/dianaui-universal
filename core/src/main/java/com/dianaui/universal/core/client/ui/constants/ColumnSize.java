@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Sven Jacobs
  */
 public enum ColumnSize implements Size, Style.HasCssName {
+
     // Extra small devices (<768px)
     XS_1("col-xs-1"),
     XS_2("col-xs-2"),
@@ -96,4 +97,5 @@ public enum ColumnSize implements Size, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

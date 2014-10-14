@@ -19,31 +19,26 @@
  */
 package com.dianaui.universal.core.client.ui.base.mixin;
 
-import com.dianaui.universal.core.client.ui.base.HasActive;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.user.client.ui.UIObject;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class ActiveMixin<T extends UIObject & HasActive> extends AbstractMixin implements HasActive {
+public class ActiveMixin {
 
-    public ActiveMixin(final T uiObject) {
-        super(uiObject);
-    }
-
-    @Override
-    public boolean isActive() {
+    public static boolean isActive(final UIObject uiObject) {
         return StyleHelper.containsStyle(uiObject.getStyleName(), Styles.ACTIVE);
     }
 
-    @Override
-    public void setActive(final boolean active) {
+    public static void setActive(final UIObject uiObject, final boolean active) {
         if (active) {
             uiObject.addStyleName(Styles.ACTIVE);
         } else {
             uiObject.removeStyleName(Styles.ACTIVE);
         }
     }
+
 }

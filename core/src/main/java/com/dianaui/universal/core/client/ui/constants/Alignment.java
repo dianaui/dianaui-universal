@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum Alignment implements Style.HasCssName {
+
     DEFAULT(""),
     LEFT("text-left"),
     CENTER("text-center"),
@@ -45,4 +46,5 @@ public enum Alignment implements Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

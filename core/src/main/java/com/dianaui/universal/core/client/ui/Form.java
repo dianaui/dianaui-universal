@@ -44,4 +44,5 @@ public class Form extends AbstractForm implements HasType<FormType> {
     public void setType(final FormType type) {
         StyleHelper.addUniqueEnumStyleName(this, FormType.class, type);
     }
+
 }

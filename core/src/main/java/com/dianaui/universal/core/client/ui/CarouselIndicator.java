@@ -27,10 +27,9 @@ import com.google.gwt.dom.client.Document;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class CarouselIndicator extends ComplexWidget implements HasActive {
-
-    private final ActiveMixin<CarouselIndicator> activeMixin = new ActiveMixin<CarouselIndicator>(this);
 
     public CarouselIndicator() {
         setElement(Document.get().createLIElement());
@@ -42,12 +41,12 @@ public class CarouselIndicator extends ComplexWidget implements HasActive {
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
     public void setActive(final boolean active) {
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
     }
 
 }

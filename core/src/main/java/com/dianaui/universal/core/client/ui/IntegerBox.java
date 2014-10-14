@@ -31,4 +31,5 @@ public class IntegerBox extends ValueBoxBase<Integer> {
         super(Document.get().createTextInputElement(), IntegerRenderer.instance(), IntegerParser.instance());
         addStyleName(Styles.FORM_CONTROL);
     }
+
 }

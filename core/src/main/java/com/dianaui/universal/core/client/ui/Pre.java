@@ -60,4 +60,5 @@ public class Pre extends AbstractTextWidget {
             removeStyleName(Styles.PRE_SCROLLABLE);
         }
     }
+
 }

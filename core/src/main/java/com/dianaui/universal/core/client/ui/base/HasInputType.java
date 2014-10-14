@@ -25,9 +25,11 @@ import com.dianaui.universal.core.client.ui.constants.InputType;
  * @author Joshua Godi
  */
 public interface HasInputType {
+
     public static final String TYPE = "type";
 
     InputType getType();
 
     void setType(InputType inputType);
+
 }

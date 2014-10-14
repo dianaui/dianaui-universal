@@ -23,32 +23,23 @@ import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.InputElement;
-import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.UIObject;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class FocusableMixin<T extends UIObject & Focusable> implements Focusable {
+public class FocusableMixin {
 
-    private final T uiObject;
-
-    public FocusableMixin(final T uiObject) {
-        this.uiObject = uiObject;
-    }
-
-    @Override
-    public int getTabIndex() {
+    public static int getTabIndex(final UIObject uiObject) {
         return uiObject.getElement().getTabIndex();
     }
 
-    @Override
-    public void setTabIndex(final int index) {
+    public static void setTabIndex(final UIObject uiObject, final int index) {
         uiObject.getElement().setTabIndex(index);
     }
 
-    @Override
-    public void setAccessKey(final char key) {
+    public static void setAccessKey(final UIObject uiObject, final char key) {
         final Element element = uiObject.getElement();
         final String accessKey = Character.toString(key);
 
@@ -61,8 +52,7 @@ public class FocusableMixin<T extends UIObject & Focusable> implements Focusable
         }
     }
 
-    @Override
-    public void setFocus(final boolean focused) {
+    public static void setFocus(final UIObject uiObject, final boolean focused) {
         if (focused) {
             uiObject.getElement().focus();
         } else {

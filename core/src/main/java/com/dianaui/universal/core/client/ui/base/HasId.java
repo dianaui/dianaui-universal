@@ -23,7 +23,9 @@ package com.dianaui.universal.core.client.ui.base;
  * @author Sven Jacobs
  */
 public interface HasId {
+
     String getId();
 
     void setId(String id);
+
 }

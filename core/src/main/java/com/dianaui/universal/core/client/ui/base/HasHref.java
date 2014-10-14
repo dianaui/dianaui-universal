@@ -23,6 +23,7 @@ package com.dianaui.universal.core.client.ui.base;
  * @author Sven Jacobs
  */
 public interface HasHref {
+
     // Empty HREF to avoid issues when clicking!
     public static final String EMPTY_HREF = "javascript:;";
 
@@ -31,4 +32,5 @@ public interface HasHref {
     String getHref();
 
     void setHref(String href);
+
 }

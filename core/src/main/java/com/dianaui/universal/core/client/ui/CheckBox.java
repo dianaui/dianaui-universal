@@ -71,7 +71,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      *
      * @param label the check box's label
      */
-    public CheckBox(SafeHtml label) {
+    public CheckBox(final SafeHtml label) {
         this(label.asString(), true);
     }
 
@@ -83,7 +83,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      *              direction should be inherited from the widget's parent
      *              element.
      */
-    public CheckBox(SafeHtml label, Direction dir) {
+    public CheckBox(final SafeHtml label, final Direction dir) {
         this();
         setHTML(label, dir);
     }
@@ -96,7 +96,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      *                           adjustment. For convenience,
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      */
-    public CheckBox(SafeHtml label, DirectionEstimator directionEstimator) {
+    public CheckBox(final SafeHtml label, final DirectionEstimator directionEstimator) {
         this();
         setDirectionEstimator(directionEstimator);
         setHTML(label.asString());
@@ -107,7 +107,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      *
      * @param label the check box's label
      */
-    public CheckBox(String label) {
+    public CheckBox(final String label) {
         this();
         setText(label);
     }
@@ -120,7 +120,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      *              direction should be inherited from the widget's parent
      *              element.
      */
-    public CheckBox(String label, Direction dir) {
+    public CheckBox(final String label, final Direction dir) {
         this();
         setText(label, dir);
     }
@@ -134,7 +134,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      *                           adjustment. For convenience,
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      */
-    public CheckBox(String label, DirectionEstimator directionEstimator) {
+    public CheckBox(final String label, final DirectionEstimator directionEstimator) {
         this();
         setDirectionEstimator(directionEstimator);
         setText(label);
@@ -146,7 +146,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      * @param label  the check box's label
      * @param asHTML <code>true</code> to treat the specified label as html
      */
-    public CheckBox(String label, boolean asHTML) {
+    public CheckBox(final String label, final boolean asHTML) {
         this();
         if (asHTML) {
             setHTML(label);
@@ -183,7 +183,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Boolean> handler) {
+    public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Boolean> handler) {
         // Is this the first value change handler? If so, time to add handlers
         if (!valueChangeHandlerInitialized) {
             ensureDomEventHandlers();
@@ -211,7 +211,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      * See note at {@link #setDirectionEstimator(DirectionEstimator)}.
      */
     @Override
-    public void setDirectionEstimator(boolean enabled) {
+    public void setDirectionEstimator(final boolean enabled) {
         directionalTextHelper.setDirectionEstimator(enabled);
     }
 
@@ -225,7 +225,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      * should be avoided.
      */
     @Override
-    public void setDirectionEstimator(DirectionEstimator directionEstimator) {
+    public void setDirectionEstimator(final DirectionEstimator directionEstimator) {
         directionalTextHelper.setDirectionEstimator(directionEstimator);
     }
 
@@ -255,7 +255,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      * @param value
      */
     @Override
-    public void setFormValue(String value) {
+    public void setFormValue(final String value) {
         inputElem.setValue(value);
     }
 
@@ -265,7 +265,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public void setHTML(String html) {
+    public void setHTML(final String html) {
         directionalTextHelper.setTextOrHtml(html, true);
     }
 
@@ -275,7 +275,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
         inputElem.setName(name);
     }
 
@@ -285,7 +285,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public void setTabIndex(int index) {
+    public void setTabIndex(final int index) {
         // Need to guard against call to setTabIndex before inputElem is
         // initialized. This happens because FocusWidget's (a superclass of
         // CheckBox) setElement method calls setTabIndex before inputElem is
@@ -302,7 +302,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public void setText(String text) {
+    public void setText(final String text) {
         directionalTextHelper.setTextOrHtml(text, false);
     }
 
@@ -340,7 +340,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      * @param value true to check, false to uncheck; null value implies false
      */
     @Override
-    public void setValue(Boolean value) {
+    public void setValue(final Boolean value) {
         setValue(value, false);
     }
 
@@ -350,7 +350,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public void setWordWrap(boolean wrap) {
+    public void setWordWrap(final boolean wrap) {
         getElement().getStyle().setWhiteSpace(wrap ? WhiteSpace.NORMAL : WhiteSpace.NOWRAP);
     }
 
@@ -360,7 +360,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(final boolean enabled) {
         inputElem.setDisabled(!enabled);
         if (enabled) {
             removeStyleName(Styles.DISABLED);
@@ -370,12 +370,12 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public void setAccessKey(char key) {
+    public void setAccessKey(final char key) {
         inputElem.setAccessKey("" + key);
     }
 
     @Override
-    public void setFocus(boolean focused) {
+    public void setFocus(final boolean focused) {
         if (focused) {
             inputElem.focus();
         } else {
@@ -384,12 +384,12 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     }
 
     @Override
-    public void setHTML(SafeHtml html, Direction dir) {
+    public void setHTML(final SafeHtml html, final Direction dir) {
         directionalTextHelper.setTextOrHtml(html.asString(), dir, true);
     }
 
     @Override
-    public void setText(String text, Direction dir) {
+    public void setText(final String text, final Direction dir) {
         directionalTextHelper.setTextOrHtml(text, dir, false);
     }
 
@@ -406,7 +406,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      *                   {@link ValueChangeEvent}
      */
     @Override
-    public void setValue(Boolean value, boolean fireEvents) {
+    public void setValue(Boolean value, final boolean fireEvents) {
         if (value == null) {
             value = Boolean.FALSE;
         }
@@ -425,7 +425,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
     // Unlike other widgets the CheckBox sinks on its inputElement, not
     // its wrapper
     @Override
-    public void sinkEvents(int eventBitsToAdd) {
+    public void sinkEvents(final int eventBitsToAdd) {
         if (isOrWasAttached()) {
             Event.sinkEvents(inputElem, eventBitsToAdd | Event.getEventsSunk(inputElem));
         } else {
@@ -455,7 +455,7 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
      * @see UIObject#onEnsureDebugId(String)
      */
     @Override
-    protected void onEnsureDebugId(String baseID) {
+    protected void onEnsureDebugId(final String baseID) {
         super.onEnsureDebugId(baseID);
         ensureDebugId(inputElem, baseID, "input");
     }

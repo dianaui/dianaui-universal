@@ -25,7 +25,9 @@ import com.dianaui.universal.core.client.ui.constants.Pull;
  * @author Sven Jacobs
  */
 public interface HasPull {
+
     Pull getPull();
 
     void setPull(Pull pull);
+
 }

@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum ProgressBarType implements Type, Style.HasCssName {
+
     DEFAULT(""),
     SUCCESS("progress-bar-success"),
     INFO("progress-bar-info"),
@@ -46,4 +47,5 @@ public enum ProgressBarType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

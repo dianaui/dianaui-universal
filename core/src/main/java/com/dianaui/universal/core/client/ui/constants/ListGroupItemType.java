@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum ListGroupItemType implements Type, Style.HasCssName {
+
     DEFAULT(""),
     SUCCESS("list-group-item-success"),
     INFO("list-group-item-info"),
@@ -46,4 +47,5 @@ public enum ListGroupItemType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

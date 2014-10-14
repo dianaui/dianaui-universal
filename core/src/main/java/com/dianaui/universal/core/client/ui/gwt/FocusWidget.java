@@ -30,11 +30,11 @@ import com.dianaui.universal.core.client.ui.constants.Pull;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Element;
 
+/**
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ */
 public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWidget implements HasResponsiveness,
         HasId, HasPull {
-
-    private final IdMixin<FocusWidget> idMixin = new IdMixin<FocusWidget>(this);
-    private final PullMixin<FocusWidget> pullMixin = new PullMixin<FocusWidget>(this);
 
     public FocusWidget(Element elem) {
         super(elem);
@@ -55,7 +55,7 @@ public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWid
      */
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     /**
@@ -63,7 +63,7 @@ public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWid
      */
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWid
      */
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     /**
@@ -95,7 +95,7 @@ public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWid
      */
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
 }

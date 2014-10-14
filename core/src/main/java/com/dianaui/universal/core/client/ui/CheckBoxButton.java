@@ -41,17 +41,16 @@ import com.google.gwt.user.client.ui.DirectionalTextHelper;
  * If you are looking for a classic checkbox see {@link CheckBox}.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class CheckBoxButton extends CheckBox implements HasActive, HasType<ButtonType>, HasSize<ButtonSize> {
-
-    private final ActiveMixin<CheckBoxButton> activeMixin = new ActiveMixin<CheckBoxButton>(this);
 
     /**
      * Creates a check box button with the specified text label.
      *
      * @param label the check box's label
      */
-    public CheckBoxButton(SafeHtml label) {
+    public CheckBoxButton(final SafeHtml label) {
         this(label.asString(), true);
     }
 
@@ -63,7 +62,7 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
      *              direction should be inherited from the widget's parent
      *              element.
      */
-    public CheckBoxButton(SafeHtml label, Direction dir) {
+    public CheckBoxButton(final SafeHtml label, final Direction dir) {
         this();
         setHTML(label, dir);
     }
@@ -76,7 +75,7 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
      *                           adjustment. For convenience,
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      */
-    public CheckBoxButton(SafeHtml label, DirectionEstimator directionEstimator) {
+    public CheckBoxButton(final SafeHtml label, final DirectionEstimator directionEstimator) {
         this();
         setDirectionEstimator(directionEstimator);
         setHTML(label.asString());
@@ -87,7 +86,7 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
      *
      * @param label the check box's label
      */
-    public CheckBoxButton(String label) {
+    public CheckBoxButton(final String label) {
         this();
         setText(label);
     }
@@ -100,7 +99,7 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
      *              direction should be inherited from the widget's parent
      *              element.
      */
-    public CheckBoxButton(String label, Direction dir) {
+    public CheckBoxButton(final String label, final Direction dir) {
         this();
         setText(label, dir);
     }
@@ -114,7 +113,7 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
      *                           adjustment. For convenience,
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      */
-    public CheckBoxButton(String label, DirectionEstimator directionEstimator) {
+    public CheckBoxButton(final String label, final DirectionEstimator directionEstimator) {
         this();
         setDirectionEstimator(directionEstimator);
         setText(label);
@@ -126,7 +125,7 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
      * @param label  the check box's label
      * @param asHTML <code>true</code> to treat the specified label as html
      */
-    public CheckBoxButton(String label, boolean asHTML) {
+    public CheckBoxButton(final String label, final boolean asHTML) {
         this();
         if (asHTML) {
             setHTML(label);
@@ -139,7 +138,7 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
         this(Document.get().createCheckInputElement());
     }
 
-    protected CheckBoxButton(InputElement elem) {
+    protected CheckBoxButton(final InputElement elem) {
         super(DOM.createLabel());
 
         setStyleName(Styles.BTN);
@@ -167,7 +166,7 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
     }
 
     @Override
-    public void setSize(ButtonSize size) {
+    public void setSize(final ButtonSize size) {
         StyleHelper.addUniqueEnumStyleName(this, ButtonSize.class, size);
     }
 
@@ -177,19 +176,19 @@ public class CheckBoxButton extends CheckBox implements HasActive, HasType<Butto
     }
 
     @Override
-    public void setType(ButtonType type) {
+    public void setType(final ButtonType type) {
         StyleHelper.addUniqueEnumStyleName(this, ButtonType.class, type);
     }
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
-    public void setActive(boolean active) {
+    public void setActive(final boolean active) {
         setValue(active);
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
     }
 
 }

@@ -23,6 +23,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Sven Jacobs
  */
 public enum Spy {
+
     SCROLL("scroll"),
     AFFIX("affix");
 
@@ -35,4 +36,5 @@ public enum Spy {
     public String getSpy() {
         return spy;
     }
+
 }

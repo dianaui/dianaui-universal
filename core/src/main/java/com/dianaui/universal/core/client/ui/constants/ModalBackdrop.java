@@ -23,6 +23,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Sven Jacobs
  */
 public enum ModalBackdrop {
+
     /**
      * Shows backdrop (greyed out background).
      */
@@ -47,4 +48,5 @@ public enum ModalBackdrop {
     public String getBackdrop() {
         return backdrop;
     }
+
 }

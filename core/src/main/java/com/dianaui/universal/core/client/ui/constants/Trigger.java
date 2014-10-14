@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum Trigger implements Type, Style.HasCssName {
+
     DEFAULT(""),
     CLICK("click"),
     HOVER("hover"),
@@ -46,4 +47,5 @@ public enum Trigger implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

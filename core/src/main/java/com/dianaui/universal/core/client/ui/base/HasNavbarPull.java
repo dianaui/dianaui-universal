@@ -25,7 +25,9 @@ import com.dianaui.universal.core.client.ui.constants.NavbarPull;
  * @author Sven Jacobs
  */
 public interface HasNavbarPull {
+
     NavbarPull getPull();
 
     void setPull(NavbarPull pull);
+
 }

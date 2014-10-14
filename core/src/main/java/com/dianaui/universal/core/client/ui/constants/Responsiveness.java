@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum Responsiveness implements Type, Style.HasCssName {
+
     DEFAULT(""),
     VISIBLE_PRINT("visible-print"),
     VISIBLE_XS("visible-xs"),
@@ -52,4 +53,5 @@ public enum Responsiveness implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

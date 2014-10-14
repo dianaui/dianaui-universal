@@ -29,9 +29,9 @@ import com.dianaui.universal.core.client.ui.html.Div;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Progress extends Div implements HasType<ProgressType>, HasActive {
-    private final ActiveMixin<Progress> activeMixin = new ActiveMixin<Progress>(this);
 
     public Progress() {
         setStyleName(Styles.PROGRESS);
@@ -39,12 +39,12 @@ public class Progress extends Div implements HasType<ProgressType>, HasActive {
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
     public void setActive(final boolean active) {
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
     }
 
     @Override
@@ -56,4 +56,5 @@ public class Progress extends Div implements HasType<ProgressType>, HasActive {
     public void setType(final ProgressType type) {
         StyleHelper.addUniqueEnumStyleName(this, ProgressType.class, type);
     }
+
 }

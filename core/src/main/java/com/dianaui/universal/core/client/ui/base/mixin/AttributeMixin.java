@@ -23,12 +23,9 @@ import com.google.gwt.user.client.ui.UIObject;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class AttributeMixin<T extends UIObject> extends AbstractMixin {
-
-    public AttributeMixin(final T uiObject) {
-        super(uiObject);
-    }
+public class AttributeMixin {
 
     /**
      * Sets the attribute on the UiObject
@@ -36,7 +33,7 @@ public class AttributeMixin<T extends UIObject> extends AbstractMixin {
      * @param attributeName  attribute name
      * @param attributeValue attribute value
      */
-    public void setAttribute(final String attributeName, final String attributeValue) {
+    public static void setAttribute(final UIObject uiObject, final String attributeName, final String attributeValue) {
         uiObject.getElement().setAttribute(attributeName, attributeValue);
     }
 
@@ -46,7 +43,7 @@ public class AttributeMixin<T extends UIObject> extends AbstractMixin {
      * @param attributeName attribute name
      * @return attribute value
      */
-    public String getAttribute(final String attributeName) {
+    public static String getAttribute(final UIObject uiObject, final String attributeName) {
         return uiObject.getElement().getAttribute(attributeName);
     }
 
@@ -55,7 +52,7 @@ public class AttributeMixin<T extends UIObject> extends AbstractMixin {
      *
      * @param attributeName attribute name
      */
-    public void removeAttribute(final String attributeName) {
+    public static void removeAttribute(final UIObject uiObject, final String attributeName) {
         uiObject.getElement().removeAttribute(attributeName);
     }
 
@@ -65,7 +62,8 @@ public class AttributeMixin<T extends UIObject> extends AbstractMixin {
      * @param attributeName attribute name
      * @return true if has the attribute, false otherwise
      */
-    public boolean hasAttribute(final String attributeName) {
+    public static boolean hasAttribute(final UIObject uiObject, final String attributeName) {
         return uiObject.getElement().hasAttribute(attributeName);
     }
+
 }

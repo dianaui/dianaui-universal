@@ -27,6 +27,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum NavbarPull implements Style.HasCssName {
+
     NONE(""),
     LEFT(Styles.NAVBAR_LEFT),
     RIGHT(Styles.NAVBAR_RIGHT);

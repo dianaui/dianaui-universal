@@ -23,6 +23,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Joshua Godi
  */
 public class ElementTags {
+
     public static final String ABBR = "abbr";
     public static final String CODE = "code";
     public static final String DD = "dd";
@@ -33,4 +34,5 @@ public class ElementTags {
     public static final String NAV = "nav";
     public static final String SMALL = "small";
     public static final String STRONG = "strong";
+
 }

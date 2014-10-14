@@ -34,8 +34,6 @@ public class TabPane extends Div implements HasActive {
 
     private static int DEFAULT_TRANSITION_MS = 150;
 
-    private final ActiveMixin<TabPane> activeMixin = new ActiveMixin<TabPane>(this);
-
     public TabPane() {
         setStyleName(Styles.TAB_PANE);
     }
@@ -69,12 +67,12 @@ public class TabPane extends Div implements HasActive {
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
     public void setActive(final boolean active) {
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
 
         if (isFade()) {
             setIn(active);

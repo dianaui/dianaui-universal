@@ -57,4 +57,5 @@ public class OrderedList extends ComplexWidget {
             addStyleName(Styles.LIST_INLINE);
         }
     }
+
 }

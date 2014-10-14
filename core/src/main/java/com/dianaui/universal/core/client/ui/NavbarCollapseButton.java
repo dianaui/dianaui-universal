@@ -35,11 +35,11 @@ import com.google.gwt.user.client.ui.Composite;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see NavbarCollapse
  */
 public class NavbarCollapseButton extends Composite implements HasResponsiveness, HasPull {
 
-    private final PullMixin<NavbarCollapseButton> pullMixin = new PullMixin<NavbarCollapseButton>(this);
     private final Button button;
 
     public NavbarCollapseButton() {
@@ -66,12 +66,12 @@ public class NavbarCollapseButton extends Composite implements HasResponsiveness
 
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
     private Span newBarIcon() {

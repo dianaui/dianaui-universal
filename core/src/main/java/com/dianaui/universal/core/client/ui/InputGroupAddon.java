@@ -41,12 +41,13 @@ import com.google.gwt.user.client.ui.HasHTML;
  * Also see Bootstrap <a href="http://getbootstrap.com/components/#input-groups">documentation</a>.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see InputGroup
  * @see InputGroupButton
  */
 public class InputGroupAddon extends AbstractInputGroupAddon implements HasHTML, HasIcon, HasIconPosition {
 
-    IconTextMixin<InputGroupAddon> iconTextMixin = new IconTextMixin<InputGroupAddon>(this);
+    private final IconTextMixin<InputGroupAddon> iconTextMixin = new IconTextMixin<InputGroupAddon>(this);
 
     public InputGroupAddon() {
         super(Styles.INPUT_GROUP_ADDON);

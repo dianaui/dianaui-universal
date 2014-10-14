@@ -25,7 +25,9 @@ package com.dianaui.universal.core.client.ui.base;
  * @author Sven Jacobs
  */
 public interface HasSubText {
+
     String getSubText();
 
     void setSubText(final String subText);
+
 }

@@ -29,4 +29,5 @@ public class NavbarLink extends Anchor {
     public NavbarLink() {
         setStyleName(Styles.NAVBAR_LINK);
     }
+
 }

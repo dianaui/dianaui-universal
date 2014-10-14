@@ -35,4 +35,5 @@ public class MediaList extends UnorderedList {
     public MediaList() {
         setStyleName(Styles.MEDIA_LIST);
     }
+
 }

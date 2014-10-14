@@ -30,4 +30,5 @@ public class BlockQuote extends ComplexWidget {
     public BlockQuote() {
         setElement(Document.get().createBlockQuoteElement());
     }
+
 }

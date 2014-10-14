@@ -30,4 +30,5 @@ public class LinkedGroup extends Div {
     public LinkedGroup() {
         setStyleName(Styles.LIST_GROUP);
     }
+
 }

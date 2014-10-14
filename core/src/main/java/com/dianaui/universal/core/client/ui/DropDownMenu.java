@@ -48,8 +48,6 @@ public class DropDownMenu extends UnorderedList implements HasPull {
 
     private static final String MENU = "menu";
 
-    private final PullMixin<DropDownMenu> pullMixin = new PullMixin<DropDownMenu>(this);
-
     private Widget relativeWidget;
     private HandlerRegistration resizeHandler;
 
@@ -60,12 +58,12 @@ public class DropDownMenu extends UnorderedList implements HasPull {
 
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
     public void show(final Widget relativeWidget) {

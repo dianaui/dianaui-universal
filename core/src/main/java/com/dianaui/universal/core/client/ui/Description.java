@@ -45,4 +45,5 @@ public class Description extends ComplexWidget {
         }
         super.add(child);
     }
+
 }

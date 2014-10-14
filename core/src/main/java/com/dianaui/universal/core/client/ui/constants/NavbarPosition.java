@@ -27,6 +27,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum NavbarPosition implements Type, Style.HasCssName {
+
     DEFAULT(""),
     FIXED_TOP("navbar-fixed-top"),
     FIXED_BOTTOM("navbar-fixed-bottom"),
@@ -46,4 +47,5 @@ public enum NavbarPosition implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

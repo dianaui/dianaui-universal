@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum PanelType implements Type, Style.HasCssName {
+
     DEFAULT("panel-default"),
     PRIMARY("panel-primary"),
     SUCCESS("panel-success"),
@@ -47,4 +48,5 @@ public enum PanelType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

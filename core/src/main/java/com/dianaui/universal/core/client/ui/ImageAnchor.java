@@ -31,6 +31,7 @@ import com.dianaui.universal.core.client.ui.constants.Styles;
  * @see MediaList
  */
 public class ImageAnchor extends Anchor implements HasType<ImageType> {
+
     private final Image image = new Image();
 
     /**
@@ -109,4 +110,5 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
     public void setAlt(final String alt) {
         image.setAltText(alt);
     }
+
 }

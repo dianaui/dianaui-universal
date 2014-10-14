@@ -27,6 +27,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum FormType implements Type, Style.HasCssName {
+
     DEFAULT(""),
     INLINE("form-inline"),
     HORIZONTAL("form-horizontal");
@@ -45,4 +46,5 @@ public enum FormType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

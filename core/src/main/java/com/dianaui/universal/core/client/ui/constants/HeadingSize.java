@@ -24,6 +24,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Joshua Godi
  */
 public enum HeadingSize implements Size {
+
     H1(1),
     H2(2),
     H3(3),
@@ -40,4 +41,5 @@ public enum HeadingSize implements Size {
     public int getHeadingSize() {
         return headingSize;
     }
+
 }

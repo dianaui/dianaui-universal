@@ -23,6 +23,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Sven Jacobs
  */
 public enum ButtonDismiss {
+
     MODAL("modal"),
     ALERT("alert");
 
@@ -35,4 +36,5 @@ public enum ButtonDismiss {
     public String getDismiss() {
         return dismiss;
     }
+
 }

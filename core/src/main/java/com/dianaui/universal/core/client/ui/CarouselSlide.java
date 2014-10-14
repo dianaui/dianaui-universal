@@ -26,9 +26,9 @@ import com.dianaui.universal.core.client.ui.html.Div;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class CarouselSlide extends Div implements HasActive {
-    private final ActiveMixin<CarouselSlide> activeMixin = new ActiveMixin<CarouselSlide>(this);
 
     public CarouselSlide() {
         setStyleName(Styles.ITEM);
@@ -36,11 +36,12 @@ public class CarouselSlide extends Div implements HasActive {
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
     public void setActive(final boolean active) {
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
     }
+
 }

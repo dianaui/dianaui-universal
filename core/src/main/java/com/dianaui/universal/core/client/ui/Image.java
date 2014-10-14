@@ -19,11 +19,9 @@
  */
 package com.dianaui.universal.core.client.ui;
 
-import com.dianaui.universal.core.client.ui.base.HasCenterBlock;
-import com.dianaui.universal.core.client.ui.base.HasPull;
-import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
-import com.dianaui.universal.core.client.ui.base.HasType;
+import com.dianaui.universal.core.client.ui.base.*;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
+import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.PullMixin;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
 import com.dianaui.universal.core.client.ui.constants.ImageType;
@@ -34,11 +32,10 @@ import com.google.gwt.safehtml.shared.SafeUri;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Image extends com.google.gwt.user.client.ui.Image implements HasType<ImageType>, HasResponsiveness,
-        HasPull, HasCenterBlock {
-
-    private final PullMixin<Image> pullMixin = new PullMixin<Image>(this);
+        HasPull, HasCenterBlock, HasId {
 
     public Image() {
         super();
@@ -99,13 +96,23 @@ public class Image extends com.google.gwt.user.client.ui.Image implements HasTyp
     }
 
     @Override
+    public String getId() {
+        return IdMixin.getId(this);
+    }
+
+    @Override
+    public void setId(final String id) {
+        IdMixin.setId(this, id);
+    }
+
+    @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
     @Override

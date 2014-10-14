@@ -19,27 +19,22 @@
  */
 package com.dianaui.universal.core.client.ui.base.mixin;
 
-import com.dianaui.universal.core.client.ui.base.HasPull;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.Pull;
 import com.google.gwt.user.client.ui.UIObject;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class PullMixin<T extends UIObject & HasPull> extends AbstractMixin implements HasPull {
+public class PullMixin {
 
-    public PullMixin(final T uiObject) {
-        super(uiObject);
-    }
-
-    @Override
-    public Pull getPull() {
+    public static Pull getPull(final UIObject uiObject) {
         return Pull.fromStyleName(uiObject.getStyleName());
     }
 
-    @Override
-    public void setPull(final Pull pull) {
+    public static void setPull(final UIObject uiObject, final Pull pull) {
         StyleHelper.addUniqueEnumStyleName(uiObject, Pull.class, pull);
     }
+
 }

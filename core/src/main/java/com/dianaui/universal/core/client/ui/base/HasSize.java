@@ -25,7 +25,9 @@ import com.dianaui.universal.core.client.ui.constants.Size;
  * @author Sven Jacobs
  */
 public interface HasSize<T extends Size> {
+
     T getSize();
 
     void setSize(T size);
+
 }

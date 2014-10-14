@@ -27,6 +27,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum Pull implements Style.HasCssName {
+
     NONE(""),
     LEFT(Styles.PULL_LEFT),
     RIGHT(Styles.PULL_RIGHT);
@@ -45,4 +46,5 @@ public enum Pull implements Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

@@ -38,4 +38,5 @@ public class Legend extends AbstractTextWidget {
         this();
         setText(text);
     }
+
 }

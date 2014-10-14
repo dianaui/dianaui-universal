@@ -49,9 +49,6 @@ import com.google.gwt.user.client.ui.Widget;
 public abstract class AbstractButton extends ComplexWidget implements HasEnabled, HasActive, HasType<ButtonType>,
         HasSize<ButtonSize>, HasClickHandlers, HasTargetHistoryToken, HasHref, Focusable, HasAllMouseHandlers {
 
-    private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<AbstractButton>(this);
-    private EnabledMixin<AbstractButton> enabledMixin;
-    private FocusableMixin<AbstractButton> focusableMixin;
     private String targetHistoryToken;
 
     /**
@@ -90,22 +87,22 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
     public void setActive(final boolean active) {
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
     }
 
     @Override
     public boolean isEnabled() {
-        return getEnabledMixin().isEnabled();
+        return EnabledMixin.isEnabled(this);
     }
 
     @Override
     public void setEnabled(final boolean enabled) {
-        getEnabledMixin().setEnabled(enabled);
+        EnabledMixin.setEnabled(this, enabled);
     }
 
     @Override
@@ -198,22 +195,22 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
 
     @Override
     public int getTabIndex() {
-        return getFocusableMixin().getTabIndex();
+        return FocusableMixin.getTabIndex(this);
     }
 
     @Override
     public void setTabIndex(final int index) {
-        getFocusableMixin().setTabIndex(index);
+        FocusableMixin.setTabIndex(this, index);
     }
 
     @Override
     public void setAccessKey(final char key) {
-        getFocusableMixin().setAccessKey(key);
+        FocusableMixin.setAccessKey(this, key);
     }
 
     @Override
     public void setFocus(final boolean focused) {
-        getFocusableMixin().setFocus(focused);
+        FocusableMixin.setFocus(this, focused);
     }
 
     @Override
@@ -246,20 +243,6 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         super.onAttach();
 
         sinkEvents(Event.ONCLICK);
-    }
-
-    private FocusableMixin getFocusableMixin() {
-        if (focusableMixin == null) {
-            focusableMixin = new FocusableMixin<AbstractButton>(this);
-        }
-        return focusableMixin;
-    }
-
-    private EnabledMixin getEnabledMixin() {
-        if (enabledMixin == null) {
-            enabledMixin = new EnabledMixin<AbstractButton>(this);
-        }
-        return enabledMixin;
     }
 
 }

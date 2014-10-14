@@ -31,4 +31,5 @@ public class DoubleBox extends ValueBoxBase<Double> {
         super(Document.get().createTextInputElement(), DoubleRenderer.instance(), DoubleParser.instance());
         addStyleName(Styles.FORM_CONTROL);
     }
+
 }

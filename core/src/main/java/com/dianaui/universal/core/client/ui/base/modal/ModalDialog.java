@@ -31,4 +31,5 @@ public class ModalDialog extends FlowPanel {
     public ModalDialog() {
         setStyleName(Styles.MODAL_DIALOG);
     }
+
 }

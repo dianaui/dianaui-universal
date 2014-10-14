@@ -25,6 +25,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Sven Jacobs
  */
 public enum TypeAttrType implements Type {
+
     BUTTON("button"),
     SUBMIT("submit"),
     TEXT("text"),
@@ -40,4 +41,5 @@ public enum TypeAttrType implements Type {
     public String getInputType() {
         return inputType;
     }
+
 }

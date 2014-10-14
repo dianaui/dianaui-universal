@@ -46,4 +46,5 @@ public class NavPills extends Nav implements HasStacked {
             removeStyleName(Styles.NAV_STACKED);
         }
     }
+
 }

@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum IconSize implements Style.HasCssName {
+
     NONE(""),
     LARGE("fa-lg"),
     TIMES2("fa-2x"),
@@ -47,4 +48,5 @@ public enum IconSize implements Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

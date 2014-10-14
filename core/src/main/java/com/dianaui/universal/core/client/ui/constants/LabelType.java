@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Sven Jacobs
  */
 public enum LabelType implements Type, Style.HasCssName {
+
     DEFAULT("label-default"),
     PRIMARY("label-primary"),
     SUCCESS("label-success"),
@@ -47,4 +48,5 @@ public enum LabelType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

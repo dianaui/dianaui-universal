@@ -23,6 +23,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Sven Jacobs
  */
 public enum Toggle {
+
     BUTTON("button"),
     BUTTONS("buttons"),
     COLLAPSE("collapse"),
@@ -39,4 +40,5 @@ public enum Toggle {
     public String getToggle() {
         return toggle;
     }
+
 }

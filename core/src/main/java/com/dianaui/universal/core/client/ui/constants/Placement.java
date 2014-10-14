@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum Placement implements Type, Style.HasCssName {
+
     DEFAULT(""),
     TOP("top"),
     BOTTOM("bottom"),
@@ -47,4 +48,5 @@ public enum Placement implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

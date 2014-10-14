@@ -27,6 +27,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum ValidationState implements Style.HasCssName {
+
     NONE(""),
     WARNING("has-warning"),
     ERROR("has-error"),
@@ -46,4 +47,5 @@ public enum ValidationState implements Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

@@ -190,4 +190,5 @@ public class Column extends Div {
             removeStyleName(((Style.HasCssName) constant).getCssName());
         }
     }
+
 }

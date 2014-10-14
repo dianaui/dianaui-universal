@@ -40,4 +40,5 @@ public class CloseButton extends AbstractButton {
     protected Element createElement() {
         return Document.get().createPushButtonElement().cast();
     }
+
 }

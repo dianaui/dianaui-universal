@@ -42,12 +42,12 @@ import com.google.gwt.user.client.ui.HasValue;
  * encapsulated {@code <input>} elements within {@code <label>}.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public abstract class AbstractLabelButton extends AbstractIconButton implements HasActive, HasName, HasFormValue,
         HasValue<Boolean>, IsEditor<LeafValueEditor<Boolean>> {
 
     protected final CheckableInputButton input;
-    private ActiveMixin<AbstractLabelButton> activeMixin;
     private LeafValueEditor<Boolean> editor;
 
     protected AbstractLabelButton(final TypeAttrType typeAttr) {
@@ -82,7 +82,7 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
 
     @Override
     public boolean isActive() {
-        return getActiveMixin().isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
@@ -131,7 +131,7 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
     }
 
     protected void changeValue(final Boolean value, final boolean fireEvents) {
-        getActiveMixin().setActive(value);
+        ActiveMixin.setActive(this, value);
         input.setValue(value, fireEvents);
     }
 
@@ -146,13 +146,6 @@ public abstract class AbstractLabelButton extends AbstractIconButton implements 
             editor = TakesValueEditor.of(this);
         }
         return editor;
-    }
-
-    private ActiveMixin<AbstractLabelButton> getActiveMixin() {
-        if (activeMixin == null) {
-            activeMixin = new ActiveMixin<AbstractLabelButton>(this);
-        }
-        return activeMixin;
     }
 
 }

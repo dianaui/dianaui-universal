@@ -25,7 +25,9 @@ import com.dianaui.universal.core.client.ui.constants.IconPosition;
  * @author Sven Jacobs
  */
 public interface HasIconPosition {
+
     IconPosition getIconPosition();
 
     void setIconPosition(IconPosition iconPosition);
+
 }

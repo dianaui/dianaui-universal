@@ -22,24 +22,19 @@ package com.dianaui.universal.core.client.ui.gwt;
 import com.dianaui.universal.core.client.ui.base.HasId;
 import com.dianaui.universal.core.client.ui.base.HasInlineStyle;
 import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
-import com.dianaui.universal.core.client.ui.base.HasSpy;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
-import com.dianaui.universal.core.client.ui.base.mixin.SpyMixin;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
-import com.dianaui.universal.core.client.ui.constants.Spy;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.safehtml.shared.SafeHtml;
 
 /**
  * @author Sven Jacobs
  * @author Grant Slender
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implements HasId, HasSpy, HasResponsiveness,
+public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implements HasId, HasResponsiveness,
         HasInlineStyle {
-
-    private final SpyMixin<HTMLPanel> spyMixin = new SpyMixin<HTMLPanel>(this);
-    private final IdMixin<HTMLPanel> idMixin = new IdMixin<HTMLPanel>(this);
 
     public HTMLPanel(final String html) {
         super(html);
@@ -55,22 +50,12 @@ public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implement
 
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
-    }
-
-    @Override
-    public Spy getSpy() {
-        return spyMixin.getSpy();
-    }
-
-    @Override
-    public void setSpy(final Spy spy) {
-        spyMixin.setSpy(spy);
+        IdMixin.setId(this, id);
     }
 
     @Override

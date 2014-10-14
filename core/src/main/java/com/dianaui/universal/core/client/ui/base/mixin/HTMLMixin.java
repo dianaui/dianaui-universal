@@ -23,18 +23,15 @@ import com.google.gwt.user.client.ui.UIObject;
 
 /**
  * @author Grant Slender
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class HTMLMixin<T extends UIObject> extends TextMixin<T> {
+public class HTMLMixin {
 
-    public HTMLMixin(final T uiObject) {
-        super(uiObject);
-    }
-
-    public String getHTML() {
+    public static String getHTML(final UIObject uiObject) {
         return uiObject.getElement().getInnerHTML();
     }
 
-    public void setHTML(final String html) {
+    public static void setHTML(final UIObject uiObject, final String html) {
         uiObject.getElement().setInnerHTML(html);
     }
 

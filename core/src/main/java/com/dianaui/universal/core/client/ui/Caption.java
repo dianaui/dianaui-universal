@@ -30,4 +30,5 @@ public class Caption extends Div {
     public Caption() {
         addStyleName(Styles.CAPTION);
     }
+
 }

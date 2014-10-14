@@ -32,4 +32,5 @@ public class HelpBlock extends AbstractTextWidget {
         super(Document.get().createSpanElement());
         setStyleName(Styles.HELP_BLOCK);
     }
+
 }

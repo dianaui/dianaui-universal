@@ -23,6 +23,7 @@ import com.dianaui.universal.core.client.ui.base.HasAlignment;
 import com.dianaui.universal.core.client.ui.base.HasEmphasis;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.HTMLMixin;
+import com.dianaui.universal.core.client.ui.base.mixin.TextMixin;
 import com.dianaui.universal.core.client.ui.constants.Alignment;
 import com.dianaui.universal.core.client.ui.constants.Emphasis;
 import com.dianaui.universal.core.client.ui.gwt.HTMLPanel;
@@ -30,10 +31,9 @@ import com.google.gwt.dom.client.ParagraphElement;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Paragraph extends HTMLPanel implements HasAlignment, HasEmphasis {
-
-    private final HTMLMixin<Paragraph> textMixin = new HTMLMixin<Paragraph>(this);
 
     public Paragraph() {
         super(ParagraphElement.TAG, "");
@@ -45,19 +45,19 @@ public class Paragraph extends HTMLPanel implements HasAlignment, HasEmphasis {
     }
 
     public String getText() {
-        return textMixin.getText();
+        return TextMixin.getText(this);
     }
 
     public void setText(final String text) {
-        textMixin.setText(text);
+        TextMixin.setText(this, text);
     }
 
     public String getHTML() {
-        return textMixin.getHTML();
+        return HTMLMixin.getHTML(this);
     }
 
     public void setHTML(final String html) {
-        textMixin.setHTML(html);
+        HTMLMixin.setHTML(this, html);
     }
 
     @Override

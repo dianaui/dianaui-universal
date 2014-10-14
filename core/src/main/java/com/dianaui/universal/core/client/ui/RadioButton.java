@@ -42,10 +42,9 @@ import com.google.gwt.user.client.ui.DirectionalTextHelper;
  * If you are looking for a classic radio button see {@link RadioButton}.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class RadioButton extends Radio implements HasActive, HasType<ButtonType>, HasSize<ButtonSize> {
-
-    private final ActiveMixin<RadioButton> activeMixin = new ActiveMixin<RadioButton>(this);
 
     /**
      * Creates a new radio associated with a particular group, and initialized
@@ -58,7 +57,7 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
      * @param name  the group name with which to associate the radio button
      * @param label this radio button's html label
      */
-    public RadioButton(String name, SafeHtml label) {
+    public RadioButton(final String name, final SafeHtml label) {
         this(name, label.asString(), true);
     }
 
@@ -70,7 +69,7 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
      *              element.
      * @see #RadioButtonToggle(String, SafeHtml)
      */
-    public RadioButton(String name, SafeHtml label, Direction dir) {
+    public RadioButton(final String name, final SafeHtml label, final Direction dir) {
         this(name);
         setHTML(label, dir);
     }
@@ -83,7 +82,7 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      * @see #RadioButtonToggle(String, SafeHtml)
      */
-    public RadioButton(String name, SafeHtml label, DirectionEstimator directionEstimator) {
+    public RadioButton(final String name, final SafeHtml label, final DirectionEstimator directionEstimator) {
         this(name);
         setDirectionEstimator(directionEstimator);
         setHTML(label.asString());
@@ -100,7 +99,7 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
      * @param name  the group name with which to associate the radio button
      * @param label this radio button's label
      */
-    public RadioButton(String name, String label) {
+    public RadioButton(final String name, final String label) {
         this(name);
         setText(label);
     }
@@ -113,7 +112,7 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
      *              element.
      * @see #RadioButtonToggle(String, SafeHtml)
      */
-    public RadioButton(String name, String label, Direction dir) {
+    public RadioButton(final String name, final String label, final Direction dir) {
         this(name);
         setText(label, dir);
     }
@@ -126,7 +125,7 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      * @see #RadioButtonToggle(String, SafeHtml)
      */
-    public RadioButton(String name, String label, DirectionEstimator directionEstimator) {
+    public RadioButton(final String name, final String label, final DirectionEstimator directionEstimator) {
         this(name);
         setDirectionEstimator(directionEstimator);
         setText(label);
@@ -145,7 +144,7 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
      * @param label  this radio button's label
      * @param asHTML <code>true</code> to treat the specified label as HTML
      */
-    public RadioButton(String name, String label, boolean asHTML) {
+    public RadioButton(final String name, final String label, final boolean asHTML) {
         this(name);
         if (asHTML) {
             setHTML(label);
@@ -155,11 +154,11 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
     }
 
     @UiConstructor
-    public RadioButton(String name) {
+    public RadioButton(final String name) {
         this(Document.get().createRadioInputElement(name));
     }
 
-    protected RadioButton(InputElement elem) {
+    protected RadioButton(final InputElement elem) {
         super(DOM.createLabel());
 
         setStyleName(Styles.BTN);
@@ -187,7 +186,7 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
     }
 
     @Override
-    public void setSize(ButtonSize size) {
+    public void setSize(final ButtonSize size) {
         StyleHelper.addUniqueEnumStyleName(this, ButtonSize.class, size);
     }
 
@@ -197,19 +196,19 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
     }
 
     @Override
-    public void setType(ButtonType type) {
+    public void setType(final ButtonType type) {
         StyleHelper.addUniqueEnumStyleName(this, ButtonType.class, type);
     }
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
-    public void setActive(boolean active) {
+    public void setActive(final boolean active) {
         setValue(active);
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
     }
 
 }

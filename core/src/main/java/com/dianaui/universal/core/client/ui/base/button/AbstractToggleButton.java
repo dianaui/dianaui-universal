@@ -28,7 +28,6 @@ import com.dianaui.universal.core.client.ui.constants.ButtonType;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.constants.Toggle;
 import com.dianaui.universal.core.client.ui.html.Text;
-import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
@@ -43,9 +42,8 @@ import com.google.gwt.user.client.Event;
  */
 public abstract class AbstractToggleButton extends AbstractIconButton implements HasToggle {
 
-    private final ToggleMixin<AbstractToggleButton> toggleMixin = new ToggleMixin<AbstractToggleButton>(this);
-    private final Text separator = new Text(" ");
-    private final Caret caret = new Caret();
+    private Text separator;
+    private Caret caret;
 
     protected AbstractToggleButton() {
         this(ButtonType.DEFAULT);
@@ -66,7 +64,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
 
     @Override
     public Toggle getToggle() {
-        return toggleMixin.getToggle();
+        return ToggleMixin.getToggle(this);
     }
 
     /**
@@ -78,23 +76,23 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
      */
     @Override
     public void setToggle(final Toggle toggle) {
-        toggleMixin.setToggle(toggle);
+        ToggleMixin.setToggle(this, toggle);
 
-        // We defer to make sure the elements are available to manipulate their position
-        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
-            public void execute() {
-                separator.removeFromParent();
-                caret.removeFromParent();
+        if (separator != null)
+            separator.removeFromParent();
 
-                if (toggle == Toggle.DROPDOWN) {
-                    addStyleName(Styles.DROPDOWN_TOGGLE);
+        if (caret != null)
+            caret.removeFromParent();
 
-                    add(separator, (Element) getElement());
-                    add(caret, (Element) getElement());
-                }
-            }
-        });
+        separator = new Text(" ");
+        caret = new Caret();
+
+        if (toggle == Toggle.DROPDOWN) {
+            addStyleName(Styles.DROPDOWN_TOGGLE);
+
+            add(separator, (Element) getElement());
+            add(caret, (Element) getElement());
+        }
     }
 
     public void onBrowserEvent(Event event) {

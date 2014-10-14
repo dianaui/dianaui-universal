@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Sven Jacobs
  */
 public enum NavbarType implements Type, Style.HasCssName {
+
     DEFAULT("navbar-default"),
     INVERSE("navbar-inverse");
 
@@ -43,4 +44,5 @@ public enum NavbarType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

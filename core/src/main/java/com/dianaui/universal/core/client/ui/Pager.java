@@ -32,6 +32,7 @@ import com.dianaui.universal.core.client.ui.html.UnorderedList;
  * @author Joshua Godi
  */
 public class Pager extends UnorderedList implements HasResponsiveness {
+
     private static final String DEFAULT_PREVIOUS = "Previous";
     private static final String DEFAULT_NEXT = "Next";
 

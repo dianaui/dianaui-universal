@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum ImageType implements Type, Style.HasCssName {
+
     DEFAULT(""),
     ROUNDED("img-rounded"),
     CIRCLE("img-circle"),
@@ -45,4 +46,5 @@ public enum ImageType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

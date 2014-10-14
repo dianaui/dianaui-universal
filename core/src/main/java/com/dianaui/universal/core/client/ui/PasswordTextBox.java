@@ -41,4 +41,5 @@ public class PasswordTextBox extends TextBoxBase {
     public void clear() {
         super.setValue(null);
     }
+
 }

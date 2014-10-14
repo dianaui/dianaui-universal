@@ -51,4 +51,5 @@ public class Nav extends UnorderedList implements HasJustified {
             removeStyleName(Styles.NAV_JUSTIFIED);
         }
     }
+
 }

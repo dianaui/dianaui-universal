@@ -28,6 +28,7 @@ import com.google.gwt.user.client.ui.WidgetCollection;
  * @author Joshua Godi
  */
 public class Breadcrumbs extends OrderedList {
+
     private final WidgetCollection children = new WidgetCollection(this);
 
     public Breadcrumbs() {
@@ -47,4 +48,5 @@ public class Breadcrumbs extends OrderedList {
         super.add(w);
         children.add(w);
     }
+
 }

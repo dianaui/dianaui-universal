@@ -23,6 +23,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Joshua Godi
  */
 public enum InputType implements Type {
+
     PASSWORD("password"),
     DATETIME("datetime"),
     DATETIME_LOCAL("datetime-local"),
@@ -48,4 +49,5 @@ public enum InputType implements Type {
     public String getType() {
         return type;
     }
+
 }

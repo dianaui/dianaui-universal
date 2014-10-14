@@ -37,12 +37,11 @@ import com.google.gwt.user.client.ui.Widget;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public abstract class AbstractTextWidget extends Widget implements HasId, HasHTML, HasResponsiveness, HasInlineStyle,
         IsEditor<LeafValueEditor<String>>, HasPull {
 
-    private final PullMixin<AbstractTextWidget> pullMixin = new PullMixin<AbstractTextWidget>(this);
-    private final IdMixin<AbstractTextWidget> idMixin = new IdMixin<AbstractTextWidget>(this);
     private LeafValueEditor<String> editor;
 
     protected AbstractTextWidget(final Element element) {
@@ -51,12 +50,12 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
 
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
     @Override
@@ -131,9 +130,8 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
 
     @Override
     public LeafValueEditor<String> asEditor() {
-        if (editor == null) {
+        if (editor == null)
             editor = HasTextEditor.of(this);
-        }
         return editor;
     }
 
@@ -142,7 +140,7 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
      */
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     /**
@@ -150,7 +148,7 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
      */
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
 }

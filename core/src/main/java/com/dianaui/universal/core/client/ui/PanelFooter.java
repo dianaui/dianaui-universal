@@ -30,4 +30,5 @@ public class PanelFooter extends Div {
     public PanelFooter() {
         setStyleName(Styles.PANEL_FOOTER);
     }
+
 }

@@ -28,6 +28,7 @@ import com.dianaui.universal.core.client.ui.constants.Emphasis;
  * @author Joshua Godi
  */
 public interface HasEmphasis {
+
     /**
      * Get the object's emphasis.
      *
@@ -41,4 +42,5 @@ public interface HasEmphasis {
      * @param emphasis the object's new emphasis
      */
     void setEmphasis(Emphasis emphasis);
+
 }

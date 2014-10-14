@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum PaginationSize implements Style.HasCssName {
+
     NONE(""),
     LARGE("pagination-lg"),
     SMALL("pagination-sm");
@@ -44,4 +45,5 @@ public enum PaginationSize implements Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

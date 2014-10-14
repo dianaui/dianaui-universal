@@ -48,4 +48,5 @@ public class Panel extends Div implements HasType<PanelType> {
     public void setType(final PanelType type) {
         StyleHelper.addUniqueEnumStyleName(this, PanelType.class, type);
     }
+
 }

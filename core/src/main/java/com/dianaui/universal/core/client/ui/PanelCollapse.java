@@ -44,4 +44,5 @@ public class PanelCollapse extends Div {
             removeStyleName(Styles.IN);
         }
     }
+
 }

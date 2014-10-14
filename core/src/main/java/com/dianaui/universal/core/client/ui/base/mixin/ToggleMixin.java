@@ -19,32 +19,27 @@
  */
 package com.dianaui.universal.core.client.ui.base.mixin;
 
-import com.dianaui.universal.core.client.ui.base.HasToggle;
 import com.dianaui.universal.core.client.ui.constants.Attributes;
 import com.dianaui.universal.core.client.ui.constants.Toggle;
 import com.google.gwt.user.client.ui.UIObject;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class ToggleMixin<T extends UIObject & HasToggle> extends AbstractMixin implements HasToggle {
+public class ToggleMixin {
 
-    public ToggleMixin(final T uiObject) {
-        super(uiObject);
-    }
-
-    @Override
-    public Toggle getToggle() {
+    public static Toggle getToggle(final UIObject uiObject) {
         final String toggle = uiObject.getElement().getAttribute(Attributes.DATA_TOGGLE);
         return toggle != null && !toggle.equals("") ? Toggle.valueOf(toggle.toUpperCase()) : null;
     }
 
-    @Override
-    public void setToggle(final Toggle toggle) {
+    public static void setToggle(final UIObject uiObject, final Toggle toggle) {
         if (toggle != null) {
             uiObject.getElement().setAttribute(Attributes.DATA_TOGGLE, toggle.getToggle());
         } else {
             uiObject.getElement().removeAttribute(Attributes.DATA_TOGGLE);
         }
     }
+
 }

@@ -36,4 +36,5 @@ public class Abbreviation extends AbstractTextWidget {
         super(Document.get().createElement(ElementTags.ABBR));
         setTitle(title);
     }
+
 }

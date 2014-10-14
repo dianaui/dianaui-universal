@@ -25,7 +25,9 @@ import com.dianaui.universal.core.client.ui.constants.Placement;
  * @author Pontus Enmark
  */
 public interface HasPlacement {
+
     Placement getPlacement();
 
     void setPlacement(Placement placement);
+
 }

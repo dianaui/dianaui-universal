@@ -32,4 +32,5 @@ public class AbstractDropDown extends ComplexWidget {
         setElement(element);
         setStyleName(Styles.DROPDOWN);
     }
+
 }

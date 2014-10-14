@@ -30,4 +30,5 @@ public class Hr extends ComplexWidget {
     public Hr() {
         setElement(Document.get().createHRElement());
     }
+
 }

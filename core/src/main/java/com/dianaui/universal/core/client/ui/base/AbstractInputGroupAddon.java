@@ -36,4 +36,5 @@ public abstract class AbstractInputGroupAddon extends ComplexWidget {
         setElement(Document.get().createSpanElement());
         setStyleName(styleName);
     }
+
 }

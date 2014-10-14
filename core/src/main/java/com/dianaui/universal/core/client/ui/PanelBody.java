@@ -30,4 +30,5 @@ public class PanelBody extends Div {
     public PanelBody() {
         setStyleName(Styles.PANEL_BODY);
     }
+
 }

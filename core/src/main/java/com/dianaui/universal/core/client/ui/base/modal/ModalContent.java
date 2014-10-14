@@ -31,4 +31,5 @@ public class ModalContent extends FlowPanel {
     public ModalContent() {
         setStyleName(Styles.MODAL_CONTENT);
     }
+
 }

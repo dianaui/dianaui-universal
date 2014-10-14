@@ -22,7 +22,6 @@ package com.dianaui.universal.core.client.ui;
 import com.dianaui.universal.core.client.ui.base.*;
 import com.dianaui.universal.core.client.ui.base.mixin.FocusableMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.IconTextMixin;
-import com.dianaui.universal.core.client.ui.base.mixin.ParentMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.PullMixin;
 import com.dianaui.universal.core.client.ui.constants.*;
 import com.google.gwt.dom.client.AnchorElement;
@@ -42,12 +41,9 @@ import com.google.gwt.user.client.ui.HasHTML;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Anchor extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref, HasToggle,
-        HasParent, HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasTarget, HasPull {
+        HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasTarget, HasPull {
 
-    private final PullMixin<Anchor> pullMixin = new PullMixin<Anchor>(this);
-    private final ParentMixin<Anchor> parentMixin = new ParentMixin<Anchor>(this);
     private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<Anchor>(this);
-    private FocusableMixin<Anchor> focusableMixin;
     private String targetHistoryToken;
     private Toggle toggle;
 
@@ -357,22 +353,6 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      * {@inheritDoc}
      */
     @Override
-    public String getDataParent() {
-        return parentMixin.getDataParent();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDataParent(final String href) {
-        parentMixin.setDataParent(href);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Toggle getToggle() {
         return toggle;
     }
@@ -390,7 +370,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      */
     @Override
     public int getTabIndex() {
-        return getFocusableMixin().getTabIndex();
+        return FocusableMixin.getTabIndex(this);
     }
 
     /**
@@ -398,7 +378,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      */
     @Override
     public void setTabIndex(final int index) {
-        getFocusableMixin().setTabIndex(index);
+        FocusableMixin.setTabIndex(this, index);
     }
 
     /**
@@ -406,7 +386,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      */
     @Override
     public void setAccessKey(final char key) {
-        getFocusableMixin().setAccessKey(key);
+        FocusableMixin.setAccessKey(this, key);
     }
 
     /**
@@ -414,7 +394,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      */
     @Override
     public void setFocus(final boolean focused) {
-        getFocusableMixin().setFocus(focused);
+        FocusableMixin.setFocus(this, focused);
     }
 
     /**
@@ -445,7 +425,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      * {@inheritDoc}
      */
     @Override
-    public void setTarget(String target) {
+    public void setTarget(final String target) {
         getAnchorElement().setTarget(target);
     }
 
@@ -454,7 +434,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      */
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     /**
@@ -462,7 +442,7 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
      */
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
     /**
@@ -502,13 +482,6 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
 
     protected void setIconList(final boolean iconList) {
         iconTextMixin.setIconList(iconList);
-    }
-
-    private FocusableMixin getFocusableMixin() {
-        if (focusableMixin == null) {
-            focusableMixin = new FocusableMixin<Anchor>(this);
-        }
-        return focusableMixin;
     }
 
     private AnchorElement getAnchorElement() {

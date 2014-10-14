@@ -36,13 +36,10 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * A simple checkbox widget, with no label.
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox implements HasResponsiveness, HasId,
         HasPull, HasFormValue {
-
-    private final IdMixin<SimpleCheckBox> idMixin = new IdMixin<SimpleCheckBox>(this);
-    private final PullMixin<SimpleCheckBox> pullMixin = new PullMixin<SimpleCheckBox>(this);
-    private final EnabledMixin<SimpleCheckBox> enabledMixin = new EnabledMixin<SimpleCheckBox>(this);
 
     /**
      * Creates a new simple checkbox.
@@ -86,12 +83,12 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
 
     @Override
     public boolean isEnabled() {
-        return enabledMixin.isEnabled();
+        return EnabledMixin.isEnabled(this);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
+        EnabledMixin.setEnabled(this, enabled);
     }
 
     /**
@@ -99,7 +96,7 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      */
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     /**
@@ -107,7 +104,7 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      */
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
     /**
@@ -131,7 +128,7 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      */
     @Override
     public Pull getPull() {
-        return pullMixin.getPull();
+        return PullMixin.getPull(this);
     }
 
     /**
@@ -139,7 +136,7 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      */
     @Override
     public void setPull(final Pull pull) {
-        pullMixin.setPull(pull);
+        PullMixin.setPull(this, pull);
     }
 
 }

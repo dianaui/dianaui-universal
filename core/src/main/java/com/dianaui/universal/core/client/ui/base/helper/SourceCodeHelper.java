@@ -49,4 +49,5 @@ public final class SourceCodeHelper {
 
         return builder.toSafeHtml();
     }
+
 }

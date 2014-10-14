@@ -34,11 +34,10 @@ import com.google.gwt.user.client.History;
 
 /**
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref,
         HasTargetHistoryToken, HasActive {
-
-    private final ActiveMixin<LinkedGroupItem> activeMixin = new ActiveMixin<LinkedGroupItem>(this);
 
     private final Span span = new Span();
 
@@ -102,11 +101,12 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
 
     @Override
     public boolean isActive() {
-        return activeMixin.isActive();
+        return ActiveMixin.isActive(this);
     }
 
     @Override
     public void setActive(final boolean active) {
-        activeMixin.setActive(active);
+        ActiveMixin.setActive(this, active);
     }
+
 }

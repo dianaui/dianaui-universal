@@ -27,6 +27,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum AlertType implements Type, Style.HasCssName {
+
     DEFAULT(""),
     SUCCESS("alert-success"),
     INFO("alert-info"),
@@ -47,4 +48,5 @@ public enum AlertType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

@@ -47,4 +47,5 @@ public class VerticalButtonGroup extends AbstractButtonGroup {
     public VerticalButtonGroup() {
         super(Styles.BTN_GROUP_VERTICAL);
     }
+
 }

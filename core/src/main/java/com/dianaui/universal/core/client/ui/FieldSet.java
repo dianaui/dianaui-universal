@@ -27,11 +27,10 @@ import com.google.gwt.user.client.ui.HasEnabled;
 /**
  * @author Sven Jacobs
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see Form
  */
 public class FieldSet extends ComplexWidget implements HasEnabled {
-
-    private EnabledMixin<FieldSet> enabledMixin;
 
     public FieldSet() {
         setElement(Document.get().createFieldSetElement());
@@ -39,19 +38,12 @@ public class FieldSet extends ComplexWidget implements HasEnabled {
 
     @Override
     public boolean isEnabled() {
-        return getEnabledMixin().isEnabled();
+        return EnabledMixin.isEnabled(this);
     }
 
     @Override
     public void setEnabled(final boolean enabled) {
-        getEnabledMixin().setEnabled(enabled);
-    }
-
-    private EnabledMixin getEnabledMixin() {
-        if (enabledMixin == null) {
-            enabledMixin = new EnabledMixin<FieldSet>(this);
-        }
-        return enabledMixin;
+        EnabledMixin.setEnabled(this, enabled);
     }
 
 }

@@ -23,6 +23,7 @@ package com.dianaui.universal.core.client.ui.base;
  * @author Joshua Godi
  */
 public interface HasInlineStyle {
+
     void setMarginTop(double margin);
 
     void setMarginLeft(double margin);
@@ -38,4 +39,5 @@ public interface HasInlineStyle {
     void setPaddingRight(double padding);
 
     void setPaddingBottom(double padding);
+
 }

@@ -33,6 +33,7 @@ import com.dianaui.universal.core.client.ui.constants.DeviceSize;
  * @author Joshua Godi
  */
 public interface HasResponsiveness {
+
     /**
      * Sets the devices that the element is visible on
      *
@@ -48,4 +49,5 @@ public interface HasResponsiveness {
      * @see com.dianaui.universal.core.client.ui.constants.DeviceSize
      */
     void setHiddenOn(final DeviceSize deviceSize);
+
 }

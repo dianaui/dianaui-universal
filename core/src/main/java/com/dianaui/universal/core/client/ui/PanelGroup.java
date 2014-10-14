@@ -30,4 +30,5 @@ public class PanelGroup extends Div {
     public PanelGroup() {
         setStyleName(Styles.PANEL_GROUP);
     }
+
 }

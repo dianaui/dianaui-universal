@@ -27,6 +27,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum ButtonSize implements Size, Style.HasCssName {
+
     LARGE("btn-lg"),
     DEFAULT(""),
     SMALL("btn-sm"),
@@ -46,4 +47,5 @@ public enum ButtonSize implements Size, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

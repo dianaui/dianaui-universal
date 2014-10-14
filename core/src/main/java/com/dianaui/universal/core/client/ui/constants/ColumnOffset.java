@@ -25,6 +25,7 @@ import com.google.gwt.dom.client.Style;
  * @author Sven Jacobs
  */
 public enum ColumnOffset implements Size, Style.HasCssName {
+
     // Extra small devices (<768px)
     XS_0("col-xs-offset-0"),
     XS_1("col-xs-offset-1"),
@@ -92,4 +93,5 @@ public enum ColumnOffset implements Size, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

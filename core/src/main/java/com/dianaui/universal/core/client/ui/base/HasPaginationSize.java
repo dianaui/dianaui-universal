@@ -25,7 +25,9 @@ import com.dianaui.universal.core.client.ui.constants.PaginationSize;
  * @author Joshua Godi
  */
 public interface HasPaginationSize {
+
     PaginationSize getPaginationSize();
 
     void setPaginationSize(PaginationSize paginationSize);
+
 }

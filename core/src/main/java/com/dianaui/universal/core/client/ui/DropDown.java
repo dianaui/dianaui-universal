@@ -45,4 +45,5 @@ public class DropDown extends AbstractDropDown {
         super(Document.get().createDivElement());
         setStyleName(Styles.DROPDOWN);
     }
+
 }

@@ -27,14 +27,13 @@ import com.google.gwt.text.shared.Parser;
 import com.google.gwt.text.shared.Renderer;
 
 /**
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see com.google.gwt.user.client.ui.HasEnabled
  */
 public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<T> implements HasId, HasResponsiveness,
         HasPlaceholder, HasAutoComplete {
 
     private static final String MAX_LENGTH = "maxlength";
-
-    private final IdMixin<ValueBoxBase<T>> idMixin = new IdMixin<ValueBoxBase<T>>(this);
 
     /**
      * Creates a value box that wraps the given browser element handle. This is
@@ -74,12 +73,12 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
 
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
     @Override

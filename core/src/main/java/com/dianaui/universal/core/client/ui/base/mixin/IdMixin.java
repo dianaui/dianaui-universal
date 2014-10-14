@@ -19,25 +19,20 @@
  */
 package com.dianaui.universal.core.client.ui.base.mixin;
 
-import com.dianaui.universal.core.client.ui.base.HasId;
 import com.google.gwt.user.client.ui.UIObject;
 
 /**
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class IdMixin<T extends UIObject & HasId> extends AbstractMixin implements HasId {
+public class IdMixin {
 
-    public IdMixin(final T uiObject) {
-        super(uiObject);
-    }
-
-    @Override
-    public String getId() {
+    public static String getId(final UIObject uiObject) {
         return uiObject.getElement().getId();
     }
 
-    @Override
-    public void setId(final String id) {
+    public static void setId(final UIObject uiObject, final String id) {
         uiObject.getElement().setId(id);
     }
+
 }

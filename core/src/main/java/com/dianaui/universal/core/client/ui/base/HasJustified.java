@@ -23,7 +23,9 @@ package com.dianaui.universal.core.client.ui.base;
  * @author Sven Jacobs
  */
 public interface HasJustified {
+
     boolean isJustified();
 
     void setJustified(boolean justified);
+
 }

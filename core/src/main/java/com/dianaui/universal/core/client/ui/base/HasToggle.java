@@ -25,7 +25,9 @@ import com.dianaui.universal.core.client.ui.constants.Toggle;
  * @author Sven Jacobs
  */
 public interface HasToggle {
+
     Toggle getToggle();
 
     void setToggle(Toggle toggle);
+
 }

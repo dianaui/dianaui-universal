@@ -33,8 +33,8 @@ import com.google.gwt.user.client.ui.HasValue;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class WYSIWYGEditor extends Div implements HasValueChangeHandlers<String>, HasValue<String>,
-        TakesValue<String>, LeafValueEditor<String>, HasSize<ButtonGroupSize> {
+public class WYSIWYGEditor extends Div implements HasValueChangeHandlers<String>, HasValue<String>, TakesValue<String>,
+        LeafValueEditor<String>, HasSize<ButtonGroupSize> {
 
     private RichTextToolbar toolbar;
     private RichTextArea textArea;
@@ -87,4 +87,5 @@ public class WYSIWYGEditor extends Div implements HasValueChangeHandlers<String>
         toolbar.group3.setSize(size);
         toolbar.group4.setSize(size);
     }
+
 }

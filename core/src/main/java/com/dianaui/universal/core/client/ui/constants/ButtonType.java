@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Sven Jacobs
  */
 public enum ButtonType implements Type, Style.HasCssName {
+
     DEFAULT("btn-default"),
     PRIMARY("btn-primary"),
     SUCCESS("btn-success"),
@@ -48,4 +49,5 @@ public enum ButtonType implements Type, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

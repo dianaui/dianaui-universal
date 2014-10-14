@@ -38,4 +38,5 @@ public class Small extends AbstractTextWidget {
         this();
         setHTML(text);
     }
+
 }

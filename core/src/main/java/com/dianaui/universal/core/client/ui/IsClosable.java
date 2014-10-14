@@ -23,7 +23,9 @@ package com.dianaui.universal.core.client.ui;
  * @author Sven Jacobs
  */
 public interface IsClosable {
+
     boolean isClosable();
 
     void setClosable(boolean closable);
+
 }

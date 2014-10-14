@@ -30,4 +30,5 @@ public class CarouselInner extends Div {
     public CarouselInner() {
         setStyleName(Styles.CAROUSEL_INNER);
     }
+
 }

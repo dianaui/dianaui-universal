@@ -40,7 +40,7 @@ public class InlineCheckBox extends CheckBox {
      *
      * @param label the check box's label
      */
-    public InlineCheckBox(SafeHtml label) {
+    public InlineCheckBox(final SafeHtml label) {
         this(label.asString(), true);
     }
 
@@ -52,7 +52,7 @@ public class InlineCheckBox extends CheckBox {
      *              direction should be inherited from the widget's parent
      *              element.
      */
-    public InlineCheckBox(SafeHtml label, Direction dir) {
+    public InlineCheckBox(final SafeHtml label, final Direction dir) {
         this();
         setHTML(label, dir);
     }
@@ -65,7 +65,7 @@ public class InlineCheckBox extends CheckBox {
      *                           adjustment. For convenience,
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      */
-    public InlineCheckBox(SafeHtml label, DirectionEstimator directionEstimator) {
+    public InlineCheckBox(final SafeHtml label, final DirectionEstimator directionEstimator) {
         this();
         setDirectionEstimator(directionEstimator);
         setHTML(label.asString());
@@ -76,7 +76,7 @@ public class InlineCheckBox extends CheckBox {
      *
      * @param label the check box's label
      */
-    public InlineCheckBox(String label) {
+    public InlineCheckBox(final String label) {
         this();
         setText(label);
     }
@@ -89,7 +89,7 @@ public class InlineCheckBox extends CheckBox {
      *              direction should be inherited from the widget's parent
      *              element.
      */
-    public InlineCheckBox(String label, Direction dir) {
+    public InlineCheckBox(final String label, final Direction dir) {
         this();
         setText(label, dir);
     }
@@ -103,7 +103,7 @@ public class InlineCheckBox extends CheckBox {
      *                           adjustment. For convenience,
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      */
-    public InlineCheckBox(String label, DirectionEstimator directionEstimator) {
+    public InlineCheckBox(final String label, final DirectionEstimator directionEstimator) {
         this();
         setDirectionEstimator(directionEstimator);
         setText(label);
@@ -115,7 +115,7 @@ public class InlineCheckBox extends CheckBox {
      * @param label  the check box's label
      * @param asHTML <code>true</code> to treat the specified label as html
      */
-    public InlineCheckBox(String label, boolean asHTML) {
+    public InlineCheckBox(final String label, final boolean asHTML) {
         this();
         if (asHTML) {
             setHTML(label);

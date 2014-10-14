@@ -33,4 +33,5 @@ public class Jumbotron extends Div {
     public Jumbotron() {
         setStyleName(Styles.JUMBOTRON);
     }
+
 }

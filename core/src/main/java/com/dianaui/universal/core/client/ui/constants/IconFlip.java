@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum IconFlip implements Style.HasCssName {
+
     NONE(""),
     HORIZONTAL("fa-flip-horizontal"),
     VERTICAL("fa-flip-vertical");
@@ -44,4 +45,5 @@ public enum IconFlip implements Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

@@ -34,4 +34,5 @@ public class TextBoxBase extends ValueBoxBase<String> {
         final String raw = super.getValue();
         return raw == null ? "" : raw;
     }
+
 }

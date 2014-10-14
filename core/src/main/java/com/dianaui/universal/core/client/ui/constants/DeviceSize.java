@@ -25,6 +25,7 @@ package com.dianaui.universal.core.client.ui.constants;
  * @author Joshua Godi
  */
 public enum DeviceSize {
+
     PRINT, /* Print Devices */
     XS, /* Phones <768px */
     SM, /* Tablets >=768px */
@@ -43,4 +44,5 @@ public enum DeviceSize {
     XS_MD_LG,
     SM_MD_LG,
     XS_SM_MD_LG
+
 }

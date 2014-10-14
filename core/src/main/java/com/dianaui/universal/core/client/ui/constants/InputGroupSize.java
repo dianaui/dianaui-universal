@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public enum InputGroupSize implements Size, Style.HasCssName {
+
     LARGE("input-group-lg"),
     DEFAULT(""),
     SMALL("input-group-sm");
@@ -44,4 +45,5 @@ public enum InputGroupSize implements Size, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

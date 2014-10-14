@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum IconRotate implements Style.HasCssName {
+
     NONE(""),
     ROTATE_90("fa-rotate-90"),
     ROTATE_180("fa-rotate-180"),
@@ -45,4 +46,5 @@ public enum IconRotate implements Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

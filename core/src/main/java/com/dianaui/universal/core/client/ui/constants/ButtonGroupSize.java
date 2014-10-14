@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public enum ButtonGroupSize implements Size, Style.HasCssName {
+
     LARGE("btn-group-lg"),
     DEFAULT(""),
     SMALL("btn-group-sm"),
@@ -45,4 +46,5 @@ public enum ButtonGroupSize implements Size, Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

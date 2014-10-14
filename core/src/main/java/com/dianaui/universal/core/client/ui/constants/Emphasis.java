@@ -26,6 +26,7 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum Emphasis implements Style.HasCssName {
+
     DEFAULT(""),
     MUTED("text-muted"),
     PRIMARY("text-primary"),
@@ -48,4 +49,5 @@ public enum Emphasis implements Style.HasCssName {
     public String getCssName() {
         return cssClass;
     }
+
 }

@@ -48,7 +48,7 @@ public class InlineRadio extends Radio {
      * @param name  the group name with which to associate the radio button
      * @param label this radio button's html label
      */
-    public InlineRadio(String name, SafeHtml label) {
+    public InlineRadio(final String name, final SafeHtml label) {
         this(name, label.asString(), true);
     }
 
@@ -60,7 +60,7 @@ public class InlineRadio extends Radio {
      *              element.
      * @see #InlineRadio(String, SafeHtml)
      */
-    public InlineRadio(String name, SafeHtml label, Direction dir) {
+    public InlineRadio(final String name, final SafeHtml label, final Direction dir) {
         this(name);
         setHTML(label, dir);
     }
@@ -73,7 +73,7 @@ public class InlineRadio extends Radio {
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      * @see #InlineRadio(String, SafeHtml)
      */
-    public InlineRadio(String name, SafeHtml label, DirectionEstimator directionEstimator) {
+    public InlineRadio(final String name, final SafeHtml label, final DirectionEstimator directionEstimator) {
         this(name);
         setDirectionEstimator(directionEstimator);
         setHTML(label.asString());
@@ -90,7 +90,7 @@ public class InlineRadio extends Radio {
      * @param name  the group name with which to associate the radio button
      * @param label this radio button's label
      */
-    public InlineRadio(String name, String label) {
+    public InlineRadio(final String name, final String label) {
         this(name);
         setText(label);
     }
@@ -103,7 +103,7 @@ public class InlineRadio extends Radio {
      *              element.
      * @see #InlineRadio(String, SafeHtml)
      */
-    public InlineRadio(String name, String label, Direction dir) {
+    public InlineRadio(final String name, final String label, final Direction dir) {
         this(name);
         setText(label, dir);
     }
@@ -116,7 +116,7 @@ public class InlineRadio extends Radio {
      *                           {@link #DEFAULT_DIRECTION_ESTIMATOR} can be used.
      * @see #InlineRadio(String, SafeHtml)
      */
-    public InlineRadio(String name, String label, DirectionEstimator directionEstimator) {
+    public InlineRadio(final String name, final String label, final DirectionEstimator directionEstimator) {
         this(name);
         setDirectionEstimator(directionEstimator);
         setText(label);
@@ -135,7 +135,7 @@ public class InlineRadio extends Radio {
      * @param label  this radio button's label
      * @param asHTML <code>true</code> to treat the specified label as HTML
      */
-    public InlineRadio(String name, String label, boolean asHTML) {
+    public InlineRadio(final String name, final String label, final boolean asHTML) {
         this(name);
         if (asHTML) {
             setHTML(label);
@@ -155,7 +155,7 @@ public class InlineRadio extends Radio {
      * @param name the group name with which to associate the radio button
      */
     @UiConstructor
-    public InlineRadio(String name) {
+    public InlineRadio(final String name) {
         super(DOM.createLabel());
         setStyleName(Styles.RADIO_INLINE);
 

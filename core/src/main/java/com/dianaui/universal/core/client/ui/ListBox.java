@@ -27,11 +27,10 @@ import com.dianaui.universal.core.client.ui.constants.Styles;
  * Convenience derivation from GWT's ListBox that can have an ID.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see com.google.gwt.user.client.ui.ListBox
  */
 public class ListBox extends com.google.gwt.user.client.ui.ListBox implements HasId {
-
-    private final IdMixin<ListBox> idMixin = new IdMixin<ListBox>(this);
 
     public ListBox() {
         setStyleName(Styles.FORM_CONTROL);
@@ -44,11 +43,12 @@ public class ListBox extends com.google.gwt.user.client.ui.ListBox implements Ha
 
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
+
 }

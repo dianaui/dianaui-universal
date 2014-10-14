@@ -17,15 +17,16 @@
  * limitations under the License.
  * #L%
  */
-package com.dianaui.universal.core.client.ui;
+package com.dianaui.universal.core.client.ui.base;
 
 /**
+ * Marker interface for {@link com.dianaui.universal.core.client.ui.Modal}
+ * components.
+ *
  * @author Sven Jacobs
+ * @see com.dianaui.universal.core.client.ui.ModalHeader
+ * @see com.dianaui.universal.core.client.ui.ModalBody
+ * @see com.dianaui.universal.core.client.ui.ModalFooter
  */
-public interface IsClosable {
-
-    boolean isClosable();
-
-    void setClosable(boolean closable);
-
+public interface ModalComponent {
 }

@@ -19,6 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.base.ModalComponent;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.gwt.FlowPanel;
 

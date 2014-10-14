@@ -19,6 +19,8 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.base.IsClosable;
+import com.dianaui.universal.core.client.ui.base.ModalComponent;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.modal.ModalContent;
 import com.dianaui.universal.core.client.ui.base.modal.ModalDialog;

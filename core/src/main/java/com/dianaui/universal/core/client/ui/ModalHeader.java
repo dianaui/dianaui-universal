@@ -19,6 +19,8 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.base.IsClosable;
+import com.dianaui.universal.core.client.ui.base.ModalComponent;
 import com.dianaui.universal.core.client.ui.base.button.CloseButton;
 import com.dianaui.universal.core.client.ui.constants.HeadingSize;
 import com.dianaui.universal.core.client.ui.constants.Styles;

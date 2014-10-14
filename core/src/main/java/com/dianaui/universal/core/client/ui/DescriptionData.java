@@ -20,6 +20,7 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.AbstractTextWidget;
+import com.dianaui.universal.core.client.ui.base.DescriptionComponent;
 import com.dianaui.universal.core.client.ui.constants.ElementTags;
 import com.google.gwt.dom.client.Document;
 

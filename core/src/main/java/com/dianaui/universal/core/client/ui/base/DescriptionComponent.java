@@ -17,14 +17,14 @@
  * limitations under the License.
  * #L%
  */
-package com.dianaui.universal.core.client.ui;
+package com.dianaui.universal.core.client.ui.base;
 
 /**
- * Marker interface for {@link Description} components.
+ * Marker interface for {@link com.dianaui.universal.core.client.ui.Description} components.
  *
  * @author Joshua Godi
- * @see DescriptionTitle
- * @see DescriptionData
+ * @see com.dianaui.universal.core.client.ui.DescriptionTitle
+ * @see com.dianaui.universal.core.client.ui.DescriptionData
  */
 public interface DescriptionComponent {
 }

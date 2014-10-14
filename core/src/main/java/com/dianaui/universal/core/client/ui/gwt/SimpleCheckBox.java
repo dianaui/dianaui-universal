@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package com.dianaui.universal.core.client.ui;
+package com.dianaui.universal.core.client.ui.gwt;
 
 import com.dianaui.universal.core.client.ui.base.HasFormValue;
 import com.dianaui.universal.core.client.ui.base.HasId;
@@ -32,72 +32,53 @@ import com.dianaui.universal.core.client.ui.constants.Pull;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.InputElement;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.uibinder.client.UiConstructor;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
- * A simple radio button widget, with no label.
+ * A simple checkbox widget, with no label.
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadioButton implements HasResponsiveness,
-        HasId, HasPull, HasFormValue {
-
-    private Boolean oldValue;
+public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox implements HasResponsiveness, HasId,
+        HasPull, HasFormValue {
 
     /**
-     * Creates a new radio associated with a particular group name. All radio
-     * buttons associated with the same group name belong to a
-     * mutually-exclusive set.
-     * <p/>
-     * Radio buttons are grouped by their name attribute, so changing their name
-     * using the setName() method will also change their associated group.
-     *
-     * @param name the group name with which to associate the radio button
+     * Creates a new simple checkbox.
      */
-    @UiConstructor
-    public SimpleRadioButton(String name) {
-        this(Document.get().createRadioInputElement(name));
+    public SimpleCheckBox() {
+        super(Document.get().createCheckInputElement());
     }
 
     /**
      * This constructor may be used by subclasses to explicitly use an existing
      * element. This element must be an &lt;input&gt; element whose type is
-     * 'radio'.
+     * 'checkbox'.
      *
      * @param element the element to be used
      */
-    protected SimpleRadioButton(InputElement element) {
+    protected SimpleCheckBox(InputElement element) {
         super(element);
-
-        sinkEvents(Event.ONCLICK);
-        sinkEvents(Event.ONMOUSEUP);
-        sinkEvents(Event.ONBLUR);
-        sinkEvents(Event.ONKEYDOWN);
     }
 
     /**
-     * Creates a SimpleRadioButton widget that wraps an existing &lt;input
-     * type='radio'&gt; element.
+     * Creates a SimpleCheckBox widget that wraps an existing &lt;input
+     * type='checkbox'&gt; element.
      * This element must already be attached to the document. If the element is
      * removed from the document, you must call
      * {@link RootPanel#detachNow(com.google.gwt.user.client.ui.Widget)}.
      *
      * @param element the element to be wrapped
      */
-    public static SimpleRadioButton wrap(Element element) {
+    public static SimpleCheckBox wrap(Element element) {
         // Assert that the element is attached.
         assert Document.get().getBody().isOrHasChild(element);
 
-        SimpleRadioButton radioButton = new SimpleRadioButton(InputElement.as(element));
+        SimpleCheckBox checkBox = new SimpleCheckBox(InputElement.as(element));
 
         // Mark it attached and remember it for cleanup.
-        radioButton.onAttach();
-        RootPanel.detachOnWindowClose(radioButton);
+        checkBox.onAttach();
+        RootPanel.detachOnWindowClose(checkBox);
 
-        return radioButton;
+        return checkBox;
     }
 
     @Override
@@ -156,38 +137,6 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
     @Override
     public void setPull(final Pull pull) {
         PullMixin.setPull(this, pull);
-    }
-
-    /**
-     * Overridden to send ValueChangeEvents only when appropriate.
-     */
-    @Override
-    public void onBrowserEvent(Event event) {
-        switch (DOM.eventGetType(event)) {
-            case Event.ONMOUSEUP:
-            case Event.ONBLUR:
-            case Event.ONKEYDOWN:
-                // Note the old value for onValueChange purposes (in ONCLICK case)
-                oldValue = getValue();
-                break;
-
-            case Event.ONCLICK:
-                // Let our handlers hear about the click...
-                super.onBrowserEvent(event);
-                // ...and now maybe tell them about the change
-                ValueChangeEvent.fireIfNotEqual(SimpleRadioButton.this, oldValue, getValue());
-                return;
-        }
-
-        super.onBrowserEvent(event);
-    }
-
-    /**
-     * No-op. CheckBox's click handler is no good for radio button, so don't use
-     * it. Our event handling is all done in {@link #onBrowserEvent}
-     */
-    @Override
-    protected void ensureDomEventHandlers() {
     }
 
 }

@@ -23,7 +23,6 @@ public class CheckBoxButtonGwtTest extends InputToggleButtonGwt {
 
     public void testCheckBoxButton() {
         checkLayout(new CheckBoxButton());
-        checkActive(new CheckBoxButton());
         checkName(new CheckBoxButton());
         checkFormValue(new CheckBoxButton());
         checkValue(new CheckBoxButton());

@@ -19,7 +19,6 @@
  */
 package com.dianaui.universal.core.client.ui;
 
-import com.dianaui.universal.core.client.ui.base.HasActive;
 import com.dianaui.universal.core.client.ui.base.HasSize;
 import com.dianaui.universal.core.client.ui.base.HasType;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
@@ -29,11 +28,13 @@ import com.dianaui.universal.core.client.ui.constants.ButtonType;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.InputElement;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.i18n.shared.DirectionEstimator;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.DirectionalTextHelper;
 
 /**
@@ -44,7 +45,7 @@ import com.google.gwt.user.client.ui.DirectionalTextHelper;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class RadioButton extends Radio implements HasActive, HasType<ButtonType>, HasSize<ButtonSize> {
+public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<ButtonSize> {
 
     /**
      * Creates a new radio associated with a particular group, and initialized
@@ -201,14 +202,25 @@ public class RadioButton extends Radio implements HasActive, HasType<ButtonType>
     }
 
     @Override
-    public boolean isActive() {
-        return ActiveMixin.isActive(this);
+    public void setValue(Boolean value, final boolean fireEvents) {
+        super.setValue(value, fireEvents);
+
+        ActiveMixin.setActive(this, getValue());
     }
 
     @Override
-    public void setActive(final boolean active) {
-        setValue(active);
-        ActiveMixin.setActive(this, active);
+    public void onBrowserEvent(Event event) {
+        boolean oldValue = getValue();
+
+        super.onBrowserEvent(event);
+
+        switch (DOM.eventGetType(event)) {
+            case Event.ONCLICK:
+                setValue(!getValue(), false);
+
+                ValueChangeEvent.fireIfNotEqual(RadioButton.this, oldValue, getValue());
+                break;
+        }
     }
 
 }

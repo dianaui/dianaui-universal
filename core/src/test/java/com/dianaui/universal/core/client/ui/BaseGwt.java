@@ -19,7 +19,6 @@
  */
 package com.dianaui.universal.core.client.ui;
 
-import com.dianaui.universal.core.client.ui.base.HasActive;
 import com.dianaui.universal.core.client.ui.base.HasFormValue;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Element;
@@ -40,15 +39,6 @@ public abstract class BaseGwt extends GWTTestCase {
     @Override
     public String getModuleName() {
         return "com.dianaui.universal.core.DianaUICore";
-    }
-
-    public <T extends UIObject & HasActive> void checkActive(T button) {
-        final Element label = button.getElement();
-        assertFalse(label.hasClassName(Styles.ACTIVE));
-        button.setActive(true);
-        assertTrue(label.hasClassName(Styles.ACTIVE));
-        button.setActive(false);
-        assertFalse(label.hasClassName(Styles.ACTIVE));
     }
 
     public <T extends UIObject & HasName> void checkName(T button) {

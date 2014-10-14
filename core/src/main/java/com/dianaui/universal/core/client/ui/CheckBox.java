@@ -435,7 +435,6 @@ public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, 
 
     protected void ensureDomEventHandlers() {
         addClickHandler(new ClickHandler() {
-
             @Override
             public void onClick(ClickEvent event) {
                 // Checkboxes always toggle their value, no need to compare

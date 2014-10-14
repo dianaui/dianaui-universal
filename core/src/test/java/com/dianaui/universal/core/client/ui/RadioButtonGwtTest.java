@@ -23,7 +23,6 @@ public class RadioButtonGwtTest extends InputToggleButtonGwt {
 
     public void testRadioButton() {
         checkLayout(new RadioButton("name"));
-        checkActive(new RadioButton("name"));
         checkName(new RadioButton("name"));
         checkFormValue(new RadioButton("name"));
         checkValue(new RadioButton("name"));

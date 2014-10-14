@@ -20,7 +20,7 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.HasSize;
-import com.dianaui.universal.core.client.ui.base.RichTextArea;
+import com.dianaui.universal.core.client.ui.gwt.RichTextArea;
 import com.dianaui.universal.core.client.ui.constants.ButtonGroupSize;
 import com.dianaui.universal.core.client.ui.html.Div;
 import com.google.gwt.editor.client.LeafValueEditor;

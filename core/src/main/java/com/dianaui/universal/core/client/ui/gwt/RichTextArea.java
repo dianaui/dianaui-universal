@@ -17,8 +17,9 @@
  * limitations under the License.
  * #L%
  */
-package com.dianaui.universal.core.client.ui.base;
+package com.dianaui.universal.core.client.ui.gwt;
 
+import com.dianaui.universal.core.client.ui.base.HasId;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.IFrameElement;

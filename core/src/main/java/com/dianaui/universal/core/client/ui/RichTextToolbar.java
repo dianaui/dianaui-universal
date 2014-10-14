@@ -19,6 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.gwt.RichTextArea;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.IFrameElement;
 import com.google.gwt.dom.client.Style;
@@ -88,14 +89,14 @@ public class RichTextToolbar extends Composite {
     @UiField
     ButtonGroup group4;
 
-    private com.dianaui.universal.core.client.ui.base.RichTextArea richText;
+    private RichTextArea richText;
 
     /**
      * Creates a new toolbar that drives the given rich text area.
      *
      * @param richText the rich text area to be controlled
      */
-    public RichTextToolbar(final com.dianaui.universal.core.client.ui.base.RichTextArea richText) {
+    public RichTextToolbar(final RichTextArea richText) {
         initWidget(binder.createAndBindUi(this));
 
         richText.addInitializeHandler(new InitializeHandler() {
@@ -234,11 +235,11 @@ public class RichTextToolbar extends Composite {
             } else if (sender == outdentButton) {
                 richText.getFormatter().leftIndent();
             } else if (sender == justifyLeftButton) {
-                richText.getFormatter().setJustification(com.dianaui.universal.core.client.ui.base.RichTextArea.Justification.LEFT);
+                richText.getFormatter().setJustification(RichTextArea.Justification.LEFT);
             } else if (sender == justifyCenterButton) {
-                richText.getFormatter().setJustification(com.dianaui.universal.core.client.ui.base.RichTextArea.Justification.CENTER);
+                richText.getFormatter().setJustification(RichTextArea.Justification.CENTER);
             } else if (sender == justifyRightButton) {
-                richText.getFormatter().setJustification(com.dianaui.universal.core.client.ui.base.RichTextArea.Justification.RIGHT);
+                richText.getFormatter().setJustification(RichTextArea.Justification.RIGHT);
             } else if (sender == imageButton) {
                 String url = Window.prompt("Enter an image URL:", "http://");
                 if (url != null) {

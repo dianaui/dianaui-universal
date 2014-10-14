@@ -29,7 +29,6 @@ import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.*;
 import com.dianaui.universal.core.client.ui.html.Span;
 import com.dianaui.universal.core.client.ui.html.Text;
-import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
@@ -182,9 +181,8 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     public void setIconSize(final IconSize iconSize) {
         this.iconSize = iconSize;
 
-        if (fontAwesomeIcon != null && fontAwesomeIcon.getSize() != iconSize) {
+        if (fontAwesomeIcon != null && fontAwesomeIcon.getSize() != iconSize)
             render();
-        }
     }
 
     @Override
@@ -196,9 +194,8 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     public void setIconFlip(IconFlip iconFlip) {
         this.iconFlip = iconFlip;
 
-        if (fontAwesomeIcon != null && fontAwesomeIcon.getFlip() != iconFlip) {
+        if (fontAwesomeIcon != null && fontAwesomeIcon.getFlip() != iconFlip)
             render();
-        }
     }
 
     @Override
@@ -210,9 +207,8 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     public void setIconRotate(IconRotate iconRotate) {
         this.iconRotate = iconRotate;
 
-        if (fontAwesomeIcon != null && fontAwesomeIcon.getRotate() != iconRotate) {
+        if (fontAwesomeIcon != null && fontAwesomeIcon.getRotate() != iconRotate)
             render();
-        }
     }
 
     @Override
@@ -224,9 +220,8 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     public void setIconBordered(boolean iconBordered) {
         this.iconBordered = iconBordered;
 
-        if (fontAwesomeIcon != null && fontAwesomeIcon.isBorder() != iconBordered) {
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isBorder() != iconBordered)
             render();
-        }
     }
 
     @Override
@@ -238,9 +233,8 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     public void setIconMuted(boolean iconMuted) {
         this.iconMuted = iconMuted;
 
-        if (fontAwesomeIcon != null && fontAwesomeIcon.isMuted() != iconMuted) {
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isMuted() != iconMuted)
             render();
-        }
     }
 
     @Override
@@ -252,9 +246,8 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     public void setIconLight(boolean iconLight) {
         this.iconLight = iconLight;
 
-        if (fontAwesomeIcon != null && fontAwesomeIcon.isLight() != iconLight) {
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isLight() != iconLight)
             render();
-        }
     }
 
     @Override
@@ -266,9 +259,8 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     public void setIconSpin(boolean iconSpin) {
         this.iconSpin = iconSpin;
 
-        if (fontAwesomeIcon != null && fontAwesomeIcon.isSpin() != iconSpin) {
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isSpin() != iconSpin)
             render();
-        }
     }
 
     @Override
@@ -279,9 +271,9 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     @Override
     public void setIconFixedWidth(final boolean iconFixedWidth) {
         this.iconFixedWidth = iconFixedWidth;
-        if (fontAwesomeIcon != null && fontAwesomeIcon.isSpin() != iconSpin) {
+
+        if (fontAwesomeIcon != null && fontAwesomeIcon.isSpin() != iconSpin)
             render();
-        }
     }
 
     public boolean isIconList() {
@@ -290,6 +282,7 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
 
     public void setIconList(final boolean iconList) {
         this.iconList = iconList;
+
         if (fontAwesomeIcon != null &&
                 StyleHelper.containsStyle(fontAwesomeIcon.getStyleName(), Styles.FONT_AWESOME_LI) != iconList) {
             render();
@@ -297,67 +290,59 @@ public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon
     }
 
     private void render() {
-        // We defer to make sure the elements are available to manipulate their positions
-        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
-            public void execute() {
-                if (text != null)
-                    text.removeFromParent();
+        if (text != null)
+            text.removeFromParent();
 
-                if (separator != null)
-                    separator.removeFromParent();
+        if (separator != null)
+            separator.removeFromParent();
 
-                if (fontAwesomeIcon != null)
-                    fontAwesomeIcon.removeFromParent();
+        if (fontAwesomeIcon != null)
+            fontAwesomeIcon.removeFromParent();
 
-                if (glyphicon != null)
-                    glyphicon.removeFromParent();
+        if (glyphicon != null)
+            glyphicon.removeFromParent();
 
-                if (fontAwesomeIcon != null) {
-                    fontAwesomeIcon.setSize(iconSize);
-                    fontAwesomeIcon.setFlip(iconFlip);
-                    fontAwesomeIcon.setRotate(iconRotate);
-                    fontAwesomeIcon.setMuted(iconMuted);
-                    fontAwesomeIcon.setSpin(iconSpin);
-                    fontAwesomeIcon.setBorder(iconBordered);
-                    fontAwesomeIcon.setLight(iconLight);
-                    fontAwesomeIcon.setFixedWidth(iconFixedWidth);
-                    StyleHelper.toggleStyleName(fontAwesomeIcon, iconList, Styles.FONT_AWESOME_LI);
-                }
+        if (fontAwesomeIcon != null) {
+            fontAwesomeIcon.setSize(iconSize);
+            fontAwesomeIcon.setFlip(iconFlip);
+            fontAwesomeIcon.setRotate(iconRotate);
+            fontAwesomeIcon.setMuted(iconMuted);
+            fontAwesomeIcon.setSpin(iconSpin);
+            fontAwesomeIcon.setBorder(iconBordered);
+            fontAwesomeIcon.setLight(iconLight);
+            fontAwesomeIcon.setFixedWidth(iconFixedWidth);
+            StyleHelper.toggleStyleName(fontAwesomeIcon, iconList, Styles.FONT_AWESOME_LI);
+        }
 
-                // Since we are dealing with Icon/Text, we can insert them at the right position
-                // Helps on widgets like ButtonDropDown, where it has a caret added
-                int position = widget.getWidgetCount();
+        // Since we are dealing with Icon/Text, we can insert them at the right position
+        // Helps on widgets like ButtonDropDown, where it has a caret added
+        int position = widget.getWidgetCount();
 
-                if (iconPosition == IconPosition.LEFT && (glyphicon != null || fontAwesomeIcon != null)) {
-                    widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position++);
-                    if (text != null)
-                        widget.insert(separator, position++);
-                }
+        if (iconPosition == IconPosition.LEFT && (glyphicon != null || fontAwesomeIcon != null)) {
+            widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position++);
+            if (text != null)
+                widget.insert(separator, position++);
+        }
 
-                if (text != null)
-                    widget.insert(text, position++);
+        if (text != null)
+            widget.insert(text, position++);
 
-                if (iconPosition == IconPosition.RIGHT && (glyphicon != null || fontAwesomeIcon != null)) {
-                    if (text != null)
-                        widget.insert(separator, position++);
-                    widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position);
-                }
-            }
-        });
+        if (iconPosition == IconPosition.RIGHT && (glyphicon != null || fontAwesomeIcon != null)) {
+            if (text != null)
+                widget.insert(separator, position++);
+            widget.insert(glyphicon != null ? glyphicon : fontAwesomeIcon, position);
+        }
     }
 
     private void removeFontAwesomeIcon() {
         if (fontAwesomeIcon != null)
             fontAwesomeIcon.removeFromParent();
-
         fontAwesomeIcon = null;
     }
 
     private void removeGlyphicon() {
         if (glyphicon != null)
             glyphicon.removeFromParent();
-
         glyphicon = null;
     }
 

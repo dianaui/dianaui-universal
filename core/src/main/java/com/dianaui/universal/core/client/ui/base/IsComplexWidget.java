@@ -1,5 +1,3 @@
-package com.dianaui.universal.core.client.ui.base;
-
 /*
  * #%L
  * Diana UI Core
@@ -19,16 +17,23 @@ package com.dianaui.universal.core.client.ui.base;
  * limitations under the License.
  * #L%
  */
+package com.dianaui.universal.core.client.ui.base;
 
-import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.IndexedPanel;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public interface IsComplexWidget extends IsWidget, HasWidgets.ForIsWidget, IndexedPanel {
+public interface IsComplexWidget extends IsWidget, IndexedPanel.ForIsWidget, HasId, HasResponsiveness, HasPull {
+
+    public void add(Widget widget);
 
     public void insert(Widget child, int beforeIndex);
+
+    boolean remove(Widget widget);
+
+    void clear();
 
 }

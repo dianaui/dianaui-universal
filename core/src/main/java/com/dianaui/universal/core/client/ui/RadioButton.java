@@ -259,12 +259,10 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
         iconButton.insert(child, beforeIndex);
     }
 
-    @Override
     public void add(final IsWidget child) {
         iconButton.add(child);
     }
 
-    @Override
     public boolean remove(final IsWidget isWidget) {
         return iconButton.remove(isWidget);
     }
@@ -279,7 +277,6 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
         iconButton.clear();
     }
 
-    @Override
     public Iterator<Widget> iterator() {
         return iconButton.iterator();
     }
@@ -302,6 +299,11 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
     @Override
     public int getWidgetIndex(final Widget widget) {
         return iconButton.getWidgetIndex(widget);
+    }
+
+    @Override
+    public int getWidgetIndex(final IsWidget isWidget) {
+        return iconButton.getWidgetIndex(isWidget);
     }
 
     @Override

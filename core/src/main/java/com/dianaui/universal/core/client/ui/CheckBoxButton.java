@@ -232,12 +232,10 @@ public class CheckBoxButton extends CheckBox implements HasType<ButtonType>, Has
         iconButton.insert(child, beforeIndex);
     }
 
-    @Override
     public void add(final IsWidget child) {
         iconButton.add(child);
     }
 
-    @Override
     public boolean remove(final IsWidget isWidget) {
         return iconButton.remove(isWidget);
     }
@@ -252,7 +250,6 @@ public class CheckBoxButton extends CheckBox implements HasType<ButtonType>, Has
         iconButton.clear();
     }
 
-    @Override
     public Iterator<Widget> iterator() {
         return iconButton.iterator();
     }
@@ -275,6 +272,11 @@ public class CheckBoxButton extends CheckBox implements HasType<ButtonType>, Has
     @Override
     public int getWidgetIndex(final Widget widget) {
         return iconButton.getWidgetIndex(widget);
+    }
+
+    @Override
+    public int getWidgetIndex(final IsWidget isWidget) {
+        return iconButton.getWidgetIndex(isWidget);
     }
 
     @Override

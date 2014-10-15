@@ -20,9 +20,7 @@
 package com.dianaui.universal.core.client.ui.gwt;
 
 import com.dianaui.universal.core.client.ui.base.HasFormValue;
-import com.dianaui.universal.core.client.ui.base.HasId;
-import com.dianaui.universal.core.client.ui.base.HasPull;
-import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
+import com.dianaui.universal.core.client.ui.base.IsWidget;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.EnabledMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
@@ -36,10 +34,10 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * A simple checkbox widget, with no label.
+ *
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox implements HasResponsiveness, HasId,
-        HasPull, HasFormValue {
+public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox implements IsWidget, HasFormValue {
 
     /**
      * Creates a new simple checkbox.

@@ -36,8 +36,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class ComplexWidget extends ComplexPanel implements HasId, HasResponsiveness, HasInlineStyle, HasPull,
-        HasCenterBlock, IsComplexWidget {
+public class ComplexWidget extends ComplexPanel implements HasInlineStyle, HasCenterBlock, IsComplexWidget {
 
     /**
      * {@inheritDoc}

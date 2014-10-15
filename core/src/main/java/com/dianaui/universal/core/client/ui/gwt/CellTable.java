@@ -32,6 +32,7 @@ import com.google.gwt.view.client.ProvidesKey;
  * @author Joshua Godi
  */
 public class CellTable<T> extends com.google.gwt.user.cellview.client.CellTable<T> implements HasResponsiveness {
+
     private static final int DEFAULT_PAGESIZE = 15;
     private static Resources DEFAULT_RESOURCES;
 

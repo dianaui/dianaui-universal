@@ -20,9 +20,7 @@
 package com.dianaui.universal.core.client.ui.gwt;
 
 import com.dianaui.universal.core.client.ui.base.HasFormValue;
-import com.dianaui.universal.core.client.ui.base.HasId;
-import com.dianaui.universal.core.client.ui.base.HasPull;
-import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
+import com.dianaui.universal.core.client.ui.base.IsWidget;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.EnabledMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
@@ -40,10 +38,11 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * A simple radio button widget, with no label.
+ *
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadioButton implements HasResponsiveness,
-        HasId, HasPull, HasFormValue {
+public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadioButton implements IsWidget,
+        HasFormValue {
 
     private Boolean oldValue;
 

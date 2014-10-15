@@ -19,9 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui.gwt;
 
-import com.dianaui.universal.core.client.ui.base.HasId;
-import com.dianaui.universal.core.client.ui.base.HasPull;
-import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
+import com.dianaui.universal.core.client.ui.base.IsWidget;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.PullMixin;
@@ -33,8 +31,7 @@ import com.google.gwt.dom.client.Element;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWidget implements HasResponsiveness,
-        HasId, HasPull {
+public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWidget implements IsWidget {
 
     public FocusWidget(Element elem) {
         super(elem);

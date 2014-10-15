@@ -32,6 +32,7 @@ import com.google.gwt.view.client.ProvidesKey;
  * @author Joshua Godi
  */
 public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T> implements HasResponsiveness {
+
     private static final int DEFAULT_PAGESIZE = 50;
     private static Resources DEFAULT_RESOURCES;
 

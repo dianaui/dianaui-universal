@@ -387,6 +387,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
             setStyleName(Styles.DATEPICKER_DAYS);
         }
 
+        @SuppressWarnings("deprecation")
         public void setDate(Date date) {
             this.date = date;
 
@@ -495,6 +496,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
             }
         }
 
+        @SuppressWarnings("deprecation")
         private Date toStartDate(Date date) {
             CalendarUtil.setToFirstDayOfMonth(date);
             CalendarUtil.addDaysToDate(date, -(date.getDay() - CalendarUtil.getStartingDayOfWeek()));
@@ -510,6 +512,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         public void setDate(Date date) {
             this.date = date;
 
@@ -539,6 +542,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         protected void onPrevClicked() {
             date.setYear(date.getYear() - 1);
             setDate(date);
@@ -558,12 +562,14 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         protected void onNextClicked() {
             date.setYear(date.getYear() + 1);
             setDate(date);
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         protected void onItemClicked(Element target) {
             for (int i = 0; i < target.getParentElement().getChildCount(); i++) {
                 if (target.getParentElement().getChild(i).equals(target)) {
@@ -587,6 +593,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         public void setDate(Date date) {
             this.date = date;
 
@@ -631,6 +638,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         protected void onPrevClicked() {
             date.setYear(date.getYear() - 10);
             setDate(date);
@@ -642,12 +650,14 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         protected void onNextClicked() {
             date.setYear(date.getYear() + 10);
             setDate(date);
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         protected void onItemClicked(Element target) {
             for (int i = 0; i < target.getParentElement().getChildCount(); i++) {
                 if (target.getParentElement().getChild(i).equals(target)) {
@@ -677,6 +687,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         public void setDate(Date date) {
             this.date = date;
 
@@ -763,26 +774,31 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
             }
         }
 
+        @SuppressWarnings("deprecation")
         private void onDecrementMinutesClicked() {
             date.setMinutes(date.getMinutes() - 1);
             updateValue();
         }
 
+        @SuppressWarnings("deprecation")
         private void onDecrementHoursClicked() {
             date.setHours(date.getHours() - 1);
             updateValue();
         }
 
+        @SuppressWarnings("deprecation")
         private void onIncrementMinutesClicked() {
             date.setMinutes(date.getMinutes() + 1);
             updateValue();
         }
 
+        @SuppressWarnings("deprecation")
         private void onIncrementHoursClicked() {
             date.setHours(date.getHours() + 1);
             updateValue();
         }
 
+        @SuppressWarnings("deprecation")
         private void onTogglePeriodClicked() {
             if (date.getHours() > 11) {
                 date.setHours(date.getHours() - 12);
@@ -834,6 +850,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         public void setDate(Date date) {
             this.date = date;
 
@@ -878,6 +895,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
             }
         }
 
+        @SuppressWarnings("deprecation")
         private void onItemClicked(Element target) {
             Element tbody = target.getParentElement().getParentElement();
 
@@ -914,6 +932,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         public void setDate(Date date) {
             this.date = date;
 
@@ -958,6 +977,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
             }
         }
 
+        @SuppressWarnings("deprecation")
         private void onItemClicked(Element target) {
             Element tbody = target.getParentElement().getParentElement();
 

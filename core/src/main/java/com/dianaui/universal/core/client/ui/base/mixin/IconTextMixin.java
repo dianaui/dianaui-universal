@@ -21,10 +21,7 @@ package com.dianaui.universal.core.client.ui.base.mixin;
 
 import com.dianaui.universal.core.client.ui.FontAwesomeIcon;
 import com.dianaui.universal.core.client.ui.Glyphicon;
-import com.dianaui.universal.core.client.ui.base.ComplexWidget;
-import com.dianaui.universal.core.client.ui.base.HasGlyphicon;
-import com.dianaui.universal.core.client.ui.base.HasIcon;
-import com.dianaui.universal.core.client.ui.base.HasIconPosition;
+import com.dianaui.universal.core.client.ui.base.*;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.*;
 import com.dianaui.universal.core.client.ui.html.Span;
@@ -39,7 +36,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class IconTextMixin<T extends ComplexWidget & HasText & HasHTML & HasIcon & HasIconPosition> implements HasText,
+public class IconTextMixin<T extends IsComplexWidget & HasText & HasHTML & HasIcon & HasIconPosition> implements HasText,
         HasHTML, HasIcon, HasGlyphicon, HasIconPosition {
 
     private final T widget;

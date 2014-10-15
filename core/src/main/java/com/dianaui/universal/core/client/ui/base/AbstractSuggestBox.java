@@ -26,6 +26,7 @@ import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.logical.shared.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.IsWidget;
 
 import java.util.Collection;
 
@@ -391,6 +392,7 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
          *                            automatically
          * @param callback            the callback used when the user makes a suggestion
          */
+        @SuppressWarnings("rawtypes")
         protected abstract void showSuggestions(AbstractSuggestBox suggestBox,
                                                 Collection<? extends SuggestOracle.Suggestion> suggestions,
                                                 boolean isDisplayStringHTML, boolean isAutoSelectEnabled,
@@ -476,6 +478,7 @@ public abstract class AbstractSuggestBox<T> extends Composite implements LeafVal
         }
 
         @Override
+        @SuppressWarnings("rawtypes")
         public void showSuggestions(final AbstractSuggestBox suggestBox,
                                     Collection<? extends SuggestOracle.Suggestion> suggestions,
                                     boolean isDisplayStringHTML, boolean isAutoSelectEnabled,

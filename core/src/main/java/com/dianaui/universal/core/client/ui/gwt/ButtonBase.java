@@ -19,9 +19,7 @@
  */
 package com.dianaui.universal.core.client.ui.gwt;
 
-import com.dianaui.universal.core.client.ui.base.HasId;
-import com.dianaui.universal.core.client.ui.base.HasPull;
-import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
+import com.dianaui.universal.core.client.ui.base.IsWidget;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.EnabledMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
@@ -33,8 +31,7 @@ import com.google.gwt.dom.client.Element;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public abstract class ButtonBase extends com.google.gwt.user.client.ui.ButtonBase implements HasResponsiveness, HasId,
-        HasPull {
+public abstract class ButtonBase extends com.google.gwt.user.client.ui.ButtonBase implements IsWidget {
 
     protected ButtonBase(Element elem) {
         super(elem);

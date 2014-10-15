@@ -264,7 +264,8 @@ public class Radio extends CheckBox {
         // initiated by label events
         if (isOrWasAttached()) {
             Event.sinkEvents(inputElem, eventBitsToAdd | Event.getEventsSunk(inputElem));
-            Event.sinkEvents(labelElem, eventBitsToAdd | Event.getEventsSunk(labelElem));
+            if (labelElem != null)
+                Event.sinkEvents(labelElem, eventBitsToAdd | Event.getEventsSunk(labelElem));
         } else {
             super.sinkEvents(eventBitsToAdd);
         }

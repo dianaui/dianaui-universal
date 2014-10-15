@@ -19,14 +19,14 @@
  */
 package com.dianaui.universal.core.client.ui;
 
-import com.dianaui.universal.core.client.ui.base.HasSize;
-import com.dianaui.universal.core.client.ui.base.HasType;
+import com.dianaui.universal.core.client.ui.base.*;
+import com.dianaui.universal.core.client.ui.base.button.AbstractIconButton;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.ActiveMixin;
-import com.dianaui.universal.core.client.ui.constants.ButtonSize;
-import com.dianaui.universal.core.client.ui.constants.ButtonType;
-import com.dianaui.universal.core.client.ui.constants.Styles;
+import com.dianaui.universal.core.client.ui.base.mixin.ToggleMixin;
+import com.dianaui.universal.core.client.ui.constants.*;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.i18n.client.HasDirection.Direction;
@@ -35,7 +35,10 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.ui.DirectionalTextHelper;
+import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.user.client.ui.Widget;
+
+import java.util.Iterator;
 
 /**
  * Button representing a radio button used within a {@link ButtonGroup} that has
@@ -45,7 +48,15 @@ import com.google.gwt.user.client.ui.DirectionalTextHelper;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<ButtonSize> {
+public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<ButtonSize>, IsComplexWidget, HasIcon,
+        HasIconPosition, HasToggle {
+
+    private final AbstractIconButton iconButton = new AbstractIconButton() {
+        @Override
+        protected Element createElement() {
+            return RadioButton.this.getElement();
+        }
+    };
 
     /**
      * Creates a new radio associated with a particular group, and initialized
@@ -160,18 +171,14 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
     }
 
     protected RadioButton(final InputElement elem) {
-        super(DOM.createLabel());
+        super(DOM.createDiv());
 
         setStyleName(Styles.BTN);
         setType(ButtonType.DEFAULT);
 
         inputElem = elem;
-        labelElem = Document.get().createSpanElement();
 
         getElement().appendChild(inputElem);
-        getElement().appendChild(labelElem);
-
-        directionalTextHelper = new DirectionalTextHelper(labelElem, true);
 
         // Accessibility: setting tab index to be 0 by default, ensuring element
         // appears in tab sequence. FocusWidget's setElement method already
@@ -179,6 +186,21 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
         // that this call is made, inputElem has not been created. So, we have
         // to call setTabIndex again, once inputElem has been created.
         setTabIndex(0);
+
+        sinkEvents(Event.ONCLICK);
+    }
+
+    @Override
+    public void sinkEvents(int eventBitsToAdd) {
+        // Like CheckBox, we want to hear about inputElem. We
+        // also want to know what's going on with the label, to
+        // make sure onBrowserEvent is able to record value changes
+        // initiated by label events
+        if (isOrWasAttached()) {
+            Event.sinkEvents(getElement(), eventBitsToAdd | Event.getEventsSunk(getElement()));
+        }
+
+        super.sinkEvents(eventBitsToAdd);
     }
 
     @Override
@@ -212,15 +234,269 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
     public void onBrowserEvent(Event event) {
         boolean oldValue = getValue();
 
-        super.onBrowserEvent(event);
-
         switch (DOM.eventGetType(event)) {
             case Event.ONCLICK:
                 setValue(!getValue(), false);
 
+                if (getParent() != null && getParent() instanceof ButtonGroup) {
+                    ButtonGroup group = (ButtonGroup) getParent();
+                    for (int i = 0; i < ((ButtonGroup) getParent()).getWidgetCount(); i++) {
+                        if (group.getWidget(i) instanceof RadioButton && group.getWidget(i) != this) {
+                            ActiveMixin.setActive(group.getWidget(i), false);
+                        }
+                    }
+                }
                 ValueChangeEvent.fireIfNotEqual(RadioButton.this, oldValue, getValue());
                 break;
+            default:
+                super.onBrowserEvent(event);
+                break;
         }
+    }
+
+    @Override
+    public void insert(final Widget child, final int beforeIndex) {
+        iconButton.insert(child, beforeIndex);
+    }
+
+    @Override
+    public void add(final IsWidget child) {
+        iconButton.add(child);
+    }
+
+    @Override
+    public boolean remove(final IsWidget isWidget) {
+        return iconButton.remove(isWidget);
+    }
+
+    @Override
+    public void add(final Widget widget) {
+        iconButton.add(widget);
+    }
+
+    @Override
+    public void clear() {
+        iconButton.clear();
+    }
+
+    @Override
+    public Iterator<Widget> iterator() {
+        return iconButton.iterator();
+    }
+
+    @Override
+    public boolean remove(final Widget widget) {
+        return iconButton.remove(widget);
+    }
+
+    @Override
+    public Widget getWidget(int i) {
+        return iconButton.getWidget(i);
+    }
+
+    @Override
+    public int getWidgetCount() {
+        return iconButton.getWidgetCount();
+    }
+
+    @Override
+    public int getWidgetIndex(final Widget widget) {
+        return iconButton.getWidgetIndex(widget);
+    }
+
+    @Override
+    public boolean remove(int i) {
+        return iconButton.remove(i);
+    }
+
+    @Override
+    public IconType getFontAwesomeIcon() {
+        return iconButton.getFontAwesomeIcon();
+    }
+
+    @Override
+    public void setFontAwesomeIcon(final IconType iconType) {
+        iconButton.setFontAwesomeIcon(iconType);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public String getText() {
+        return iconButton.getText();
+    }
+
+    @Override
+    public void setText(final String text) {
+        iconButton.setText(text);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public String getHTML() {
+        return iconButton.getHTML();
+    }
+
+    @Override
+    public void setHTML(final String html) {
+        iconButton.setHTML(html);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    // TODO
+    public void setHTML(final SafeHtml html, final Direction dir) {
+        setHTML(html);
+    }
+
+    @Override
+    // TODO
+    public void setText(final String text, final Direction dir) {
+        setText(text);
+    }
+
+    @Override
+    public void clearIcon() {
+        iconButton.clearIcon();
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public IconSize getIconSize() {
+        return iconButton.getIconSize();
+    }
+
+    @Override
+    public void setIconSize(final IconSize iconSize) {
+        iconButton.setIconSize(iconSize);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public IconFlip getIconFlip() {
+        return iconButton.getIconFlip();
+    }
+
+    @Override
+    public void setIconFlip(final IconFlip iconFlip) {
+        iconButton.setIconFlip(iconFlip);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public IconRotate getIconRotate() {
+        return iconButton.getIconRotate();
+    }
+
+    @Override
+    public void setIconRotate(final IconRotate iconRotate) {
+        iconButton.setIconRotate(iconRotate);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public boolean isIconBordered() {
+        return iconButton.isIconBordered();
+    }
+
+    @Override
+    public void setIconBordered(final boolean iconBordered) {
+        iconButton.setIconBordered(iconBordered);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public boolean isIconMuted() {
+        return iconButton.isIconMuted();
+    }
+
+    @Override
+    public void setIconMuted(final boolean iconMuted) {
+        iconButton.setIconMuted(iconMuted);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public boolean isIconLight() {
+        return iconButton.isIconLight();
+    }
+
+    @Override
+    public void setIconLight(final boolean iconLight) {
+        iconButton.setIconLight(iconLight);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public boolean isIconSpin() {
+        return iconButton.isIconSpin();
+    }
+
+    @Override
+    public void setIconSpin(final boolean iconSpin) {
+        iconButton.setIconSpin(iconSpin);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public boolean isIconFixedWidth() {
+        return iconButton.isIconFixedWidth();
+    }
+
+    @Override
+    public void setIconFixedWidth(final boolean iconFixedWidth) {
+        iconButton.setIconFixedWidth(iconFixedWidth);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public GlyphiconType getGlyphicon() {
+        return iconButton.getGlyphicon();
+    }
+
+    @Override
+    public void setGlyphicon(final GlyphiconType iconType) {
+        iconButton.setGlyphicon(iconType);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public IconPosition getIconPosition() {
+        return iconButton.getIconPosition();
+    }
+
+    @Override
+    public void setIconPosition(final IconPosition iconPosition) {
+        iconButton.setIconPosition(iconPosition);
+
+        fixInputElementPosition();
+    }
+
+    @Override
+    public Toggle getToggle() {
+        return ToggleMixin.getToggle(this);
+    }
+
+    @Override
+    public void setToggle(final Toggle toggle) {
+        ToggleMixin.setToggle(this, toggle);
+    }
+
+    private void fixInputElementPosition() {
+        if (getElement().getChild(0) != inputElem)
+            getElement().insertFirst(inputElem);
     }
 
 }

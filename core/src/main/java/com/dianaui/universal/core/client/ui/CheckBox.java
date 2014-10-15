@@ -57,7 +57,7 @@ import com.google.gwt.user.client.ui.*;
  * @see Radio
  */
 public class CheckBox extends ButtonBase implements HasName, HasValue<Boolean>, HasWordWrap, HasDirectionalSafeHtml,
-        HasDirectionEstimator, IsEditor<LeafValueEditor<Boolean>>, HasFormValue {
+        HasDirectionEstimator, IsEditor<LeafValueEditor<Boolean>>, HasFormValue, HasHTML {
 
     protected DirectionalTextHelper directionalTextHelper;
     protected InputElement inputElem;

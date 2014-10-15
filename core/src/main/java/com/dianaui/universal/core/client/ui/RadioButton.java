@@ -242,7 +242,7 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
                     ButtonGroup group = (ButtonGroup) getParent();
                     for (int i = 0; i < ((ButtonGroup) getParent()).getWidgetCount(); i++) {
                         if (group.getWidget(i) instanceof RadioButton && group.getWidget(i) != this) {
-                            ActiveMixin.setActive(group.getWidget(i), false);
+                            ((RadioButton) group.getWidget(i)).setValue(false, false);
                         }
                     }
                 }

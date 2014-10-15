@@ -230,10 +230,10 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
                         }
                     }
                 }
-            default:
-                super.onBrowserEvent(event);
                 break;
         }
+
+        super.onBrowserEvent(event);
     }
 
     protected abstract Element createElement();

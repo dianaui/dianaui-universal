@@ -28,6 +28,8 @@ import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.HasHTML;
@@ -62,6 +64,8 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     public Anchor(final String href) {
         setElement(Document.get().createAnchorElement());
         setHref(href);
+
+        sinkEvents(Event.ONCLICK);
     }
 
     /**
@@ -473,6 +477,18 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
             if (getParent() instanceof Alert) {
                 addStyleName(Styles.ALERT_LINK);
             }
+        }
+    }
+
+    public void onBrowserEvent(Event event) {
+        super.onBrowserEvent(event);
+
+        switch (DOM.eventGetType(event)) {
+            case Event.ONCLICK:
+                if (getToggle() == Toggle.DROPDOWN && getParent() instanceof DropDown) {
+                    ((DropDown) getParent()).toggle();
+                }
+                break;
         }
     }
 

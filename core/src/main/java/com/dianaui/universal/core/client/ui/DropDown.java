@@ -20,6 +20,7 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.AbstractDropDown;
+import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
 
@@ -44,6 +45,26 @@ public class DropDown extends AbstractDropDown {
     public DropDown() {
         super(Document.get().createDivElement());
         setStyleName(Styles.DROPDOWN);
+    }
+
+    public void toggle() {
+        if (isOpen()) {
+            hide();
+        } else {
+            show();
+        }
+    }
+
+    public void show() {
+        addStyleName(Styles.OPEN);
+    }
+
+    public void hide() {
+        removeStyleName(Styles.OPEN);
+    }
+
+    public boolean isOpen() {
+        return StyleHelper.containsStyle(getStyleName(), Styles.OPEN);
     }
 
 }

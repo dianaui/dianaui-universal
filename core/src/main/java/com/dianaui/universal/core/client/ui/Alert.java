@@ -19,6 +19,10 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.event.HiddenEvent;
+import com.dianaui.universal.core.client.event.HideEvent;
+import com.dianaui.universal.core.client.event.ShowEvent;
+import com.dianaui.universal.core.client.event.ShownEvent;
 import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
 import com.dianaui.universal.core.client.ui.base.HasType;
 import com.dianaui.universal.core.client.ui.base.button.CloseButton;
@@ -29,6 +33,7 @@ import com.dianaui.universal.core.client.ui.html.Div;
 import com.dianaui.universal.core.client.ui.html.Text;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 
@@ -42,16 +47,18 @@ import com.google.gwt.user.client.ui.HasWidgets;
  */
 public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType>, HasResponsiveness {
 
-    private static final String CLOSE = "close";
+    protected static int DEFAULT_TRANSITION_MS = 150;
+    protected int transitionMs = DEFAULT_TRANSITION_MS;
 
     private final Text text = new Text();
-    private final CloseButton closeButton = new CloseButton();
+    protected CloseButton closeButton;
 
     /**
      * Builds a default alert
      */
     public Alert() {
         setStyleName(Styles.ALERT);
+        addStyleName(Styles.IN);
         setType(AlertType.WARNING);
     }
 
@@ -118,7 +125,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
     }
 
     public boolean isDismissable() {
-        return closeButton.getParent() != null;
+        return closeButton != null;
     }
 
     /**
@@ -128,11 +135,70 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      */
     public void setDismissable(final boolean dismissable) {
         if (dismissable) {
+            closeButton = new CloseButton();
             insert(closeButton, (Element) getElement(), 0, true);
             addStyleName(Styles.ALERT_DISMISSABLE);
         } else {
             closeButton.removeFromParent();
+            closeButton = null;
             removeStyleName(Styles.ALERT_DISMISSABLE);
+        }
+    }
+
+    /**
+     * If set Alert will fade in/out.
+     *
+     * @param fade If {@code true} alert will fade in/out
+     */
+    public void setFade(final boolean fade) {
+        if (fade) {
+            addStyleName(Styles.FADE);
+            transitionMs = DEFAULT_TRANSITION_MS;
+        } else {
+            removeStyleName(Styles.FADE);
+            transitionMs = 0;
+        }
+    }
+
+    public void show() {
+        if (!isViewing()) {
+            fireEvent(new ShowEvent());
+
+            addStyleName(Styles.IN);
+
+            new Timer() {
+                @Override
+                public void run() {
+                    Alert.this.fireEvent(new ShownEvent());
+                }
+            }.schedule(transitionMs);
+        }
+    }
+
+    public void hide() {
+        if (isViewing()) {
+            fireEvent(new HideEvent());
+
+            removeStyleName(Styles.IN);
+
+            new Timer() {
+                @Override
+                public void run() {
+                    Alert.this.fireEvent(new HiddenEvent());
+                }
+            }.schedule(transitionMs);
+        }
+    }
+
+    public boolean isViewing() {
+        return isAttached() && StyleHelper.containsStyle(getStyleName(), Styles.IN);
+    }
+
+    public void toggle() {
+        if (isViewing()) {
+            hide();
+        } else {
+            show();
         }
     }
 
@@ -140,8 +206,14 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      * Closes alert.
      */
     public void close() {
-        // TODO
-        // alert(getElement(), CLOSE);
+        hide();
+
+        new Timer() {
+            @Override
+            public void run() {
+                removeFromParent();
+            }
+        }.schedule(transitionMs);
     }
 
 }

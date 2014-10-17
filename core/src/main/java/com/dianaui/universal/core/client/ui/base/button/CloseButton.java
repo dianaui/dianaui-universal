@@ -19,14 +19,18 @@
  */
 package com.dianaui.universal.core.client.ui.base.button;
 
+import com.dianaui.universal.core.client.ui.Alert;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Event;
 
 /**
  * Button that represents a close ("x") icon, usually used within an {@link com.dianaui.universal.core.client.ui.Alert}.
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see com.dianaui.universal.core.client.ui.Alert
  */
 public class CloseButton extends AbstractButton {
@@ -34,6 +38,19 @@ public class CloseButton extends AbstractButton {
     public CloseButton() {
         setStyleName(Styles.CLOSE);
         getElement().setInnerHTML("&times;");
+
+        sinkEvents(Event.ONCLICK);
+    }
+
+    @Override
+    public void onBrowserEvent(Event event) {
+        switch (DOM.eventGetType(event)) {
+            case Event.ONCLICK:
+                if (getParent() instanceof Alert) {
+                    ((Alert) getParent()).close();
+                }
+                break;
+        }
     }
 
     @Override

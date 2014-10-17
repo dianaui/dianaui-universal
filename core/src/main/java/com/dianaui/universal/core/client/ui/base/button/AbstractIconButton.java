@@ -101,10 +101,9 @@ public abstract class AbstractIconButton extends AbstractButton implements HasHT
         onChanged();
     }
 
-    // TODO
     @Override
     public void clearIcon() {
-        iconTextMixin.setFontAwesomeIcon(null);
+        iconTextMixin.clearIcon();
 
         onChanged();
     }

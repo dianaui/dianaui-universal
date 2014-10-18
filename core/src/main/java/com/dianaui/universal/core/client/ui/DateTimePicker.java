@@ -39,6 +39,7 @@ import com.google.gwt.user.datepicker.client.CalendarUtil;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
@@ -67,6 +68,8 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
     private Time time;
     private Hours hours;
     private Minutes minutes;
+    private List<Date> disabledDates;
+    private List<Date> enabledDates;
 
     public DateTimePicker() {
         setFade(false);
@@ -87,7 +90,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         return dayOfWeekFormat;
     }
 
-    public void setDayOfWeekFormat(DayOfWeekFormat format) {
+    public void setDayOfWeekFormat(final DayOfWeekFormat format) {
         this.dayOfWeekFormat = format;
 
         calendarModel.setDayOfWeekFormat(format.getFormat());
@@ -99,7 +102,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         return hourFormat;
     }
 
-    public void setHourFormat(HourFormat format) {
+    public void setHourFormat(final HourFormat format) {
         this.hourFormat = format;
 
         calendarModel.setHourFormat(format.getFormat());
@@ -111,7 +114,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         return dateEnabled;
     }
 
-    public void setDateEnabled(boolean enabled) {
+    public void setDateEnabled(final boolean enabled) {
         if (!timeEnabled && !enabled) {
             throw new RuntimeException("Can not disable date when time disabled");
         }
@@ -124,7 +127,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         return timeEnabled;
     }
 
-    public void setTimeEnabled(boolean enabled) {
+    public void setTimeEnabled(final boolean enabled) {
         if (!dateEnabled && !enabled) {
             throw new RuntimeException("Can not disable time when date disabled");
         }
@@ -137,8 +140,48 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         return autoClose;
     }
 
-    public void setAutoClose(boolean enabled) {
+    public void setAutoClose(final boolean enabled) {
         this.autoClose = enabled;
+    }
+
+    /*
+     An list of dates that cannot be selected
+     */
+    public List<Date> getDisabledDates() {
+        return disabledDates;
+    }
+
+    public void setDisabledDates(final List<Date> dates) {
+        this.disabledDates = dates;
+
+        if (dates != null) {
+            for (Date date : dates) {
+                CalendarUtil.resetTime(date);
+            }
+        }
+
+        checkForRedraw();
+    }
+
+    /*
+     An list of dates that can be selected
+     */
+    public List<Date> getEnabledDates() {
+        return enabledDates;
+    }
+
+    public void setEnabledDates(final List<Date> dates) {
+        this.enabledDates = dates;
+
+        if (dates != null) {
+            for (Date date : dates) {
+                CalendarUtil.resetTime(date);
+            }
+
+            disabledDates = null;
+        }
+
+        checkForRedraw();
     }
 
     @Override
@@ -242,13 +285,13 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         dateContainer.add(days);
     }
 
-    public void setPosition(int left, int top) {
+    public void setPosition(final int left, final int top) {
         container.getElement().getStyle().setLeft(left, Style.Unit.PX);
         container.getElement().getStyle().setTop(top, Style.Unit.PX);
     }
 
     @Override
-    public void setVisible(boolean visible) {
+    public void setVisible(final boolean visible) {
         Style style = container.getElement().getStyle();
 
         if (visible) {
@@ -273,14 +316,14 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
     }
 
     @Override
-    public void setValue(Date value) {
+    public void setValue(final Date value) {
         if (value != null) {
             this.value = value;
         }
     }
 
     @Override
-    public void setValue(Date value, boolean fireEvents) {
+    public void setValue(final Date value, final boolean fireEvents) {
         setValue(value);
 
         if (fireEvents) {
@@ -289,7 +332,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
     }
 
     @Override
-    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Date> handler) {
+    public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Date> handler) {
         return addHandler(handler, ValueChangeEvent.getType());
     }
 
@@ -315,7 +358,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
      * @param element base element
      * @return node
      */
-    public final native Node removeAllChildren(Element element) /*-{
+    public final native Node removeAllChildren(final Element element) /*-{
         while (element.lastChild) {
             element.removeChild(element.lastChild);
         }
@@ -413,6 +456,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
             // generate content
             html += TBODY_START;
             Date startDate = toStartDate(CalendarUtil.copyDate(date));
+            CalendarUtil.resetTime(startDate);
 
             for (int row = 1; row <= CalendarModel.WEEKS_IN_MONTH; row++) {
                 html += "<tr>";
@@ -427,6 +471,16 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
 
                     if (CalendarUtil.isSameDate(startDate, value)) {
                         postfix += " active";
+                    }
+
+                    if (enabledDates != null) {
+                        if (!enabledDates.contains(startDate)) {
+                            postfix += " disabled";
+                        }
+                    } else if (disabledDates != null) {
+                        if (disabledDates.contains(startDate)) {
+                            postfix += " disabled";
+                        }
                     }
 
                     html += "<td class=\"day" + postfix + "\">" + calendarModel.formatDayOfMonth(startDate) + "</td>";
@@ -470,6 +524,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         protected void onItemClicked(Element target) {
             Element tbody = target.getParentElement().getParentElement();
 
@@ -483,6 +538,11 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
 
                         CalendarUtil.addDaysToDate(startDate, plus);
 
+                        if (value != null) {
+                            startDate.setHours(value.getHours());
+                            startDate.setMinutes(value.getMinutes());
+                            startDate.setSeconds(value.getSeconds());
+                        }
                         setValue(startDate, true);
 
                         // refresh view

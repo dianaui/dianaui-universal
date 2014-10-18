@@ -65,23 +65,30 @@ public class DateTimeBox extends ValueBoxBase<Date> {
             public void onShown(ShownEvent event) {
                 int left = getAbsoluteLeft();
                 int top = getAbsoluteTop();
+                boolean showOnTop = false;
 
-                if (position == PopupPosition.BOTTOM_LEFT) {
-                    top += getOffsetHeight();
-                } else if (position == PopupPosition.BOTTOM_CENTER) {
-                    top += getOffsetHeight();
+                if (position == PopupPosition.BOTTOM_CENTER) {
                     left += (getOffsetWidth() - picker.getOffsetWidth()) / 2;
                 } else if (position == PopupPosition.BOTTOM_RIGHT) {
-                    top += getOffsetHeight();
                     left += (getOffsetWidth() - picker.getOffsetWidth());
                 } else if (position == PopupPosition.TOP_LEFT) {
-                    top -= picker.getOffsetHeight();
+                    showOnTop = true;
                 } else if (position == PopupPosition.TOP_CENTER) {
-                    top -= picker.getOffsetHeight();
+                    showOnTop = true;
                     left += (getOffsetWidth() - picker.getOffsetWidth()) / 2;
                 } else if (position == PopupPosition.TOP_RIGHT) {
-                    top -= picker.getOffsetHeight();
+                    showOnTop = true;
                     left += (getOffsetWidth() - picker.getOffsetWidth());
+                }
+
+                if (showOnTop) {
+                    picker.getWidget(0).addStyleName(Styles.TOP);
+                    picker.getWidget(0).removeStyleName(Styles.BOTTOM);
+                    top -= picker.getOffsetHeight();
+                } else {
+                    picker.getWidget(0).addStyleName(Styles.BOTTOM);
+                    picker.getWidget(0).removeStyleName(Styles.TOP);
+                    top += getOffsetHeight();
                 }
 
                 picker.setPosition(left, top);

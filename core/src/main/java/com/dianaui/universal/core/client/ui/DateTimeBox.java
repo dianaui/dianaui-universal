@@ -38,17 +38,17 @@ import java.util.Date;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class DateBox extends ValueBoxBase<Date> {
+public class DateTimeBox extends ValueBoxBase<Date> {
 
     private static DateTimeFormat format = DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_MEDIUM);
     private DateTimePicker picker = new DateTimePicker();
-    private PopupPosition position = PopupPosition.BOTTOM_CENTER;
+    private PopupPosition position = PopupPosition.BOTTOM_LEFT;
 
-    public DateBox() {
+    public DateTimeBox() {
         this(format);
     }
 
-    public DateBox(DateTimeFormat format) {
+    public DateTimeBox(DateTimeFormat format) {
         super(Document.get().createTextInputElement(),
                 new DateTimeFormatRenderer(format), new DateTimeFormatParser(format));
         addStyleName(Styles.FORM_CONTROL);
@@ -105,7 +105,7 @@ public class DateBox extends ValueBoxBase<Date> {
         });
     }
 
-    public DateBox(String format) {
+    public DateTimeBox(String format) {
         this(DateTimeFormat.getFormat(format));
     }
 

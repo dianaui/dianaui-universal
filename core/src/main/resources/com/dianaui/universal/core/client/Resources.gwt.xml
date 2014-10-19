@@ -24,5 +24,6 @@
     <stylesheet src="css/bootstrap.min.css"/>
     <stylesheet src="css/bootstrap-tabs.min.css"/>
     <stylesheet src="css/bootstrap-datetimepicker.min.css"/>
+    <stylesheet src="css/bootstrap-timepicker.min.css"/>
     <stylesheet src="css/richtexteditor.css"/>
 </module>

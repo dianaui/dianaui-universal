@@ -76,7 +76,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         setBackdrop(ModalBackdrop.FALSE);
 
         container = new Div();
-        container.addStyleName(Styles.DATETIMEPICKER);
+        container.addStyleName(Styles.DATETIMEPICKER_WIDGET);
         container.addStyleName(Styles.DROPDOWN_MENU);
 
         add(container);
@@ -317,18 +317,16 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
 
     @Override
     public void setValue(final Date value) {
-        if (value != null) {
+        if (value != null)
             this.value = value;
-        }
     }
 
     @Override
     public void setValue(final Date value, final boolean fireEvents) {
         setValue(value);
 
-        if (fireEvents) {
+        if (fireEvents)
             ValueChangeEvent.fire(this, value);
-        }
     }
 
     @Override
@@ -347,9 +345,8 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
     }
 
     private void checkForRedraw() {
-        if (isAttached() && isVisible()) {
+        if (isAttached() && isVisible())
             show();
-        }
     }
 
     /**
@@ -364,7 +361,7 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
     }-*/;
 
-    private abstract class Picker extends Div {
+    protected abstract class Picker extends Div {
 
         Date date;
         TableElement table;
@@ -465,22 +462,18 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
                     String postfix = date.getMonth() > startDate.getMonth() ? " old" :
                             (date.getMonth() < startDate.getMonth() ? " new" : "");
 
-                    if (CalendarUtil.isSameDate(startDate, new Date())) {
+                    if (CalendarUtil.isSameDate(startDate, new Date()))
                         postfix += " today";
-                    }
 
-                    if (CalendarUtil.isSameDate(startDate, value)) {
+                    if (CalendarUtil.isSameDate(startDate, value))
                         postfix += " active";
-                    }
 
                     if (enabledDates != null) {
-                        if (!enabledDates.contains(startDate)) {
+                        if (!enabledDates.contains(startDate))
                             postfix += " disabled";
-                        }
                     } else if (disabledDates != null) {
-                        if (disabledDates.contains(startDate)) {
+                        if (disabledDates.contains(startDate))
                             postfix += " disabled";
-                        }
                     }
 
                     html += "<td class=\"day" + postfix + "\">" + calendarModel.formatDayOfMonth(startDate) + "</td>";
@@ -548,9 +541,8 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
                         // refresh view
                         setDate(startDate);
 
-                        if (autoClose) {
+                        if (autoClose)
                             hide();
-                        }
                     }
                 }
             }
@@ -610,9 +602,9 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
 
         @Override
         protected void onSwitchClicked() {
-            if (years == null) {
+            if (years == null)
                 years = new Years();
-            }
+
             dateContainer.add(years);
 
             years.setDate(date);
@@ -736,11 +728,11 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
 
     private class Time extends Picker {
 
-        String incrementHoursClass = "incrementHours";
-        String incrementMinutesClass = "incrementMinutes";
-        String decrementHoursClass = "decrementHours";
-        String decrementMinutesClass = "decrementMinutes";
-        String togglePeriodClass = "togglePeriod";
+        private final String incrementHoursClass = "incrementHours";
+        private final String incrementMinutesClass = "incrementMinutes";
+        private final String decrementHoursClass = "decrementHours";
+        private final String decrementMinutesClass = "decrementMinutes";
+        private final String togglePeriodClass = "togglePeriod";
 
         public Time() {
             setStyleName(Styles.TIMEPICKER_PICKER);
@@ -869,9 +861,9 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         private void onHourClicked() {
-            if (hours == null) {
+            if (hours == null)
                 hours = new Hours();
-            }
+
             timeContainer.add(hours);
 
             hours.setDate(date);
@@ -881,9 +873,9 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
         }
 
         private void onMinuteClicked() {
-            if (minutes == null) {
+            if (minutes == null)
                 minutes = new Minutes();
-            }
+
             timeContainer.add(minutes);
 
             minutes.setDate(date);
@@ -948,9 +940,8 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
             switch (DOM.eventGetType(event)) {
                 case Event.ONCLICK:
                     Element target = Element.as(event.getEventTarget());
-                    if (target.getTagName().toLowerCase().equals(TableCellElement.TAG_TD)) {
+                    if (target.getTagName().toLowerCase().equals(TableCellElement.TAG_TD))
                         onItemClicked(target);
-                    }
                     break;
             }
         }
@@ -966,9 +957,8 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
                     if (target.equals(tr.getChild(column))) {
                         int hours = ((row * 4)) + column;
 
-                        if (hourFormat == null || hourFormat == HourFormat._12 || hourFormat == HourFormat._24) {
+                        if (hourFormat == null || hourFormat == HourFormat._12 || hourFormat == HourFormat._24)
                             hours++;
-                        }
 
                         date.setHours(hours);
 
@@ -1030,9 +1020,8 @@ public class DateTimePicker extends ModalWithBackdrop implements LeafValueEditor
             switch (DOM.eventGetType(event)) {
                 case Event.ONCLICK:
                     Element target = Element.as(event.getEventTarget());
-                    if (target.getTagName().toLowerCase().equals(TableCellElement.TAG_TD)) {
+                    if (target.getTagName().toLowerCase().equals(TableCellElement.TAG_TD))
                         onItemClicked(target);
-                    }
                     break;
             }
         }

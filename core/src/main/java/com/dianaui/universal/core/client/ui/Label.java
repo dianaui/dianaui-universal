@@ -27,12 +27,14 @@ import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Event;
 
 /**
  * Bootstrap's label, see <a href="http://getbootstrap.com/components/#labels">documentation</a>.
  * Not to be confused with {@code <label>} (see {@link FormLabel}) or GWT's {@link com.google.gwt.user.client.ui.Label}
  *
  * @author Sven Jacobs
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  * @see FormLabel
  */
 public class Label extends AbstractTextWidget implements HasType<LabelType>, HasClickHandlers, HasAllMouseHandlers {
@@ -41,6 +43,9 @@ public class Label extends AbstractTextWidget implements HasType<LabelType>, Has
         super(Document.get().createSpanElement());
         setStyleName(Styles.LABEL);
         setType(LabelType.DEFAULT);
+
+        sinkEvents(Event.ONCLICK);
+        sinkEvents(Event.MOUSEEVENTS);
     }
 
     public Label(final LabelType type) {

@@ -73,11 +73,16 @@ public final class Styles {
 
     public static final String CONTROL_LABEL = "control-label";
 
-    public static final String DATETIMEPICKER = "bootstrap-datetimepicker-widget";
+    public static final String DATETIMEPICKER_WIDGET = "bootstrap-datetimepicker-widget";
     public static final String DATETIMEPICKER_SWITCH = "picker-switch";
     public static final String DATEPICKER = "datepicker";
     public static final String DATEPICKER_DAYS = "datepicker-days";
     public static final String DATEPICKER_MONTHS = "datepicker-months";
+
+    public static final String TIMEPICKER_WIDGET = "bootstrap-timepicker-widget";
+    public static final String TIMEPICKER_WIDGET_HOUR = "bootstrap-timepicker-hour";
+    public static final String TIMEPICKER_WIDGET_MINUTE = "bootstrap-timepicker-minute";
+    public static final String TIMEPICKER_WIDGET_SECOND = "bootstrap-timepicker-second";
 
     public static final String DIVIDER = "divider";
 
@@ -222,6 +227,8 @@ public final class Styles {
     public static final String ROW = "row";
 
     public static final String SLIDE = "slide";
+
+    public static final String SEPARATOR = "separator";
 
     public static final String SR_ONLY = "sr-only";
 

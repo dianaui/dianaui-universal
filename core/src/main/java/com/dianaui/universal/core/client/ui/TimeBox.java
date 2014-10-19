@@ -23,6 +23,7 @@ import com.dianaui.universal.core.client.event.ShownEvent;
 import com.dianaui.universal.core.client.event.ShownHandler;
 import com.dianaui.universal.core.client.text.DateTimeFormatParser;
 import com.dianaui.universal.core.client.ui.base.ValueBoxBase;
+import com.dianaui.universal.core.client.ui.constants.HourFormat;
 import com.dianaui.universal.core.client.ui.constants.PopupPosition;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
@@ -30,7 +31,6 @@ import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.shared.DateTimeFormat;
-import com.google.gwt.i18n.shared.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.text.client.DateTimeFormatRenderer;
 
 import java.util.Date;
@@ -38,21 +38,21 @@ import java.util.Date;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class DateTimeBox extends ValueBoxBase<Date> {
+public class TimeBox extends ValueBoxBase<Date> {
 
-    private final static DateTimeFormat format = DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_MEDIUM);
-    private final DateTimePicker picker = new DateTimePicker();
+    private final static DateTimeFormat format = DateTimeFormat.getFormat(DateTimeFormat.PredefinedFormat.TIME_MEDIUM);
+    private final TimePicker picker = new TimePicker();
     private PopupPosition position = PopupPosition.BOTTOM_LEFT;
 
-    public DateTimeBox() {
+    public TimeBox() {
         this(format);
     }
 
-    public DateTimeBox(final String format) {
+    public TimeBox(String format) {
         this(DateTimeFormat.getFormat(format));
     }
 
-    public DateTimeBox(final DateTimeFormat format) {
+    public TimeBox(DateTimeFormat format) {
         super(Document.get().createTextInputElement(),
                 new DateTimeFormatRenderer(format), new DateTimeFormatParser(format));
         addStyleName(Styles.FORM_CONTROL);
@@ -115,28 +115,10 @@ public class DateTimeBox extends ValueBoxBase<Date> {
         });
     }
 
-    public boolean isDateEnabled() {
-        return picker.isDateEnabled();
-    }
-
-    public void setDateEnabled(final boolean enabled) {
-        picker.setDateEnabled(enabled);
-    }
-
-    public boolean isTimeEnabled() {
-        return picker.isTimeEnabled();
-    }
-
-    public void setTimeEnabled(final boolean enabled) {
-        picker.setTimeEnabled(enabled);
-    }
-
-    public boolean isAutoClose() {
-        return picker.isAutoClose();
-    }
-
-    public void setAutoClose(final boolean enabled) {
-        picker.setAutoClose(enabled);
+    public void setDefaultTime(final String time) {
+        if (getValue() == null) {
+            picker.setValue(format.parse(time));
+        }
     }
 
     public PopupPosition getPopupPosition() {
@@ -145,6 +127,38 @@ public class DateTimeBox extends ValueBoxBase<Date> {
 
     public void setPopupPosition(final PopupPosition position) {
         this.position = position;
+    }
+
+    public boolean isSecondsEnabled() {
+        return picker.isSecondsEnabled();
+    }
+
+    public void setSecondsEnabled(final boolean enabled) {
+        picker.setSecondsEnabled(enabled);
+    }
+
+    public Integer getMinuteStep() {
+        return picker.getMinuteStep();
+    }
+
+    public void setMinuteStep(final Integer minuteStep) {
+        picker.setMinuteStep(minuteStep);
+    }
+
+    public Integer getSecondStep() {
+        return picker.getSecondStep();
+    }
+
+    public void setSecondStep(final Integer secondStep) {
+        picker.setSecondStep(secondStep);
+    }
+
+    public HourFormat getHourFormat() {
+        return picker.getHourFormat();
+    }
+
+    public void setHourFormat(final HourFormat format) {
+        picker.setHourFormat(format);
     }
 
     @Override

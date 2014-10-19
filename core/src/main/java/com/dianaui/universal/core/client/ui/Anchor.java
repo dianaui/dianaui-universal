@@ -68,6 +68,16 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
         sinkEvents(Event.ONCLICK);
     }
 
+    public Anchor(final IconType iconType) {
+        this();
+        setFontAwesomeIcon(iconType);
+    }
+
+    public Anchor(final GlyphiconType iconType) {
+        this();
+        setGlyphicon(iconType);
+    }
+
     /**
      * Creates an anchor widget with the desired HREF and text
      *

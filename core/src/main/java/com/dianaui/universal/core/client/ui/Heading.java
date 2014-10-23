@@ -76,8 +76,8 @@ import com.google.gwt.user.client.ui.HasWidgets;
 public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHTML, HasEmphasis, HasAlignment,
         HasSubText {
 
-    private final Small subText = new Small();
     private final Text text = new Text();
+    private Small subText;
 
     /**
      * Creates a Heading with the passed in size.
@@ -118,7 +118,9 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHT
      * @return subtext of the heading
      */
     public String getSubText() {
-        return subText.getText();
+        if (subText != null)
+            return subText.getText();
+        return null;
     }
 
     /**
@@ -127,13 +129,23 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHT
      *
      * @param subText the subtext of the heading
      */
-    public void setSubText(final String subText) {
-        // Force a space between the heading and the subtext
-        this.subText.setText(" " + subText);
-
-        if (!this.subText.isAttached()) {
-            insert(this.subText, this.text.isAttached() ? 1 : 0);
+    public void setSubText(final String text) {
+        if (text == null) {
+            if (subText != null) {
+                subText.removeFromParent();
+                subText = null;
+            }
+            return;
         }
+
+        if (subText == null)
+            subText = new Small();
+
+        // Force a space between the heading and the subtext
+        subText.setText(" " + text);
+
+        if (!subText.isAttached())
+            insert(subText, this.text.isAttached() ? 1 : 0);
     }
 
     /**
@@ -151,9 +163,8 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasHT
     public void setText(final String text) {
         this.text.setText(text);
 
-        if (!this.text.isAttached()) {
+        if (!this.text.isAttached())
             insert(this.text, 0);
-        }
     }
 
     @Override

@@ -27,8 +27,8 @@ import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -104,20 +104,10 @@ public abstract class ModalWithBackdrop extends Div {
 
             fireEvent(new ShowEvent());
 
-            if (!isAttached()) {
-                RootPanel.get().add(this);
+            if (isAttached())
+                removeFromParent();
 
-                Event.sinkEvents(getElement(), Event.ONCLICK);
-                Event.setEventListener(getElement(), new EventListener() {
-                    @Override
-                    public void onBrowserEvent(Event event) {
-                        if (Event.ONCLICK == event.getTypeInt() && event.getEventTarget().equals(getElement()) &&
-                                backdropType.equals(ModalBackdrop.TRUE)) {
-                            hide();
-                        }
-                    }
-                });
-            }
+            RootPanel.get().add(this);
 
             if (!backdropType.equals(ModalBackdrop.FALSE)) {
                 RootPanel.getBodyElement().appendChild(backdrop);
@@ -128,22 +118,19 @@ public abstract class ModalWithBackdrop extends Div {
                 backdrop.addClassName(Styles.IN);
             }
 
-            Timer timer = new Timer() {
+            new Timer() {
                 @Override
                 public void run() {
                     onShow();
 
-                    if (!backdropType.equals(ModalBackdrop.FALSE)) {
+                    if (!backdropType.equals(ModalBackdrop.FALSE))
                         backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
-                    }
 
                     addStyleName(Styles.IN);
 
                     ModalWithBackdrop.this.fireEvent(new ShownEvent());
                 }
-            };
-
-            timer.schedule(transitionMs);
+            }.schedule(transitionMs);
         }
     }
 
@@ -154,33 +141,28 @@ public abstract class ModalWithBackdrop extends Div {
             removeStyleName(Styles.IN);
 
             // force reflow
-            if (backdrop.getParentNode() != null) {
+            if (backdrop.getParentNode() != null)
                 backdrop.getParentElement().getFirstChildElement().getOffsetWidth();
-            }
 
             Timer timer = new Timer() {
                 @Override
                 public void run() {
                     onHide();
 
-                    if (backdrop.getParentNode() != null) {
+                    if (backdrop.getParentNode() != null)
                         backdrop.removeClassName(Styles.IN);
-                    }
 
-                    Timer timer = new Timer() {
+                    new Timer() {
                         @Override
                         public void run() {
                             deattach();
 
-                            if (backdrop.getParentNode() != null) {
+                            if (backdrop.getParentNode() != null)
                                 backdrop.removeFromParent();
-                            }
 
                             setViewing(false);
                         }
-                    };
-
-                    timer.schedule(transitionMs);
+                    }.schedule(transitionMs);
 
                     ModalWithBackdrop.this.fireEvent(new HiddenEvent());
                 }
@@ -206,6 +188,18 @@ public abstract class ModalWithBackdrop extends Div {
         return addHandler(handler, ShownEvent.getType());
     }
 
+    @Override
+    public void onBrowserEvent(Event event) {
+        switch (DOM.eventGetType(event)) {
+            case Event.ONCLICK:
+                if (event.getEventTarget().equals(getElement()) && backdropType.equals(ModalBackdrop.TRUE))
+                    hide();
+                break;
+        }
+
+        super.onBrowserEvent(event);
+    }
+
     protected void onShow() {
         getElement().getStyle().setDisplay(Style.Display.BLOCK);
     }
@@ -221,6 +215,13 @@ public abstract class ModalWithBackdrop extends Div {
     protected void initBackdrop() {
         backdrop = Document.get().createDivElement();
         backdrop.setClassName(Styles.MODAL_BACKDROP);
+    }
+
+    @Override
+    protected void onAttach() {
+        sinkEvents(Event.ONCLICK);
+
+        super.onAttach();
     }
 
 }

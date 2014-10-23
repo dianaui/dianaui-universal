@@ -51,6 +51,8 @@ public class CloseButton extends AbstractButton {
                 }
                 break;
         }
+
+        super.onBrowserEvent(event);
     }
 
     @Override

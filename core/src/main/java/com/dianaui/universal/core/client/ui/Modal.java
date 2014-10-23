@@ -29,6 +29,7 @@ import com.dianaui.universal.core.client.ui.constants.Attributes;
 import com.dianaui.universal.core.client.ui.constants.ModalSize;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -74,6 +75,7 @@ public class Modal extends ModalWithBackdrop implements IsClosable {
     private final ModalContent content = new ModalContent();
     private final ModalDialog dialog = new ModalDialog();
     private ModalHeader header = new ModalHeader();
+    private HandlerRegistration closeHandler;
 
     public Modal() {
         content.add(header);
@@ -115,12 +117,17 @@ public class Modal extends ModalWithBackdrop implements IsClosable {
         header.setClosable(closable);
 
         if (closable) {
-            header.getCloseButton().addClickHandler(new ClickHandler() {
+            closeHandler = header.getCloseButton().addClickHandler(new ClickHandler() {
                 @Override
                 public void onClick(ClickEvent clickEvent) {
                     hide();
                 }
             });
+        } else {
+            if (closeHandler != null) {
+                closeHandler.removeHandler();
+                closeHandler = null;
+            }
         }
     }
 

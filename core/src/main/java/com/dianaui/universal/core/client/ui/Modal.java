@@ -82,6 +82,8 @@ public class Modal extends ModalWithBackdrop implements IsClosable {
         dialog.add(content);
 
         add(dialog);
+
+        setFade(true);
     }
 
     // TODO

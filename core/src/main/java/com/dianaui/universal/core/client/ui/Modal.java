@@ -32,6 +32,9 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Widget;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Modal dialog.
  * <h3>UiBinder example</h3>
@@ -72,10 +75,13 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class Modal extends ModalWithBackdrop implements IsClosable {
 
+    private final static List<Modal> ACTIVE = new ArrayList<>();
+
     private final ModalContent content = new ModalContent();
     private final ModalDialog dialog = new ModalDialog();
     private ModalHeader header = new ModalHeader();
     private HandlerRegistration closeHandler;
+    private boolean hideOtherModals = false;
 
     public Modal() {
         content.add(header);
@@ -102,6 +108,14 @@ public class Modal extends ModalWithBackdrop implements IsClosable {
 
     public void setSize(ModalSize size) {
         StyleHelper.addUniqueEnumStyleName(dialog, ModalSize.class, size);
+    }
+
+    public boolean isHideOtherModals() {
+        return hideOtherModals;
+    }
+
+    public void setHideOtherModals(boolean hideOtherModals) {
+        this.hideOtherModals = hideOtherModals;
     }
 
     @Override
@@ -151,6 +165,27 @@ public class Modal extends ModalWithBackdrop implements IsClosable {
     @Override
     public void setTitle(final String title) {
         header.setTitle(title);
+    }
+
+    @Override
+    public void show() {
+        if (hideOtherModals && !ACTIVE.isEmpty()) {
+            for (Modal modal : ACTIVE) {
+                modal.hide();
+            }
+        }
+        super.show();
+
+        if (isViewing() && !ACTIVE.contains(this))
+            ACTIVE.add(this);
+    }
+
+    @Override
+    public void hide() {
+        super.hide();
+
+        if (!isViewing() && ACTIVE.contains(this))
+            ACTIVE.remove(this);
     }
 
 }

@@ -19,10 +19,10 @@
  */
 package com.dianaui.universal.core.client.ui;
 
-import com.dianaui.universal.core.client.ui.base.HasSubText;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.html.Div;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.dianaui.universal.core.client.ui.html.Text;
+import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 
@@ -33,18 +33,25 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * <p/>
  * <pre>
  * {@code
- *     <b:PageHeader subText="Some subtext">Page header title</b:PageHeader>
+ *     <b:PanelHeader>Panel header title</b:PageHeader>
+ * }
+ * </pre>
+ * <pre>
+ * {@code
+ *     <b:PanelHeader>
+ *         <b:Heading size="H1" text="Heading Text" subText="Subtext Text"/>
+ *     </b:PageHeader>
  * }
  * </pre>
  *
  * @author Sven Jacobs
  * @author Joshua Godi
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
+ * @see Heading
  */
-public class PanelHeader extends Div implements HasWidgets, HasText, HasSubText {
+public class PanelHeader extends Div implements HasWidgets, HasText {
 
-    private String heading;
-    private String subText;
+    private Text text;
 
     public PanelHeader() {
         setStyleName(Styles.PANEL_HEADING);
@@ -55,12 +62,22 @@ public class PanelHeader extends Div implements HasWidgets, HasText, HasSubText 
         setText(text);
     }
 
+    public PanelHeader(final SafeHtml safeHtml) {
+        this(safeHtml.asString());
+    }
+
+    public void setHtml(final SafeHtml safeHtml) {
+        setText(safeHtml.asString());
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String getText() {
-        return heading;
+        if (text != null)
+            return text.getText();
+        return null;
     }
 
     /**
@@ -68,37 +85,10 @@ public class PanelHeader extends Div implements HasWidgets, HasText, HasSubText 
      */
     @Override
     public void setText(final String text) {
-        heading = text;
-        render();
-    }
-
-    @Override
-    public String getSubText() {
-        return subText;
-    }
-
-    @Override
-    public void setSubText(final String subText) {
-        this.subText = subText;
-        render();
-    }
-
-    private void render() {
-        final SafeHtmlBuilder builder = new SafeHtmlBuilder();
-
-        builder.appendHtmlConstant("<h1>");
-        builder.appendEscaped(heading == null ? "" : heading);
-
-        if (subText != null && !subText.isEmpty()) {
-            builder.appendEscaped(" ");
-            builder.appendHtmlConstant("<small>");
-            builder.appendEscaped(subText);
-            builder.appendHtmlConstant("</small>");
-        }
-
-        builder.appendHtmlConstant("</h1>");
-
-        getElement().setInnerSafeHtml(builder.toSafeHtml());
+        if (this.text == null)
+            this.text = new Text();
+        this.text.setText(text);
+        insert(this.text, 0);
     }
 
 }

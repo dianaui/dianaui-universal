@@ -231,4 +231,10 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
         anchor.setIconFixedWidth(iconFixedWidth);
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        anchor.setEnabled(enabled);
+    }
+
 }

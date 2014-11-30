@@ -32,6 +32,7 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Focusable;
+import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasHTML;
 
 /**
@@ -43,11 +44,12 @@ import com.google.gwt.user.client.ui.HasHTML;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Anchor extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref, HasToggle,
-        HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasTarget, HasPull {
+        HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasTarget, HasPull, HasEnabled {
 
     private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<Anchor>(this);
     private String targetHistoryToken;
     private Toggle toggle;
+    private boolean enabled;
 
     /**
      * Creates a default anchor with a default href
@@ -457,6 +459,23 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
     @Override
     public void setPull(final Pull pull) {
         PullMixin.setPull(this, pull);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        if (enabled) {
+            sinkEvents(Event.ONCLICK);
+            sinkEvents(Event.ONDBLCLICK);
+        } else {
+            unsinkEvents(Event.ONCLICK);
+            unsinkEvents(Event.ONDBLCLICK);
+        }
     }
 
     /**

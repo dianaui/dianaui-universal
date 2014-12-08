@@ -178,4 +178,12 @@ public class ComplexWidget extends ComplexPanel implements HasInlineStyle, HasCe
         StyleHelper.toggleStyleName(this, centerBlock, Styles.CENTER_BLOCK);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setColor(String color) {
+        getElement().getStyle().setColor(color);
+    }
+
 }

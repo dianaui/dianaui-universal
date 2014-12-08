@@ -40,4 +40,6 @@ public interface HasInlineStyle {
 
     void setPaddingBottom(double padding);
 
+    void setColor(String color);
+
 }

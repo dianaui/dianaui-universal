@@ -170,15 +170,14 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
         this(Document.get().createRadioInputElement(name));
     }
 
-    protected RadioButton(final InputElement elem) {
-        super(DOM.createDiv());
+    protected RadioButton(final InputElement element) {
+        super(DOM.createLabel(), element);
 
         setStyleName(Styles.BTN);
         setType(ButtonType.DEFAULT);
 
-        inputElem = elem;
-
         getElement().appendChild(inputElem);
+        getElement().appendChild(labelElem);
 
         // Accessibility: setting tab index to be 0 by default, ensuring element
         // appears in tab sequence. FocusWidget's setElement method already

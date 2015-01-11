@@ -179,13 +179,6 @@ public class RadioButton extends Radio implements HasType<ButtonType>, HasSize<B
         getElement().appendChild(inputElem);
         getElement().appendChild(labelElem);
 
-        // Accessibility: setting tab index to be 0 by default, ensuring element
-        // appears in tab sequence. FocusWidget's setElement method already
-        // calls setTabIndex, which is overridden below. However, at the time
-        // that this call is made, inputElem has not been created. So, we have
-        // to call setTabIndex again, once inputElem has been created.
-        setTabIndex(0);
-
         sinkEvents(Event.ONCLICK);
     }
 

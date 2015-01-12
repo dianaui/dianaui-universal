@@ -19,11 +19,13 @@
  */
 package com.dianaui.universal.core.client.ui.gwt;
 
+import com.dianaui.universal.core.client.ui.base.HasContextualBackground;
 import com.dianaui.universal.core.client.ui.base.HasId;
 import com.dianaui.universal.core.client.ui.base.HasInlineStyle;
 import com.dianaui.universal.core.client.ui.base.HasResponsiveness;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
+import com.dianaui.universal.core.client.ui.constants.ContextualBackground;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.safehtml.shared.SafeHtml;
@@ -34,7 +36,7 @@ import com.google.gwt.safehtml.shared.SafeHtml;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implements HasId, HasResponsiveness,
-        HasInlineStyle {
+        HasInlineStyle, HasContextualBackground {
 
     public HTMLPanel(final String html) {
         super(html);
@@ -114,6 +116,22 @@ public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implement
     @Override
     public void setColor(String color) {
         getElement().getStyle().setColor(color);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setContextualBackground(ContextualBackground contextualBackground) {
+        StyleHelper.addUniqueEnumStyleName(this, ContextualBackground.class, contextualBackground);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ContextualBackground getContextualBackground() {
+        return ContextualBackground.fromStyleName(getStyleName());
     }
 
 }

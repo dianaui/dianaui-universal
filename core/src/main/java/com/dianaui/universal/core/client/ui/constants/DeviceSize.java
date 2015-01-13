@@ -24,7 +24,7 @@ package com.dianaui.universal.core.client.ui.constants;
  *
  * @author Joshua Godi
  */
-public enum DeviceSize {
+public enum DeviceSize implements Size {
 
     PRINT, /* Print Devices */
     XS, /* Phones <768px */

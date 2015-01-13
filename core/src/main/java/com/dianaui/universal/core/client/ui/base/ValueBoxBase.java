@@ -22,6 +22,7 @@ package com.dianaui.universal.core.client.ui.base;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
+import com.dianaui.universal.core.client.ui.constants.InputSize;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.text.shared.Parser;
 import com.google.gwt.text.shared.Renderer;
@@ -31,7 +32,7 @@ import com.google.gwt.text.shared.Renderer;
  * @see com.google.gwt.user.client.ui.HasEnabled
  */
 public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<T> implements HasId, HasResponsiveness,
-        HasPlaceholder, HasAutoComplete {
+        HasPlaceholder, HasAutoComplete, HasSize<InputSize> {
 
     private static final String MAX_LENGTH = "maxlength";
 
@@ -89,6 +90,16 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     @Override
     public void setHiddenOn(final DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
+    }
+
+    @Override
+    public void setSize(InputSize size) {
+        StyleHelper.addUniqueEnumStyleName(this, InputSize.class, size);
+    }
+
+    @Override
+    public InputSize getSize() {
+        return InputSize.fromStyleName(getStyleName());
     }
 
 }

@@ -19,9 +19,11 @@
  */
 package com.dianaui.universal.core.client.ui;
 
+import com.dianaui.universal.core.client.ui.base.HasSize;
 import com.dianaui.universal.core.client.ui.base.HasValidationState;
 import com.dianaui.universal.core.client.ui.base.form.FormElementContainer;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
+import com.dianaui.universal.core.client.ui.constants.FormGroupSize;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.dianaui.universal.core.client.ui.constants.ValidationState;
 import com.google.gwt.dom.client.Document;
@@ -31,7 +33,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Sven Jacobs
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class FormGroup extends FormElementContainer implements HasValidationState {
+public class FormGroup extends FormElementContainer implements HasSize<FormGroupSize>, HasValidationState {
 
     public FormGroup() {
         setElement(Document.get().createDivElement());
@@ -49,6 +51,16 @@ public class FormGroup extends FormElementContainer implements HasValidationStat
         if (w instanceof FormControlFeedback) {
             addStyleName(Styles.HAS_FEEDBACK);
         }
+    }
+
+    @Override
+    public void setSize(FormGroupSize size) {
+        StyleHelper.addUniqueEnumStyleName(this, FormGroupSize.class, size);
+    }
+
+    @Override
+    public FormGroupSize getSize() {
+        return FormGroupSize.fromStyleName(getStyleName());
     }
 
     @Override

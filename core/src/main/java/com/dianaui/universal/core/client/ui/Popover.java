@@ -197,6 +197,7 @@ public class Popover extends ModalWithBackdrop implements HasHover {
         this.hideDelayMs = hideDelayMs;
     }
 
+    @Override
     protected void onShow() {
         super.onShow();
 

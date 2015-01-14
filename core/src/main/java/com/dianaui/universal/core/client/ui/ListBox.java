@@ -32,7 +32,7 @@ import com.dianaui.universal.core.client.ui.constants.Styles;
  */
 public class ListBox extends com.google.gwt.user.client.ui.ListBox implements HasId {
 
-    /**g
+    /**
      * Creates an empty list box in single selection mode.
      */
     public ListBox() {
@@ -43,7 +43,9 @@ public class ListBox extends com.google.gwt.user.client.ui.ListBox implements Ha
      * Creates an empty list box.
      *
      * @param isMultipleSelect specifies if multiple selection is enabled
+     * @deprecated use {@link #setMultipleSelect(boolean)} instead.
      */
+    @Deprecated
     public ListBox(final boolean isMultipleSelect) {
         this();
         setMultipleSelect(isMultipleSelect);

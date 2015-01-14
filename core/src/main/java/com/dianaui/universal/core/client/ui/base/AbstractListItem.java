@@ -21,6 +21,7 @@ package com.dianaui.universal.core.client.ui.base;
 
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.base.mixin.ActiveMixin;
+import com.dianaui.universal.core.client.ui.base.mixin.EnabledMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.PullMixin;
 import com.dianaui.universal.core.client.ui.constants.Pull;
 import com.dianaui.universal.core.client.ui.constants.Styles;
@@ -45,17 +46,13 @@ public abstract class AbstractListItem extends ComplexWidget implements HasId, H
     }
 
     @Override
-    public boolean isEnabled() {
-        return !StyleHelper.containsStyle(getStyleName(), Styles.DISABLED);
+    public void setEnabled(final boolean enabled) {
+        EnabledMixin.setEnabled(this, enabled);
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
-        if (enabled) {
-            removeStyleName(Styles.DISABLED);
-        } else {
-            addStyleName(Styles.DISABLED);
-        }
+    public boolean isEnabled() {
+        return !StyleHelper.containsStyle(getStyleName(), Styles.DISABLED);
     }
 
     @Override

@@ -232,7 +232,7 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
     }
 
     @Override
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(final boolean enabled) {
         super.setEnabled(enabled);
         anchor.setEnabled(enabled);
     }

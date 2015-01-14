@@ -20,6 +20,7 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.*;
+import com.dianaui.universal.core.client.ui.base.mixin.EnabledMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.FocusableMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.IconTextMixin;
 import com.dianaui.universal.core.client.ui.base.mixin.PullMixin;
@@ -461,21 +462,20 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
         PullMixin.setPull(this, pull);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return EnabledMixin.isEnabled(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-        if (enabled) {
-            sinkEvents(Event.ONCLICK);
-            sinkEvents(Event.ONDBLCLICK);
-        } else {
-            unsinkEvents(Event.ONCLICK);
-            unsinkEvents(Event.ONDBLCLICK);
-        }
+    public void setEnabled(final boolean enabled) {
+        EnabledMixin.setEnabled(this, enabled);
     }
 
     /**
@@ -509,16 +509,27 @@ public class Anchor extends ComplexWidget implements HasClickHandlers, HasDouble
         }
     }
 
-    public void onBrowserEvent(Event event) {
-        super.onBrowserEvent(event);
-
+    /**
+     * We override this because the <a></a> tag doesn't support the disabled property. So on clicks and focus, if disabled then ignore
+     *
+     * @param event dom event
+     */
+    @Override
+    public void onBrowserEvent(final Event event) {
         switch (DOM.eventGetType(event)) {
+            case Event.ONDBLCLICK:
+            case Event.ONFOCUS:
             case Event.ONCLICK:
+                if (!isEnabled()) {
+                    return;
+                }
                 if (getToggle() == Toggle.DROPDOWN && getParent() instanceof DropDown) {
                     ((DropDown) getParent()).toggle();
+                    return;
                 }
                 break;
         }
+        super.onBrowserEvent(event);
     }
 
     protected boolean isIconList() {

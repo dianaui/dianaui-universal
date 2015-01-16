@@ -36,7 +36,7 @@ import com.google.gwt.dom.client.ParagraphElement;
 public class Paragraph extends HTMLPanel implements HasAlignment, HasEmphasis {
 
     public Paragraph() {
-        super(ParagraphElement.TAG, "");
+        this("");
     }
 
     public Paragraph(final String html) {

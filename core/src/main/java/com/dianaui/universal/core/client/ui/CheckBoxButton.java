@@ -162,15 +162,12 @@ public class CheckBoxButton extends CheckBox implements HasType<ButtonType>, Has
 
     @Override
     public void sinkEvents(int eventBitsToAdd) {
-        // Like CheckBox, we want to hear about inputElem. We
-        // also want to know what's going on with the label, to
-        // make sure onBrowserEvent is able to record value changes
-        // initiated by label events
+        // Sink on the actual element because that's what gets clicked
         if (isOrWasAttached()) {
             Event.sinkEvents(getElement(), eventBitsToAdd | Event.getEventsSunk(getElement()));
+        } else {
+            super.sinkEvents(eventBitsToAdd);
         }
-
-        super.sinkEvents(eventBitsToAdd);
     }
 
     @Override

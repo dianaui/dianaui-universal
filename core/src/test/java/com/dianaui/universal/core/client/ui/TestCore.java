@@ -26,7 +26,7 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-public class TestCore extends GWTTestCase {
+public abstract class TestCore extends GWTTestCase {
 
     @Override
     public String getModuleName() {

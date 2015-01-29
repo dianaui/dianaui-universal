@@ -21,16 +21,11 @@ package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.constants.IconPosition;
 import com.dianaui.universal.core.client.ui.constants.IconType;
-import com.googlecode.gwt.test.GwtModule;
-import com.googlecode.gwt.test.GwtTest;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-@GwtModule("com.dianaui.universal.core.DianaUICore")
-public class AnchorButtonGwtTest extends GwtTest {
+public class AnchorButtonGwtTest extends TestCore {
 
     static String TEST_TEXT = "Test";
     static String BOLD_TEXT = "bold";
@@ -42,65 +37,54 @@ public class AnchorButtonGwtTest extends GwtTest {
         return "<a class=\"btn btn-default\" href=\"javascript:;\">" + (content != null ? content : "") + "</a>";
     }
 
-    @Test
-    public void buttonTextAndHtml() {
+    public void testButtonTextAndHtml() {
         AnchorButton button = new AnchorButton();
 
-        Assert.assertEquals(getHtml(null), button.getElement().toString());
-        Assert.assertNull(button.getText());
-        Assert.assertNull(button.getHTML());
+        assertEquals(getHtml(null), button.getElement().toString());
+        assertNull(button.getText());
+        assertNull(button.getHTML());
 
         button.setText(TEST_TEXT);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(TEST_TEXT, button.getText());
-        Assert.assertNull(button.getHTML());
-        Assert.assertEquals(getHtml(TEST_TEXT), button.getElement().toString());
+        assertEquals(TEST_TEXT, button.getText());
+        assertNull(button.getHTML());
+        assertEquals(getHtml(TEST_TEXT), button.getElement().toString());
 
         button.setHTML(BOLD_HTML);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(BOLD_HTML, button.getHTML());
-        Assert.assertEquals(BOLD_TEXT, button.getText());
-        Assert.assertEquals(getHtml("<span>" + BOLD_HTML + "</span>"), button.getElement().toString());
+        assertEquals(BOLD_HTML, button.getHTML());
+        assertEquals(BOLD_TEXT, button.getText());
+        assertEquals(getHtml("<span>" + BOLD_HTML + "</span>"), button.getElement().toString());
 
         button.setHTML(null);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals("", button.getHTML());
-        Assert.assertEquals("", button.getText());
-        Assert.assertEquals(getHtml("<span></span>"), button.getElement().toString());
+        assertEquals("", button.getHTML());
+        assertEquals("", button.getText());
+        assertEquals(getHtml("<span></span>"), button.getElement().toString());
 
         button.setHTML(ITALIC_HTML);
         button.setText(null);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(null, button.getHTML());
-        Assert.assertEquals(null, button.getText());
-        Assert.assertEquals(getHtml(null), button.getElement().toString());
+        assertEquals(null, button.getHTML());
+        assertEquals(null, button.getText());
+        assertEquals(getHtml(null), button.getElement().toString());
     }
 
-    @Test
-    public void buttonIcon() {
+    public void testButtonIcon() {
         AnchorButton button = new AnchorButton();
 
         button.setText(TEST_TEXT);
         button.setFontAwesomeIcon(IconType.ANCHOR);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(getHtml(FA_ANCHOR_HTML + " " + TEST_TEXT), button.getElement().toString());
+        assertEquals(getHtml(FA_ANCHOR_HTML + " " + TEST_TEXT), button.getElement().toString());
 
         button.setText(null);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(getHtml(FA_ANCHOR_HTML), button.getElement().toString());
+        assertEquals(getHtml(FA_ANCHOR_HTML), button.getElement().toString());
 
         button.setFontAwesomeIcon(null);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(getHtml(null), button.getElement().toString());
+        assertEquals(getHtml(null), button.getElement().toString());
 
         button.setFontAwesomeIcon(IconType.ANCHOR);
         button.setText(TEST_TEXT);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(getHtml(FA_ANCHOR_HTML + " " + TEST_TEXT), button.getElement().toString());
+        assertEquals(getHtml(FA_ANCHOR_HTML + " " + TEST_TEXT), button.getElement().toString());
 
         button.setIconPosition(IconPosition.RIGHT);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(getHtml(TEST_TEXT + " " + FA_ANCHOR_HTML), button.getElement().toString());
+        assertEquals(getHtml(TEST_TEXT + " " + FA_ANCHOR_HTML), button.getElement().toString());
     }
 
 }

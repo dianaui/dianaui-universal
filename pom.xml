@@ -79,6 +79,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <source.version>1.7</source.version>
         <gwt.version>2.7.0</gwt.version>
+        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
     </properties>
 
     <dependencies>

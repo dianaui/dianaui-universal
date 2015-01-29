@@ -20,6 +20,7 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -35,6 +36,15 @@ public abstract class TestCore extends GWTTestCase {
 
     public void hasStyle(String style, Widget widget) {
         assertTrue(StyleHelper.containsStyle(widget.getStyleName(), style));
+    }
+
+    public void doesNotHaveStyle(String style, Widget widget) {
+        assertFalse(StyleHelper.containsStyle(widget.getStyleName(), style));
+    }
+
+    public void click(Widget widget) {
+        widget.fireEvent(new ClickEvent() {
+        });
     }
 
 }

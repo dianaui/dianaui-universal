@@ -33,7 +33,7 @@ public class SuiteTest extends TestCase {
         suite.addTestSuite(AlertGwtTest.class);
         suite.addTestSuite(AnchorButtonGwtTest.class);
         suite.addTestSuite(AnchorListItemGwtTest.class);
-        //suite.addTestSuite(ButtonGroupGwtTest.class);
+        suite.addTestSuite(ButtonGroupGwtTest.class);
         //suite.addTestSuite(CheckBoxButtonGwtTest.class);
         //suite.addTestSuite(DropDownButtonGwtTest.class);
         //suite.addTestSuite(RadioButtonGwtTest.class);

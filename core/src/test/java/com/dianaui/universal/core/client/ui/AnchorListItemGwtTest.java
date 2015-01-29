@@ -21,12 +21,10 @@ package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.constants.IconType;
 import com.dianaui.universal.core.client.ui.html.Text;
-import com.googlecode.gwt.test.GwtModule;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-@GwtModule("com.dianaui.universal.core.DianaUICore")
 public class AnchorListItemGwtTest extends TestCore {
 
     static String TEST_TEXT = "Test";

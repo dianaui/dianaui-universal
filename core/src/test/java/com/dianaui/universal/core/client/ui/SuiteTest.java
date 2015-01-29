@@ -36,7 +36,7 @@ public class SuiteTest extends TestCase {
         suite.addTestSuite(ButtonGroupGwtTest.class);
         suite.addTestSuite(CheckBoxButtonGwtTest.class);
         suite.addTestSuite(DropDownButtonGwtTest.class);
-        //suite.addTestSuite(RadioButtonGwtTest.class);
+        suite.addTestSuite(RadioButtonGwtTest.class);
         return suite;
     }
 

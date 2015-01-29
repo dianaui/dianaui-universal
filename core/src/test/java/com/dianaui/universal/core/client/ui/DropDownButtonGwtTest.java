@@ -21,48 +21,35 @@ package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.googlecode.gwt.test.GwtModule;
-import com.googlecode.gwt.test.GwtTest;
-import com.googlecode.gwt.test.utils.events.Browser;
-import org.junit.Assert;
-import org.junit.Test;
-
-import static com.googlecode.gwt.test.assertions.GwtAssertions.assertThat;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-@GwtModule("com.dianaui.universal.core.DianaUICore")
-public class DropDownButtonGwtTest extends GwtTest {
+public class DropDownButtonGwtTest extends TestCore {
 
-    @Test
-    public void buttonText() {
+    public void testButtonText() {
         DropDownButton button = new DropDownButton();
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertTrue(button.getToggleButton().getText().equals("..."));
+        assertEquals("...", button.getToggleButton().getText());
 
         button.setText("new");
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertTrue(button.getToggleButton().getText().equals("new"));
+        assertEquals("new", button.getToggleButton().getText());
 
         button = new DropDownButton("Test");
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertTrue(button.getToggleButton().getText().equals("Test"));
+        assertEquals("Test", button.getToggleButton().getText());
     }
 
-    @Test
-    public void showMenuOnClick() {
+    public void testShowMenuOnClick() {
         DropDownButton button = new DropDownButton();
         RootPanel.get().add(button);
 
-        assertThat(button).isAttached();
-        assertThat(button).doesNotHaveStyle(Styles.OPEN);
+        assertTrue(button.isAttached());
+        doesNotHaveStyle(Styles.OPEN, button);
 
-        Browser.click(button.getToggleButton());
-        assertThat(button).hasStyle(Styles.OPEN);
+        click(button.getToggleButton());
+        hasStyle(Styles.OPEN, button);
 
-        Browser.click(button.getToggleButton());
-        assertThat(button).doesNotHaveStyle(Styles.OPEN);
+        click(button.getToggleButton());
+        doesNotHaveStyle(Styles.OPEN, button);
 
         button.removeFromParent();
     }

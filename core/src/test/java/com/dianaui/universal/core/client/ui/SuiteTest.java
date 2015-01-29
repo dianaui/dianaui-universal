@@ -32,7 +32,7 @@ public class SuiteTest extends TestCase {
         GWTTestSuite suite = new GWTTestSuite("All Gwt Tests go in here");
         suite.addTestSuite(AlertGwtTest.class);
         suite.addTestSuite(AnchorButtonGwtTest.class);
-        //suite.addTestSuite(AnchorListItemGwtTest.class);
+        suite.addTestSuite(AnchorListItemGwtTest.class);
         //suite.addTestSuite(ButtonGroupGwtTest.class);
         //suite.addTestSuite(CheckBoxButtonGwtTest.class);
         //suite.addTestSuite(DropDownButtonGwtTest.class);

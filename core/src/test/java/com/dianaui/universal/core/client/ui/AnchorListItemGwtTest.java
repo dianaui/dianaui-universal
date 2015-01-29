@@ -22,15 +22,12 @@ package com.dianaui.universal.core.client.ui;
 import com.dianaui.universal.core.client.ui.constants.IconType;
 import com.dianaui.universal.core.client.ui.html.Text;
 import com.googlecode.gwt.test.GwtModule;
-import com.googlecode.gwt.test.GwtTest;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 @GwtModule("com.dianaui.universal.core.DianaUICore")
-public class AnchorListItemGwtTest extends GwtTest {
+public class AnchorListItemGwtTest extends TestCore {
 
     static String TEST_TEXT = "Test";
     static String FA_SITEMAP_HTML = "<i class=\"fa fa-sitemap\"></i>";
@@ -40,26 +37,23 @@ public class AnchorListItemGwtTest extends GwtTest {
         return "<li><a href=\"javascript:;\">" + (content != null ? content : "") + "</a></li>";
     }
 
-    @Test
-    public void anchorTextAndHtmlAndIconAndChildren() {
+    public void testAnchorTextAndHtmlAndIconAndChildren() {
         AnchorListItem item = new AnchorListItem();
-        Assert.assertNull(item.getText());
-        Assert.assertNull(item.getHTML());
-        Assert.assertEquals(getHtml(null), item.getElement().toString());
+        assertNull(item.getText());
+        assertNull(item.getHTML());
+        assertEquals(getHtml(null), item.getElement().toString());
 
         item.setText(TEST_TEXT);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(TEST_TEXT, item.getText());
-        Assert.assertNull(item.getHTML());
-        Assert.assertEquals(getHtml(TEST_TEXT), item.getElement().toString());
+        assertEquals(TEST_TEXT, item.getText());
+        assertNull(item.getHTML());
+        assertEquals(getHtml(TEST_TEXT), item.getElement().toString());
 
         item.setFontAwesomeIcon(IconType.SITEMAP);
-        getBrowserSimulator().fireLoopEnd();
-        Assert.assertEquals(getHtml(FA_SITEMAP_HTML + " " + TEST_TEXT), item.getElement().toString());
+        assertEquals(getHtml(FA_SITEMAP_HTML + " " + TEST_TEXT), item.getElement().toString());
 
         item.add(new Text(" "));
         item.add(new Badge("..."));
-        Assert.assertEquals(getHtml(FA_SITEMAP_HTML + " " + TEST_TEXT + " " + BADGE_HTML), item.getElement().toString());
+        assertEquals(getHtml(FA_SITEMAP_HTML + " " + TEST_TEXT + " " + BADGE_HTML), item.getElement().toString());
     }
 
 }

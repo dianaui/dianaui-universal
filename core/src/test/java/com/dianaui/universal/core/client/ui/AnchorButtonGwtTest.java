@@ -30,7 +30,7 @@ import org.junit.Test;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 @GwtModule("com.dianaui.universal.core.DianaUICore")
-public class AnchorButtonTest extends GwtTest {
+public class AnchorButtonGwtTest extends GwtTest {
 
     static String TEST_TEXT = "Test";
     static String BOLD_TEXT = "bold";

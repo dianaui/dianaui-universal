@@ -33,7 +33,7 @@ import static com.googlecode.gwt.test.assertions.GwtAssertions.assertThat;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 @GwtModule("com.dianaui.universal.core.DianaUICore")
-public class DropDownButtonTest extends GwtTest {
+public class DropDownButtonGwtTest extends GwtTest {
 
     @Test
     public void buttonText() {

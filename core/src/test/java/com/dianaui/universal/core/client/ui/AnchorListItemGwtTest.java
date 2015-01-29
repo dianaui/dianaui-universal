@@ -30,7 +30,7 @@ import org.junit.Test;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 @GwtModule("com.dianaui.universal.core.DianaUICore")
-public class AnchorListItemTest extends GwtTest {
+public class AnchorListItemGwtTest extends GwtTest {
 
     static String TEST_TEXT = "Test";
     static String FA_SITEMAP_HTML = "<i class=\"fa fa-sitemap\"></i>";

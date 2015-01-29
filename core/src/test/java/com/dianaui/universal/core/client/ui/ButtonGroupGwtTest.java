@@ -37,7 +37,7 @@ import static com.googlecode.gwt.test.assertions.GwtAssertions.assertThat;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 @GwtModule("com.dianaui.universal.core.DianaUICore")
-public class ButtonGroupTest extends GwtTest {
+public class ButtonGroupGwtTest extends GwtTest {
 
     // TODO toggle attr helper
     String DATA_TOGGLE_BUTTONS = "data-toggle=\"" + Toggle.BUTTONS.getToggle() + "\"";

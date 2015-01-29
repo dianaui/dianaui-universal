@@ -33,7 +33,7 @@ import static com.googlecode.gwt.test.assertions.GwtAssertions.assertThat;
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 @GwtModule("com.dianaui.universal.core.DianaUICore")
-public class AlertTest extends GwtTest {
+public class AlertGwtTest extends GwtTest {
 
     static String getHtml(String content, String styles, String attributes) {
         styles = styles != null ? " " + styles : "";

@@ -20,18 +20,11 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.constants.*;
-import com.googlecode.gwt.test.GwtModule;
-import com.googlecode.gwt.test.GwtTest;
-import org.junit.Assert;
-import org.junit.Test;
-
-import static com.googlecode.gwt.test.assertions.GwtAssertions.assertThat;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-@GwtModule("com.dianaui.universal.core.DianaUICore")
-public class CheckBoxButtonGwtTest extends GwtTest {
+public class CheckBoxButtonGwtTest extends TestCore {
 
     static String getHtml(String content, String styles, String attributes) {
         styles = styles != null ? " " + styles : "";
@@ -40,38 +33,37 @@ public class CheckBoxButtonGwtTest extends GwtTest {
         return "<div class=\"btn" + styles + "\"" + attributes + "><input type=\"checkbox\" value=\"on\"></input>" + content + "</div>";
     }
 
-    @Test
-    public void defaults() {
+    public void testDefaults() {
         CheckBoxButton button = new CheckBoxButton();
-        Assert.assertEquals(getHtml(null, ButtonType.DEFAULT.getCssName(), null), button.getElement().toString());
-        Assert.assertNull(button.getHTML());
-        Assert.assertNull(button.getText());
-        Assert.assertNull(button.getToggle());
-        Assert.assertEquals(ButtonType.DEFAULT, button.getType());
-        Assert.assertEquals(ButtonSize.DEFAULT, button.getSize());
-        Assert.assertEquals(0, button.getWidgetCount());
-        Assert.assertNull(button.getFontAwesomeIcon());
-        Assert.assertNull(button.getGlyphicon());
-        assertThat(button).hasStyle(Styles.BTN);
+        assertEquals(getHtml(null, ButtonType.DEFAULT.getCssName(), null), button.getElement().toString());
+        assertNull(button.getHTML());
+        assertNull(button.getText());
+        assertNull(button.getToggle());
+        assertEquals(ButtonType.DEFAULT, button.getType());
+        assertEquals(ButtonSize.DEFAULT, button.getSize());
+        assertEquals(0, button.getWidgetCount());
+        assertNull(button.getFontAwesomeIcon());
+        assertNull(button.getGlyphicon());
+        hasStyle(Styles.BTN, button);
 
         button.setFontAwesomeIcon(IconType.ANCHOR);
         button.setHTML("<strong>anchor</strong>");
-        Assert.assertEquals(getHtml("<i class=\"fa fa-anchor\"></i> <span><strong>anchor</strong></span>", "btn-default", null),
+        assertEquals(getHtml("<i class=\"fa fa-anchor\"></i> <span><strong>anchor</strong></span>", "btn-default", null),
                 button.getElement().toString());
 
         button.setIconPosition(IconPosition.RIGHT);
-        Assert.assertEquals(getHtml("<span><strong>anchor</strong></span> <i class=\"fa fa-anchor\"></i>", "btn-default", null),
+        assertEquals(getHtml("<span><strong>anchor</strong></span> <i class=\"fa fa-anchor\"></i>", "btn-default", null),
                 button.getElement().toString());
 
         button.setIconPosition(IconPosition.LEFT);
-        Assert.assertEquals(getHtml("<i class=\"fa fa-anchor\"></i> <span><strong>anchor</strong></span>", "btn-default", null),
+        assertEquals(getHtml("<i class=\"fa fa-anchor\"></i> <span><strong>anchor</strong></span>", "btn-default", null),
                 button.getElement().toString());
 
         button.setFontAwesomeIcon(IconType.LIST);
         button.setText("list");
         button.setType(ButtonType.DANGER);
         button.setSize(ButtonSize.LARGE);
-        Assert.assertEquals(getHtml("<i class=\"fa fa-list\"></i> list", "btn-danger btn-lg", null),
+        assertEquals(getHtml("<i class=\"fa fa-list\"></i> list", "btn-danger btn-lg", null),
                 button.getElement().toString());
     }
 

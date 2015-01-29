@@ -22,18 +22,11 @@ package com.dianaui.universal.core.client.ui;
 import com.dianaui.universal.core.client.ui.constants.AlertType;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.safehtml.shared.SafeHtml;
-import com.googlecode.gwt.test.GwtModule;
-import com.googlecode.gwt.test.GwtTest;
-import org.junit.Assert;
-import org.junit.Test;
-
-import static com.googlecode.gwt.test.assertions.GwtAssertions.assertThat;
 
 /**
  * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
-@GwtModule("com.dianaui.universal.core.DianaUICore")
-public class AlertGwtTest extends GwtTest {
+public class AlertGwtTest extends TestCore {
 
     static String getHtml(String content, String styles, String attributes) {
         styles = styles != null ? " " + styles : "";
@@ -42,33 +35,31 @@ public class AlertGwtTest extends GwtTest {
         return "<div class=\"alert in" + styles + "\"" + attributes + ">" + content + "</div>";
     }
 
-    @Test
-    public void defaults() {
+    public void testDefaults() {
         Alert alert = new Alert();
-        Assert.assertEquals(getHtml(null, "alert-warning", null), alert.getElement().toString());
-        Assert.assertEquals("", alert.getText());
-        Assert.assertFalse(alert.isDismissable());
-        Assert.assertEquals(AlertType.WARNING, alert.getType());
-        Assert.assertEquals(0, alert.getWidgetCount());
-        assertThat(alert).hasStyle(Styles.ALERT);
-        assertThat(alert).hasStyle(AlertType.WARNING.getCssName());
+        assertEquals(getHtml(null, "alert-warning", null), alert.getElement().toString());
+        assertEquals("", alert.getText());
+        assertFalse(alert.isDismissable());
+        assertEquals(AlertType.WARNING, alert.getType());
+        assertEquals(0, alert.getWidgetCount());
+        hasStyle(Styles.ALERT, alert);
+        hasStyle(AlertType.WARNING.getCssName(), alert);
 
         alert.setDismissable(true);
-        Assert.assertEquals(getHtml("<button type=\"button\" class=\"close\">×</button>", "alert-warning alert-dismissable", null), alert.getElement().toString());
+        assertEquals(getHtml("<button type=\"button\" class=\"close\">×</button>", "alert-warning alert-dismissable", null), alert.getElement().toString());
 
         alert.setDismissable(false);
         alert.setType(AlertType.INFO);
-        Assert.assertEquals(AlertType.INFO, alert.getType());
-        Assert.assertEquals(getHtml(null, "alert-info", null), alert.getElement().toString());
+        assertEquals(AlertType.INFO, alert.getType());
+        assertEquals(getHtml(null, "alert-info", null), alert.getElement().toString());
     }
 
-    @Test
-    public void constructors() {
+    public void testConstructors() {
         Alert alert = new Alert("Test");
-        Assert.assertEquals(getHtml("Test", "alert-warning", null), alert.getElement().toString());
+        assertEquals(getHtml("Test", "alert-warning", null), alert.getElement().toString());
 
         alert = new Alert("Test", AlertType.SUCCESS);
-        Assert.assertEquals(getHtml("Test", "alert-success", null), alert.getElement().toString());
+        assertEquals(getHtml("Test", "alert-success", null), alert.getElement().toString());
 
         alert = new Alert(new SafeHtml() {
             @Override
@@ -76,7 +67,7 @@ public class AlertGwtTest extends GwtTest {
                 return "<strong>Test</strong>";
             }
         }, AlertType.SUCCESS);
-        Assert.assertEquals(getHtml("<strong>Test</strong>", "alert-success", null), alert.getElement().toString());
+        assertEquals(getHtml("<strong>Test</strong>", "alert-success", null), alert.getElement().toString());
     }
 
 }

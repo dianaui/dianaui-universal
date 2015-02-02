@@ -24,21 +24,21 @@ import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
 import com.dianaui.universal.core.client.ui.constants.DeviceSize;
 import com.dianaui.universal.core.client.ui.constants.InputSize;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.editor.client.EditorError;
+import com.google.gwt.editor.client.HasEditorErrors;
+import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.text.shared.Parser;
 import com.google.gwt.text.shared.Renderer;
 
-/**
- * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
- * @see com.google.gwt.user.client.ui.HasEnabled
- */
+import java.util.List;
+
 public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<T> implements HasId, HasResponsiveness,
-        HasPlaceholder, HasAutoComplete, HasSize<InputSize> {
+        HasPlaceholder, HasAutoComplete, HasSize<InputSize>, HasEditorErrors<T> {
 
     private static final String MAX_LENGTH = "maxlength";
 
     /**
-     * Creates a value box that wraps the given browser element handle. This is
-     * only used by subclasses.
+     * Creates a value box that wraps the given browser element handle. This is only used by subclasses.
      *
      * @param elem     the browser element to wrap
      * @param renderer renderer object
@@ -100,6 +100,45 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     @Override
     public InputSize getSize() {
         return InputSize.fromStyleName(getStyleName());
+    }
+
+    public interface EditorErrorSupport extends AttachEvent.Handler {
+
+        void showErrors(List<EditorError> errors);
+
+    }
+
+    private EditorErrorSupport errorSupport = new ValueBoxErrorSupport(this);
+
+    public void setAddErrorSupport(boolean addErrorSupport) {
+        if (!addErrorSupport) {
+            errorSupport = null;
+        }
+    }
+
+    public boolean getAddErrorSupport() {
+        return errorSupport != null;
+    }
+
+    public void setErrorSupport(EditorErrorSupport errorSupport) {
+        this.errorSupport = errorSupport;
+        addAttachHandler(errorSupport);
+    }
+
+    @Override
+    public void showErrors(List<EditorError> errors) {
+        if (errorSupport != null) {
+            errorSupport.showErrors(errors);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setValue(T value, boolean fireEvents) {
+        showErrors(null);
+        super.setValue(value, fireEvents);
     }
 
 }

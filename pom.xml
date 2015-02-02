@@ -189,6 +189,7 @@
                     <executions>
                         <execution>
                             <goals>
+                                <goal>compile</goal>
                                 <goal>test</goal>
                                 <goal>resources</goal>
                             </goals>

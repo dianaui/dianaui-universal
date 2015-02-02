@@ -20,8 +20,12 @@
 package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.ui.base.AbstractTextWidget;
+import com.dianaui.universal.core.client.ui.constants.ElementTags;
+import com.dianaui.universal.core.client.ui.constants.IconType;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style;
 
 /**
  * @author Joshua Godi
@@ -31,6 +35,39 @@ public class HelpBlock extends AbstractTextWidget {
     public HelpBlock() {
         super(Document.get().createSpanElement());
         setStyleName(Styles.HELP_BLOCK);
+    }
+
+    private IconType iconType = null;
+
+    public void setIconType(IconType type) {
+        iconType = type;
+    }
+
+    public IconType getIconType() {
+        return iconType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setText(String text) {
+        super.setText(text);
+        if (iconType != null && text != null && !text.equals("")) {
+            Element e = Document.get().createElement(ElementTags.I);
+            e.addClassName(Styles.FONT_AWESOME_BASE);
+            e.addClassName(iconType.getCssName());
+            e.getStyle().setPaddingRight(5, Style.Unit.PX);
+            getElement().insertFirst(e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getText() {
+        return super.getText();
     }
 
 }

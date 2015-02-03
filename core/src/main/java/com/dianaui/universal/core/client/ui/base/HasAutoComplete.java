@@ -21,7 +21,7 @@ package com.dianaui.universal.core.client.ui.base;
 
 public interface HasAutoComplete {
 
-    String AUTOCOMPLETE = "autocomplete";
+    String AUTO_COMPLETE = "autocomplete";
     String ON = "on";
     String OFF = "off";
 

@@ -35,26 +35,30 @@ import java.util.List;
 public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<T> implements HasId, HasResponsiveness,
         HasPlaceholder, HasAutoComplete, HasSize<InputSize>, HasEditorErrors<T> {
 
+    /**
+     * Add support for HasEditorErrors implementation.
+     */
+    public interface EditorErrorSupport extends AttachEvent.Handler {
+
+        void showErrors(List<EditorError> errors);
+
+    }
+
     private static final String MAX_LENGTH = "maxlength";
+
+    private EditorErrorSupport errorSupport = new ValueBoxErrorSupport(this);
 
     /**
      * Creates a value box that wraps the given browser element handle. This is only used by subclasses.
      *
-     * @param elem     the browser element to wrap
-     * @param renderer renderer object
-     * @param parser   parser object
+     * @param elem the browser element to wrap
      */
     protected ValueBoxBase(final Element elem, final Renderer<T> renderer, final Parser<T> parser) {
         super(elem, renderer, parser);
     }
 
-    public void setMaxLength(int maxLength) {
+    public void setMaxLength(final int maxLength) {
         getElement().setAttribute(MAX_LENGTH, Integer.toString(maxLength));
-    }
-
-    @Override
-    public String getPlaceholder() {
-        return getElement().getAttribute(PLACEHOLDER);
     }
 
     @Override
@@ -63,23 +67,28 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     }
 
     @Override
-    public String getAutoComplete() {
-        return getElement().getAttribute(AUTOCOMPLETE);
+    public String getPlaceholder() {
+        return getElement().getAttribute(PLACEHOLDER);
     }
 
     @Override
     public void setAutoComplete(final boolean autoComplete) {
-        getElement().setAttribute(AUTOCOMPLETE, autoComplete ? ON : OFF);
+        getElement().setAttribute(AUTO_COMPLETE, autoComplete ? ON : OFF);
     }
 
     @Override
-    public String getId() {
-        return IdMixin.getId(this);
+    public String getAutoComplete() {
+        return getElement().getAttribute(AUTO_COMPLETE);
     }
 
     @Override
     public void setId(final String id) {
         IdMixin.setId(this, id);
+    }
+
+    @Override
+    public String getId() {
+        return IdMixin.getId(this);
     }
 
     @Override
@@ -101,14 +110,6 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     public InputSize getSize() {
         return InputSize.fromStyleName(getStyleName());
     }
-
-    public interface EditorErrorSupport extends AttachEvent.Handler {
-
-        void showErrors(List<EditorError> errors);
-
-    }
-
-    private EditorErrorSupport errorSupport = new ValueBoxErrorSupport(this);
 
     public void setAddErrorSupport(boolean addErrorSupport) {
         if (!addErrorSupport) {

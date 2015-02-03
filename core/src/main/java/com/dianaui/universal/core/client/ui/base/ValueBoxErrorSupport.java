@@ -1,4 +1,5 @@
 /*
+/*
  * #%L
  * Diana UI Core
  * %%
@@ -28,6 +29,22 @@ import com.google.gwt.user.client.ui.Widget;
 
 import java.util.List;
 
+/**
+ * This is the default {@link EditorErrorSupport} implementation. The assumption is that every
+ * {@link ValueBoxBase} instance will have a {@link HasValidationState} parent. If there is a
+ * {@link HelpBlock} that is a child of the {@link HasValidationState} parent then error messages will be
+ * displayed in the {@link HelpBlock}.
+ * <p/>
+ * Example:
+ * <p/>
+ * <b:FormGroup>
+ * <b:FormLabel for="username">User</b:FormLabel>
+ * <b:TextBox b:id="username" ui:field="username" />
+ * <b:HelpBlock iconType="EXCLAMATION" />
+ * </b:FormGroup>
+ *
+ * @author Steven Jardine
+ */
 public class ValueBoxErrorSupport implements ValueBoxBase.EditorErrorSupport {
 
     private final Widget inputWidget;
@@ -44,6 +61,12 @@ public class ValueBoxErrorSupport implements ValueBoxBase.EditorErrorSupport {
         inputWidget = widget;
     }
 
+    /**
+     * Find the sibling {@link HelpBlock}.
+     *
+     * @param widget the {@link Widget} to search.
+     * @return the found {@link HelpBlock} of null if not found.
+     */
     private HelpBlock findHelpBlock(Widget widget) {
         if (widget instanceof HelpBlock) return (HelpBlock) widget;
         // Try and find the HelpBlock in the children of the given widget.
@@ -59,6 +82,10 @@ public class ValueBoxErrorSupport implements ValueBoxBase.EditorErrorSupport {
         return null;
     }
 
+    /**
+     * Initialize the instance. We find the parent {@link HasValidationState} and sibling {@link HelpBlock}
+     * only 1 time on initialization.
+     */
     public void init() {
         if (initialized) return;
         initialized = true;
@@ -72,6 +99,9 @@ public class ValueBoxErrorSupport implements ValueBoxBase.EditorErrorSupport {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onAttachOrDetach(AttachEvent event) {
         if (event.isAttached()) {
@@ -79,6 +109,9 @@ public class ValueBoxErrorSupport implements ValueBoxBase.EditorErrorSupport {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void showErrors(List<EditorError> errors) {
         init();

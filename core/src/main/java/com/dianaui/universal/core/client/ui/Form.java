@@ -23,7 +23,6 @@ import com.dianaui.universal.core.client.ui.base.HasType;
 import com.dianaui.universal.core.client.ui.base.form.AbstractForm;
 import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.FormType;
-import com.google.gwt.uibinder.client.UiConstructor;
 
 /**
  * A form.
@@ -40,7 +39,6 @@ public class Form extends AbstractForm implements HasType<FormType> {
         this(FormType.DEFAULT);
     }
 
-    @UiConstructor
     public Form(final FormType type) {
         setType(type);
     }

@@ -21,7 +21,6 @@ package com.dianaui.universal.core.client.ui;
 
 import com.dianaui.universal.core.client.event.*;
 import com.dianaui.universal.core.client.ui.base.CustomWidget;
-import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
 import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Style;
@@ -163,7 +162,11 @@ public class Collapse extends CustomWidget {
     }
 
     public boolean isViewing() {
-        return StyleHelper.containsStyle(getStyleName(), Styles.IN);
+        return this.getElement().hasClassName(Styles.IN);
+    }
+
+    public boolean isCollapsing() {
+        return this.getElement().hasClassName(Styles.COLLAPSING);
     }
 
     public HandlerRegistration addShowHandler(final ShowHandler showHandler) {

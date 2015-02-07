@@ -1,17 +1,15 @@
-package org.gwtbootstrap3.client.ui;
-
 /*
  * #%L
- * GwtBootstrap3
+ * Diana UI Core
  * %%
- * Copyright (C) 2015 GwtBootstrap3
+ * Copyright (C) 2014 Diana UI
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,24 +17,15 @@ package org.gwtbootstrap3.client.ui;
  * limitations under the License.
  * #L%
  */
+package com.dianaui.universal.core.client.ui;
 
-import java.util.List;
-
-import org.gwtbootstrap3.client.ui.base.HasAutoComplete;
-import org.gwtbootstrap3.client.ui.base.HasId;
-import org.gwtbootstrap3.client.ui.base.HasPlaceholder;
-import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
-import org.gwtbootstrap3.client.ui.base.HasSize;
-import org.gwtbootstrap3.client.ui.base.ValueBoxBase;
-import org.gwtbootstrap3.client.ui.base.ValueBoxBase.EditorErrorSupport;
-import org.gwtbootstrap3.client.ui.base.ValueBoxErrorSupport;
-import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
-import org.gwtbootstrap3.client.ui.constants.DeviceSize;
-import org.gwtbootstrap3.client.ui.constants.InputSize;
-import org.gwtbootstrap3.client.ui.constants.Styles;
-
+import com.dianaui.universal.core.client.ui.base.*;
+import com.dianaui.universal.core.client.ui.base.helper.StyleHelper;
+import com.dianaui.universal.core.client.ui.base.mixin.EnabledMixin;
+import com.dianaui.universal.core.client.ui.base.mixin.IdMixin;
+import com.dianaui.universal.core.client.ui.constants.DeviceSize;
+import com.dianaui.universal.core.client.ui.constants.InputSize;
+import com.dianaui.universal.core.client.ui.constants.Styles;
 import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.editor.client.EditorError;
 import com.google.gwt.editor.client.HasEditorErrors;
@@ -44,22 +33,24 @@ import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.SuggestOracle;
 
+import java.util.List;
+
 /**
  * Wrapper for a {@link com.google.gwt.user.client.ui.SuggestBox}.<br/>
  * <br/>
  * The default style is inherited from the {@link Styles#DROPDOWN_MENU}. Styling of the suggestions items need
  * a bit of css in order to be pleasing to the eye.
- * 
+ * <p/>
  * <pre>
  *  .dropdown-menu .item {
  *      padding: 5px;
  *  }
- *  
+ *
  *  .dropdown-menu .item-selected {
  *      background-color: #eee;
  *  }
  * </pre>
- * 
+ *
  * @author Steven Jardine
  */
 public class SuggestBox extends com.google.gwt.user.client.ui.SuggestBox implements HasId, HasResponsiveness, HasPlaceholder,
@@ -74,11 +65,7 @@ public class SuggestBox extends com.google.gwt.user.client.ui.SuggestBox impleme
         }
     }
 
-    private final EnabledMixin<SuggestBox> enabledMixin = new EnabledMixin<SuggestBox>(this);
-
-    private EditorErrorSupport errorSupport = new ValueBoxErrorSupport(this);
-
-    private final IdMixin<SuggestBox> idMixin = new IdMixin<SuggestBox>(this);
+    private ValueBoxBase.EditorErrorSupport errorSupport = new ValueBoxErrorSupport(this);
 
     /**
      * Constructor for {@link SuggestBox}. Creates a {@link MultiWordSuggestOracle} and {@link TextBox} to use
@@ -102,7 +89,7 @@ public class SuggestBox extends com.google.gwt.user.client.ui.SuggestBox impleme
      * by the {@link SuggestBox}.
      *
      * @param oracle supplies suggestions based upon the current contents of the text widget
-     * @param box the text widget
+     * @param box    the text widget
      */
     public SuggestBox(SuggestOracle oracle, ValueBoxBase<String> box) {
         this(oracle, box, new DefaultSuggestionDisplay());
@@ -112,8 +99,8 @@ public class SuggestBox extends com.google.gwt.user.client.ui.SuggestBox impleme
      * Constructor for {@link SuggestBox}. The text box will be removed from it's current location and wrapped
      * by the {@link SuggestBox}.
      *
-     * @param oracle supplies suggestions based upon the current contents of the text widget
-     * @param box the text widget
+     * @param oracle         supplies suggestions based upon the current contents of the text widget
+     * @param box            the text widget
      * @param suggestDisplay the class used to display suggestions
      */
     public SuggestBox(SuggestOracle oracle, ValueBoxBase<String> box, SuggestionDisplay suggestDisplay) {
@@ -130,7 +117,9 @@ public class SuggestBox extends com.google.gwt.user.client.ui.SuggestBox impleme
         return errorSupport != null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getAutoComplete() {
         return getElement().getAttribute(AUTO_COMPLETE);
@@ -141,25 +130,31 @@ public class SuggestBox extends com.google.gwt.user.client.ui.SuggestBox impleme
      */
     @Override
     public String getId() {
-        return idMixin.getId();
+        return IdMixin.getId(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPlaceholder() {
         return getElement().getAttribute(PLACEHOLDER);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputSize getSize() {
         return InputSize.fromStyleName(getStyleName());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEnabled() {
-        return enabledMixin.isEnabled();
+        return EnabledMixin.isEnabled(this);
     }
 
     /**
@@ -173,51 +168,65 @@ public class SuggestBox extends com.google.gwt.user.client.ui.SuggestBox impleme
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setAutoComplete(final boolean autoComplete) {
         getElement().setAttribute(AUTO_COMPLETE, autoComplete ? ON : OFF);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setEnabled(final boolean enabled) {
-        enabledMixin.setEnabled(enabled);
+        EnabledMixin.setEnabled(this, enabled);
     }
 
     /**
      * @param errorSupport the EditorErrorSupport to set.
      */
-    public void setErrorSupport(final EditorErrorSupport errorSupport) {
+    public void setErrorSupport(final ValueBoxBase.EditorErrorSupport errorSupport) {
         this.errorSupport = errorSupport;
         addAttachHandler(errorSupport);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setHiddenOn(final DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setId(final String id) {
-        idMixin.setId(id);
+        IdMixin.setId(this, id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setPlaceholder(final String placeHolder) {
         getElement().setAttribute(PLACEHOLDER, placeHolder != null ? placeHolder : "");
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setSize(final InputSize size) {
         StyleHelper.addUniqueEnumStyleName(this, InputSize.class, size);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setVisibleOn(final DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);

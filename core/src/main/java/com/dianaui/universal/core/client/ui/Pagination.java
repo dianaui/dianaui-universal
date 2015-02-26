@@ -34,8 +34,12 @@ import com.google.gwt.user.cellview.client.SimplePager;
  * Support for Bootstrap pagination (http://getbootstrap.com/components/#pagination)
  *
  * @author Joshua Godi
+ * @author <a href='mailto:donbeave@gmail.com'>Alexey Zhokhov</a>
  */
 public class Pagination extends UnorderedList implements HasResponsiveness, HasPaginationSize {
+
+    protected AnchorListItem previousLink;
+    protected AnchorListItem nextLink;
 
     public Pagination() {
         setStyleName(Styles.PAGINATION);
@@ -56,18 +60,30 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
         StyleHelper.addUniqueEnumStyleName(this, PaginationSize.class, paginationSize);
     }
 
+    public AnchorListItem getPreviousLink() {
+        return previousLink;
+    }
+
+    public AnchorListItem getNextLink() {
+        return nextLink;
+    }
+
     public AnchorListItem addPreviousLink() {
-        final AnchorListItem listItem = new AnchorListItem();
-        listItem.setFontAwesomeIcon(IconType.ANGLE_DOUBLE_LEFT);
-        insert(listItem, 0);
-        return listItem;
+        if (previousLink == null) {
+            previousLink = new AnchorListItem();
+            previousLink.setFontAwesomeIcon(IconType.ANGLE_DOUBLE_LEFT);
+            insert(previousLink, 0);
+        }
+        return previousLink;
     }
 
     public AnchorListItem addNextLink() {
-        final AnchorListItem listItem = new AnchorListItem();
-        listItem.setFontAwesomeIcon(IconType.ANGLE_DOUBLE_RIGHT);
-        add(listItem);
-        return listItem;
+        if (nextLink == null) {
+            nextLink = new AnchorListItem();
+            nextLink.setFontAwesomeIcon(IconType.ANGLE_DOUBLE_RIGHT);
+            add(nextLink);
+        }
+        return nextLink;
     }
 
     /**
@@ -82,6 +98,8 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
      */
     public void rebuild(final SimplePager pager) {
         clear();
+        previousLink = null;
+        nextLink = null;
 
         if (pager.getPageCount() == 0) {
             return;

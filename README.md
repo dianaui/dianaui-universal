@@ -1,4 +1,7 @@
+# dianaui-universal
+
 [![Build Status](https://travis-ci.org/donbeave/dianaui-universal.svg?branch=master)](https://travis-ci.org/donbeave/dianaui-universal)
+[![Analytics](https://ga-beacon.appspot.com/UA-71075299-1/dianaui-universal/main-page)](https://github.com/igrigorik/ga-beacon)
 
 Copyright and license
 ---------------------
